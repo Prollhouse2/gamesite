@@ -1,0 +1,555 @@
+html, body {
+    width:  100%;
+    height: 100%;
+    margin: 0;
+}
+/* Load the font PressStart2P-Regular.ttf */
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('fonts/PressStart2P-Regular.ttf');
+    font-display: swap;
+}
+body {
+    font-family: 'Press Start 2P', Arial;
+    background-color: #000000;
+    color: #ffffff;
+}
+.pagetitle {
+    padding: 10px;
+    padding-bottom: 0px;
+    font-size: 0.75em;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+a, .saveOption {color: rgb(255, 0, 255);text-decoration: none;}
+a:hover, .saveOption:hover {filter: brightness(200%);}
+a:active, a:hover:active, .saveOption:active, .saveOption:hover:active {filter: brightness(275%);}
+#gameDiv { /*game canvas*/
+    border: 1px solid #ffffff;
+    position: relative;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    margin-top: 15px;
+}
+#game {
+    image-rendering: pixelated;
+}
+#bottomInfoBox { /* place under the game canvas */
+    margin: 1.5em 50px 0px 50px;
+    font-family: 'Arial';
+}
+#bottomTopBox {
+    text-align: center;
+}
+#bottomLeftBox {
+    float: left;
+    width: 50%;
+    text-align: left;
+}
+#bottomRightBox {
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+table {
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.125);
+}
+#controlsTable {
+    width: 75%;
+    margin-left: auto;
+    margin-right: 0px;
+}
+/* alternating table row colors */
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.0625);
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #9f9f9f;
+}
+kbd {
+    /* Look like a button */
+    display: inline-block;
+    padding: 0.2em 0.6em 0.3em;
+    font-size: 90%;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    background-color: rgb(95, 95, 95);
+    border-radius: 0.2em;
+    border: 1px solid #000;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 0 2px rgba(0, 0, 0, 0.05);
+    font-family: 'Arial';
+    cursor: pointer;
+}
+kbd:active {filter: brightness(70%);}
+#infoParent, #modParent, #settingsParent, .menuParent {
+    display: none;
+}
+#infoScreen, #modManager, #settingsMenu, .menuScreen {
+    position: absolute;
+    border: 1px solid #ffffff;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, 0%);
+    width: 95%;
+    height: 50%;
+    max-width: 700px;
+    padding: 10px;
+    background-color: rgb(31, 31, 31);
+    overflow-x: hidden;
+    z-index: 10;
+}
+#settingsMenu {
+    height: 75%;
+}
+#infoSearch, #modManagerUrl, #saveButtons {
+    position: absolute;
+    bottom: 59.4%;
+    width: 95%;
+    max-width: 700px;
+    height: 50px;
+    left: 50%;
+    transform: translate(-50%, 198.5%);
+    background-color: rgb(66, 66, 66);
+    color: white;
+    font-size: 1.5em;
+    padding: 8px;
+    font-family: 'Press Start 2P';
+    z-index: 11;
+}
+#infoSearch:focus, #modManagerUrl:focus {
+    outline: none;
+}
+.menuTitle {
+    font-size: 1.5em;
+    text-decoration: underline;
+}
+.menuText {
+    margin-top: 5px;
+    line-height: 1.5em;
+}
+#infoText {
+    white-space: pre-wrap;
+}
+.XButton {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-size: 2em;
+    background-color: rgb(100, 33, 33);
+    padding:5px;
+    text-align:center;
+    border: 1px solid #ffffff;
+    z-index: 12;
+}
+.XButton:hover {
+    background-color: rgb(200, 33, 33);
+}
+/*#modManagerAdd {
+    position: absolute;
+    bottom: 25%;
+    right: 25%;
+    height: 50px;
+    width: 50px;
+    transform: translate(-25%, -25%);
+    background-color: rgb(0, 190, 32);
+    color: white;
+    font-size: 2em;
+    padding: 10px;
+    font-family: 'Press Start 2P';
+}*/
+#modManagerList {
+    margin-top: 20px;
+}
+#modManagerList li {
+    list-style-type: none;
+    position: relative;
+}
+#modManagerList li::before {
+    content: '•';
+    position: absolute;
+    left: -1.5em;
+    font-size: 1em;
+    font-family: 'Press Start 2P';
+}
+.removeModX {
+    color: red;
+    cursor: pointer;
+}
+.removeModX:hover {
+    color: rgb(255, 107, 107);
+}
+.infoLink {
+    color: rgb(116, 140, 221);
+    cursor: pointer;
+    text-decoration: underline;
+}
+.saveSlot {
+    display: block;
+    border-top: solid gray;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+}
+.saveSlot:last-child {
+    border-bottom: solid gray;
+}
+.saveOption {
+    float: right;
+    padding-left: 2em;
+    padding-right: 1em;
+    color: #ff00ff;
+    cursor: pointer;
+}
+.saveOption:first-child {
+    padding-right: 2em;
+}
+.saveOption[disabled="true"] {
+    color: gray;
+    cursor: not-allowed;
+}
+#saveFile, #loadFile, #saveConfirm {
+    background-color: black;
+    text-align: center;
+    vertical-align: middle;
+    height: 3em;
+    line-height: 3em;
+    position:absolute;
+    bottom: 0;
+    cursor: pointer;
+    border-top: solid white;
+}
+#saveFile {
+    left: 0;
+    width: 50%;
+}
+#loadFile {
+    right: 0;
+    width: 50%;
+    border-left: solid white;
+}
+#saveConfirm {
+    left: 0;
+    width: 100%;
+}
+button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+}
+.usingTab button:focus {
+    filter: brightness(75%);
+    outline: none;
+}
+#underBox {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    margin-top: 10px;
+    width: 100%;
+}
+#controls button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    text-shadow: 0.5px 1px 4px #000000;
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid #797979;
+    margin: 0px 5px 5px 5px;
+    font-variant: small-caps;
+}
+#controls button.bright {
+    text-shadow: 0.5px 1px 4px #ffffff;
+    color: rgba(0, 0, 0, 0.85);   
+}
+/*Darken when active*/
+#controls button:active, #controls button:active:hover {
+    filter: brightness(60%);
+}
+#controls button:hover {
+    filter: brightness(90%);
+}
+#controls button:disabled {
+    cursor: not-allowed;
+}
+#controls button[current="true"], #controls button[on="true"] {
+    border: 1px solid #ffffff;
+    filter: brightness(110%);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, .4);
+    color: rgba(255, 255, 255, 1);
+}
+#controls .elementButton[current="true"] {
+    border: 1px solid #00ff00;
+    box-shadow: 0px 1px 15px rgba(0, 255, 0, .75);
+}
+#controls button.bright[current="true"] {
+    color: rgba(0, 0, 0, 1);
+}
+#controls button[on="true"] {
+    border-color:lime;
+    color:lime;
+}
+#controls div {
+    display:block;
+}
+.stat {
+    margin-right: 25px;
+    margin-bottom: 5px;
+    float:right;
+}
+#stats {
+    margin: 0px 5px 0px 5px;
+    font-size: 0.75em;
+    height: 1.5em;
+    width:100%;
+    /* no wrapping */
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+/* screen size < 800px */
+@media screen and (max-width: 800px) { /* Mobile Styles */
+    .pagetitle {
+        font-size: 1em;
+        padding-left: 0.25em;
+    }
+    #bottomLeftBox, #bottomRightBox {
+        width: 100%;
+        margin: 1px;
+        text-align: left;
+    }
+    table {
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    #gameDiv { /*game canvas*/
+        margin-top: 0;
+    }
+    .stat {
+        margin-right: 15px;
+        margin-bottom: 3px;
+    }
+    #stats {
+        width: 97%;
+        margin-left: 5px;
+        font-size: 0.75em;
+        height: 2.5em
+    }
+}
+@media screen and (max-width: 600px) {
+    #gameDiv { /*game canvas*/
+        margin-top: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+    }
+    .pagetitle {
+        display: none
+    }
+}
+@media screen and (min-width: 800px) { /* Desktop-Only Styles */
+    #gameDiv {
+        width:800px;
+        left: 50%;
+        transform: translate(-50%, -0%);
+    }
+}
+/* screen size > 1325px, h1::after {content:" Sandboxels"} */
+@media screen and (min-width: 1325px) {
+    .pagetitle::after {content:" Sandboxels"}
+}
+#stat-pos, #stat-pixels, #stat-shift, #stat-tps, #stat-ticks, #stat-view {
+    float:left;
+}
+#stat-view, #stat-element {
+    text-transform: uppercase;
+}
+.categoryName {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+#extraInfo {
+    margin:5px
+}
+#toolControls, #category-tools {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+}
+
+/* Scrollbars */
+
+#toolControls, #category-tools, #categoryControls, #elementControls {
+    scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.1);
+    scrollbar-width: thin;
+}
+
+@media screen and (max-width: 700px) {
+    #toolControls, #category-tools, #categoryControls, #elementControls {
+    margin-bottom: 5px !important;
+    }
+}
+
+#toolControls::-webkit-scrollbar, #category-tools::-webkit-scrollbar, #categoryControls::-webkit-scrollbar, #elementControls::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+#toolControls::-webkit-scrollbar-thumb, #category-tools::-webkit-scrollbar-thumb, #categoryControls::-webkit-scrollbar-thumb, #elementControls::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 5px;
+}
+#toolControls::-webkit-scrollbar-track, #category-tools::-webkit-scrollbar-track, #categoryControls::-webkit-scrollbar-track, #elementControls::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+#toolControls::-webkit-scrollbar-thumb:hover, #category-tools::-webkit-scrollbar-thumb:hover, #categoryControls::-webkit-scrollbar-thumb:hover, #elementControls::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#toolControls {
+    z-index: 3;
+}
+#category-tools {
+    z-index: 2;
+}
+
+#categoryControls {
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.125);
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding-bottom:1px;
+}
+#categoryControls button {
+    /* Borderless buttons */
+    border: none;
+    border-radius: 0;
+    padding-right: 8px;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: inline-block;
+    position: relative;
+    z-index:0;
+}
+#categoryControls button:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+}
+#categoryControls button[current="true"] {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.category {
+    margin-top:0.75em;
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    text-align:center;
+}
+button, input { /*Disable double tap zoom on mobile devices*/
+    touch-action: manipulation;
+    color-scheme: dark;
+}
+select, .toggleInput, #settingsMenu input[type="number"], #settingsMenu input[type="text"], #savePromptMenu input {
+    background-color: black;
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: rgb(150, 150, 150) 1px solid;
+    border-radius: 20px;
+    padding: 0.5em;
+    color: white;
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#settingsMenu .toggleInput {
+    display: inline-block;
+    width: 4em;
+    text-align: center;
+}
+.toggleInput { cursor: pointer; }
+.toggleInput[state="1"] {color: lime!important;}
+.toggleInput[state="0"] {color: red!important;}
+#settingsMenu input[type="number"] {
+    width: 3em;
+}
+.settingsButton {
+    background-color: black;
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: rgb(150, 150, 150) 1px solid;
+    border-radius: 20px;
+    padding: 0.5em;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.settingsButton:active, .toggleInput:active {
+    filter: brightness(75%);
+}
+#canvasDiv {
+    position:relative;
+    overflow-x:hidden
+}
+#colorSelector {
+    position:absolute;
+    bottom:1em;
+    right:1em;
+    display: none;
+}
+.categoryButton.notify {
+    background-color: rgba(255, 0, 0, 0.25);
+}
+/* .elementButton.notify with a red glow */
+.elementButton.notify {
+    -webkit-box-shadow: 0px 0px 15px 5px #FF0000; 
+    box-shadow: 0px 0px 15px 5px #FF0000;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+.setting-span {
+    display:block;padding-bottom:0.5em
+}
+.multisetting {
+    display: inline-block
+}
+.helpMark {text-decoration:dotted underline; font-style:italic; cursor:help; color:yellow}
+#content {
+    margin-left:10px;
+    margin-right:10px;
+    padding-bottom: 10px;
+}
+#logDiv {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    pointer-events: none;
+    padding: 5px;
+    white-space: pre-wrap;
+    font-size: 0.75em;
+}

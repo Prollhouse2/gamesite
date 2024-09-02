@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78TXR0XFK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-C78TXR0XFK');
+</script>
+
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <link rel="icon" href="https://github.com/sz-games/home/blob/main/G.png?raw=true">
+    <title>Sz Games</title>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+body {
+ 
+}
+
+.btn-group button {
+  background-color: black; /* Green background */
+ 
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: grey;
+}
+
+/* Header/Logo Title */
+.header {
+  padding: 60px;
+  text-align: center;
+  background: linear-gradient(to bottom right, #9a9a9a, rgb(39, 39, 39));
+  color: white;
+  width: auto;
+  font-size: 30px;
+ 
+ 
+  border-radius: 15px;
+}
+
+/* Page Content */
+
+</style>
+</head>
+<body onresize="resize()">
+<style>
+    .game {
+        position: absolute;
+color: white;
+
+  transform: scale(1.8);
+  z-index: 3;
+  font-family: Arial, Helvetica, sans-serif;
+    }
+   .fade {
+        position: absolute;
+        background: linear-gradient(to bottom, #1d1d1d, #1d1d1d5d, rgba(39, 39, 39, 0));
+        width: 300px;
+        height: 150px;
+     border-radius: 15px;
+    }
+</style>
+
+
+<iframe frameBorder="0" id="game" style="text-align: center; align-items: center; overflow: hidden; width: 100%; " src="https://emupedia.net/emupedia-game-agar.io/" allowfullscreen></iframe>
+
+<h2 onclick="window.location = 'https://sz-games.github.io'" style="cursor: pointer; position: fixed; bottom: -20px;  ">Back</h2>
+<h2  style="position: fixed; bottom: 10px;">____</h2>
+<h2 onclick="makeFullScreen()" style="cursor: pointer; position: fixed; bottom: 20px;">Fullscreen</h2>
+
+
+
+  </body>
+
+  <script>
+
+document.body.onkeyup = function(e) {
+  if( e.keyCode == 27 ) {
+    document.getElementById('game').style.width = '800px';
+  }
+}
+
+function requestFullScreen(element) {
+    // Supports most browsers and their versions.
+    var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullscreen;
+    
+    if (requestMethod) { // Native full screen.
+        requestMethod.call(element);
+        let hh = window.innerHeight - 10;
+
+document.getElementById('game').height = hh;
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
+    }
+}
+var canvas = document.getElementById('game');
+
+function makeFullScreen() {
+
+
+    requestFullScreen(canvas);
+}
+
+
+
+let hh = window.innerHeight - 10;
+
+
+document.getElementById('game').height = hh;
+window.onresize = function(event) {
+  let hh = window.innerHeight - 10;
+
+document.getElementById('game').height = hh;
+}
+
+
+  </script>
+</html>

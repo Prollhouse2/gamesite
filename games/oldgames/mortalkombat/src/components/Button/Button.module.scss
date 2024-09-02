@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+}
+
+.button {
+  width: 50px;
+  height: 50px;
+  outline: none;
+  text-transform: uppercase;
+  font-size: 20px;
+  background-image: url(../../assets/logo.svg);
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid #fda90f;
+  background-color: #fda90f;
+}
+
+.buttonWithoutBG {
+  composes: button;
+  background-image: none;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+}

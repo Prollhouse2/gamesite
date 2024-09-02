@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset='utf8'>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+            #ruffle {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='ruffle'></div>
+        <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+        <script>
+            var swfobject = {};
+
+            swfobject.embedSWF = function(url, cont, width, height){
+                var ruffle = window.RufflePlayer.newest(),
+                    player = Object.assign(document.getElementById(cont).appendChild(ruffle.createPlayer()), {
+                        width: width,
+                        height: height,
+                        style: 'width: ' + width + 'px; height: ' + height + 'px',
+                    });
+
+                player.load({ url: url });
+
+                window.addEventListener('resize', function() {
+                    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                    var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+                    player.width = screenWidth;
+                    player.height = screenHeight;
+                    player.style = 'width: ' + screenWidth + 'px; height: ' + screenHeight + 'px';
+                });
+            }
+
+            swfobject.embedSWF('acegangstercracked.swf', 'ruffle', '100%', '100%');
+        </script>
+    </body>
+</html>

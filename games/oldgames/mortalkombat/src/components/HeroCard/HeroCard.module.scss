@@ -1,0 +1,45 @@
+.card {
+  position: relative;
+  width: 120px;
+  height: 140px;
+  border: 1px solid #152229;
+  background: radial-gradient(ellipse at center, #1e2938 0, #080808 100%);
+  overflow: hidden;
+  position: relative;
+  transition: opacity 0.25s;
+  margin: 8px;
+  box-shadow: 6px 6px 15px 0 #000000;
+  cursor: pointer;
+}
+
+.activeCard {
+  composes: card;
+  outline: 2px solid #d38606;
+  & .img {
+    transform: scale(1.1);
+  }
+  & .name {
+    bottom: 25px;
+  }
+}
+
+.img {
+  display: block;
+  width: 100%;
+  border-radius: 1px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.name {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #ffffff;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 800;
+  transition: bottom 0.2s ease-in-out;
+}

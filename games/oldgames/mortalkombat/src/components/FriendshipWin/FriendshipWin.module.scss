@@ -1,0 +1,74 @@
+.container {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-image: url(../../assets/bg.png);
+  background-position: top;
+  background-color: #000000;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.friendship {
+  width: 600px;
+}
+
+.win {
+  width: 200px;
+  margin-bottom: 50px;
+}
+
+.button {
+  position: relative;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 18px;
+  padding: 15px 30px;
+  background-color: #fda90f;
+  z-index: 2;
+  border: none;
+  transform: translate(-4px, -4px);
+  transition: transform 0.3s ease-in;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    transform: translate(0px, 0px);
+  }
+  &:hover::before {
+    transform: translate(-1px, -1px);
+  }
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transition: transform 0.3s ease-in;
+    z-index: -1;
+  }
+  &::before {
+    background: none;
+    border: 2px solid #ffffff;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    transform: translate(7px, 7px);
+  }
+  &::after {
+    width: 100%;
+    height: 100%;
+    background: #fda90f;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .friendship {
+    width: 350px;
+  }
+
+  .win {
+    width: 100px;
+  }
+}

@@ -1,0 +1,108 @@
+.container {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-image: url(../../assets/bg.png);
+  background-position: top;
+  background-color: #000000;
+  background-size: cover;
+}
+
+.title {
+  font-family: "Roboto Slab", serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  color: #fda90f;
+  line-height: 1.5;
+  text-align: center;
+  padding: 50px 0 0px 0px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  max-width: 952px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.myHero,
+.myEnemy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.myEnemy > .heroAnimation > .img {
+  transform: scaleX(-1);
+}
+
+.img {
+  display: block;
+  width: 120px;
+  height: 180px;
+}
+
+.heroName {
+  margin-top: 7px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.listWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.heroAnimation {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.enemy {
+  color: #ff0000;
+}
+
+@media screen and (min-width: 408px) {
+  .list {
+    width: 136px;
+  }
+}
+
+@media screen and (min-width: 680px) {
+  .list {
+    width: 272px;
+  }
+}
+
+@media screen and (min-width: 816px) {
+  .list {
+    width: 408px;
+  }
+}
+
+@media screen and (min-width: 952px) {
+  .list {
+    width: 544px;
+  }
+}
+
+@media screen and (min-width: 1224px) {
+  .list {
+    width: 816px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .list {
+    width: 952px;
+  }
+}

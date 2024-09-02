@@ -1,0 +1,56 @@
+A fancier version of this can be found here: https://sandboxels.r74n.com/controls
+
+[Sandboxels Controls]
+Left Click        =  Place Pixels
+Right Click       =  Erase Pixels
+Middle Click      =  Pick Element
+Space or P        =  Pause Simulation
+Shift + Heat      =  Intense Heating
+Shift + Cool      =  Intense Cooling
+Shift + Mix       =  Include Fire, Smoke, and more in Mixing
+Shift + Shock     =  Intense Shock
+Shift + Smash     =  Intense Smash
+Shift + Mouse     =  Draw Line
+Scroll            =  Change Cursor Size
+- or [            =  Decrease Cursor Size
++ or ]            =  Increase Cursor Size
+Shift + -         =  Set Cursor Size to 1
+Shift + +         =  Increase Cursor Size
+Left/Right Arrow  =  Change Category
+E                 =  Element Selection
+/ or I            =  Element Info Screen
+\                 =  Settings Menu
+L                 =  Save & Load Menu
+M                 =  Mod Manager
+R                 =  Reset Canvas
+>                 =  Step
+F or F11          =  Toggle Fullscreen
+1 or 0            =  Normal View
+2                 =  Thermal View
+3                 =  Basic View (No Effects)
+4                 =  Smooth View
+H                 =  Hide Canvas
+F1                =  Toggle GUI / HUD
+F2 or C           =  Capture Screenshot
+Drag & Drop       =  Insert an image or load save file
+Paste             =  Insert an image or load save file
+Escape            =  Close Menu / Clear Logs
+;                 =  Replace Mode
+Shift + Mid Click =  Pick Element (Copy Properties)
+Z                 =  Select Secondary Element
+Baskspace         =  Select Previous Element
+
+(Alt/Option can be used in place of Shift)
+
+[Button Info]
+Pause           =  Pause/play the simulation
+>               =  Run a single frame of simulation
+Minus           =  Decrease the cursor size
+Plus            =  Increase the cursor size
+Reset           =  Clear the entire simulation
+Replace         =  Override existing pixels when placing
+E               =  Select any element by name
+TPS             =  Change how fast the simulation runs
+Info            =  Open the element info screen
+Mods            =  Open the Mod Manager
+Settings        =  Open the Settings Menu

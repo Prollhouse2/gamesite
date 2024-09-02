@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Grades & Attendence</title>
+<link rel="icon" type="image/x-icon" href="https://proll.dev/school/images/favicon.png">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<style>
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:active {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+</style>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #222; /* Dark gray background color */
+    color: #fff; /* White text color */
+    margin: 0;
+    padding: 0;
+  }
+  h1, h2 {
+    text-align: center;
+    color: #fff;
+  }
+  .search-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #searchInput {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: black; /* Set background color to black */
+    color: white; /* Set text color to white */
+    font-size: 16px;
+    width: 300px;
+    outline: none;
+  }
+  .button-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+    justify-content: center;
+        text-decoration: none;
+  }
+  .button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px 20px; /* Enlarge the padding */
+    background-color: #444; /* Darker gray button color */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    max-width: 200px;
+    width: 100%; /* Make button width 100% */
+  }
+  .button:hover {
+    background-color: #333; /* Even darker gray on hover */
+        text-decoration: none;
+  }
+  .button img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+    text-decoration: none;
+  }
+  .button  {
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .button-container1 {
+    display: flex;
+    justify-content: center; /* Distribute the buttons evenly along the container */
+    margin-top: 20px; /* Add margin to separate from other elements */
+}
+</style>
+</head>
+<body>
+    
+  <div class="container">
+    <h1>Papa's Games</h1>
+    <div class="search-container">
+      <input type="text" style= "color:white" id="searchInput" onkeyup="searchButtons()" placeholder="Search for games...">
+    </div>
+    <div class="button-container1">
+<button class="button"><a style="text-decoration:none" href="/">Go Back</a></button>
+</div>
+<div class="button-container">
+<button class="button"><a style="text-decoration:none" href='/games/papas-game/cupcakeria'><img src="cupcakeria/download.jpeg"> <span>Papa's Cupcakeria</span></a></button>
+<button class="button"><a style="text-decoration:none" href='/games/papas-game/pancakeria'><img src="pancakeria/download.jpeg" alt=""> <span>Papa's Pancakeria</span></a></button>
+<button class="button"><a style="text-decoration:none" href='/games/papas-game/papalouie'><img src="papalouie/download.jpeg" alt=""> <span>Papa's Louie</span></a></button>
+<button class="button"><a style="text-decoration:none" href='/games/papas-game/pizzeria'><img src="pizzeria/download.jpeg" alt=""> <span>Papa's Pizzeria</span></a></button>
+<button class="button"><a style="text-decoration:none" href='/games/papas-game/scooperia'><img src="scooperia/download.jpeg" alt=""> <span>Papa's Scooperia</span></a></button>
+<button class="button"><a style="text-decoration:none" href='/games/papas-game/freezeria'><img src="https://ih1.redbubble.net/image.4999822164.2099/st,small,507x507-pad,600x600,f8f8f8.jpg" alt=""> <span>Papa's Freezeria</span></a></button>
+
+
+  <script>
+    function searchButtons() {
+        // Get the search query from the input field
+        var query = document.getElementById("searchInput").value.toLowerCase();
+
+        // Get all the buttons on the page
+        var buttons = document.getElementsByTagName("button");
+
+        // Loop through the buttons and check if their text contains the search query
+        for (var i = 0; i < buttons.length; i++) {
+            var buttonText = buttons[i].textContent.toLowerCase();
+            if (buttonText.includes(query)) {
+                buttons[i].style.display = "flex"; // Show the button
+            } else {
+                buttons[i].style.display = "none"; // Hide the button
+            }
+        }
+    }
+  </script>
+</body>
+</html>

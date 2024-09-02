@@ -1,0 +1,46 @@
+body {
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+body:fullscreen {
+	background-color: rgba(0, 0, 0, 1.0);
+}
+
+body:-webkit-full-screen {
+    background-color: rgba(0, 0, 0, 1.0);
+}
+body:-moz-full-screen {
+    background-color: rgba(0, 0, 0, 1.0);
+}
+
+h1 {
+	text-align: center;
+}
+
+p {
+	text-align: center;
+}
+
+canvas {
+	max-width: 400px;
+	height: auto;
+	border-top: 1px solid black;
+}
+
+canvas:fullscreen {
+    //background-color: rgba(255,255,255,1);
+    max-width: none;
+    height: 100%;
+}
+canvas:-webkit-full-screen {
+    //background-color: rgba(255,255,255,1);
+    max-width: none;
+    height: 100%;
+}
+canvas:-moz-full-screen {
+    //background-color: rgba(255,255,255,1);
+    max-width: none;
+    height: 100%;
+}
