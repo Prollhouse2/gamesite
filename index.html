@@ -4,6 +4,7 @@
 <head>
 <title>Grades & Attendence</title>
 <link rel="icon" type="image/x-icon" href="images/favicon.png">
+<script src="/js/favicon.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
   <style>
         /* Scrollbar Background Styles */
@@ -32,20 +33,83 @@
     </style>
 </head>
 <body>
-    <div id="faviconModal" class="modal">
-<div style="background-color: rgba(54, 54, 54, 0.9);" class="modal-content">
-            <span id="closeModal" class="close">&times;</span>
-            <h2 style="color:#fff">Select Favicon</h2>
-            <center><div id="faviconSelection">
-                <img src="images/favicon.png" class="favicon-option" data-favicon="images/favicon.png" data-title="Grades & Attendence">
-                <img src="https://ssl.gstatic.com/classroom/ic_product_classroom_144.png" class="favicon-option" data-favicon="https://ssl.gstatic.com/classroom/favicon.png" data-title="Home">
-                <img src="https://www.google.com/favicon.ico" class="favicon-option" data-favicon="https://www.google.com/favicon.ico" data-title="Google">
-            </div></center>
-            <center><button class="button" id="setFavicon">Set Favicon</button></center>
-        </div>
-    </div>
+<style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+        }
 
-    <script src="/js/favicon.js"></script>
+        .modal-content {
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            background-color: rgba(54, 54, 54, 0.9);
+        }
+
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+    <style>
+        #faviconSelection img {
+            width: 128px;    /* Set the width to 128px */
+            height: auto;    /* Maintain aspect ratio */
+            display: inline-block; /* Align images horizontally */
+        }
+    </style>
+<div id="faviconModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2 style="color:#fff">Select Favicon</h2>
+        <center>
+            <div id="faviconSelection">
+                <img src="images/favicon.png" class="favicon-option" data-favicon="images/favicon.png" data-title="Grades & Attendance">
+                <img src="https://ssl.gstatic.com/classroom/ic_product_classroom_144.png" class="favicon-option" data-favicon="https://ssl.gstatic.com/classroom/favicon.png" data-title="Home">
+                <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" class="favicon-option" data-favicon="https://www.google.com/favicon.ico" data-title="Google">
+            </div>
+        </center>
+        <center><button class="button" id="setFavicon">Set Favicon</button></center>
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('faviconModal');
+        const openFaviconButton = document.getElementById('openFaviconUI');
+        const closeModalButton = document.getElementById('closeModal');
+
+        // Open modal when the button is clicked
+        openFaviconButton.addEventListener('click', function () {
+            modal.style.display = 'block';
+        });
+
+        // Close modal when the close button is clicked
+        closeModalButton.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside of the modal content
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>
+
 <div class="container">
 <h1>Proll's Games V3</h1>
 <div class="search-container">

@@ -84,6 +84,11 @@ h1, h2 {
 }
 /* Favicon Modal Styles (Dark Gray Theme) */
 
+#faviconSelection img {
+    width: 128px;    /* Set the width to 128px */
+    height: auto;    /* Maintain aspect ratio */
+    display: inline-block; /* Optional: make them line up horizontally */
+}
 
 /* Ribbon Styles */
 .ribbon {

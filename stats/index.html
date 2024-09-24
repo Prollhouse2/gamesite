@@ -3,45 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Stats</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Online Visitors</title>
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div id="accordion" class="accordion">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <center><a style="font-size: 20px;">Stats for Proll's Game Site.</a></center>
-                    </h2>
-<center><script async src="https://www.widgetsquad.com/pixel/7cv8fxaple5zorf2nnzkj2n34u7ostwr"></script></center>
-<center><center><script type="text/javascript" src="//counter.websiteout.com/js/7/10/6162/0"></script></center>
+    <h1>Online Visitors: <span id="visitorCount">0</span></h1>
 
     <script>
-        function redirectToExternalLink() {
-            window.location.href = "#"; // Replace with your external link URL
-        }
+        const socket = io();
+
+        socket.on('updateUserCount', (count) => {
+            document.getElementById('visitorCount').innerText = count;
+        });
     </script>
-            <!-- Add more collapsible sections for other categories -->
-
-        </div>
-    </div>
-    <style>
-        .btn-dark-gray {
-    background-color: #444; /* Dark gray background color */
-    color: #fff; /* Text color */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-dark-gray:hover {
-    background-color: #333; /* Darker gray background color on hover */
-}
-
-    </style>
-    <script src="script.js"></script>
 </body>
 </html>
