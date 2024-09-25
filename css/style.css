@@ -12,7 +12,7 @@ body {
   color: #fff; /* White text color */
   margin: 0;
   padding: 0;
- overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 h1, h2 {
@@ -45,6 +45,13 @@ h1, h2 {
   justify-content: center;
   text-decoration: none;
 }
+
+.button-wrapper {
+  position: relative; /* Make the wrapper a positioned element */
+  display: inline-block; /* Allow the ribbon to position relative to the button */
+}
+
+
 
 .button {
   display: flex;
@@ -82,39 +89,25 @@ h1, h2 {
   justify-content: center; /* Distribute the buttons evenly along the container */
   margin-top: 20px; /* Add margin to separate from other elements */
 }
-/* Favicon Modal Styles (Dark Gray Theme) */
 
+/* Favicon Modal Styles (Dark Gray Theme) */
 #faviconSelection img {
-    width: 128px;    /* Set the width to 128px */
-    height: auto;    /* Maintain aspect ratio */
-    display: inline-block; /* Optional: make them line up horizontally */
+  width: 128px;    /* Set the width to 128px */
+  height: auto;    /* Maintain aspect ratio */
+  display: inline-block; /* Optional: make them line up horizontally */
 }
 
 /* Ribbon Styles */
 .ribbon {
   position: absolute;
-  top: 10px;
-  right: -30px;
+  top: -10px; /* Adjust as needed */
+  left: -10px; /* Adjust as needed */
   background-color: red;
   color: white;
-  padding: 5px;
+  padding: 5px 10px;
   font-size: 12px;
-  transform: rotate(45deg);
-  width: 60px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.ribbon2 {
-  width: 60px;
-  font-size: 14px;
-  padding: 4px;
-  position: absolute;
-  left: -25px; /* Adjust the distance from the left */
-  top: -12px;
-  text-align: center;
-  border-radius: 25px;
-  transform: rotate(-20deg);
-  background-color: red; /* Change the background color as needed */
-  color: white;
+  border-radius: 5px; /* Rounded corners */
+  transform: rotate(-15deg); /* Angle the ribbon */
+  z-index: 1; /* Ensure it appears above the button */
 }
