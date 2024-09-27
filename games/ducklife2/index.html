@@ -1,55 +1,51 @@
 <!DOCTYPE HTML>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-<script src="/js/favicon.js"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
-<script src="/js/gtag.js"></script>
-<title>Grades & Attendence</title>
-<link rel="icon" type="image/x-icon" href="images/favicon.png">
-<script src="/js/favicon.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            body, html {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-            }
-            #ruffle {
-                width: 100%;
-                height: 100%;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="ruffle"></div>
-        <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-        <script>
-            var swfobject = {};
+<head>
+    <meta charset="utf-8">
+    <script src="/js/favicon.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
+    <script src="/js/gtag.js"></script>
+    <title>Grades & Attendance</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <script src="/js/favicon.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: stretch; /* Stretch to fill height */
+        }
+        #ruffle {
+            width: 800px; /* Set your desired width */
+            height: 100%; /* Fill the full height of the viewport */
+        }
+    </style>
+</head>
+<body>
+    <div id="ruffle"></div>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script>
+        var swfobject = {};
+        swfobject.embedSWF = function(url, cont) {
+            var ruffle = window.RufflePlayer.newest(),
+                player = ruffle.createPlayer();
 
-            swfobject.embedSWF = function(url, cont) {
-                var ruffle = window.RufflePlayer.newest(),
-                    player = ruffle.createPlayer();
+            // Append the player to the container
+            document.getElementById(cont).appendChild(player);
+            player.style.width = '100%'; // Fill the container width
+            player.style.height = '100%'; // Fill the container height
 
-                // Append the player to the container and make it fullscreen
-                document.getElementById(cont).appendChild(player);
-                player.style.width = '100%';
-                player.style.height = '100%';
+            // Load the SWF file
+            player.load({ url: url });
+        }
 
-                // Load the SWF file
-                player.load({ url: url });
-
-                // Update player size on window resize
-                window.addEventListener('resize', function() {
-                    player.style.width = '100%';
-                    player.style.height = '100%';
-                });
-            }
-
-            // Embed the SWF file in fullscreen
-            swfobject.embedSWF('dl2.swf', 'ruffle');
-        </script>
-    </body>
+        // Embed the SWF file in the specified div
+        swfobject.embedSWF('dl2.swf', 'ruffle');
+    </script>
+</body>
 </html>
