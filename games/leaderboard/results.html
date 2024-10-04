@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Spent</title>
+    <script>
+        // Function to load total time spent and display it
+        function displayTotalTimeSpent() {
+            const totalKey = 'totalTimeSpent';
+            const totalTimeSpent = localStorage.getItem(totalKey) || 0;
+
+            const totalHours = Math.floor(totalTimeSpent / 3600);
+            const totalMinutes = Math.floor((totalTimeSpent % 3600) / 60);
+            const totalSeconds = totalTimeSpent % 60;
+
+            const message = `
+                Total time spent on the site: ${totalHours} hours, ${totalMinutes} minutes, and ${totalSeconds} seconds.
+            `;
+
+            document.getElementById('timeSpent').innerHTML = message;
+        }
+
+        // Call the function to display time when the page loads
+        window.onload = displayTotalTimeSpent;
+    </script>
+</head>
+<body>
+    <h1>Time Spent on My Website</h1>
+    <p id="timeSpent">Loading...</p>
+    <a href="index.html">Go Back Home</a>
+    <a href="about.html">Go to About Page</a>
+</body>
+</html>

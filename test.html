@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Time on Site</title>
+    <script>
+        let startTime = Date.now();
+
+        // Function to calculate time spent
+        function calculateTimeSpent() {
+            let endTime = Date.now();
+            let timeSpent = Math.floor((endTime - startTime) / 1000); // in seconds
+            localStorage.setItem('timeSpent', timeSpent);
+        }
+
+        // Store time when the user leaves
+        window.addEventListener('beforeunload', calculateTimeSpent);
+    </script>
+</head>
+<body>
+    <h1>Welcome to My Site!</h1>
+    <p>Feel free to explore.</p>
+    <a href="time-spent.html">Check how long you've been here</a>
+</body>
+</html>
