@@ -3,7 +3,26 @@
     
 <head>
     <script src="/js/timeTracker.js" defer></script>
+   <script>
+        // Function to load total time spent and display it
+        function displayTotalTimeSpent() {
+            const totalKey = 'totalTimeSpent';
+            const totalTimeSpent = localStorage.getItem(totalKey) || 0;
 
+            const totalHours = Math.floor(totalTimeSpent / 3600);
+            const totalMinutes = Math.floor((totalTimeSpent % 3600) / 60);
+            const totalSeconds = totalTimeSpent % 60;
+
+            const message = `
+                Total time spent on the site: ${totalHours} hours, ${totalMinutes} minutes, and ${totalSeconds} seconds.
+            `;
+
+            document.getElementById('timeSpent').innerHTML = message;
+        }
+
+        // Call the function to display time when the page loads
+        window.onload = displayTotalTimeSpent;
+    </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
 <script>
@@ -138,10 +157,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="container">
 <h1>Proll's Games V3</h1>
+    <p id="timeSpent">Loading...</p>
+
 <div class="search-container">
 <input type="text" style="color:white" id="searchInput" onkeyup="searchButtons()" placeholder="Search for games...">
 </div>
 
+    <p id="time"></p>
 <div class="button-container1">
 <button class= "button" id="openFaviconUI">Tab Cloaker</button>
 <button class="button"><a style="text-decoration:none" href="https://tinyurl.com/45j4r62u">Game Request / Current Link</a></button>
