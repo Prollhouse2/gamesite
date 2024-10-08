@@ -1,26 +1,39 @@
+<!-- timeDisplay.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track Time on Site</title>
-    <script>
-        let startTime = Date.now();
-
-        // Function to calculate time spent
-        function calculateTimeSpent() {
-            let endTime = Date.now();
-            let timeSpent = Math.floor((endTime - startTime) / 1000); // in seconds
-            localStorage.setItem('timeSpent', timeSpent);
-        }
-
-        // Store time when the user leaves
-        window.addEventListener('beforeunload', calculateTimeSpent);
-    </script>
+    <title>Time Spent on Site</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Site!</h1>
-    <p>Feel free to explore.</p>
-    <a href="time-spent.html">Check how long you've been here</a>
+    <h1>Total Time Spent on Site</h1>
+    <p id="timeSpent">Loading...</p>
+
+    <script>
+        // Function to load time from local storage
+        function loadTimeSpent(key) {
+            const timeSpent = localStorage.getItem(key);
+            return timeSpent ? parseInt(timeSpent, 10) : 0;
+        }
+
+        // Function to format time in a human-readable way
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${hours}h ${minutes}m ${secs}s`;
+        }
+
+        // Display the total time spent
+        const totalKey = 'totalTimeSpent';
+        const totalTimeSpent = loadTimeSpent(totalKey);
+        document.getElementById('timeSpent').innerText = formatTime(totalTimeSpent);
+    </script>
 </body>
 </html>

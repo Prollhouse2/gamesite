@@ -3,12 +3,14 @@
     
 <head>
     <script src="/js/timeTracker.js" defer></script>
-   <script>
-        // Function to load total time spent and display it
-        function displayTotalTimeSpent() {
-            const totalKey = 'totalTimeSpent';
-            const totalTimeSpent = localStorage.getItem(totalKey) || 0;
+  <script>
+    // Function to load total time spent and display it
+    function displayTotalTimeSpent() {
+        const totalKey = 'totalTimeSpent';
+        let totalTimeSpent = parseInt(localStorage.getItem(totalKey)) || 0;
 
+        // Function to format and display time
+        function updateDisplay() {
             const totalHours = Math.floor(totalTimeSpent / 3600);
             const totalMinutes = Math.floor((totalTimeSpent % 3600) / 60);
             const totalSeconds = totalTimeSpent % 60;
@@ -16,13 +18,23 @@
             const message = `
                 Total time spent on the site: ${totalHours} hours, ${totalMinutes} minutes, and ${totalSeconds} seconds.
             `;
-
             document.getElementById('timeSpent').innerHTML = message;
         }
 
-        // Call the function to display time when the page loads
-        window.onload = displayTotalTimeSpent;
-    </script>
+        // Initial display
+        updateDisplay();
+
+        // Increment total time every second
+        setInterval(() => {
+            totalTimeSpent++;
+            localStorage.setItem(totalKey, totalTimeSpent);
+            updateDisplay();
+        }, 1000);
+    }
+
+    // Call the function to display time when the page loads
+    window.onload = displayTotalTimeSpent;
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
 <script>
@@ -157,8 +169,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="container">
 <h1>Proll's Games V3</h1>
-    <p id="timeSpent">Loading...</p>
+<center>
+    <a>Time Spent: </a><span id="timeSpent">Loading...</span>
+</center>
+<br></br>
+ <script>
+        // Function to load time from local storage
+        function loadTimeSpent(key) {
+            const timeSpent = localStorage.getItem(key);
+            return timeSpent ? parseInt(timeSpent, 10) : 0;
+        }
 
+        // Function to format time in a human-readable way
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${hours}h ${minutes}m ${secs}s`;
+        }
+
+        // Display and update total time spent
+        const totalKey = 'totalTimeSpent';
+        let totalTimeSpent = loadTimeSpent(totalKey);
+        
+        // Function to update the displayed time
+        function updateDisplay() {
+            document.getElementById('timeSpent').innerText = formatTime(totalTimeSpent);
+        }
+
+        // Initial display
+        updateDisplay();
+
+        // Increment total time every second
+        setInterval(() => {
+            totalTimeSpent++;
+            localStorage.setItem(totalKey, totalTimeSpent);
+            updateDisplay();
+        }, 1000);
+    </script>
 <div class="search-container">
 <input type="text" style="color:white" id="searchInput" onkeyup="searchButtons()" placeholder="Search for games...">
 </div>
@@ -308,7 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
-                <p>2024 Proll's Services. All rights reserved.</p>
+                <p>2024 Proll's Services  GameSite V3.0.4  All rights reserved.</p>
             </div>
         </center>
     </footer>
@@ -326,7 +374,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Open the pop-up when the page loads
   window.onload = openPopup;
 </script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1892283558895586"
+     crossorigin="anonymous"></script>
 
 
 </html>
