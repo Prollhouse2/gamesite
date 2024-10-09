@@ -50,6 +50,48 @@
                     </DT>
                 </p>
             </DL>
+            <H3 ADD_DATE="1711831621" LAST_MODIFIED="1726803204" PERSONAL_TOOLBAR_FOLDER="true" style="text-align: center; color: white;">College RetroBowl</H3>
+            <DL>
+                <p style="text-align: center;">
+                    <DT>
+                        <ul style="list-style-type: none; padding: 0; text-align: center;">
+                            <li>
+<a style="color: white; text-decoration: none; padding: 10px; display: inline-block; border: 1px solid white; border-radius: 5px; margin: 5px;" 
+   href="javascript:(function() { 
+       let saveDataKey='RetroBowlCollege.0.savedata.ini'; 
+       let saveData=localStorage.getItem(saveDataKey); 
+       if (saveData) { 
+           let credits = prompt('Enter the amount of coach credits:'); 
+           if (credits !== null && !isNaN(credits) && credits.trim() !== '') { 
+               let updatedSaveData = saveData.replace(/coach_credit=&quot;(\d+)&quot;/, 'coach_credit=&quot;' + credits + '&quot;'); 
+               localStorage.setItem(saveDataKey, updatedSaveData); 
+               alert('Coach credits updated to ' + credits + '! Refresh to see changes. proll.dev'); 
+           } else { 
+               alert('Invalid input. Please enter a valid number.'); 
+           } 
+       } else { 
+           alert('Error. Please open Retro Bowl in a new tab and then click the button.'); 
+       } 
+   })();">Coach Credits</a>
+<a style="color: white; text-decoration: none; padding: 10px; display: inline-block; border: 1px solid white; border-radius: 5px; margin: 5px;" 
+   href="javascript:(function() { 
+       let saveDataKey='RetroBowlCollege.0.savedata.ini'; 
+       let saveData=localStorage.getItem(saveDataKey); 
+       if (saveData) { 
+           let updatedSaveData = saveData
+               .replace(/facility_stadium=&quot;\d+&quot;/, 'facility_stadium=&quot;10&quot;')
+               .replace(/facility_training=&quot;\d+&quot;/, 'facility_training=&quot;10&quot;')
+               .replace(/facility_rehab=&quot;\d+&quot;/, 'facility_rehab=&quot;10&quot;');
+           localStorage.setItem(saveDataKey, updatedSaveData); 
+           alert(&quot;Facility levels maxed! proll.dev. Refresh to see changes.&quot;); 
+       } else { 
+           alert(&quot;Error. Please open retrobowl in a new tab and then click the button&quot;); 
+       } 
+   })();">Max Facilities</a>
+                            </li>
+                    </DT>
+                </p>
+            </DL>
             <p style="text-align: center;">
                 <H3 style="text-align: center; color: white;">How to Use Bookmarklets</H3>
                 <ul style="list-style-type: none; padding: 0; text-align: center;">
@@ -61,6 +103,7 @@
             </p>
         </DT>
     </p>
+
     <style>
         body {
             background-color: #333; /* Dark gray */

@@ -1,0 +1,27 @@
+uid	name	tla	div_0_name	div_1_name	tier	divisions	real_life_tier_name	real_life_name	prestige
+2	Atlantic	Atl	A	C	1	2	FBS	Atlantic Coast	3
+3	America	Ame	American	Not Used	1	1	FBS	American	2
+4	The 12	T12	B12	Not Used	1	1	FBS	Big 12	3
+5	The 10	T10	West	East	1	2	FBS	Big 10	3
+6	USA	USA	East	West	1	1	FBS	Conference USA	2
+7	Independents	Ind	Independents	Not Used	1	1	FBS	Independents	0
+8	Midwest	Mid	East	West	1	2	FBS	Mid-American	2
+9	Mountain	Mtn	East	West	1	2	FBS	Mountain West	2
+10	Pacific	Pac	North	South	1	2	FBS	Pacific 12	3
+11	Southeast	S.E	East	West	1	2	FBS	Southeastern	3
+12	Sun	Sun	East	West	1	2	FBS	Sun Belt	2
+20	Sol	Sol	Sol	Not Used	2	1	FCS	ASUN	1
+21	Sky	Sky	Sky	Not Used	2	1	FCS	Big Sky	1
+22	Mid South	M.S	Mid South	Not Used	2	1	FCS	Big South	1
+23	Pilgrim	Pil	Pilgrim	Not Used	2	1	FCS	Colonial	1
+24	Academic	Aca	Academic	Not Used	2	1	FCS	Ivy	1
+25	Eastern	Eas	Eastern	Not Used	2	1	FCS	MEAC	1
+26	Missouri	MO.	Missouri	Not Used	2	1	FCS	Missouri Valley	1
+27	Northeast	N.E	Northeast	Not Used	2	1	FCS	Northeast	1
+28	Ohio	OH.	Ohio	Not Used	2	1	FCS	Ohio Valley	1
+29	Revolution	Rev	Revolution	Not Used	2	1	FCS	Patriot	1
+30	Homestead	Hom	Homestead	Not Used	2	1	FCS	Pioneer	1
+31	South	Sou	South	Not Used	2	1	FCS	Southern	1
+32	South-Southwest	SSW	South-Southwest	Not Used	2	1	FCS	Southland	1
+33	Southwest	S.W	East	West	2	2	FCS	Southwestern	1
+34	Western	Wes	Western	Not Used	2	1	FCS	Western Athletic	1
