@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-X514E26P5B');
+    </script>
+
+    <title>Grades & Attendance</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #1e1e1e; /* Dark gray background */
+            color: #f5f5f5; /* Light text color */
+            text-align: center; /* Center align text */
+        }
+        h1, h4 {
+            color: #ffffff; /* White text for headings */
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+            background-color: #333; /* Darker gray for textarea */
+            color: #f5f5f5; /* Light text color */
+            border: 1px solid #555; /* Slightly lighter border */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button, .file-label {
+            margin-top: 10px;
+            padding: 10px 20px; /* Increased horizontal padding */
+            cursor: pointer;
+            background-color: #444; /* Dark button background */
+            color: #f5f5f5; /* Light text color */
+            border: none;
+            border-radius: 5px;
+            display: inline-block; /* Make label behave like a button */
+            width: auto; /* Set width to auto for more control */
+        }
+        button:hover, .file-label:hover {
+            background-color: #555; /* Lighter gray on hover */
+        }
+        input[type="file"] {
+            display: none; /* Hide the default file input */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Game Save Manager</h1>
+    <h4>To keep your progress on my site. Click export save and then go to another computer to paste the text and click import.</h4>
+    <h4>Note: Paste your save text into a Google Doc (LAGGY) or Download the save file and upload it to google drive.</h4>
+    
+    <button id="export-btn">Copy Save</button>
+    <button id="download-btn">Download Save</button>
+    
+    <button onclick="window.location.href='/';">Go Back</button> <!-- Go Back button -->
+
+    <textarea id="import-text" placeholder="Paste your saves here..."></textarea>
+    
+    <button id="paste-btn">Paste Save</button> <!-- Button to paste clipboard content -->
+    
+    <label class="file-label" for="file-input">Upload Save</label>
+    <input type="file" id="file-input" accept=".prollsave">
+
+    <script>
+        document.getElementById('export-btn').addEventListener('click', function() {
+            const saves = JSON.stringify(localStorage);
+            navigator.clipboard.writeText(saves).then(() => {
+                document.getElementById('import-text').value = saves; // Display the saves in the textarea
+                alert('Saves exported and copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy saves to clipboard: ' + err);
+            });
+        });
+
+        document.getElementById('download-btn').addEventListener('click', function() {
+            const saves = JSON.stringify(localStorage);
+            const blob = new Blob([saves], { type: 'text/plain' });
+
+            // Get the current date and time
+            const now = new Date();
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+            const day = String(now.getDate()).padStart(2, '0');
+            const year = now.getFullYear();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM'; // Determine AM/PM
+
+            // Convert to 12-hour format
+            hours = hours % 12;
+            hours = hours ? String(hours).padStart(2, '0') : '12'; // Convert hour '0' to '12'
+
+            // Construct the filename
+            const filename = `(${month}/${day}/${year})(${hours}:${minutes} ${ampm}).prollsave`;
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename; // Set the dynamic filename
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const inputText = e.target.result;
+                    document.getElementById('import-text').value = inputText; // Display file content in textarea
+                    importSaves(inputText); // Immediately import the saves
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        document.getElementById('paste-btn').addEventListener('click', function() {
+            navigator.clipboard.readText().then(text => {
+                document.getElementById('import-text').value = text; // Paste clipboard text into the textarea
+            }).catch(err => {
+                alert('Failed to read clipboard: ' + err);
+            });
+        });
+
+        function importSaves(inputText) {
+            try {
+                const saves = JSON.parse(inputText);
+                for (const key in saves) {
+                    localStorage.setItem(key, saves[key]);
+                }
+                alert('Saves imported successfully!'); // Alert for successful import
+            } catch (e) {
+                alert('Failed to import saves. Please check the format.');
+            }
+        }
+    </script>
+
+    <button onclick="window.location.href='/';">Go Back</button> <!-- Go Back button -->
+
+</body>
+</html>
