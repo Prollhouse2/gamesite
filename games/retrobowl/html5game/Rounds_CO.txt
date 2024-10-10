@@ -1,3 +1,0 @@
-scheme	type	awd	mid	src_start	src1	src2	src3	src4	src5	src6	show
-se1	gm		se1		tm:teams:90	tm:teams:91					1
-se2	gm		armyvsnavy		tm:teams:96	tm:teams:50					1
