@@ -1,5 +1,0 @@
-count	name
-6	B.Belichick
-4	C.Noll
-3	B.Walsh
-3	J.Gibbs

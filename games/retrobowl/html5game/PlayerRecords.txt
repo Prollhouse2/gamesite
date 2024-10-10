@@ -45,3 +45,7 @@ order	tag	stat	stat_text	qbname	playername	year	week	team	opponent	coachstat
 410	ui_BiggestWin	0		0	0	0	0	0	0	1
 420	ui_BiggestLoss	0		0	0	0	0	0	0	1
 430	ui_MostTDsGame	0		0	0	0	0	0	0	1
+440	ui_LongKickReturn	0	y	0	0	0	0	0	0	0
+450	ui_MostReturnYardsGame	0	y	0	0	0	0	0	0	0
+460	ui_MostReturnYardsSeason	0	y	0	0	0	0	0	0	0
+470	ui_MostReturnYardsCareer	0	y	0	0	0	0	0	0	0
