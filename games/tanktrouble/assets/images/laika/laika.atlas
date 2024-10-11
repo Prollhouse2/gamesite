@@ -1,0 +1,287 @@
+
+laika.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chainLink
+  rotate: false
+  xy: 334, 597
+  size: 24, 33
+  orig: 24, 33
+  offset: 0, 0
+  index: -1
+collar
+  rotate: false
+  xy: 247, 555
+  size: 111, 40
+  orig: 111, 40
+  offset: 0, 0
+  index: -1
+collarChainLink
+  rotate: false
+  xy: 481, 119
+  size: 30, 11
+  orig: 30, 11
+  offset: 0, 0
+  index: -1
+headMouthAngry
+  rotate: false
+  xy: 258, 241
+  size: 188, 146
+  orig: 188, 146
+  offset: 0, 0
+  index: -1
+headMouthClosed
+  rotate: false
+  xy: 1, 344
+  size: 188, 146
+  orig: 188, 146
+  offset: 0, 0
+  index: -1
+headMouthOh
+  rotate: false
+  xy: 1, 195
+  size: 188, 147
+  orig: 188, 147
+  offset: 0, 0
+  index: -1
+joint
+  rotate: true
+  xy: 481, 132
+  size: 18, 28
+  orig: 18, 28
+  offset: 0, 0
+  index: -1
+leftBackLeg
+  rotate: true
+  xy: 1, 579
+  size: 108, 123
+  orig: 108, 123
+  offset: 0, 0
+  index: -1
+leftEarDown
+  rotate: false
+  xy: 438, 460
+  size: 53, 81
+  orig: 108, 133
+  offset: 30, 31
+  index: -1
+leftEarUp
+  rotate: false
+  xy: 191, 275
+  size: 60, 71
+  orig: 60, 71
+  offset: 0, 0
+  index: -1
+leftEyeAngry
+  rotate: true
+  xy: 191, 399
+  size: 70, 57
+  orig: 70, 57
+  offset: 0, 0
+  index: -1
+leftEyeClosed
+  rotate: false
+  xy: 191, 348
+  size: 59, 49
+  orig: 59, 49
+  offset: 0, 0
+  index: -1
+leftEyeLaser
+  rotate: true
+  xy: 202, 126
+  size: 73, 57
+  orig: 73, 57
+  offset: 0, 0
+  index: -1
+leftEyeOpen
+  rotate: true
+  xy: 448, 335
+  size: 73, 63
+  orig: 73, 63
+  offset: 0, 0
+  index: -1
+leftEyeSad
+  rotate: true
+  xy: 191, 201
+  size: 72, 65
+  orig: 79, 82
+  offset: 3, 15
+  index: -1
+leftFrontLeg
+  rotate: true
+  xy: 252, 389
+  size: 82, 184
+  orig: 82, 184
+  offset: 0, 0
+  index: -1
+leftTorso
+  rotate: true
+  xy: 262, 1
+  size: 116, 242
+  orig: 116, 242
+  offset: 0, 0
+  index: -1
+paw
+  rotate: true
+  xy: 438, 410
+  size: 48, 73
+  orig: 48, 73
+  offset: 0, 0
+  index: -1
+piston
+  rotate: false
+  xy: 191, 471
+  size: 54, 129
+  orig: 54, 129
+  offset: 0, 0
+  index: -1
+rightBackLeg
+  rotate: false
+  xy: 427, 543
+  size: 79, 91
+  orig: 79, 91
+  offset: 0, 0
+  index: -1
+rightEarDown
+  rotate: true
+  xy: 481, 152
+  size: 40, 27
+  orig: 40, 27
+  offset: 0, 0
+  index: -1
+rightEarUp
+  rotate: true
+  xy: 126, 612
+  size: 43, 49
+  orig: 43, 49
+  offset: 0, 0
+  index: -1
+rightEyeAngry
+  rotate: true
+  xy: 372, 524
+  size: 48, 53
+  orig: 48, 53
+  offset: 0, 0
+  index: -1
+rightEyeClosed
+  rotate: true
+  xy: 360, 574
+  size: 47, 53
+  orig: 47, 53
+  offset: 0, 0
+  index: -1
+rightEyeOpen
+  rotate: true
+  xy: 187, 602
+  size: 46, 53
+  orig: 46, 53
+  offset: 0, 0
+  index: -1
+rightEyeSad
+  rotate: true
+  xy: 372, 473
+  size: 49, 53
+  orig: 49, 53
+  offset: 0, 0
+  index: -1
+rightFrontLeg
+  rotate: true
+  xy: 1, 126
+  size: 67, 199
+  orig: 67, 199
+  offset: 0, 0
+  index: -1
+rightTorso
+  rotate: true
+  xy: 262, 119
+  size: 120, 217
+  orig: 120, 217
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 1, 1
+  size: 259, 123
+  orig: 259, 123
+  offset: 0, 0
+  index: -1
+tail
+  rotate: true
+  xy: 247, 473
+  size: 80, 123
+  orig: 80, 123
+  offset: 0, 0
+  index: -1
+tear
+  rotate: true
+  xy: 493, 460
+  size: 25, 12
+  orig: 25, 12
+  offset: 0, 0
+  index: -1
+teeth
+  rotate: false
+  xy: 247, 597
+  size: 85, 51
+  orig: 85, 51
+  offset: 0, 0
+  index: -1
+toe1
+  rotate: false
+  xy: 448, 241
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+toe2
+  rotate: true
+  xy: 448, 305
+  size: 25, 21
+  orig: 25, 21
+  offset: 0, 0
+  index: -1
+toe3
+  rotate: true
+  xy: 126, 579
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+wire1
+  rotate: true
+  xy: 1, 492
+  size: 38, 147
+  orig: 38, 147
+  offset: 0, 0
+  index: -1
+wire2
+  rotate: true
+  xy: 1, 532
+  size: 45, 137
+  orig: 45, 137
+  offset: 0, 0
+  index: -1
+wire3
+  rotate: false
+  xy: 481, 194
+  size: 26, 139
+  orig: 26, 139
+  offset: 0, 0
+  index: -1
+wire4
+  rotate: false
+  xy: 150, 492
+  size: 35, 118
+  orig: 35, 118
+  offset: 0, 0
+  index: -1
+zipper
+  rotate: false
+  xy: 448, 266
+  size: 25, 37
+  orig: 25, 37
+  offset: 0, 0
+  index: -1
+

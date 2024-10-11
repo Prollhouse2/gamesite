@@ -1,0 +1,2 @@
+- name: SSH to GitHub Actions (GUI)
+  uses: hmsjy2017/ssh2actions@v1.0.3

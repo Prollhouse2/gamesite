@@ -1,0 +1,112 @@
+
+dimitri.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arms
+  rotate: false
+  xy: 253, 41
+  size: 183, 152
+  orig: 183, 152
+  offset: 0, 0
+  index: -1
+glassesAndNose
+  rotate: false
+  xy: 322, 195
+  size: 156, 101
+  orig: 156, 101
+  offset: 0, 0
+  index: -1
+hands
+  rotate: false
+  xy: 157, 195
+  size: 57, 61
+  orig: 57, 61
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 1, 262
+  size: 148, 238
+  orig: 148, 238
+  offset: 0, 0
+  index: -1
+leftEyebrow
+  rotate: false
+  xy: 442, 1
+  size: 63, 39
+  orig: 63, 39
+  offset: 0, 0
+  index: -1
+leftLeg
+  rotate: true
+  xy: 151, 481
+  size: 23, 49
+  orig: 23, 49
+  offset: 0, 0
+  index: -1
+leftShoe
+  rotate: false
+  xy: 157, 90
+  size: 82, 50
+  orig: 82, 50
+  offset: 0, 0
+  index: -1
+mouthOh
+  rotate: false
+  xy: 216, 1
+  size: 31, 38
+  orig: 31, 38
+  offset: 0, 0
+  index: -1
+rightEyebrow
+  rotate: false
+  xy: 157, 41
+  size: 87, 47
+  orig: 87, 47
+  offset: 0, 0
+  index: -1
+rightLeg
+  rotate: true
+  xy: 202, 481
+  size: 23, 49
+  orig: 23, 49
+  offset: 0, 0
+  index: -1
+rightShoe
+  rotate: false
+  xy: 157, 142
+  size: 82, 50
+  orig: 82, 50
+  offset: 0, 0
+  index: -1
+schnurrbart
+  rotate: false
+  xy: 253, 1
+  size: 187, 38
+  orig: 187, 38
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 151, 262
+  size: 217, 86
+  orig: 217, 86
+  offset: 0, 0
+  index: -1
+shorts
+  rotate: false
+  xy: 216, 195
+  size: 104, 38
+  orig: 104, 38
+  offset: 0, 0
+  index: -1
+torso
+  rotate: false
+  xy: 1, 1
+  size: 154, 259
+  orig: 154, 259
+  offset: 0, 0
+  index: -1
+
