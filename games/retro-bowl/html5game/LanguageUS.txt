@@ -1,4 +1,4 @@
-msg_Update	Thank you for updating Retro Bowl!##17 game schedules will kick in when you start a new season and you can now change the height of a pass by tapping the screen with a second finger whilst aiming.##I hope you like it! - Simon
+msg_Update	Thank you for updating Retro Bowl!##You are now able to play exhibition games! Choose two teams for a one-off game and even pass n' play to compete against a fellow human!##I hope you are still enjoying Retro Bowl and thank you for your continued support.##- Simon
 ui_NewStarGames	New Star Games
 ui_Back	Back
 ui_Home	Home
@@ -33,42 +33,6 @@ person_She	She
 tla_years	yrs
 sex_0	Female
 sex_1	Male
-trait_app_0	None
-trait_app_1	Attractive
-trait_app_2	Disfigured
-trait_app_3	Tall
-trait_app_4	Short
-trait_app_5	Big boned
-trait_app_6	Large
-trait_app_7	Skinny
-trait_app_8	Frail
-trait_app_9	Stutters
-trait_issue_1	Greedy
-trait_issue_2	Optimistic
-trait_issue_3	Shy
-trait_issue_4	Confident
-trait_issue_5	Impressionable
-trait_issue_6	Religious
-trait_issue_7	Atheist
-trait_issue_8	Affectionate
-trait_issue_9	Paranoid
-trait_issue_10	Delusional
-trait_issue_11	Lucky
-trait_issue_12	Forgiving
-trait_issue_13	Clever
-trait_issue_14	Kind
-trait_issue_15	Envious
-trait_issue_16	Proud
-trait_issue_17	Honest
-trait_issue_18	Deceitful
-trait_issue_19	Mean
-trait_issue_20	Pessimistic
-trait_vice_1	Gambler
-trait_vice_2	Alcoholic
-trait_vice_3	Sex Addict
-trait_vice_4	Party Animal
-trait_vice_5	Drug Addict
-trait_vice_6	Aggressive
 ui_Defense	Defense
 ui_Offense	Offense
 quarter_1	1st Qtr
@@ -107,8 +71,9 @@ comm_stage_DrivePass4	The quarterback throws it
 comm_stage_DriveHailMary0	It's a hail mary throw
 comm_stage_DriveHailMary1	It's a huge throw
 comm_stage_DriveHailMary2	The quarterback airs it out
-comm_stage_Turnover1	It's a fumble!
-comm_stage_Turnover2	Interception!
+comm_stage_Turnover_Fumble	It's a fumble!
+comm_stage_Turnover_Interception	Interception!
+comm_stage_Turnover_Sack	The quarterback is sacked!
 comm_stage_TurnoverHuman	$teamname turn it over
 comm_stage_TurnoverHuman4th	$teamname turn it over on 4th down
 comm_stage_Touchdown	$teamname score!
@@ -124,8 +89,9 @@ comm_stage_end_quarter2	End of 1st half
 comm_stage_end_quarter3	End of 3rd quarter
 comm_stage_end_quarter4	Game over
 comm_stage_overtime	Overtime!
-comm_stage_overtime_over	Game over
+comm_stage_overtime_over	End of overtime
 comm_stage_2pt_attempt	They go for 2 points...
+comm_stage_2pt_attemptQB	$teamname go for 2 points...
 comm_stage_2pt_missed	But get stopped!
 comm_stage_2pt_scored	And score!
 comm_stage_Turnover_Tackle1	[$pos] $playername makes a great tackle!
@@ -181,7 +147,6 @@ tla_Average	Avg
 tla_CompletedPercent	Comp %
 ui_League	League
 ui_Stats	Stats
-ui_Fixtures	Fixtures
 ui_Schedule	Schedule
 ui_Options	Options
 ui_XPLevel	XP Level
@@ -190,8 +155,6 @@ ui_StatsSeason	Season Stats
 ui_StatsCareer	Career Stats
 ui_NextGame	Next Game
 ui_Result	Result
-ui_Results	Results
-ui_Options	Options
 ui_NewGame	New Game
 ui_QuitGame	Quit Game
 ui_Leaderboard	Leaderboard
@@ -311,6 +274,7 @@ position_DB	Defensive Back
 pos_STAFF_HC	HC
 pos_STAFF_DF	DF
 pos_STAFF_OF	OF
+position_STAFF_HC	Head Coach
 position_STAFF_DF	Defensive Coordinator
 position_STAFF_OF	Offensive Coordinator
 ui_Roster	Roster
@@ -346,8 +310,8 @@ ui_Cut	Cut
 ui_CutPlayer	Cut Player
 msg_CutPlayer	Do you want to cut $position $playername from your roster?##Cutting a non-toxic player will harm team morale.
 msg_CannotTradeWeek	You cannot trade players after week 8.##Do you want to cut $playername from your roster instead?
-msg_CannotTradeInjured	No teams are interested in taking $playername whilst he is injured.##Do you want to cut this player from your roster instead?
-msg_CannotTradeToxic	No teams are interested in taking $playername whilst his attitude is toxic.##Do you want to cut this player from your roster instead?
+msg_CannotTradeInjured	No teams are interested in taking $playername while he is injured.##Do you want to cut this player from your roster instead?
+msg_CannotTradeToxic	No teams are interested in taking $playername while his attitude is toxic.##Do you want to cut this player from your roster instead?
 msg_CannotSignMoraleLow	$playername is not interested in signing a new contract. His morale is low.
 msg_CannotTradeRookie	$playername does not want to be traded.##Do you want to cut this player from your roster instead?
 msg_TradePlayerThis	$teamname is offering a round $num pick in this season's draft for $position $playername.
@@ -500,7 +464,7 @@ postmatch_toxic1	$position $playername will receive a fine for a uniform violati
 postmatch_toxic2	$position $playername will receive a fine for unnecessary roughness.-choice_CriticisePlayer-choice_CriticiseOfficials
 postmatch_toxic3	$position $playername will receive a fine for unsportsmanlike conduct.-choice_CriticisePlayer-choice_CriticiseCoaches
 postmatch_toxic4	$position $playername was apparently overheard saying "come get me" towards the opposition sideline during the game today.-choice_DefendPlayer-choice_CriticisePlayer
-postmatch_toxic5	$position $playername will receive a fine for making a gang sign during the game today.-choice_DefendPlayer-choice_CriticisePlayer
+postmatch_toxic5	$position $playername will receive a fine for making a hand gesture during the game today.-choice_DefendPlayer-choice_CriticisePlayer
 postmatch_toxic6	$position $playername will receive a fine for fighting with an opponent during the game today.-choice_DefendPlayer-choice_CriticisePlayer
 postmatch_toxic7	$position $playername will receive a fine for making physical contact with an official today.-choice_DefendPlayer-choice_CriticisePlayer
 postmatch_toxic8	$position $playername will receive a fine for taunting today.-choice_DefendPlayer-choice_CriticisePlayer
@@ -534,7 +498,6 @@ choice_CriticiseFans	Criticize#Fans
 choice_CriticiseOfficials	Criticize#Officials
 ui_MoraleDown	Morale Down!
 ui_CreditDown	Coach Credit -$num
-ui_Cost	Cost
 ui_Effect	Effect
 dilemma_ByeWeek1	It's your bye week. Do you want to spend some extra time focusing on the team or talking with the media?-choice_FocusTeam-choice_FocusMedia
 dilemma_ByeWeek2	It's your bye week. You can spend some time discussing plans for the franchise with the owner or you can focus on getting the team ready for the next game?-choice_FocusOwner-choice_FocusTeam
@@ -568,7 +531,6 @@ ui_stat_sacks	Sck
 ui_stat_receive	Rec
 ui_stat_tackles	Tck
 ui_stat_intsacks	I/S
-ui_Passing	Passing
 ui_Rushing	Rushing
 ui_Receiving	Receiving
 ui_Kicking	Kicking
@@ -617,33 +579,36 @@ news_ResignedPlayer	$teamname has agreed a $salary deal with $age year old $posi
 news_SignTrade	$teamname has signed $age year old $position $playername from $otherteamname.
 news_SignTrade2	$teamname has signed $age year old $position $playername.
 ui_Year	Year
-sla_Year	Y
 ui_Change	Change
 ui_FavoriteTeam	Favorite Team
 ui_YourName	Your Name
 ui_FirstName	First Name
 ui_LastName	Last Name
-ui_Details	Details
 ui_NewCareer	New Career
-news_NewCareer	With just $num $weeks left in the regular season $teamname have appointed $coachname as their new head coach.##$lname has worked at the college level for several years and was excelling as the head coach of $randomcollegename before taking the reigns at $teamname.
+news_NewCareer	With just $num $weeks left in the regular season $teamname have appointed $coachname as their new head coach.##$lname has worked at the college level for several years and was excelling as the head coach of $randomcollegename before taking the reins at $teamname.
 ui_StartWithFave	Start with favorite team?
-info_StartWithFave	Retro Bowl is a game all about building a legacy. If you choose to start with your favorite team that's fine but the story of your career will be a simple one.##Why not start out at a low ranked team and prove yourself as a head coach before receiving that dream job offer from your favorite team?
 msg_Intro_1	Welcome to $teamname!##This is your home screen. You can tap on the division table to view divisions and the schedule.##When you are ready tap the F.OFFICE button.
+msg_Intro_1_gp	Welcome to $teamname!##This is your home screen. You can use ² or the - Button to view divisions and the schedule.##When you are ready highlight the F.OFFICE button and press ¹.
+msg_Intro_1_gp_xb	Welcome to $teamname!##This is your home screen. You can use ² to view divisions and the schedule.##When you are ready highlight the F.OFFICE button and press º.
 msg_Intro_2	From the Front Office you can upgrade facilities and staff.##Tapping an 'i' icon will bring up useful information.
+msg_Intro_2_gp	From the Front Office you can upgrade facilities and staff.##Highlighting an 'i' icon and pressing ¹ will bring up useful information.
+msg_Intro_2_gp_xb	From the Front Office you can upgrade facilities and staff.##Highlighting an 'i' icon and pressing º will bring up useful information.
 msg_Intro_3	I'm sure you want to meet your players so let's check the ROSTER screen.
 msg_Intro_4	These are your key players. You don't need to manage the entire roster, just take care of these guys and everyone else will fall into line.##Tap on a player to open his profile.
+msg_Intro_4_gp	These are your key players. You don't need to manage the entire roster, just take care of these guys and everyone else will fall into line.##Highlight a player and press ¹ to open his profile.
+msg_Intro_4_gp_xb	These are your key players. You don't need to manage the entire roster, just take care of these guys and everyone else will fall into line.##Highlight a player and press º to open his profile.
 msg_Intro_5	Here you can view player details and attributes. Keep an eye on morale and condition.##Poor morale can lead to game penalties and problems off the field.##Low condition can lead to injury or worse - fumbles!
 msg_Intro_6	Before we head into a game let's go over the basics for controlling your players on the field.
-msg_Intro_8	Well done! You have taken charge of $teamname near the end of difficult season - just enough time to get the hang of things before next season starts.##The $teamname fans are desperate for you to turn things around. Good luck!
+msg_Intro_8	Well done! You have taken charge of $teamname near the end of a difficult season - just enough time to get the hang of things before next season starts.##The $teamname fans are desperate for you to turn things around. Good luck!
 msg_Intro_Passing	First up, passing.##Drag your finger in the opposite direction of the running receiver to aim, then release to throw.
 msg_Intro_PassingBrowser	First up, passing.##Click and drag in the opposite direction of the running receiver to aim, then release to throw.
-msg_Intro_Running	Nice! At the start of each play you can hand the ball off to your Running Back by tapping the blue circle.##Swiping up or down whilst running will perform a side-step or you can swipe back to slow up.
-msg_Intro_RunningBrowser	Nice! At the start of each play you can hand the ball off to your Running Back by clicking on the blue circle.##Use W or S whilst running to perform a side-step.
+msg_Intro_Running	Nice! At the start of each play you can hand the ball off to your Running Back by tapping the blue circle.##Swiping up or down while running will perform a side-step or you can swipe back to slow up.
+msg_Intro_RunningBrowser	Nice! At the start of each play you can hand the ball off to your Running Back by clicking on the blue circle.##Use W or S while running to perform a side-step.
 msg_Intro_Kicking	Great! Diving can help you reach for a first down or touchdown. It also protects against a fumble!##Finally, kicking. Two well timed taps and the ball will fly through the uprights!
 msg_Intro_KickingBrowser	Finally, kicking. Two well timed clicks and the ball will fly through the uprights!
 msg_Intro_SuccessPass	Excellent! This time the quarterback will drop back with the ball slightly...
-msg_Intro_SuccessRun	Well done! You can also run with the the quarterback. You do this by attempting to throw the ball backwards.##Once he is running you can swipe forwards to dive.
-msg_Intro_SuccessRunBrowser	Well done! You can also run with the the quarterback. You do this by attempting to throw the ball backwards.##Once he is running use A or D to slow-up or dive!
+msg_Intro_SuccessRun	Well done! You can also run with the quarterback. You do this by attempting to throw the ball backwards.##Once he is running you can swipe forwards to dive.
+msg_Intro_SuccessRunBrowser	Well done! You can also run with the quarterback. You do this by attempting to throw the ball backwards.##Once he is running use A or D to slow-up or dive!
 msg_Intro_SuccessKick	Nice kick! Remember, the goal posts are the same width as the hash marks on the field. You can use the faint triangle on the ground as a guide.##Let's try one a bit further out...
 ui_Ok	OK
 ui_Skip	Skip
@@ -722,7 +687,7 @@ msg_ChooseNewTeam	Do you want to take charge of $teamname?
 news_NewJob1	$oldteamname head coach $yourname has decided it is time to move on and takes charge of $newteamname. The existing coaching staff have all been released.
 news_NewJob2	$yourname has called it a day at $oldteamname and takes on a new challenge as head coach of $newteamname. The previous co-ordinators have decided to move on.
 news_NewJob3	$oldteamname fans may be in shock today as $yourname walks out on them to become the new head coach of $newteamname. Assessing the squad and recruiting new co-ordinators will be a priority upon arrival.
-news_FavoriteTeam1	After taking on the head coach role at $newteamname, $yourlastname declared that is a dream come true.
+news_FavoriteTeam1	After taking on the head coach role at $newteamname, $yourlastname declared that it is a dream come true.
 news_FavoriteTeam2	$yourlastname's allegiance to $newteamname has been well documented and the move won't be a surprise to many.
 news_FavoriteTeam3	Rumours of the move have been circulating for some time, with many believing the new role to be $yourlastname's lifelong ambition.
 dilemma_Owner1	The owner has invited you to a board meeting. It clashes with a media function.-choice_MeetOwner-choice_MeetMedia
@@ -738,31 +703,31 @@ choice_SideWithPlayer	Side With#Player
 dilemma_RestPlayer	Hey coach, I'm feeling totally exhausted. Can I rest for the next game?-choice_RestYes-choice_RestNo
 choice_RestYes	Yes
 choice_RestNo	No
-dilemma_toxic1	$playername was arrested and later released on bail for possession of recreational drugs last night.-choice_DefendPlayer-choice_CriticisePlayer
-dilemma_toxic2	$playername was caught on CCTV fighting outside a nightclub in the early hours of the morning.-choice_DefendPlayer-choice_CriticisePlayer
-dilemma_toxic3	Footage has appeared on social media of $playername drinking multiple shots of tequila in a bar the night before a game.-choice_DefendPlayer-choice_CriticisePlayer
-dilemma_toxic4	CCTV footage of $playername spending thousands of dollars in a casino has appeared on social media.-choice_DefendPlayer-choice_CriticisePlayer
+dilemma_toxic1	$playername was arrested and later released on bail for possession of an unidentified substance last night.-choice_DefendPlayer-choice_CriticisePlayer
+dilemma_toxic2	$playername was caught on security cameras fighting outside a nightclub in the early hours of the morning.-choice_DefendPlayer-choice_CriticisePlayer
+dilemma_toxic3	Footage has appeared on social media of $playername running up a huge tab in a bar the night before a game.-choice_DefendPlayer-choice_CriticisePlayer
+dilemma_toxic4	Video footage of $playername spending thousands of dollars in a casino has appeared on social media.-choice_DefendPlayer-choice_CriticisePlayer
 dilemma_toxic5	The latest social media scandal is footage of $playername surrounded by women and partying into the early hours of the morning the night before a game.-choice_DefendPlayer-choice_CriticisePlayer
-dilemma_toxic6	Photos of $playername having a drunken party with friends on a house boat have appeared on the internet.-choice_DefendPlayer-choice_CriticisePlayer
-dilemma_toxic7	A female reporter has accused $playername of sending her lewd text messages over the past few weeks.-choice_DefendPlayer-choice_CriticisePlayer
+dilemma_toxic6	Photos of $playername and his friends surrounded by empty bottles on a house boat have appeared on the internet.-choice_DefendPlayer-choice_CriticisePlayer
+dilemma_toxic7	A reporter has accused $playername of sending her unsolicited text messages over the past few weeks.-choice_DefendPlayer-choice_CriticisePlayer
 dilemma_toxic8	$playername has been accused of betting on football games, including one in which he played.-choice_DefendPlayer-choice_CriticisePlayer
-dilemma_toxic9	CCTV footage has emerged showing $playername fighting with a stranger in a hotel corridor.-choice_DefendPlayer-choice_CriticisePlayer
-dilemma_toxic10	$playername was arrested in his car by an undercover female police officer last night.-choice_DefendPlayer-choice_CriticisePlayer
+dilemma_toxic9	Security footage has emerged showing $playername fighting with a stranger in a hotel corridor.-choice_DefendPlayer-choice_CriticisePlayer
+dilemma_toxic10	$playername was arrested in his car by an undercover police officer last night.-choice_DefendPlayer-choice_CriticisePlayer
 dilemma_toxic11	$playername made a hit on a defenseless player in training today.-choice_IgnoreFine-choice_FinePlayer
 dilemma_toxic12	$playername made a very late hit on a player in training today.-choice_IgnoreFine-choice_FinePlayer
 dilemma_toxic13	$playername was verbally abusive towards the coaching staff today.-choice_IgnoreFine-choice_FinePlayer
 dilemma_random1	$playername was stopped by the police and given a ticket for speeding last night.-choice_IgnoreFine-choice_FinePlayer
-dilemma_random2	$playername was stopped by the police last night and was found to be in possession of illegal substances.-choice_IgnoreFine-choice_FinePlayer
+dilemma_random2	$playername was stopped by the police last night and was found to be in possession of unidentified substances.-choice_IgnoreFine-choice_FinePlayer
 dilemma_random3	The team broke a curfew and were out partying all night! $playername was the ring leader.-choice_FinePlayer-choice_CriticiseTeam
-dilemma_random4	You caught $playername playing Retro Bowl on his phone during a team meeting.-choice_FinePlayer-choice_PraisePlayer
+dilemma_random4	You caught $playername playing Retro Bowl during a team meeting.-choice_FinePlayer-choice_PraisePlayer
 dilemma_late1	$playername was late for training today.-choice_IgnoreFine-choice_FinePlayer
 dilemma_late2	$playername turned up late for a team meeting today.-choice_IgnoreFine-choice_FinePlayer
 dilemma_late3	$playername didn't turn up for a meeting with the coaching staff today.-choice_IgnoreFine-choice_FinePlayer
 dilemma_rookie1	A training ground prank by rookie $playername backfired causing a fight to break out among several players.-choice_IgnoreFine-choice_FinePlayer
 dilemma_rookie2	Rookie $position $playername has been making derogatory comments on social media regarding one of $randomteamname's players.-choice_IgnoreFine-choice_FinePlayer
-dilemma_rookie3	Rookie $position $playername fell asleep whilst watching game film today.-choice_IgnoreFine-choice_FinePlayer
-dilemma_rookie4	Private footage of rookie $playername and a glamour model dressed as a $randomteamname cheerleader has appeared on social media.-choice_IgnoreFine-choice_FinePlayer
-dilemma_rookie5	CCTV footage of rookie $playername fighting outside a nightclub has appeared on social media.-choice_IgnoreFine-choice_FinePlayer
+dilemma_rookie3	Rookie $position $playername fell asleep while watching game film today.-choice_IgnoreFine-choice_FinePlayer
+dilemma_rookie4	Private footage of rookie $playername and an unidentified woman dressed as a $randomteamname cheerleader has appeared on social media.-choice_IgnoreFine-choice_FinePlayer
+dilemma_rookie5	Security footage of rookie $playername fighting outside a nightclub has appeared on social media.-choice_IgnoreFine-choice_FinePlayer
 dilemma_rookie6	Rookie $playername has hit the headlines after it was revealed that he has been gambling huge sums of money playing online poker.-choice_DefendPlayer-choice_CriticisePlayer
 choice_IgnoreFine	Ignore Fine
 choice_FinePlayer	Fine Player
@@ -815,6 +780,8 @@ ui_Close	Close
 btn_RestorePurchases	Restore#Purchases
 ui_Connecting	Connecting...
 ui_FavouriteTeam	Favorite Team
+msg_Welcome_CO	Welcome to Retro Bowl College!##You are about to start your first season as the head coach of a college football team.##The path to success is an arduous one but if you believe in yourself and can inspire your team then glory awaits!#
+
 msg_Welcome	Welcome to Retro Bowl!##You are about to start your first season as the head coach of a pro football team.##The path to success is an arduous one but if you believe in yourself and can inspire your team then glory awaits!#
 msg_LimitedVersion	*** Limited Version - $num games remaining ***
 ui_Tip	Tip
@@ -851,6 +818,11 @@ tip_29	You cannot trade between teams after week 8
 tip_30	Sometimes another team will offer you a draft pick for one of your players
 tip_31	Happier coaches level up quicker
 tip_32	Training regimes affect a player's happiness, XP, energy and injury risk
+tip_33	Wherever you see a ² prompt, you can also use the - Button instead of ².
+tip_34	You can also use the R Button instead of ³ to change your mind about punting or kicking.
+tip_35	Press º to toggle BULLET THROW on or off. You can also choose a BULLET THROW by holding down the L Button.
+tip_36	If you are using the touch screen then your receiver will always run automatically.
+
 btn_NotInterested	Reject
 ui_SoundFX	Sound FX
 ui_Zoom	Cam Zoom
@@ -859,7 +831,6 @@ ui_Menus	Menus
 ui_Continuous	Continuous
 ui_EditDetails	Edit Details
 ui_Editor	Editor
-ui_Details	Details
 ui_ChooseFace	Choose Face
 msg_ChooseFace	Choose your own profile image!
 ui_Uniforms	Uniforms
@@ -886,22 +857,22 @@ match_ChangePlay	Change Play
 match_StopClock	Stop Clock
 msg_Audibles	AUDIBLES#Quarterbacks can now change the play formation by calling an audible.##As your quarterback levels up he will be able to call up to 5 audibles per game.
 msg_AudiblesHtml	AUDIBLES#Quarterbacks can now change the play formation by calling an audible.##As your quarterback levels up he will be able to call up to 5 audibles per half.
-msg_TimeOuts	TIME OUTS#When an offensive player is tackled the clock continues to tick for a few seconds.##You now get 2 time outs per half that allow you to stop the clock ticking.
+msg_TimeOuts	TIME OUTS#When an offensive player is tackled the clock continues to tick for a few seconds.##You now get 2 or 3 time outs per half (depending on quarter length) that allow you to stop the clock ticking.
 ui_Load	Load
 ui_SaveSlot1	Save 1
 ui_SaveSlot2	Save 2
 ui_SaveSlot3	Save 3
 ui_SaveSlot4	Save 4
 ui_SaveSlot5	Save 5
+ui_SaveSlot-1	Default
 ui_Delete	Delete
 ui_ExitGame	Exit Game
-ui_Exit	Exit
-msg_DeleteGame	Are you sure you want to delete this save file?##Slot $num#$savedetails##WARNING!#Existing coaching credits will be lost!
+msg_DeleteGame	Are you sure you want to delete this save file?##Slot $num#$savedetails
+msg_DeleteGame2	##WARNING!#Existing coaching credits will be lost!
 ui_Remaining	Remaining
 tla_remaining	rem
 ui_TeamEditor	Team Editor
 ui_EditTeams	Edit#Teams
-ui_Editor	Editor
 ui_RestoreDefault	Restore#Default
 ui_ShortName	Short Name
 ui_DefaultName	Default Name
@@ -917,7 +888,6 @@ ui_Sleeve	Sleeve
 ui_Stripe	Stripe
 ui_SocksLow	Socks#Low
 ui_SocksHigh	Socks#High
-ui_Home	Home
 ui_Away	Away
 ui_Alternate	Alt
 ui_UnlimitedVersion	Unlimited Version
@@ -926,14 +896,16 @@ btn_WeatherOff	Off
 msg_NeedUnlimited	You need to upgrade to the unlimited version to use this feature. Upgrade now?
 ui_RestoreAllTeams	Restore#All Teams
 msg_RestoreAllTeams	Restore the default names and uniform colors for all teams?
-ui_Current	Current
 ui_CopySlot1	Copy Teams#From Save 1
 ui_CopySlot2	Copy Teams#From Save 2
 ui_CopySlot3	Copy Teams#From Save 3
 ui_CopySlot4	Copy Teams#From Save 4
 ui_CopySlot5	Copy Teams#From Save 5
 msg_CopyUniforms	Copy the team names and uniform colors from slot $num?
-msg_UnlimitedFeatures	Upgrade to the unlimited version now!##* Get 25 coaching credits *#* Edit team names and uniforms *#* Edit player names *#* Snow and rain weather effects *#* Support development! *
+msg_ExhibitionUseStarPlayers	Do you want to use Star Players in this Exhibition Game?
+msg_ExhibitionCopyUniforms	Copy the teams from slot $num?
+msg_ExhibitionCantCopyUniforms	You can use your Star Players and your customized team data in Exhibition if you have purchased the Unlimited Version. You can do this by loading a career and going to the store.
+msg_UnlimitedFeatures	Upgrade to the unlimited version now!##* Get 25 coaching credits *#* Edit team names and uniforms *#* Edit player names *#* Snow and rain weather effects *#* Kickoff Returns *#* Support development! *
 ui_Upgrade	Upgrade
 ui_Difficulty	Difficulty
 ui_Difficulty0	Dynamic
@@ -953,11 +925,10 @@ ui_ReturnToLoad	Return To#Load Screen
 ui_PlayerHallOfFame	Player Hall of Fame
 msg_RemoveFromHallOfFame	Do you want to remove this player from the Hall of Fame? This cannot be undone.
 ui_Remove	Remove
-ui_PlayerHallOfFameEmpty	To put players in your Hall of Fame you need to tag them in the top-right corner of their profile page.
+ui_PlayerHallOfFameEmpty	To put players in your Hall of Fame you need to tag them in the top-left corner of their profile page.
 msg_HofListTooBig	There is no room in the Hall of Fame! Please remove a player before tagging a new one.
 msg_TradeAwayRookie	Warning! Trading a recently signed player has a negative impact on team morale and your fan relationship!
 ui_RetroBowlWinners	Retro Bowl Winners
-ui_RetroBowls	Retro Bowls
 btn_RetroBowls	Retro   #Bowls
 btn_PlayerHallOfFame	Player   #HOF
 ui_YourHistory	Your History
@@ -1049,7 +1020,7 @@ msg_Watermark	$teamname has a record of $record.
 msg_WatermarkHighlight	The highlight of the season was a win of $result against $oppname.
 msg_WatermarkRestarts	Their season has been tainted by $num false starts.
 ui_restarts	restarts
-favorite_DoingWell	With a current record of $record, the $teamname head coach position in jeopardy. Whilst the owner has given no hint regarding his preferred choice many fans have been quick to name $yourname as the ideal candidate.
+favorite_DoingWell	With a current record of $record, the $teamname head coach position is in jeopardy. While the owner has given no hint regarding his preferred choice many fans have been quick to name $yourname as the ideal candidate.
 favorite_DoingWellReturn	Fans of $favteamname, currently $record, have been calling for the return of $bossname as head coach. The $favteamname owner has refused to comment on the situation.
 favorite_DoingPoorly	It's no secret that $favteamname owner will be looking for a new head coach at the end of the season but it seems unlikely that $yourname will be amongst the candidates.
 msg_SalaryCheckRoster	You need to reduce your roster to 10 players before you can reduce the salary cap.
@@ -1088,7 +1059,6 @@ ui_Division	Division
 ui_Extreme	Extreme
 ui_Weather	Weather
 ui_Replays	Replays
-ui_Dynamic	Dynamic
 ui_EveryPlay	Every#Play
 ui_Refresh	Refresh
 btn_BoostMorale	Boost#Morale
@@ -1152,7 +1122,6 @@ tla_WildCard	WC
 tla_PlayOff	PO
 tla_Champion	CH
 tla_SuperBowl	RB
-match_FieldGoal	Field Goal
 match_Punt	Punt
 msg_OnSideKick	Do you want to try an onside kick? You will have a $num% chance of recovering the ball.
 match_OnsideKicking	$teamname try the onside kick!
@@ -1163,11 +1132,303 @@ ui_Logo	Logo
 ui_Rush	Rush
 comm_stage_KickOffPlayer	$playername kicks off for $teamname
 ui_DataError	A data error has occurred: ($num)
-msg_BulletThrow	BULLET THROW!#You can switch between a low or high pass by tapping the screen with a second finger whilst aiming.
-msg_BulletThrowHtml	BULLET THROW!#You can switch between a low or high pass by clicking the right mouse button whilst aiming.
-msg_BulletThrowGamepad	BULLET THROW!#You can switch between a low or high pass by pressing the left should button whilst aiming.
+msg_BulletThrow	BULLET THROW!#You can switch between a low or high pass by tapping the screen with a second finger while aiming.
+msg_BulletThrowHtml	BULLET THROW!#You can switch between a low or high pass by clicking the right mouse button while aiming.
+msg_BulletThrowGamepad	BULLET THROW!#You can switch between a low or high pass by pressing the BULLET THROW button while aiming.
 msg_Intro_PassingGamepad	First up, passing.##Use the LEFT STICK to aim your pass, then press the THROW button.
-msg_Intro_RunningGamepad	Nice! At the start of each play you have the option to hand the ball off to your running back.##Just press the HAND-OFF button, then use the LEFT STICK to run to the endzone.
+msg_Intro_RunningGamepad	Nice! At the start of each play you have the option to hand the ball off to your running back by pressing the HAND OFF button.##Your running back will take the ball and run automatically. You can use the LEFT STICK or JUKE controls to affect his direction.
 msg_Intro_KickingGamepad	Great! Diving can help you reach for a first down or touchdown. It also protects against a fumble!##Finally, kicking. First set the power, then the direction.
 msg_Intro_SuccessPassGamepad	Excellent! This time the quarterback will drop back with the ball slightly...
-msg_Intro_SuccessRunGamepad	You can also run with the the quarterback.##Aim a throw then press the SCRAMBLE button.##Whilst running use the RIGHT STICK to dive.
+msg_Intro_SuccessRunGamepad	You can also run with the quarterback.##Aim a throw then press the SCRAMBLE button.##While running use the RIGHT STICK or DIVE button to dive with the ball.
+ui_BuyMerch	Retro Bowl#T-Shirts
+ui_RestoreSave	Restore Save Data
+match_TouchBack	Touchback
+btn_MusicBy	Heatley#Bros Music
+btn_MoreGames	More Games#& Links
+btn_YouTube	JefeZhai#Videos
+ui_NewStarGames	New Star Games
+btn_RecordBook	Record#Book
+btn_Leagues	Retro Bowl#Leagues
+poki_CoinBoostMsg	Would you like to double your coaching credits by watching an ad?
+info_UnlimitedVersion	#Unlocks Team Editor,#Weather and Kick Returns#Coaching Credits x 25
+ui_View	View
+ui_Sound	Sound
+ui_AimingInvert	Controller#Throwing
+ui_Normal	Normal
+ui_Inverted	Reversed
+ui_PressStart	Press any button to start
+ui_PressStart_mob	Tap to start
+ui_GamePaused	Game paused
+Map_Tab1_Name	MENUS
+Map_Tab2_Name	KICK / QB
+Map_Tab3_Name	RECEIVER
+Map_Tab1_Line1_L	NAVIGATION
+Map_Tab1_Line1_B1	Left Stick
+Map_Tab1_Line2_L	ACCEPT / CONTINUE
+Map_Tab1_Line2_B1	¹
+Map_Tab1_Line3_L	BACK
+Map_Tab1_Line3_B1	º
+Map_Tab1_Line4_L	FURTHER OPTIONS
+Map_Tab1_Line4_B1	²
+Map_Tab1_Line4_B2	- Button
+Map_Tab1_Line5_L	SCROLL LIST LEFT
+Map_Tab1_Line5_B1	L Button
+Map_Tab1_Line6_L	SCROLL LIST RIGHT
+Map_Tab1_Line6_B1	R Button
+Map_Tab1_Line7_L	SCROLL LIST UP
+Map_Tab1_Line7_B1	Right Stick ↑
+Map_Tab1_Line7_B2	L Button
+Map_Tab1_Line8_L	SCROLL LIST DOWN
+Map_Tab1_Line8_B1	Right Stick ↓
+Map_Tab1_Line8_B2	R Button
+Map_Tab1_Line9_L	PAUSE GAME
+Map_Tab1_Line9_B1	+ Button
+Map_Tab2_Line1_L	CHOOSE PUNT / FIELD GOAL
+Map_Tab2_Line1_B1	³
+Map_Tab2_Line1_B2	R Button
+Map_Tab2_Line2_L	SET FIELD GOAL POWER
+Map_Tab2_Line2_B1	¹
+Map_Tab2_Line3_L	SET FIELD GOAL DIRECTION
+Map_Tab2_Line3_B1	¹
+Map_Tab2_Line4_L	HAND OFF
+Map_Tab2_Line4_B1	º
+Map_Tab2_Line5_L	AUDIBLE (CHANGE PLAY)
+Map_Tab2_Line5_B1	²
+Map_Tab2_Line5_B2	- Button
+Map_Tab2_Line6_L	AIM THROW
+Map_Tab2_Line6_B1	Left Stick
+Map_Tab2_Line7_L	THROW
+Map_Tab2_Line7_B1	¹
+Map_Tab2_Line8_L	BULLET THROW
+Map_Tab2_Line8_B1	º
+Map_Tab2_Line8_B2	L Button (HOLD)
+Map_Tab2_Line9_L	SCRAMBLE
+Map_Tab2_Line9_B1	²
+Map_Tab2_Line9_B2	- Button
+Map_Tab3_Line1_L	RUN
+Map_Tab3_Line1_B1	Left Stick
+Map_Tab3_Line2_L	JUKE UP
+Map_Tab3_Line2_B1	Left Stick ↑ + º
+Map_Tab3_Line2_B2	Right Stick ↑
+Map_Tab3_Line3_L	JUKE DOWN
+Map_Tab3_Line3_B1	Left Stick ↓ + º
+Map_Tab3_Line3_B2	Right Stick ↓
+Map_Tab3_Line4_L	STUTTER STEP (DRIVE LEFT)
+Map_Tab3_Line4_B1	º
+Map_Tab3_Line4_B2	Right Stick →
+Map_Tab3_Line5_L	STUTTER STEP (DRIVE RIGHT)
+Map_Tab3_Line5_B1	º
+Map_Tab3_Line5_B2	Right Stick ←
+Map_Tab3_Line6_L	DIVE (DRIVE LEFT)
+Map_Tab3_Line6_B1	¹
+Map_Tab3_Line6_B2	Right Stick ←
+Map_Tab3_Line7_L	DIVE (DRIVE RIGHT)
+Map_Tab3_Line7_B1	¹
+Map_Tab3_Line7_B2	Right Stick →
+Map_Tab3_Line8_L	TIMEOUT (STOP CLOCK)
+Map_Tab3_Line8_B1	²
+Map_Tab3_Line8_B2	- Button
+Map_Tab3_Line9_L	TOUCHBACK (IN ENDZONE)
+Map_Tab3_Line9_B1	¹
+Map_Tab3_Line9_B2	º
+msg_Intro_PassingFail	Drag your finger in the opposite direction of the running receiver to aim, then release to throw.
+msg_Intro_PassingFailBrowser	Click and drag in the opposite direction of the running receiver to aim, then release to throw.
+msg_Intro_PassingFailGamepad	Use the LEFT STICK to aim your pass, then press the THROW button.
+msg_Intro_RunningFail	Hand the ball off to your Running Back by tapping the blue circle.##Swipe up or down while running to side-step or swipe back to slow down.
+msg_Intro_RunningFailBrowser	Hand the ball off to your Running Back by clicking on the blue circle.##Use W or S while running to perform a side-step.
+msg_Intro_RunningFailGamepad	Hand the ball off to your Running Back by pressing the HAND OFF button.##Use the LEFT STICK or JUKE controls to affect his direction.
+msg_Intro_ScrambleFail	To run with the quarterback throw the ball backwards.##Once he is running swipe forwards to dive.
+msg_Intro_ScrambleFailBrowser	To run with the quarterback throw the ball backwards.##Once he is running use A or D to slow-up or dive!
+msg_Intro_ScrambleFailGamepad	Aim a throw then press the SCRAMBLE button to run with the quarterback.##While running use the RIGHT STICK or DIVE button to dive with the ball.
+msg_Intro_KickingFail	Set the power as high as you can then aim down the center of the field.
+msg_Intro_KickingFailBrowser	Set the power as high as you can then aim down the center of the field.
+msg_Intro_KickingFailGamepad	Set the power as high as you can then aim down the center of the field.
+ui_Controls	Controls
+ui_GamepadGuides	Controller Guides
+ui_AutoRun	Controller#Auto Run
+msg_Reinstate_OnRoster	This player is already on your roster.
+msg_ReinstatePlayer	Do you want to reinstate $playername until the end of the season? His salary will be $$salarym.
+ui_ccs_purchased	CCs purchased
+tla_Score	Scr
+short_Weather	Wthr
+short_QtrLength	QtrL
+short_Difficulty	Diff
+short_PointDiff	PntD
+short_GamesCareer	Gm/Cr
+short_AttemptsComplete	At/Cm
+short_YardsRush	Yd/Rs
+short_TdsRush	Td/Rs
+short_Turnovers	In/Fm
+short_Sacks	Sks
+short_Fumbles	Fmb
+short_RecepCarries	Rec/Crr
+short_Receptions	Rcp
+short_Average	Avg
+short_Touchdowns	Tds
+short_Blocks	Blocks
+short_Tackles	Tck
+short_Interceptions	Int
+short_ForcedFumbles	F.Fmb
+ui_SeasonReview	Season Review
+ui_Review	Review
+msg_TagMessageHOF	This tag allows you to select a player for your franchise Hall of Fame. His stats will be recorded even after he leaves the team or retires.
+msg_TagMessageKR	WRs, RBs and DBs can be selected as a Kick Returner. They will catch and return the ball from kick offs.##You can only assign one kick returner.
+msg_KickReturns	You can now choose a player to return kickoffs!##Simply head over to the player profile of any RB, WR or DB and select the green tag in the top-left corner of the screen.
+msg_TouchBack	TOUCHBACKS#If your kick returner receives a kickoff in the end zone you can attempt a DIVE to initiate a touchback. You will then start your drive from the 25 yard line.
+btn_KickReturns	Kickoff#Returns
+ui_LongKickReturn	Longest kick return
+ui_MostReturnYardsGame	Most return yards game
+ui_MostReturnYardsSeason	Most return yards season
+ui_MostReturnYardsCareer	Most return yards career
+ui_stat_return_yards	Ret Yds
+ui_stat_return_tds	Ret TDs
+ui_stat_return_longest	Ret Lng
+msg_WelcomeQB	Welcome to Retro Bowl!##You are about to start your first season with a pro football team but first you must choose between FRANCHISE MODE and QB MODE.##In FRANCHISE MODE you will draft players, manage the team and control the players on game day.##In QB MODE you start your career as a newly drafted quarterback. You will need to manage your finances and relationships, and will perform the quarterback role during games.
+info_StartWithFave	Retro Bowl is a game all about building a legacy. If you choose to start with your favorite team that's fine but the story of your career will be a simple one.##Why not start out at a low ranked team and prove yourself before receiving that dream offer from your favorite team?
+btn_QB_Mode	QB Mode
+btn_FranchiseMode	Franchise#Mode
+news_NewCareerQB	With overall pick number $num (round $round) $teamname have drafted quarterback $playername from $randomcollegename.##Head coach $coachname has said he expects $lname to start the season as QB1 and has very high hopes of the player.
+msg_WelcomeQBCO	Welcome to Retro Bowl!##You are about to start your first season with a pro football team but first you must choose between FRANCHISE MODE, QB or COLLEGE MODES.##In FRANCHISE MODE you will draft players, manage the team and control the players on game day.##In QB MODE you start your career as a newly drafted quarterback. You will need to manage your finances and relationships, and will perform the quarterback role during games.##In COLLEGE MODE you TBD
+btn_CO_Mode	College#Mode
+ui_Face	Face
+ui_StarRating	Star Rating
+ui_Coach	Coach
+ui_Life	Life
+ui_Happiness	Happiness
+ui_Relationships	Relationships
+ui_Energy	Energy
+ui_Lifestyle	Lifestyle
+ui_Buy	Buy
+ui_BuyNRG	Buy#NRG
+ui_Drink	Drink
+ui_DrinkNRG	Drink#NRG
+ui_NRG	NRG
+ui_Meet	Meet
+ui_Training	Training
+msg_MeetTeammate	Do you want to meet up with $teammate to increase his happiness?##Your condition will drop to $num%.
+msg_NotEnoughCondition	Your condition is too low to do this right now.
+msg_TeammateMoraleTooHigh	This teammate does not need a morale boost.
+ui_FanHappiness	Fan Happiness
+ui_TeamCondition	Team Condition
+ui_Performance	Performance
+ui_Finances	Finances
+ui_GameRating	Game Rating
+ui_Salary	Salary
+ui_TouchdownBonus	Touchdown Bonus
+ui_Shopping	Shopping
+ui_Items	Items
+ui_Vehicles	Vehicles
+ui_Property	Property
+msg_NotEnoughCash	You cannot afford this.
+msg_ConfirmPurchase	Do you want to buy this item for $price bux?##$itemname##
+msg_ItemDegraded	One of your purchased items needs renewing:##$itemname##
+ui_Casino	Casino
+msg_benched_relationship	Coach relationship $num%
+msg_benched_energy	Energy $num%
+ui_DetailsNotFave	Note: You will not start at your favorite team.
+ui_Negotiate	Negotiate
+ui_Expires	Expires
+ui_contract_expires	End of year $year
+ui_Game	Game
+ui_CurrentContract	Current Contract
+ui_NewContract	New Contract
+contract_Length	Length
+ui_Accept	Accept
+ui_Reject	Reject
+ui_Failed	Failed
+ui_Success	Success
+ui_Request	Request
+instrucs_Negotiate	Guess higher or lower!#Numbers range from 1 to 11
+news_ContractExtended	$age year old $playername has signed a contract extension with $teamname.
+news_ContractNewTeam	$age year old $playername has signed with $teamname.
+news_ContractNewTeamFavorite	$age year old $playername has signed with $teamname! It is well known that $teamname is a team very close to $playerlastname's heart.
+msg_JobOffers_QB_1	Your raw talent is making waves in the league. A few teams are interested in signing you.
+msg_JobOffers_QB_2	Your reputation is growing! The following teams are interested in signing you.
+msg_JobOffers_QB_3	Your reputation is widely acknowledged within the game and there are a number of teams interested in making you their franchise quarterback.
+msg_JobOffers_QB_4	Your wealth of experience and knowledge of the game make you the most highly sought after quarterback in the league. Teams are queuing up to sign you.
+
+msg_NegotiateNo_TooLong	The owner does not want to extend your contract this season.
+msg_NegotiateNo_TooEarly	The owner does not want to negotiate a new contract this early in the season.
+msg_AgentRequestContract	Your agent informs you that $teamname would be will to discuss a contract extension.
+ui_Freshman_Short	Fr
+ui_Sophomore_Short	So
+ui_Junior_Short	Jr
+ui_Senior_Short	Sr
+ui_Freshman	Freshman
+ui_Sophomore	Sophomore
+ui_Junior	Junior
+ui_Senior	Senior
+ui_GPA	GPA
+ui_Suspended	Suspended
+ui_PlayerSuspended	Player Suspended	
+msg_suspended	$playername has been placed on Academic Suspension.##Suspended players will be unavailable for games while they are studying to improve their GPA.
+ui_Version_Mode	Franchise
+ui_CO_Label	College
+ui_QB_Label	Quarterback
+ui_FR_Label	Franchise
+ui_Recruitment_Credits	RECRUITMENT CREDITS
+ui_increase	Increase
+ui_wallet	Wallet
+ui_next	Next
+ui_Info	Info
+btn_GenerateCharacter	Random#Character
+msg_NeedBossHead	You need to select a face for yourself.##Tap on the head coach card to choose an image.
+info_HeadCoach	This is you! Your morale is affected by team morale and fan approval. Your star rating will increase with victories!
+ui_RetroBowlRecord	Retro Bowl Record
+tla_RBMVP	RBMVP
+msg_RetroBowlMVPWinner	$playername was named the Retro Bowl MVP!
+btn_Achievements	Achieve-#ments
+ui_RetroBowlWinners	Retro Bowl Winners
+match_SkipTime	Skip Time
+info_Skill_Buff	Players receive a +1 skill buff if morale is exceptional.
+info_Strength_Buff	Players receive a +1 strength buff if their morale is angry or toxic.
+info_Speed_Buff	Players receive a +1 speed buff if they have 100% condition.
+info_Stamina_Buff	Toxic players receive a +1 stamina buff.
+match_GoForIt	Go For It
+ui_Sim	Sim
+ui_SimRecord	Sim Game Record
+ui_Seasons	Seasons
+ui_FullSeasons	Full Seasons
+ui_SeasonsNoSim	Seasons (no sim games)
+ui_TotalGames	Games Played
+ui_SimGames	Sim Games
+short_STAFF_DF	DF Coord
+short_STAFF_OF	OF Coord
+comm_stage_team_win	Overtime win!
+comm_stage_overtime_loss	Overtime loss!
+ui_stat_xpa	Xpa
+ui_stat_xpm	Xpm
+btn_GoFor1	Go for 1pt
+btn_GoFor2	Go for 2pts
+head2head_Player	Player
+ui_ExhibitionGame	Exhibition Game
+btn_ExhibitionGame	Exhibition#Game
+btn_ChangeTeam	Change#Team
+btn_WeatherRandom	Random
+btn_WeatherSun	Sun
+btn_WeatherRain	Rain
+btn_WeatherSnow	Snow
+ui_Takecontrol	Take Control
+msg_QuitExhibition	Do you want to quit this game?
+
+ui_Controllers	Controllers
+ui_Controllers_Single	Single / Pass & Play
+ui_Controllers_Double	2 Controllers#(1 per player)
+ui_AssignController	Assign#controllers
+msg_TouchscreenDeactivation	Touchscreen controls will be deactivated when each player is playing with a separate controller. You will need to assign two controllers to continue.
+msg_TouchscreenReactivation	You can now use any controller to play the game, and Touch screen controls are available again in handheld mode.
+msg_LostController	One or more controllers have been deactivated.
+
+ui_Quit	Quit
+ui_Exhibition	Exhibition
+ui_aa_ShowUI	Show UI
+
+aa_ui_RetroBowl	Retro Bowl+
+aa_game_Title	Retro Bowl+
+aa_msg_Welcome	Welcome to Retro Bowl+!##You are about to start your first season as the head coach of a pro football team.##The path to success is an arduous one but if you believe in yourself and can inspire your team then glory awaits!#
+aa_msg_Update	Welcome to Retro Bowl+!
+aa_info_StartWithFave	Retro Bowl+ is a game all about building a legacy. If you choose to start with your favorite team that's fine but the story of your career will be a simple one.##Why not start out at a low ranked team and prove yourself before receiving that dream offer from your favorite team?
+
+ui_NoOffers	No Offers
+ui_OneOffer	1 Offer
+ui_Offers	Offers

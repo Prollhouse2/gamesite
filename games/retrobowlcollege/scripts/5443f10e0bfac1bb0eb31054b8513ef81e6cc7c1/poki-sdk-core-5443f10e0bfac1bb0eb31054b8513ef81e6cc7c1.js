@@ -211,7 +211,7 @@
               (this.setDebug = function (e) {
                 void 0 === e && (e = !0);
                 var t = window.location.hostname;
-                t.endsWith("poki-gvgdn.com") || 1 == 1 || "qa-figles.poki.com" === t ? e && o.Z.track(i.Z.tracking.debugTrueInProduction) : ((d.Z.debug = e), (d.Z.log = null != e ? e : d.Z.log));
+                t.endsWith("poki-gdn.com") || 1 == 1 || "qa-files.poki.com" === t ? e && o.Z.track(i.Z.tracking.debugTrueInProduction) : ((d.Z.debug = e), (d.Z.log = null != e ? e : d.Z.log));
               }),
               (this.setLogging = function (e) {
                 d.Z.log = e;

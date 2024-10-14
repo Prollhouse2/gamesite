@@ -18,6 +18,7 @@ ACH_WIN100	Win 100 games	0
 ACH_SEASON1	Complete a full season	0
 ACH_SEASON5	Complete 5 full seasons	0
 ACH_SEASON10	Complete 10 full seasons	0
+ACH_SEASON20	Complete 20 full seasons	0
 ACH_DRAFT	Draft a player	0
 ACH_FREEAGENT	Sign a free agent	0
 ACH_TRADEIN	Trade a player in	0
@@ -42,7 +43,7 @@ ACH_MAX_STADIUM	Max out your stadium facilities	0
 ACH_MAX_TRAINING	Max out your training facilities	0
 ACH_MAX_REHAB	Max out your rehab facilities	0
 ACH_WINNING_SEASON	Have a winning season	0
-ACH_UNBEATEN_SEASON	Have a 17-0 season	0
+ACH_UNBEATEN_SEASON	Perfect regular season	0
 ACH_OFFENSE5	Build 5 star offense	0
 ACH_DEFENSE5	Build 5 star defense	0
 ACH_MORALE100	Achieve 100% team morale	0
@@ -60,6 +61,8 @@ ACH_RUN15	Make a 15 yard running play	0
 ACH_GAME_PASS_200	Pass for 200 yards in a game	0
 ACH_GAME_PASS_300	Pass for 300 yards in a game	0
 ACH_GAME_PASS_400	Pass for 400 yards in a game	0
+ACH_GAME_PASS_500	Pass for 500 yards in a game	0
+ACH_GAME_COMPLETE_100	100% pass completion in a game	0
 ACH_GAME_RUSH_50	Rush for 50 yards in a game	0
 ACH_GAME_RUSH_100	Rush for 100 yards in a game	0
 ACH_GAME_RUSH_150	Rush for 150 yards in a game	0
@@ -77,3 +80,7 @@ ACH_WIN_NOSTAR	Win a game without a star player	0
 ACH_TD_QB	Score a touchdown with the QB	0
 ACH_TD_PASS50	Throw 50 touchdowns in a season	0
 ACH_DOINK	Doink a field goal	0
+ACH_RETURN_25	Make a 25 yard kickoff return	0
+ACH_RETURN_50	Make a 50 yard kickoff return	0
+ACH_RETURN_75	Make a 75 yard kickoff return	0
+ACH_RETURN_TD	Score a touchdown return	0
