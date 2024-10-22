@@ -1,25 +1,165 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Rooftop Snipers</title>
-		<link rel="canonical" href="http://www.snokido.com/game/rooftop-snipers" />
-    <link href="../preloader/TemplateData/style.css" rel="stylesheet">
-	  <script src="../preloader/TemplateData/UnityProgress.js" type="text/javascript"></script>
+<script src="/js/favicon.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
+<script src="/js/gtag.js"></script>
+<title>Grades & Attendence</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <meta charset="UTF-8">
+
+    <script>
+      function UnityCallJs() {
+        console.log("unity call!");
+      }
+
+      function UnityCallEndgameJs() {
+        console.log("untiy call end game");
+      }
+
+      function UnityCallPlayJs() {
+        console.log("untiy call Play game");
+      }
+
+      function UnityCallLeaderboardJs() {
+        console.log("untiy call On Leaderboard");
+      }
+
+      function UnityCallAgainJs() {
+        console.log("unity call Again");
+      }
+
+      function UnityCallBackHomeJs() {
+        console.log("untiy call backHome");
+      }
+
+      function UnityCallChangeDayLeaderboardJs() {
+        console.log("untiy call change day leaderboard");
+      }
+
+      function UnityCallCloseLeaderboardJs() {
+        console.log("untiy call close leaderboard");
+      }
+    </script>
+    <style>
+      body {
+  margin: 0;
+  padding: 0;
+}
+.webgl-content * {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.webgl-content {
+  position: absolute;
+}
+.webgl-content,
+#gameContainer,
+#unityContainer,
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.webgl-content .logo,
+.progress {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.webgl-content .logo {
+  background: url("progressLogo.Light.png") no-repeat center/contain;
+  width: 354px;
+  height: 130px;
+}
+.webgl-content .progress {
+  height: 18px;
+  width: 141px;
+  margin-top: 90px;
+}
+.webgl-content .progress .empty {
+  background: url("progressEmpty.Light.png") no-repeat right/cover;
+  float: right;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+.webgl-content .progress .full {
+  background: url("progressFull.Light.png") no-repeat left/cover;
+  float: left;
+  width: 0%;
+  height: 100%;
+  display: inline-block;
+}
+.webgl-content .logo.Dark {
+  background-image: url(progressLogo.Dark.png);
+}
+.webgl-content .progress.Dark .empty {
+  background-image: url(progressEmpty.Dark.png);
+}
+.webgl-content .progress.Dark .full {
+  background-image: url(progressFull.Dark.png);
+}
+.webgl-content .footer {
+  margin-top: 5px;
+  height: 38px;
+  line-height: 38px;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+  font-size: 18px;
+}
+.webgl-content .footer .webgl-logo,
+.title,
+.fullscreen {
+  height: 100%;
+  display: inline-block;
+  background: transparent center no-repeat;
+}
+.webgl-content .footer .webgl-logo {
+  background-image: url(webgl-logo.png);
+  width: 204px;
+  float: left;
+}
+.webgl-content .footer .title {
+  margin-right: 10px;
+  float: right;
+}
+.webgl-content .footer .fullscreen {
+  background-image: url(fullscreen.png);
+  width: 38px;
+  float: right;
+}
+    </style>
   </head>
-  <body>
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="960px"></canvas>
-    <script type='text/javascript'>
-  var Module = {
-    TOTAL_MEMORY: 268435456,
-    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
-    compatibilitycheck: null,
-    dataUrl: "Release/Rooftop Snipers WebGL V1.0.data",
-    codeUrl: "Release/Rooftop Snipers WebGL V1.0.js",
-    memUrl: "Release/Rooftop Snipers WebGL V1.0.mem",
-  };
-  </script>
-  <script src="Release/UnityLoader.js"></script>
+  <body style="margin: 0 auto; overflow: hidden">
+  
+
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 100%; height: 100%; margin: 0;"></div>
+  </div>
+    
   </body>
+  <script src="UnityLoader2019.js"></script>
+  <script>
+  
+    var gameInstance = UnityLoader.instantiate("gameContainer", "rooftop-snipers.json");
+
+    function UnityProgress(gameInstance, progress) {
+      if (!gameInstance.Module) {
+        return;
+      }
+      // progressBarFull.style.width = 100 * progress + "%";
+      // if (progress === 1 && !gameInstance.removeTimeout) {
+      //   loadingBar.style.display = "none";
+      //   gameInstance.removeTimeout = setTimeout(function() {
+      //       loadingBar.style.display = "none";
+      //   }, 2000);
+      //   fullscreenButton.onclick = () => {
+      //     gameInstance.SetFullscreen(1);
+      //   };
+      // }
+    }
+  </script>
+
 </html>
