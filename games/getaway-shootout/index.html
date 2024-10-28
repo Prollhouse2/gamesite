@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <script src="/js/favicon.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
+    <script src="/js/gtag.js"></script>
+    <title>Grades & Attendance</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <script src="Build/UnityLoader.js"></script>
+    <script src="/js/main.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #000000;
+        }
+        #gameContainer {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+        }
+    </style>
+    <script>
+        function startGame() {
+            var gameInstance = UnityLoader.instantiate("gameContainer", "GetawayShootout.json", { width: window.innerWidth, height: window.innerHeight });
+        }
+        window.onload = startGame;
+        window.onresize = startGame; // Restart the game on window resize
+    </script>
+</head>
+<body>
+    <div id="gameContainer"></div>
+</body>
+</html>

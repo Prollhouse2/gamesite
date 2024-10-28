@@ -1,13 +1,28 @@
 {
-  "name": "ubg235",
-  "description": "ubg235",
-  "short_name": "ubg235",
-  "icons": [    
-    {
-      "src": "/patch/images/null.png",
-      "sizes": "512x512",
-      "purpose": "maskable",
-      "type": "image/png"
-    }
-  ]
+	"name": "TankTrouble 2",
+	"short_name": "TankTrouble 2",
+	"start_url": "index.html",
+	"display": "fullscreen",
+	"orientation": "landscape",
+	"icons": [{
+		"src": "icon-16.png",
+		"sizes": "16x16",
+		"type": "image/png"
+	}, {
+		"src": "icon-32.png",
+		"sizes": "32x32",
+		"type": "image/png"
+	}, {
+		"src": "icon-128.png",
+		"sizes": "128x128",
+		"type": "image/png"
+	}, {
+		"src": "icon-256.png",
+		"sizes": "144x144",
+		"type": "image/png"
+	}, {
+		"src": "icon-256.png",
+		"sizes": "256x256",
+		"type": "image/png"
+	}]
 }
