@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Clicker Settings</title>
+</head>
+<body>
+    <h1>Auto Clicker Settings</h1>
+
+    <!-- Keybind Input -->
+    <label for="keybind">Keybind to Start/Stop Auto Clicker:</label>
+    <input type="text" id="keybind" maxlength="1" value="a">
+    <br><br>
+
+    <!-- Click Speed Input -->
+    <label for="clickSpeed">Click Speed (ms):</label>
+    <input type="number" id="clickSpeed" value="1000" min="1">
+    <br><br>
+
+    <!-- Save Button -->
+    <button onclick="saveSettings()">Save Settings</button>
+
+    <!-- Feedback Message -->
+    <p id="status-message" style="color: green;"></p>
+
+    <script>
+        // Load settings from localStorage if available
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedKeybind = localStorage.getItem("keybind");
+            const savedClickSpeed = localStorage.getItem("clickSpeed");
+
+            if (savedKeybind) {
+                document.getElementById("keybind").value = savedKeybind;
+            }
+            if (savedClickSpeed) {
+                document.getElementById("clickSpeed").value = savedClickSpeed;
+            }
+        });
+
+        // Save settings to localStorage
+        function saveSettings() {
+            const keybind = document.getElementById("keybind").value;
+            const clickSpeed = document.getElementById("clickSpeed").value;
+
+            if (keybind && clickSpeed >= 1) {
+                localStorage.setItem("keybind", keybind);
+                localStorage.setItem("clickSpeed", clickSpeed);
+                document.getElementById("status-message").textContent = "Settings saved!";
+            } else {
+                document.getElementById("status-message").textContent = "Please enter a valid keybind and speed.";
+            }
+        }
+    </script>
+</body>
+</html>

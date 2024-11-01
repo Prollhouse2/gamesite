@@ -1,0 +1,32 @@
+.footer-content {
+    text-align: center;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  footer {
+    padding: 20px;
+    background-color: #111; /* Dark background to match body */
+  }
+  
+  p {
+    margin: 10px 0;
+    color: #ff7518; /* Halloween orange for text */
+  }
+  
+  /* Social Icons */
+  .social-icons {
+    margin-top: 20px;
+  }
+  
+  .icon {
+    display: inline-block;
+    margin: 10px;
+    font-size: 24px; /* Icon size */
+    color: #ff7518; /* Orange for Halloween theme */
+    transition: color 0.3s;
+  }
+  
+  .icon:hover {
+    color: #f5a623
+  

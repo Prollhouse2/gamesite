@@ -3,12 +3,11 @@
     
 <head>
     <script src="/js/timeTracker.js" defer></script>
-    <script src="/js/favicon.js"></script>
-    <script src="/js/panic.js"></script>
-<title>Grades & Attendence</title>
-<link rel="icon" type="image/x-icon" href="/images/favicon.png">
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-     <link rel="stylesheet" href="/css/footer.css">
+    <script src="/js/pumpkinParticles.js"></script>
+
+<link rel="stylesheet" href="/css/panic.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css"/>
   <script>
     // Function to load total time spent and display it
     function displayTotalTimeSpent() {
@@ -59,28 +58,99 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-W9PKSQF8');</script>
 <!-- End Google Tag Manager -->
 
+<title>Grades & Attendence</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.png">
+<script src="/js/favicon.js"></script>
+<script src="/js/panic.js"></script>          
 
+  <style>
+        /* Scrollbar Background Styles */
+        ::-webkit-scrollbar {
+            width: 12px; /* Width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #222; /* Background color of the scrollbar track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #222; /* Scrollbar color */
+            border-radius: 6px; /* Optional: rounded corners */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #222; /* Scroll color on hover */
+        }
+
+        /* For Firefox */
+        * {
+            scrollbar-width: thin; /* "auto" or "thin" */
+            scrollbar-color: #222 #222; /* Scrollbar color and track color */
+        }
+    </style>
 </head>
 <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9PKSQF8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
 <div class="container">
 <h1>Proll's Games V3.5</h1>
 <center>
     <a>Time Spent: </a><span id="timeSpent">Loading...</span>
 </center>
 <br></br>
+ <script>
+        // Function to load time from local storage
+        function loadTimeSpent(key) {
+            const timeSpent = localStorage.getItem(key);
+            return timeSpent ? parseInt(timeSpent, 10) : 0;
+        }
+
+        // Function to format time in a human-readable way
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${hours}h ${minutes}m ${secs}s`;
+        }
+
+        // Display and update total time spent
+        const totalKey = 'totalTimeSpent';
+        let totalTimeSpent = loadTimeSpent(totalKey);
+        
+        // Function to update the displayed time
+        function updateDisplay() {
+            document.getElementById('timeSpent').innerText = formatTime(totalTimeSpent);
+        }
+
+        // Initial display
+        updateDisplay();
+
+        // Increment total time every second
+        setInterval(() => {
+            totalTimeSpent++;
+            localStorage.setItem(totalKey, totalTimeSpent);
+            updateDisplay();
+        }, 1000);
+    </script>
 <div class="search-container">
 <input type="text" style="color:white" id="searchInput" onkeyup="searchButtons()" placeholder="Search for games...">
 </div>
 
     </div>
     <p id="time"></p>
-    
 <div class="button-container1">
+<button class= "button" id="openFaviconUI">Tab Cloaker [SOON]</button>
 <button class="button"><a style="text-decoration:none" href="https://tinyurl.com/45j4r62u">Game Request / Current Link</a></button>
-<button class="button"><a style="text-decoration:none" href="/settings">Website Settings</a></button>
 <button class="button"><a style="text-decoration:none" href="https://github.com/Prollhouse2/gamesite">Source / Updates</a></button>
 <button class="button"><a style="text-decoration:none" href="/bookmarks">Game Cheats</a></button>
 <button class="button"><a style="text-decoration:none" href="/save" style="color:red">Game Save [New!]</a></button>
+<button class="button" id="openPanicSettings">Change Panic Key [SOON]</button>
 </div>
 
 <div class="button-container">
@@ -176,47 +246,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
     }
   </script>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9PKSQF8"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-
-
- <script>
-        // Function to load time from local storage
-        function loadTimeSpent(key) {
-            const timeSpent = localStorage.getItem(key);
-            return timeSpent ? parseInt(timeSpent, 10) : 0;
-        }
-
-        // Function to format time in a human-readable way
-        function formatTime(seconds) {
-            const hours = Math.floor(seconds / 3600);
-            const minutes = Math.floor((seconds % 3600) / 60);
-            const secs = seconds % 60;
-            return `${hours}h ${minutes}m ${secs}s`;
-        }
-
-        // Display and update total time spent
-        const totalKey = 'totalTimeSpent';
-        let totalTimeSpent = loadTimeSpent(totalKey);
-        
-        // Function to update the displayed time
-        function updateDisplay() {
-            document.getElementById('timeSpent').innerText = formatTime(totalTimeSpent);
-        }
-
-        // Initial display
-        updateDisplay();
-
-        // Increment total time every second
-        setInterval(() => {
-            totalTimeSpent++;
-            localStorage.setItem(totalKey, totalTimeSpent);
-            updateDisplay();
-        }, 1000);
-    </script>
+  <!-- Pixel Code for https://www.widgetsquad.com/ -->
+<script id="elementToHide" async src="https://www.widgetsquad.com/pixel/7cv8fxaple5zorf2nnzkj2n34u7ostwr"></script>
 <script>
   // Function to hide the element
   function hideElement() {

@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222; /* Dark background for contrast */
+    color: #fff; /* White text for visibility */
+    text-align: center; /* Center align text */
+    padding: 50px; /* Add some padding */
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+}
+
+.modal-content {
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    background-color: rgba(54, 54, 54, 0.9);
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#faviconSelection img {
+    width: 128px; /* Set the width to 128px */
+    height: auto; /* Maintain aspect ratio */
+    display: inline-block; /* Align images horizontally */
+    margin: 10px; /* Add some spacing */
+    cursor: pointer; /* Pointer on hover */
+    transition: border 0.3s; /* Smooth border transition */
+}
+
+#faviconSelection img:hover {
+    border: 2px solid #555; /* Highlight on hover */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px; /* Space above the button */
+}
+
+button:hover {
+    background-color: #555; /* Darker on hover */
+}
+
+#openFaviconUI {
+    margin-top: 20px; /* Space above the button */
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #28a745; /* Green button */
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#openFaviconUI:hover {
+    background-color: #218838; /* Darker green on hover */
+}

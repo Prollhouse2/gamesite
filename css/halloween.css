@@ -1,0 +1,121 @@
+/* Link Styles */
+a:link, a:visited, a:hover, a:active {
+  color: orange;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/* Body and Headings */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111; /* Dark black background */
+    color: #ff7518; /* Halloween-themed orange color for text */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+
+    /* Background image settings */
+    background-image: url('/images/halloween.png');
+    background-size: cover; /* Scale the image to cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    /* Set a transparent background color */
+    background-blend-mode: multiply; /* Blends the background color with the image */
+}
+
+
+h1, h2 {
+  text-align: center;
+  color: #ff7518;
+}
+
+/* Search Container */
+.search-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333; /* Darker background */
+  color: #ff7518; /* Orange text color */
+  font-size: 16px;
+  width: 300px;
+  outline: none;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 15px 20px;
+  background-color: #333; /* Darker gray button */
+  color: #ff7518;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  max-width: 200px;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #444; /* Dark gray on hover */
+  text-decoration: none;
+}
+
+.button img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+/* Button Container 1 */
+.button-container1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Favicon Modal Styles */
+#faviconSelection img {
+  width: 128px;
+  height: auto;
+  display: inline-block;
+}
+
+/* Ribbon Styles */
+.ribbon {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: orange;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 5px;
+  transform: rotate(-15deg);
+  z-index: 1;
+}
+

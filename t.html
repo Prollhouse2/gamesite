@@ -57,31 +57,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 <script src="/js/favicon.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
-  <style>
-        /* Scrollbar Background Styles */
-        ::-webkit-scrollbar {
-            width: 12px; /* Width of the scrollbar */
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #222; /* Background color of the scrollbar track */
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #222; /* Scrollbar color */
-            border-radius: 6px; /* Optional: rounded corners */
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #222; /* Scroll color on hover */
-        }
-
-        /* For Firefox */
-        * {
-            scrollbar-width: thin; /* "auto" or "thin" */
-            scrollbar-color: #222 #222; /* Scrollbar color and track color */
-        }
-    </style>
 </head>
 <body>
 
@@ -394,5 +369,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1892283558895586"
      crossorigin="anonymous"></script>
 
-
+<div id="faviconModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2 style="color:#fff">Select Favicon</h2>
+        <center>
+            <div id="faviconSelection">
+                <img src="images/favicon.png" class="favicon-option" data-favicon="images/favicon.png" data-title="Grades & Attendance">
+                <img src="https://ssl.gstatic.com/classroom/ic_product_classroom_144.png" class="favicon-option" data-favicon="https://ssl.gstatic.com/classroom/favicon.png" data-title="Home">
+                <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" class="favicon-option" data-favicon="https://www.google.com/favicon.ico" data-title="Google">
+                <img src="/favicon/googledocs.png" class="favicon-option" data-favicon="/favicon/googledocs.png" data-title="Google Docs">
+            </div>
+        </center>
+        <center><button class="button" id="setFavicon">Set Favicon</button></center>
+    </div>
+</div>
 </html>
