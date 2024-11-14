@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/timeTracker.js" defer></script>
+    <script src="/js/favicon.js"></script>
+    <script src="/js/panic.js"></script>
+    <script src="/js/autoclicker.js"></script>
+
+<title>Grades & Attendence</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.png">  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #1f1f1f;
+      color: #f1f1f1;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .leaderboard-container {
+      width: 100%;
+      max-width: 800px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      overflow-y: auto;
+    }
+
+    .leaderboard-header {
+      width: 100%;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .game-logo {
+      width: 80px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ffcc00;
+      color: #1f1f1f;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #e6b800;
+    }
+
+    .leaderboard {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      overflow-y: scroll;
+      height: calc(100vh - 250px);
+    }
+
+    #score-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      background-color: #2c2c2c;
+      border-bottom: 1px solid #444;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .leaderboard-item:hover {
+      background-color: #3c3c3c;
+    }
+
+    /* Profile image styling (increased size, no circle) */
+    .leaderboard-item .user-icon {
+      width: 60px; /* Increased size */
+      height: 60px; /* Increased size */
+      overflow: hidden;
+      margin-right: 15px;
+    }
+
+    .leaderboard-item .user-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures images maintain aspect ratio */
+    }
+
+    .leaderboard-item .player-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+      margin-right: 20px;
+    }
+
+    .leaderboard-item .player-info h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .leaderboard-item .player-info .game-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffcc00;
+      display: flex;
+      align-items: center;
+    }
+
+    .leaderboard-item .player-info .game-title i {
+      margin-right: 8px;
+    }
+
+    .leaderboard-item .player-info .username {
+      font-size: 1.1rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    .leaderboard-item .player-info .username i {
+      margin-right: 8px;
+    }
+
+    .leaderboard-item .player-info .date {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .leaderboard-item .score {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffcc00;
+    }
+
+    .leaderboard-item .date-icon {
+      font-size: 1.2rem;
+      margin-right: 5px;
+      color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="leaderboard-container">
+    <header class="leaderboard-header">
+      <h1>Game High Scores</h1>
+      
+      <!-- Submit High Score Button -->
+<a href="https://forms.gle/ALawAdMFksLapeo76" class="submit-btn-link">
+  <button class="submit-btn">Submit High Score</button>
+</a>
+<a href="/">
+  <button class="submit-btn">Go Back</button>
+</a>
+    </header>
+    
+    <div class="leaderboard">
+      <ul id="score-list">
+        <!-- Leaderboard list items will be dynamically inserted here by JavaScript -->
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Sample data for leaderboard
+    const leaderboardData = [
+      {
+        rank: 1, 
+        playerName: "Hayden", 
+        gameTitle: "Most Hours On Site", 
+        username: "Hayden", 
+        score: "289+ Hours", 
+        date: "11/14/2024", 
+        icon: "game1.jpg", // Custom game image (path to image)
+        userIcon: "/images/clock1.png" // Custom user icon (path to image)
+      },
+    
+    ];
+
+    const scoreList = document.getElementById("score-list");
+
+    // Function to create leaderboard list items
+    function createLeaderboardItem(data) {
+      const listItem = document.createElement("li");
+      listItem.classList.add("leaderboard-item");
+
+      listItem.innerHTML = `
+        <div class="user-icon"><img src="${data.userIcon}" alt="${data.username}" /></div>
+        <div class="player-info">
+          <p class="game-title"><i class="fas fa-gamepad"></i>${data.gameTitle}</p>
+          <h3 class="username"><i class="fas fa-user"></i>${data.username}</h3>
+          <p class="date"><i class="fas fa-calendar-alt date-icon"></i>${data.date}</p>
+        </div>
+        <div class="score">${data.score}</div>
+      `;
+
+      scoreList.appendChild(listItem);
+    }
+
+    // Load leaderboard data into the list
+    leaderboardData.forEach(item => {
+      createLeaderboardItem(item);
+    });
+
+    // Submit High Score button function
+    function submitHighScore() {
+      alert("Submit your high score form here.");
+    }
+  </script>
+
+</body>
+</html>
