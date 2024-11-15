@@ -1,0 +1,16 @@
+{
+"companyName": "New Eich Games",
+"productName": "House of Hazards",
+"productVersion": "0.1",
+"dataUrl": "HouseOfHazardsTwoPlayerGames.data.unityweb",
+"wasmCodeUrl": "HouseOfHazardsTwoPlayerGames.wasm.code.unityweb",
+"wasmFrameworkUrl": "HouseOfHazardsTwoPlayerGames.wasm.framework.unityweb.js",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#5FDEE7",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.3.10f1"
+}
