@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<script src="/js/favicon.js"></script>
+<script src="/js/panic.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
+<script src="/js/gtag.js"></script>
+  <script src="/js/timeTracker.js" defer></script>
+<script src="/js/auto-clicker.js"></script>
+<title>Grades & Attendence</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      //var unityInstance = UnityLoader.instantiate("unityContainer", "Build/GunSpin WebGL FinalVersion.json", {onProgress: UnityProgress});
+	  window.gameInstance = UnityLoader.instantiate("unityContainer", "Build/GunSpin WebGL FinalVersion.json");
+    </script>
+	<style>
+		* { 
+			margin: 0; padding: 0; 
+		} 
+		body { 
+			background: black; 
+		}
+		div#unityContainer {
+			margin: auto !important;
+			position: absolute !important;
+			left: 50%;
+			top: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			width: 720px; 
+			height: 480px;
+			width: 150vh !important;
+			height: 100vh !important;
+		}
+		.footer {
+		display:none 
+		}
+	</style>
+  </head>
+  <body style="overflow:hidden;">
+    <div class="webgl-content">
+      <div id="unityContainer"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+        <div class="title">GunSpin</div>
+      </div>
+    </div>
+    <script src="js/analytics_ubg_v1_4.js"></script>
+    <script src="js/ubg235_client_v1_2.js"></script>
+  </body>
+</html>

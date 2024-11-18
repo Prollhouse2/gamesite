@@ -8,7 +8,7 @@
     <script src="/js/panic.js"></script>
     <script src="/js/autoclicker.js"></script>
 
-<title>Grades & Attendence</title>
+<title>Grades & Attendance</title>
 <link rel="icon" type="image/x-icon" href="/images/favicon.png">  
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -124,7 +124,7 @@
 
     .leaderboard-item .player-info {
       display: flex;
-      flex-direction: column;
+      flex-direction: column;  /* Stack elements vertically */
       justify-content: space-between;
       flex-grow: 1;
       margin-right: 20px;
@@ -174,6 +174,31 @@
       margin-right: 5px;
       color: #4caf50;
     }
+
+    /* Record Proof Link styles */
+    .record-proof {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #f1f1f1;
+      text-align: center;
+    }
+
+    .record-proof a {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .record-proof a:hover {
+      text-decoration: underline;
+    }
+
+    .record-proof i {
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
@@ -183,14 +208,14 @@
       <h1>Game High Scores</h1>
       
       <!-- Submit High Score Button -->
-<a href="https://forms.gle/ALawAdMFksLapeo76" class="submit-btn-link">
-  <button class="submit-btn">Submit High Score</button>
-</a>
-<a href="/">
-  <button class="submit-btn">Go Back</button>
-</a>
+      <a href="https://forms.gle/ALawAdMFksLapeo76" class="submit-btn-link">
+        <button class="submit-btn">Submit High Score</button>
+      </a>
+      <a href="/">
+        <button class="submit-btn">Go Back</button>
+      </a>
     </header>
-    
+
     <div class="leaderboard">
       <ul id="score-list">
         <!-- Leaderboard list items will be dynamically inserted here by JavaScript -->
@@ -202,16 +227,15 @@
     // Sample data for leaderboard
     const leaderboardData = [
       {
-        rank: 1, 
         playerName: "Hayden", 
         gameTitle: "Most Hours On Site", 
         username: "Hayden", 
-        score: "289+ Hours", 
+        score: "312+ Hours", 
         date: "11/14/2024", 
         icon: "game1.jpg", // Custom game image (path to image)
-        userIcon: "/images/clock1.png" // Custom user icon (path to image)
+        userIcon: "/images/clock1.png", // Custom user icon (path to image)
+        proofLink: "/proof/timerecord.png" // Link to the record proof
       },
-    
     ];
 
     const scoreList = document.getElementById("score-list");
@@ -226,7 +250,13 @@
         <div class="player-info">
           <p class="game-title"><i class="fas fa-gamepad"></i>${data.gameTitle}</p>
           <h3 class="username"><i class="fas fa-user"></i>${data.username}</h3>
-          <p class="date"><i class="fas fa-calendar-alt date-icon"></i>${data.date}</p>
+          <p class="date"><i class="fas fa-calendar-alt"></i> ${data.date}</p>
+          <!-- Record Proof Link placed below username and date -->
+          <div class="record-proof">
+            <a href="${data.proofLink}" target="_blank">
+              <i class="fas fa-file-alt"></i> Record Proof
+            </a>
+          </div>
         </div>
         <div class="score">${data.score}</div>
       `;
@@ -239,10 +269,6 @@
       createLeaderboardItem(item);
     });
 
-    // Submit High Score button function
-    function submitHighScore() {
-      alert("Submit your high score form here.");
-    }
   </script>
 
 </body>
