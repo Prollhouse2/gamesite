@@ -11,66 +11,24 @@
 <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-     <link rel="stylesheet" href="/css/footer.css">
-  <script>
-    // Function to load total time spent and display it
-    function displayTotalTimeSpent() {
-        const totalKey = 'totalTimeSpent';
-        let totalTimeSpent = parseInt(localStorage.getItem(totalKey)) || 0;
-
-        // Function to format and display time
-        function updateDisplay() {
-            const totalHours = Math.floor(totalTimeSpent / 3600);
-            const totalMinutes = Math.floor((totalTimeSpent % 3600) / 60);
-            const totalSeconds = totalTimeSpent % 60;
-
-            const message = `
-                Total time spent on the site: ${totalHours} hours, ${totalMinutes} minutes, and ${totalSeconds} seconds.
-            `;
-            document.getElementById('timeSpent').innerHTML = message;
+     <link rel="stylesheet"type="text/css" href="css/footing.css">
+ <style>
+        /* Adjust spacing for <br> */
+        br {
+            display: block;
+            line-height: 0.5em; /* Reduces the height of <br> */
         }
 
-        // Initial display
-        updateDisplay();
 
-        // Increment total time every second
-        setInterval(() => {
-            totalTimeSpent++;
-            localStorage.setItem(totalKey, totalTimeSpent);
-            updateDisplay();
-        }, 1000);
-    }
-
-    // Call the function to display time when the page loads
-    window.onload = displayTotalTimeSpent;
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X514E26P5B');
-</script>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W9PKSQF8');</script>
-<!-- End Google Tag Manager -->
-
-
+    </style>
 </head>
 <body>
 <div class="container">
-<h1>Proll's Games V3.85</h1>
+<br></br>
+<h1>Proll's Games V3.9</h1>
 <center>
     <a>Time Spent: </a><span id="timeSpent">Loading...</span>
 </center>
-<center><h4>New: Auto Clicker (Website Settings) & Leaderboard</h4></center>
 <br></br>
 <div class="search-container">
 <input type="text" style="color:white" id="searchInput" onkeyup="searchButtons()" placeholder="Search for games...">
@@ -88,8 +46,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <button class="button" onclick="window.location.href = 'leaderboard';">Leaderboard</button>
 
 </div>
+<h1>New Games</h1>
+<div class="button-container new-games">
+    <button class="button" style="background-color: #6e0101; "><a style="text-decoration:none" href='games/basketballio'><img src="images/basketballio.png"> <span>Basketball Bros</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a style="text-decoration:none" href='games/justfall'><img src="images/justfall.png"> <span>Just Fall</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a style="text-decoration:none" href='games/gunmayhem'><img src="images/gunmayhem.png"> <span>Gun Mayhem</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a style="text-decoration:none" href='games/snowrider3d'><img src="images/snowrider3d.png"> <span>Snow Rider 3D</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a style="text-decoration:none" href='games/tetris'><img src="images/tetris.png"> <span>Tetris</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a style="text-decoration:none" href='games/tinyfishing'><img src="images/tinyfishing.png"> <span>Tiny Fishing</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a style="text-decoration:none" href='games/timeshooter'><img src="images/timeshooter.png"> <span>Time Shooter Games</span></a></button>
+</div>
 
-<div class="button-container">
+<div class="button-container regular-games">
 <button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/'><img src="images/proxy.png" alt="DOWN! Unblocked Search V2"> <span>Unblocked Search V3 1</span></a></button>
 <button class="button"><a style="text-decoration:none" href='https://school.proll.dev/'><img src="images/proxy.png" alt="DOWN! Unblocked Search V2"> <span>Unblocked Search V3 2</span></a></button>
 <button class="button"><a style="text-decoration:none" href='https://glcdn.githack.com/3kh0/3kh0-assets/-/raw/main/1v1lol/index.html'><img src="https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co" alt="1v1.lol"> <span>1v1.lol</span></a>
@@ -97,10 +65,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <button class="button"><a style="text-decoration:none" href='games/retro-bowl'><img src="images/retrobowl.jpg" alt="Retro Bowl"> <span>Retro Bowl [New Verison]</span></a></button>
 <button class="button"><a style="text-decoration:none" href='games/blockblast'><img src="images/blockblast.png" alt=""> <span>Block Blast</span></a></button>
 <button class="button"><a style="text-decoration:none" href='games/idle-breakout'><img src="images/idlebreakout.png" alt=""> <span>Idle Breakout</span></a></button>
-<button class="button"><a style="text-decoration:none" href='games/gunspin'><img src="/images/gunspin.png" alt=""> <span style="color:red">Gunspin NEW!</span></a></button>
-<button class="button"><a style="text-decoration:none" href='games/learntofly'><img src="games/learntofly/icon.png" alt=""> <span>Learn To Fly</span></a></button>
-<button class="button"><a style="text-decoration:none" href='games/learntofly2'><img src="images/learntofly2.png" alt=""> <span>Learn To Fly 2</span></a></button>
-<button class="button"><a style="text-decoration:none" href='games/learntofly3'><img src="images/learntofly3.png" alt=""> <span>Learn To Fly 3</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/gunspin'><img src="/images/gunspin.png" alt=""> <span >Gunspin</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/learntofly'><img src="games/learntofly/icon.png" alt=""> <span>Learn To Fly Games</span></a></button>
 <button class="button"><a style="text-decoration:none" href='games/houseofhazards'><img src="images/houseofhazards.png" alt=""> <span>House Of Hazards</span></a></button>
 <button class="button"><a style="text-decoration:none" href='games/holeio'><img src="images/holeio.png" alt=""> <span>Hole.io </span></a></button>
 <button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/?movies'><img src="images/movie.png" alt=""> <span>Movies</span></a></button>
@@ -165,10 +131,71 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <button class="button"><a style="text-decoration:none" href='games/ducklife1'><img src="images/ducklife1.png" width="200" height="200" alt=""> <br>Duck Life 1</a></button>
 <button class="button"><a style="text-decoration:none" href='games/sandboxels'><img src="https://sandboxels.r74n.com/icons/icon.png" width="200" height="200" alt=""> <br>Sand Boxels</a></button>
 </div>
+
+
+
 </body>
-<body>
+<br></br>
 <center><script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script></center>
 </body>  
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Footer Section -->
+    <footer>
+        <center>
+            <div class="footer-content">
+                <div class="social-icons">
+                    <a href="https://discord.com/invite/AbEg6fdrED" class="icon" target="_blank" title="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://github.com/prollhouse2" class="icon" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <p>2024 Proll's Services  GameSite V3.9 All rights reserved.</p>
+            </div>
+        </center>
+    </footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1892283558895586"
+     crossorigin="anonymous"></script>
+<div id="rt-d4d7fe8fbaca8c6b7d5920fe1311c785" data-floating="true" data-side="right" data-width="700" data-height="500" data-image="https://d1pfint8izqszg.cloudfront.net/images/floating/white-user-circle-floating.png" data-close-image="https://d1pfint8izqszg.cloudfront.net/images/floating/white-user-circle-close.png" data-user-counter="70,5" data-user-counter-width="24" data-user-counter-padding="5px 1px" data-user-counter-color="#fff" data-user-counter-bg-color="#58AC32" data-user-counter-border-radius="50" data-message-counter="5,68"></div> <script src="https://rumbletalk.com/client/?X1NwEo0P"></script>
+<script>
+    // Function to load total time spent and display it
+    function displayTotalTimeSpent() {
+        const totalKey = 'totalTimeSpent';
+        let totalTimeSpent = parseInt(localStorage.getItem(totalKey)) || 0;
+
+        // Function to format and display time
+        function updateDisplay() {
+            const totalDays = Math.floor(totalTimeSpent / 86400); // Calculate days
+            const totalHours = Math.floor((totalTimeSpent % 86400) / 3600); // Remaining hours
+            const totalMinutes = Math.floor((totalTimeSpent % 3600) / 60); // Remaining minutes
+            const totalSeconds = totalTimeSpent % 60; // Remaining seconds
+
+            const message = `
+                ${totalDays} days, ${totalHours} hours, 
+                ${totalMinutes} minutes, and ${totalSeconds} seconds.
+            `;
+            document.getElementById('timeSpent').innerHTML = message;
+        }
+
+        // Initial display
+        updateDisplay();
+
+        // Increment total time every second
+        setInterval(() => {
+            totalTimeSpent++;
+            localStorage.setItem(totalKey, totalTimeSpent);
+            updateDisplay();
+        }, 1000);
+    }
+
+    // Call the function to display time when the page loads
+    window.onload = displayTotalTimeSpent;
+</script>
   <script>
     function searchButtons() {
         // Get the search query from the input field
@@ -188,175 +215,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
     }
   </script>
-<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9PKSQF8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
-<script>
-    // Function to load time from local storage
-    function loadTimeSpent(key) {
-        const timeSpent = localStorage.getItem(key);
-        return timeSpent ? parseInt(timeSpent, 10) : 0;
-    }
 
-    // Function to format time in a human-readable way with days
-    function formatTime(seconds) {
-        const days = Math.floor(seconds / 86400); // 86400 seconds in a day
-        const hours = Math.floor((seconds % 86400) / 3600);
-        const minutes = Math.floor((seconds % 3600) / 60);
-        const secs = seconds % 60;
-        return `${days}d ${hours}h ${minutes}m ${secs}s`;
-    }
-
-    // Display and update total time spent
-    const totalKey = 'totalTimeSpent';
-    let totalTimeSpent = loadTimeSpent(totalKey);
-    
-    // Function to update the displayed time
-    function updateDisplay() {
-        document.getElementById('timeSpent').innerText = formatTime(totalTimeSpent);
-    }
-
-    // Initial display
-    updateDisplay();
-
-    // Increment total time every second
-    setInterval(() => {
-        totalTimeSpent++;
-        localStorage.setItem(totalKey, totalTimeSpent);
-        updateDisplay();
-    }, 1000);
-</script>
-
-<script>
-  // Function to hide the element
-  function hideElement() {
-    var element = document.getElementById("elementToHide"); // Get the element by its ID
-    element.style.display = "none"; // Hide the element by setting its display property to "none"
-  }
-
-  // Call the hideElement function when the page finishes loading
-  window.addEventListener("load", function() {
-    hideElement();
-  });
-</script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .footer-content {
-            text-align: center;
-            margin: 20px;
-            font-family: Arial, sans-serif;
-        }
-
-        .social-icons {
-            margin-top: 20px;
-        }
-
-        .icon {
-            display: inline-block;
-            margin: 10px;
-            font-size: 24px; /* Adjust the size of the icon */
-            color: #333;
-        }
-
-        .icon:hover {
-            color: #007bff; /* Color change on hover */
-        }
-
-        footer {
-            padding: 20px;
-            background-color: #222;
-        }
-
-        p {
-            margin: 10px 0;
-            color: white;
-        }
-    </style>
-    <!-- Footer Section -->
-    <footer>
-        <center>
-            <div class="footer-content">
-                <div class="social-icons">
-                    <a href="https://discord.com/invite/AbEg6fdrED" class="icon" target="_blank" title="Discord">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                    <a href="https://github.com/prollhouse2" class="icon" target="_blank" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
-                <p>2024 Proll's Services  GameSite V3.85 All rights reserved.</p>
-            </div>
-        </center>
-    </footer>
-<script>
-  // JavaScriptd
-  function openPopup() {
-    document.getElementById('popup').style.display = 'block';
-    setTimeout(closePopup, 10000); // Close after 10 seconds (10000 milliseconds)
-  }
-
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-  }
-
-  // Open the pop-up when the page loads
-  window.onload = openPopup;
-</script>
-    <script>
-        // Load settings from localStorage or set defaults
-        let panicKey = localStorage.getItem('panicKey') || '\\';
-        let redirectUrl = localStorage.getItem('redirectUrl') || 'https://www.google.com';
-
-        // Set event listener for the panic key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === panicKey) {
-                event.preventDefault();
-                window.location.href = redirectUrl;
-            }
-        });
-
-        // Settings button event listener
-        document.getElementById('settings-button').addEventListener('click', function() {
-            document.getElementById('modal').style.display = 'flex';
-            document.getElementById('keybind').value = panicKey;
-            document.getElementById('url').value = redirectUrl;
-        });
-
-        // Close button event listener
-        document.getElementById('close-button').addEventListener('click', function() {
-            document.getElementById('modal').style.display = 'none';
-        });
-
-        // Set button event listener
-        document.getElementById('set-button').addEventListener('click', function() {
-            const newKey = document.getElementById('keybind').value;
-            let newUrl = document.getElementById('url').value;
-
-            // Automatically add https:// if not present
-            if (!newUrl.startsWith('http://') && !newUrl.startsWith('https://')) {
-                newUrl = 'https://' + newUrl;
-            }
-
-            // Update panic key and URL in localStorage
-            if (newKey) {
-                panicKey = newKey;
-                localStorage.setItem('panicKey', panicKey);
-            }
-            if (newUrl) {
-                redirecqtUrl = newUrl;
-                localStorage.setItem('redirectUrl', redirectUrl);
-            }
-
-            alert(`Panic key set to: ${panicKey}\nRedirect URL set to: ${redirectUrl}`);
-            document.getElementById('modal').style.display = 'none'; // Close modal
-        });
-    </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1892283558895586"
-     crossorigin="anonymous"></script>
-<div id="rt-d4d7fe8fbaca8c6b7d5920fe1311c785" data-floating="true" data-side="right" data-width="700" data-height="500" data-image="https://d1pfint8izqszg.cloudfront.net/images/floating/white-user-circle-floating.png" data-close-image="https://d1pfint8izqszg.cloudfront.net/images/floating/white-user-circle-close.png" data-user-counter="70,5" data-user-counter-width="24" data-user-counter-padding="5px 1px" data-user-counter-color="#fff" data-user-counter-bg-color="#58AC32" data-user-counter-border-radius="50" data-message-counter="5,68"></div> <script src="https://rumbletalk.com/client/?X1NwEo0P"></script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W9PKSQF8');</script>
 
 </html>
 
-</html>

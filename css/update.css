@@ -1,0 +1,112 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+/* Flexbox layout for the body */
+.container {
+    display: flex;
+    justify-content: space-between; /* Space between sections */
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* New Games Section - vertical on the left side */
+.games-section.new-games {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%; /* Takes up 1/4th of the width */
+    padding: 20px;
+}
+
+.games-section.new-games h2 {
+    margin-bottom: 20px;
+}
+
+/* Popular Games Section - stays in the center */
+.games-section.popular-games {
+    width: 70%; /* Takes up the middle area */
+    padding: 20px;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button-container .button {
+    margin: 10px;
+    width: 200px; /* Adjust width of buttons */
+}
+
+/* Search Bar */
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    width: 300px;
+    outline: none;
+}
+
+/* Button Styles */
+.button-container,
+.button-container1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px 20px;
+    background-color: #444;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 200px;
+}
+
+.button:hover {
+    background-color: #333;
+}
+
+.button img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+/* Miscellaneous */
+p {
+    margin: 10px 0;
+    color: white;
+}

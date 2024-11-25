@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proll Tints - Window Tint Percentage Calculator</title>
+    <style>
+        body {
+            background-color: #1e1e1e; /* Dark background for the entire page */
+            color: #ffffff; /* Text color */
+            font-family: 'Arial', sans-serif; /* Font style */
+            display: flex; /* Flexbox for positioning */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* No default margin */
+        }
+
+        .container {
+            text-align: center; /* Center text in container */
+            width: 90%; /* Responsive width */
+            max-width: 400px; /* Max width for larger screens */
+        }
+
+        .logo {
+            width: 100px; /* Set logo size */
+            margin-bottom: 20px; /* Space below logo */
+        }
+
+        h1 {
+            font-size: 1.8em; /* Size for main heading */
+            margin-bottom: 20px; /* Space below heading */
+        }
+
+        .calculator {
+            background-color: #2a2a2a; /* Background for calculator */
+            padding: 20px; /* Padding around the content */
+            border-radius: 8px; /* Rounded corners for this section */
+        }
+
+        label {
+            display: block; /* Make labels block level */
+            margin: 10px 0 5px; /* Margins for labels */
+        }
+
+        input {
+            width: 85%; /* Set width to 85% of the calculator */
+            padding: 10px; /* Padding inside the input */
+            margin: 0 auto 15px; /* Center input and margin below */
+            border: 1px solid #444; /* Border color */
+            border-radius: 8px; /* Rounded corners for input */
+            background-color: #888; /* Set input background color to gray */
+            color: #ccc; /* Lighter gray text color */
+            font-size: 1em; /* Font size */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        input:focus {
+            border-color: #007BFF; /* Border color on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        h2 {
+            margin-top: 20px; /* Space above result heading */
+        }
+
+        #result {
+            font-size: 1.5em; /* Size for the result text */
+            margin-top: 10px; /* Space above result */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="your-logo.png" alt="Proll Tints Logo" class="logo"> <!-- Replace with actual logo path -->
+        <h1>Window Tint Percentage Calculator</h1>
+        <div class="calculator">
+            <label for="originalVLT">Original Window VLT (%):</label>
+            <input type="number" id="originalVLT" placeholder="1-99" required>
+
+            <label for="filmVLT">Window Film VLT (%):</label>
+            <input type="number" id="filmVLT" placeholder="1-99" required>
+
+            <h2>Result:</h2>
+            <p id="result"></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('input', function() {
+            const originalVLTInput = document.getElementById('originalVLT');
+            const filmVLTInput = document.getElementById('filmVLT');
+
+            // Ensure that the input values are kept to 1-99
+            let originalVLT = originalVLTInput.value;
+            let filmVLT = filmVLTInput.value;
+
+            // Limit the input to valid values
+            if (originalVLT) {
+                originalVLT = Math.max(1, Math.min(99, parseInt(originalVLT)));
+                originalVLTInput.value = originalVLT;
+            }
+            if (filmVLT) {
+                filmVLT = Math.max(1, Math.min(99, parseInt(filmVLT)));
+                filmVLTInput.value = filmVLT;
+            }
+
+            // Calculate result only if both inputs are valid
+            if (originalVLT >= 1 && originalVLT <= 99 && filmVLT >= 1 && filmVLT <= 99) {
+                const result = ((filmVLT / 100) * originalVLT).toFixed(2);
+                document.getElementById('result').innerText = `Final VLT: ${result}%`;
+            } else {
+                document.getElementById('result').innerText = '';
+            }
+        });
+    </script>
+</body>
+</html>

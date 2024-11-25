@@ -1,0 +1,49 @@
+<html>
+    <head>
+<script src="/js/favicon.js"></script>
+<script src="/js/panic.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
+<script src="/js/gtag.js"></script>
+<script src="/js/auto-clicker.js"></script>
+<script src="/js/timeTracker.js"></script>
+<title>Grades & Attendence</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="/js/main.js"></script>
+    <script>
+      function loadLocalRuffle() {
+          var script = document.createElement('script');
+          script.src = '../../storage/ruffle/ruffle.js';
+          document.body.appendChild(script);
+      }
+
+      var cdnScript = document.createElement('script');
+      cdnScript.src = 'https://unpkg.com/@ruffle-rs/ruffle';
+      cdnScript.onerror = loadLocalRuffle;
+      document.body.appendChild(cdnScript);
+    </script>
+
+    <div id="ruffle" width="100%" height="100%"></div>
+    <script>
+      window.RufflePlayer = window.RufflePlayer || {};
+      window.addEventListener("load", (event) => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        const container = document.getElementById("ruffle");
+        player.id = "player";
+        player.style.width = "100%";
+        player.style.height = "100%";
+        container.appendChild(player);
+        player.load("ltf.swf");
+      });
+    </script>
+  </body>
+</html>

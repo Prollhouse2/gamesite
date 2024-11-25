@@ -1,113 +1,106 @@
-/* Link Styles */
-a:link, a:visited, a:hover, a:active {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-/* Body and Headings */
+/* Global Styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #222; /* Dark gray background color */
-  color: #fff; /* White text color */
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 h1, h2 {
-  text-align: center;
-  color: #fff;
+    text-align: center;
+    color: #fff;
 }
 
-/* Search Container */
+a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Search Bar */
 .search-container {
-  text-align: center;
-  margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 #searchInput {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: black; /* Set background color to black */
-  color: white; /* Set text color to white */
-  font-size: 16px;
-  width: 300px;
-  outline: none;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    width: 300px;
+    outline: none;
 }
 
-/* Button Container */
-.button-container {
-  display: flex;
-  flex-wrap: wrap; /* Allow buttons to wrap to the next line */
-  justify-content: center;
-  text-decoration: none;
+/* Button Styles */
+.button-container,
+.button-container1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
-
-.button-wrapper {
-  position: relative; /* Make the wrapper a positioned element */
-  display: inline-block; /* Allow the ribbon to position relative to the button */
-}
-
-
 
 .button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  padding: 15px 20px; /* Enlarge the padding */
-  background-color: #444; /* Darker gray button color */
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  max-width: 200px;
-  width: 100%; /* Make button width 100% */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px 20px;
+    background-color: #444;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 200px;
 }
 
 .button:hover {
-  background-color: #333; /* Even darker gray on hover */
-  text-decoration: none;
+    background-color: #333;
 }
 
-.button img {
-  width: 150px;
-  height: 150px;
-  margin-bottom: 10px;
+.buttonnew img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+.buttonnew {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px 20px;
+    background-color: #444;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 200px;
 }
 
-/* Button Container 1 */
-.button-container1 {
-  display: flex;
-  justify-content: center; /* Distribute the buttons evenly along the container */
-  margin-top: 20px; /* Add margin to separate from other elements */
+.buttonnew:hover {
+    background-color: #333;
 }
 
-/* Favicon Modal Styles (Dark Gray Theme) */
+/* Modal & Popup Styles (if needed) */
 #faviconSelection img {
-  width: 128px;    /* Set the width to 128px */
-  height: auto;    /* Maintain aspect ratio */
-  display: inline-block; /* Optional: make them line up horizontally */
+    width: 128px;
+    height: auto;
+    display: inline-block;
 }
 
-/* Ribbon Styles */
-.ribbon {
-  position: absolute;
-  top: -10px; /* Adjust as needed */
-  left: -10px; /* Adjust as needed */
-  background-color: red;
-  color: white;
-  padding: 5px 10px;
-  font-size: 12px;
-  text-align: center;
-  border-radius: 5px; /* Rounded corners */
-  transform: rotate(-15deg); /* Angle the ribbon */
-  z-index: 1; /* Ensure it appears above the button */
+/* Miscellaneous */
+p {
+    margin: 10px 0;
+    color: white;
 }

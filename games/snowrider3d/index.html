@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<script src="/js/favicon.js"></script>
+<script src="/js/panic.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X514E26P5B"></script>
+<script src="/js/gtag.js"></script>
+<script src="/js/auto-clicker.js"></script>
+<script src="/js/timeTracker.js"></script>
+<title>Grades & Attendence</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.png"> <meta name="keywords" content="Snow Rider 3D, skiing game, winter sports, snowboarding, ski game, mountain landscapes, skiing adventure, snowboarding adventure, snowy mountain, sleigh ride, winter game">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+        var gameInstance = UnityLoader.instantiate("gameContainer", "Build/SnowRider3D-gd-1.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
+    </script>
+</head>
+<body style="overflow:hidden;padding:0px;margin:0px;">
+    <div class="webgl-content">
+        <div id="gameContainer" style="width: 960px; height: 600px; margin: auto"></div>
+    </div>
+</body>
+</html>
+
