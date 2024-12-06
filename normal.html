@@ -1,0 +1,213 @@
+<html lang="en">
+<head>
+    <script src="/js/timeTracker.js" defer></script>
+    <script src="/js/favicon.js"></script>
+    <script src="/js/panic.js"></script>
+    <script src="/js/autoclicker.js"></script>
+
+    <title>Grades & Attendance</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/footing.css" />
+    <link rel="stylesheet" type="text/css" href="css/test.css" />
+<script>
+    // Function to load total time spent and display it
+    function displayTotalTimeSpent() {
+        const totalKey = 'totalTimeSpent';
+        let totalTimeSpent = parseInt(localStorage.getItem(totalKey)) || 0;
+
+        // Function to format and display time
+        function updateDisplay() {
+            const totalDays = Math.floor(totalTimeSpent / 86400); // Calculate days
+            const totalHours = Math.floor((totalTimeSpent % 86400) / 3600); // Remaining hours
+            const totalMinutes = Math.floor((totalTimeSpent % 3600) / 60); // Remaining minutes
+            const totalSeconds = totalTimeSpent % 60; // Remaining seconds
+
+            const message = `
+                ${totalDays} days, ${totalHours} hours, 
+                ${totalMinutes} minutes, and ${totalSeconds} seconds.
+            `;
+            document.getElementById('timeSpent').innerHTML = message;
+        }
+
+        // Initial display
+        updateDisplay();
+
+        // Increment total time every second
+        setInterval(() => {
+            totalTimeSpent++;
+            localStorage.setItem(totalKey, totalTimeSpent);
+            updateDisplay();
+        }, 1000);
+    }
+
+    // Call the function to display time when the page loads
+    window.onload = displayTotalTimeSpent;
+</script>
+
+</head>
+<body>
+
+    <div class="container">
+        <br></br>
+        <h1>Proll's Games V4.0</h1>
+        <center>
+            <a>Time Spent: </a><span id="timeSpent">Loading...</span>
+        </center>
+        <br></br>
+        <div class="search-container">
+            <input type="text" style="color:white" id="searchInput" onkeyup="searchButtons()" placeholder="Search for games...">
+        </div>
+    </div>
+    <p id="time"></p>
+
+    <div class="button-container1">
+        <button class="button" onclick="window.location.href = 'https://tinyurl.com/45j4r62u';">Game Request</button>
+        <button class="button" onclick="window.location.href = 'settings';">Website Settings</button>
+        <button class="button" onclick="window.location.href = 'https://github.com/Prollhouse2/gamesite';">Source / Updates</button>
+        <button class="button" onclick="window.location.href = 'bookmarks';">Game Cheats</button>
+        <button class="button" onclick="window.location.href = 'save';">Game Save</button>
+        <button class="button" onclick="window.location.href = 'leaderboard';">Leaderboard</button>
+    </div>
+
+<h1>New Games</h1>
+<div class="button-container new-games">
+    <button class="button" style="background-color: #6e0101; "><a href='games/baldisbasics'><img src="images/baldisbasics.png"> <span><br>Baldisbasics</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a href='games/wallsmash'><img src="images/wallsmash.png"> <span><br>Wall Smash</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a href='games/infinitecraft'><img src="images/infinitecraft.png"> <span><br>Infinite Craft</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a href='games/crazytunnel3d'><img src="images/crazytunnel3d.png"> <span><br>Crazy Tunnel 3D</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a href='games/lazyjump3d'><img src="images/lazyjump3d.png"> <span><br>Lazy Jump 3D</span></a></button>
+</div>
+
+<div class="button-container regular-games">
+<button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/'><img src="images/proxy.png" alt="DOWN! Unblocked Search V2"> <span><br>Unblocked Search V3 1</span></a></button>
+<button class="button"><a style="text-decoration:none" href='https://school.proll.dev/'><img src="images/proxy.png" alt="DOWN! Unblocked Search V2"> <span><br>Unblocked Search V3 2</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/1v1lol'><img src="https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co" alt="1v1.lol"> <span><br>1v1.lol</span></a>
+<button class="button"><a style="text-decoration:none" href='games/slope'><img src="images/slope.png" alt="Slope"> <span><br>Slope</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/retro-bowl'><img src="images/retrobowl.jpg" alt="Retro Bowl"> <span><br>Retro Bowl [New Verison]</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/blockblast'><img src="images/blockblast.png" alt=""> <span><br>Block Blast</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/idle-breakout'><img src="images/idlebreakout.png" alt=""> <span><br>Idle Breakout</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/gunspin'><img src="/images/gunspin.png" alt=""> <span ><br>Gunspin</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/learntofly'><img src="games/learntofly/1/icon.png" alt=""> <span><br>Learn To Fly Games</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/houseofhazards'><img src="images/houseofhazards.png" alt=""> <span><br>House Of Hazards</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/holeio'><img src="images/holeio.png" alt=""> <span><br>Hole.io </span></a></button>
+<button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/?movies'><img src="images/movie.png" alt=""> <span><br>Movies</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/cut-the-rope'><img src="images/cuttherope.png" alt=""> <span><br>Cut The Rope</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/tanktrouble'><img src="images/tanktrouble.png" alt=""> <span><br>Tank Trouble</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/drifthunters'><img src="images/drifthunters.png" alt=""> <span><br>Drift Hunters </span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/volleyrandom'><img src="images/volleyrandom.png" alt=""> <span ><br>Volley Random</span></a></button>
+<button class="button"><a href='games/draw-the-hill'><img src="images/drawthehill.png" alt=""> <span><br>Draw The Hill</span></a></button>
+<button class="button"><a href='games/basketballio'><img src="images/basketballio.png"> <span><br>Basketball Bros</span></a></button>
+<button class="button"><a href='games/justfall'><img src="images/justfall.png"> <span><br>Just Fall</span></a></button>
+<button class="button"><a href='games/gunmayhem'><img src="images/gunmayhem.png"> <span><br>Gun Mayhem</span></a></button>
+<button class="button"><a href='games/snowrider3d'><img src="images/snowrider3d.png"> <span><br>Snow Rider 3D</span></a></button>
+<button class="button"><a href='games/tetris'><img src="images/tetris.png" alt="Tetris"><span><br>Tetris</span></a></button>    
+<button class="button"><a style="text-decoration:none" href='games/tinyfishing'><img src="images/tinyfishing.png"> <span><br>Tiny Fishing</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/timeshooter'><img src="images/timeshooter.png"> <span><br>Time Shooter Games</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/getaway-shootout'><img src="images/getawayshootout.png" alt=""> <span><br>Getaway Shootout</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/soccer-random'><img src="images/soccerrandom.png" alt=""> <span><br>Soccer Random</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/crossyroad'><img src="images/crossyroad.png" alt=""> <span><br>Crossy Road</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/rooftopsnipers'><img src="images/rooftopsnipers.png" alt=""> <span><br>Rooftop Sniper</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/boxingrandom'><img src="images/boxingrandom.png" alt=""> <span><br>Boxing Random</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/adventurecapitalist'><img src="images/adventurecapitalist.png" alt=""> <span><br>Adventure Capitalist</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/hideandsmash'><img src="images/hideandsmash.png" alt=""> <span><br>Hide & Smash</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/monkey-mart'><img src="images/monkeymart.png" alt=""> <span><br>MonkeyMart</span></a></button>
+<button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/?geforce'><img src="images/geforce.jpg" alt=""> <span><br>Geforce NOW</span></a></button>
+<button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/?ai'><img src="images/ai.png" alt=""> <span><br>Chat AI</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/rb-college'><img src="images/retrobowlcollege.jpg" alt="Retro Bowl"> <span><br>Retro Bowl College</span></a></button>
+<button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/?nealfun'><img src="images/nealfun.png" alt=""> <span><br>Neal Fun</span></a></button>
+<button class="button"><a style="text-decoration:none" href='server'><img src="images/windows.png" alt=""> <span><br>Windows Desktop</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/mc'><img src="images/mc.png" alt=""> <span><br>Minecraft (Eagler)</span></a>
+<button class="button"><a style="text-decoration:none" href='games/btd5'><img src="images/btd5.png" alt="BTD"> <span><br>Bloons TD5</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/mrmine'><img src="images/mrmine.png" alt="BTD"> <span><br>Mr Mine</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/run2'><img src="images/run2.png" alt=""> <span><br>Run 2</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/run3'><img src="images/run3.png" alt=""> <span><br>Run 3</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/elonmusk'><img src="images/elonmusk.png" alt=""> <span><br>Spend Elon's Money</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/pvz'><img src="images/pvz.png" alt=""> <span><br>Plants V Zombies</span></a>
+<button class="button"><a style="text-decoration:none" href='games/ducklife'><img src="images/ducklife.png"> <span><br>Duck Life</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/minesweeper'><img src="images/minesweeper.png" alt=""> <span><br>Mine Sweeper</span></a>
+<button class="button"><a style="text-decoration:none" href='games/pixelgun'><img src="images/pixelgun.png" alt=""> <span><br>Pixel Gun</span></a>
+<button class="button"><a style="text-decoration:none" href='games/googlesnake'><img src="images/googlesnake.jpg" alt=""> <span><br>Google Snake </span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/ngon'><img src="images/ngon.jpg" alt=""> <span><br>N Gon</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/ovo'><img src="images/ovo.jpg" alt="R"> <span><br>OVO</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/basketballstars'><img src="images/basketballstars.png" alt="Basketball Stars"> <span><br>Basketball Stars</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/stacktris'><img src="images/stacktris.jpg" alt=""> <span><br>Stacktris</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/blackjack'><img src="images/blackjack.png" alt=""> <span><br>Black Jack</span></button>
+<button class="button"><a style="text-decoration:none" href='games/fnaf'><img src="images/fnaf.png" alt=""> <span><br>FNAF</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/dbz'><img src="images/dbz.png" alt=""> <span><br>DBZ Devolution</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/drivemad'><img src="images/drivemad.png" width="200" height="200" alt=""> <br>Drive Mad</a></button>
+<button class="button"><a style="text-decoration:none" href='games/papas-game'><img src="images/papasgame.jpg" width="200" height="200"> <br>Papa's Games</a></button>
+<button class="button"><a style="text-decoration:none" href='games/henry-stickman'><img src="https://cdn2.steamgriddb.com/icon/9f61408e3afb633e50cdf1b20de6f466.png" width="200" height="200"> <br>Stickman Games</a></button>
+<button class="button"><a style="text-decoration:none" href='games/vex'><img src="https://play-lh.googleusercontent.com/0OnVFzHIMuLLeMjvACoNzxRbungfOH1zH4hUWQnIg5KfM2va_mFssFuRGq26WqWA" width="200" height="200"> <br>Vex's Games</a></button>    
+<button class="button"><a style="text-decoration:none" href='games/2048'><img src="images/2048.png" alt="2048"> <span><br>2048</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/paperio2'><img src="images/paperio2.png" alt="Paper.io 2"> <span><br>Paper.io 2</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/bitlife'><img src="https://play-lh.googleusercontent.com/fUM-UyywXxjC8soxAZdIlxJrlRRXmql8wkE426SHzft4lJycSKVd2jCYQQX1BEG9Xw" width="200" height="200"><br><br>Bitlife</a></button>
+<button class="button"><a style="text-decoration:none" href='games/1'><img src="https://d3nsrxdg84ic1d.cloudfront.net/uploads/5a145eaa-3696-4de4-8c1d-41400e3d296c/e8ccaaae.PNG?v=0" width="200" height="200"> <br>1</a></button>
+<button class="button"><a style="text-decoration:none" href='games/subway-surfers'><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/81a0a3f18cf0ee129e56edb50fc52c3b.png" width="200" height="200"> <br>Subway Surfers</a></button>
+<button class="button"><a style="text-decoration:none" href='games/basketball-random'><img src="https://play-lh.googleusercontent.com/gP8T5Z1O-ngxIloiwcBZzrzyLPYDp0R_1BDNKUDZboIRPVImeyWI8-7aExvB9gAGNKc=w240-h480-rw" width="200" height="200" alt=""> <br>Basketball Random</a></button>
+<button class="button"><a style="text-decoration:none" href='games/soccer-random'><img src="https://play-lh.googleusercontent.com/G1PIlb6HWKSaDre0XpUcmKGps9T4iamsSlwrogB3EJzYv4bz0M2am4D17MtGzndaOOU" width="200" height="200" alt=""> <br>Soccer Random</a></button>
+<button class="button"><a style="text-decoration:none" href='games/motox3m'><img src="images/motocross.png" width="200" height="200" alt=""><br>MotoX3M Games</a></button>
+<button class="button"><a style="text-decoration:none" href='games/cookieclicker'><img src="https://play-lh.googleusercontent.com/Z1MOuuiD05ZN5LkVmMEvKF0mqAc-FknaQ2j8s4dZiO-LSPQX4EEA3RVJdlQEtxe96ok" width="200" height="200" alt=""> <br>Cookie Clicker</a></button>
+<button class="button"><a style="text-decoration:none" href='games/crossyroad'><img src="https://upload.wikimedia.org/wikipedia/en/7/71/Crossy_Road_icon.jpeg" width="200" height="200" alt=""> <br>Crossy Road</a></button>
+<button class="button"><a style="text-decoration:none" href='games/temple-run-2'><img src="https://play-lh.googleusercontent.com/go4XqS4mYs-G2tZymiVLF4wJYXIi5QrvwixNRzssk4G_vRBHrAdg4E1ddNwy9c2cZA" width="200" height="200"> <br>Temple Run 2</a></button>
+<button class="button"><a style="text-decoration:none" href='games/stickman-golf'><img src="https://image.spreadshirtmedia.com/image-server/v1/products/T1459A839PA3861PT28D12687618W6161H10000/views/1,width=550,height=550,appearanceId=839,backgroundColor=F2F2F2/golf-stickman-sticker.jpg" width="200" height="200" alt=""> <br>Stickman Golf</a></button>
+<button class="button"><a style="text-decoration:none" href='games/case-clicker'><img src="images/csgoclicker.png" width="200" height="200" alt=""> <br>CSGO Case Opener</a></button>
+<button class="button"><a style="text-decoration:none" href='games/pandemic2'><img src="images/pandemic2.png" width="200" height="200" alt=""> <br>Pandemic 2</a></button>
+<button class="button"><a style="text-decoration:none" href='games/riddleschool'><img src="https://i.ytimg.com/vi/Ls5rT-7_4d4/sddefault.jpg" width="200" height="200" alt=""> <br>Riddle School Games</a></button>
+<button class="button"><a style="text-decoration:none" href='games/cupcake2048'><img src="images/cupcake2048.png" width="200" height="200"> <br>Cupcake 2048</a></button>
+<button class="button"><a style="text-decoration:none" href='games/jetpack-joyride'><img src="images/jetpackjoyride.png" width="200" height="200" alt=""> <br>Jetpack Joyride</a></button>
+<button class="button"><a style="text-decoration:none" href='games/geodash'><img src="images/geodash.jpg" width="200" height="200" alt=""> <br>Geometry Dash</a></button>
+<button class="button"><a style="text-decoration:none" href='games/ducklife1'><img src="images/ducklife1.png" width="200" height="200" alt=""> <br>Duck Life 1</a></button>
+<button class="button"><a style="text-decoration:none" href='games/sandboxels'><img src="https://sandboxels.r74n.com/icons/icon.png" width="200" height="200" alt=""> <br>Sand Boxels</a></button>
+</div>
+
+        <!-- Other buttons here... -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <center>
+            <div class="footer-content">
+                <div class="social-icons">
+                    <a href="https://discord.com/invite/AbEg6fdrED" class="icon" target="_blank" title="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://github.com/prollhouse2" class="icon" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <p>2024 Proll's Services  GameSite V4.0 All rights reserved.</p>
+            </div>
+        </center>
+    </footer>
+
+    <!-- Particles.js Snow Configuration -->
+  <script>
+    function searchButtons() {
+        // Get the search query from the input field
+        var query = document.getElementById("searchInput").value.toLowerCase();
+
+        // Get all the buttons on the page
+        var buttons = document.getElementsByTagName("button");
+
+        // Loop through the buttons and check if their text contains the search query
+        for (var i = 0; i < buttons.length; i++) {
+            var buttonText = buttons[i].textContent.toLowerCase();
+            if (buttonText.includes(query)) {
+                buttons[i].style.display = "flex"; // Show the button
+            } else {
+                buttons[i].style.display = "none"; // Hide the button
+            }
+        }
+    }
+  </script>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9PKSQF8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W9PKSQF8');</script>  
+</body>
+</html>

@@ -1,0 +1,164 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #002b36; /* Deep greenish-blue for a festive night feel */
+    background-image: url('https://cdn.pixabay.com/photo/2016/11/23/00/47/abstract-1852511_960_720.jpg'); /* A subtle Christmas texture */
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #ff0000; /* Bright red for Christmas titles */
+    text-shadow: 2px 2px 5px #000; /* Add some depth */
+}
+
+a {
+    color: #ffdf00; /* Gold color for links */
+    text-decoration: none;
+}
+
+/* Search Bar */
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    padding: 10px;
+    border: 1px solid #00ff00; /* Green outline for input */
+    border-radius: 5px;
+    background-color: #003300; /* Dark green background */
+    color: #fff; /* White text for contrast */
+    font-size: 16px;
+    width: 300px;
+    outline: none;
+}
+
+/* Button Styles */
+.button-container,
+.button-container1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.button {
+    display: flex;                     /* Flexbox layout */
+    flex-direction: column;            /* Stack items vertically */
+    align-items: center;               /* Center items horizontally */
+    justify-content: center;           /* Center items vertically */
+    margin: 10px;
+    padding: 15px 20px;                /* Padding for the button */
+    background-color: #006400;         /* Background color */
+    color: white;                     /* Text color */
+    text-align: center;                /* Center text */
+    border: 2px solid transparent;     /* Border for aesthetics */
+    border-radius: 5px;                /* Rounded corners */
+    cursor: pointer;                   /* Pointer on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transition: background-color 0.3s, transform 0.2s; /* Transition for hover */
+    text-decoration: none;             /* Remove underline from links */
+}
+
+.button:hover {
+    background-color: #00a000;         /* Background color on hover */
+    transform: scale(1.05);            /* Scale on hover */
+}
+
+.button img {
+    width: 100px;                      /* Image width */
+    height: auto;                      /* Maintain aspect ratio */
+    margin-bottom: 5px;                /* Space between image and text */
+    border-radius: 10px;               /* Rounded image corners */
+    border: 2px solid #ff0000;         /* Optional border on images */
+}
+
+.button span {
+    font-size: 16px;                   /* Font size */
+    font-weight: bold;                 /* Bold text */
+    color: #ffdf00;                    /* Gold text color */
+}
+
+.buttonnew {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px 20px;
+    background-color: #FF5733; /* Christmas tree green */
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add depth */
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+    max-width: 200px;
+}
+
+.buttonnew:hover {
+    background-color: #00a000; /* Brighter green for hover */
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.buttonnew img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 10px; /* Rounded images */
+    border: 2px solid #ff0000; /* Red border for Christmas vibe */
+}
+
+.buttonnew span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffdf00; /* Gold text for buttons */
+}
+
+/* Footer */
+footer {
+    background-color: #002b36; /* Match the main theme */
+    color: #ffdf00; /* Gold for footer text */
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: #00ff00; /* Bright green for footer links */
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: #ff0000; /* Hover red for links */
+}
+
+/* Miscellaneous */
+p {
+    margin: 10px 0;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Adding Some Sparkle */
+body:after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Subtle sparkle */
+    opacity: 0.2;
+}
