@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Grades & Attendance</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Bubble&family=Roboto:wght@400;700&family=Oswald:wght@400;700&family=Pacifico&family=Indie+Flower&family=Shadows+Into+Light&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Londrina+Outline&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            background: #f4f4f4;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slider-container {
+            margin-bottom: 20px;
+        }
+
+        #imageContainer {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            margin-left: 250px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        #uploadedImage {
+            max-width: 100vw;
+            max-height: 100vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            object-fit: contain;
+            transition: transform 0.2s;
+            display: none;
+        }
+
+        .shape {
+            position: absolute;
+            cursor: pointer;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        #rotationValue {
+            font-weight: bold;
+            cursor: text;
+        }
+
+        #rotationInput {
+            width: 50px;
+            display: none;
+            margin-left: 10px;
+        }
+
+        #textContainer {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #textOutput {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            font-weight: normal;
+            text-align: center;
+            white-space: nowrap;
+            transition: font-size 0.2s, font-weight 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <input type="file" id="fileInput" accept="image/*" />
+        <br>
+        <div class="slider-container">
+            <label for="sizeRange">Size:</label>
+            <input type="range" id="sizeRange" min="10" max="200" value="100" />
+        </div>
+
+        <div class="slider-container">
+            <label for="rotationRange">Rotation:</label>
+            <input type="range" id="rotationRange" min="0" max="360" value="0" />
+            <span id="rotationValue">0°</span>
+            <input type="text" id="rotationInput" value="0" />
+        </div>
+
+        <button id="textTracerButton">Text Tracer</button>
+        <button id="toggleShapeButton">Shape Tracer</button>
+
+        <div id="shapeSelector" style="display: none;">
+            <label for="shapeSelect">Select Shape:</label>
+            <select id="shapeSelect">
+                <option value="">-- Select a Shape --</option>
+                <option value="circle">Circle</option>
+                <option value="square">Square</option>
+                <option value="arrow">Arrow</option>
+            </select>
+            <button id="addShapeButton">Add Shape</button>
+            <button id="removeLastShapeButton">Remove Last Shape</button>
+        </div>
+
+        <button id="removeTracerButton">Remove Tracer</button>
+
+        <div id="textContainer">
+            <input type="text" id="textInput" placeholder="Type your text here" />
+            <button id="boldButton">Bold</button>
+            <label for="fontSelect">Font:</label>
+            <select id="fontSelect">
+                <option value="Bubble">Bubble</option>
+                <option value="Roboto">Roboto</option>
+                <option value="Oswald">Oswald</option>
+                <option value="Pacifico">Pacifico</option>
+                <option value="Indie Flower">Indie Flower</option>
+                <option value="Shadows Into Light">Shadows Into Light</option>
+                <option value="Raleway">Raleway</option>
+                <option value="Open Sans">Open Sans</option>
+                <option value="Londrina Outline">Londrina Outline</option>
+            </select>
+        </div>
+
+        <button id="resetButton">Reset Size</button>
+    </div>
+
+    <div id="imageContainer">
+        <img id="uploadedImage" src="" alt="" />
+        <div id="textOutput"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fileInput = document.getElementById('fileInput');
+            const uploadedImage = document.getElementById('uploadedImage');
+            const sizeRange = document.getElementById('sizeRange');
+            const rotationRange = document.getElementById('rotationRange');
+            const rotationValueDisplay = document.getElementById('rotationValue');
+            const rotationInput = document.getElementById('rotationInput');
+            const resetButton = document.getElementById('resetButton');
+            const removeTracerButton = document.getElementById('removeTracerButton');
+            const textTracerButton = document.getElementById('textTracerButton');
+            const textContainer = document.getElementById('textContainer');
+            const textInput = document.getElementById('textInput');
+            const textOutput = document.getElementById('textOutput');
+            const boldButton = document.getElementById('boldButton');
+            const fontSelect = document.getElementById('fontSelect');
+            const shapeSelect = document.getElementById('shapeSelect');
+            const addShapeButton = document.getElementById('addShapeButton');
+            const toggleShapeButton = document.getElementById('toggleShapeButton');
+            const shapeSelector = document.getElementById('shapeSelector');
+            const removeLastShapeButton = document.getElementById('removeLastShapeButton');
+            let lastShapeElement = null;
+            let isBold = false;
+
+            fileInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        uploadedImage.src = e.target.result;
+                        uploadedImage.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            sizeRange.addEventListener('input', (event) => {
+                const sizeValue = event.target.value + 'px';
+                if (lastShapeElement) {
+                    lastShapeElement.style.width = sizeValue;
+                    lastShapeElement.style.height = sizeValue;
+                }
+                textOutput.style.fontSize = sizeValue;
+                uploadedImage.style.width = sizeValue;
+                uploadedImage.style.height = 'auto';
+            });
+
+            rotationRange.addEventListener('input', (event) => {
+                const rotationValue = event.target.value;
+                uploadedImage.style.transform = `translate(-50%, -50%) rotate(${rotationValue}deg)`;
+                rotationValueDisplay.textContent = rotationValue + '°';
+                rotationInput.value = rotationValue;
+            });
+
+            rotationValueDisplay.addEventListener('dblclick', () => {
+                rotationValueDisplay.style.display = 'none';
+                rotationInput.style.display = 'inline';
+                rotationInput.focus();
+            });
+
+            rotationInput.addEventListener('blur', () => {
+                const newRotationValue = Math.min(Math.max(rotationInput.value, 0), 360);
+                rotationRange.value = newRotationValue;
+                uploadedImage.style.transform = `translate(-50%, -50%) rotate(${newRotationValue}deg)`;
+                rotationValueDisplay.textContent = newRotationValue + '°';
+                rotationInput.style.display = 'none';
+                rotationValueDisplay.style.display = 'inline';
+            });
+
+            rotationInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    rotationInput.blur();
+                }
+            });
+
+            textTracerButton.addEventListener('click', () => {
+                const isActive = textContainer.style.display === 'block';
+                if (!isActive) {
+                    uploadedImage.style.display = 'none';
+                } else {
+                    uploadedImage.style.display = 'block';
+                }
+                textContainer.style.display = isActive ? 'none' : 'block';
+                textOutput.style.display = isActive ? 'none' : 'block';
+                if (!isActive) {
+                    textInput.value = '';
+                    updateTextOutput();
+                }
+            });
+
+            addShapeButton.addEventListener('click', () => {
+                const selectedShape = shapeSelect.value;
+                if (selectedShape) {
+                    const shapeElement = document.createElement('div');
+                    shapeElement.className = 'shape';
+
+                    if (selectedShape === 'circle') {
+                        shapeElement.style.width = sizeRange.value + 'px';
+                        shapeElement.style.height = sizeRange.value + 'px';
+                        shapeElement.style.borderRadius = '50%';
+                    } else if (selectedShape === 'square') {
+                        shapeElement.style.width = sizeRange.value + 'px';
+                        shapeElement.style.height = sizeRange.value + 'px';
+                    } else if (selectedShape === 'arrow') {
+                        shapeElement.innerHTML = '→';
+                        shapeElement.style.fontSize = sizeRange.value + 'px';
+                        shapeElement.style.color = 'black';
+                    }
+
+                    shapeElement.style.position = 'absolute';
+                    shapeElement.style.top = '50%';
+                    shapeElement.style.left = '50%';
+                    shapeElement.style.transform = 'translate(-50%, -50%)';
+                    shapeElement.style.cursor = 'pointer';
+
+                    shapeElement.addEventListener('click', () => {
+                        shapeElement.remove();
+                    });
+
+                    document.getElementById('imageContainer').appendChild(shapeElement);
+                    lastShapeElement = shapeElement; // Store the last shape element reference
+                } else {
+                    alert('Please select a shape to add.');
+                }
+            });
+
+            removeLastShapeButton.addEventListener('click', () => {
+                const shapes = document.querySelectorAll('.shape');
+                if (shapes.length > 0) {
+                    shapes[shapes.length - 1].remove();
+                } else {
+                    alert('No shape to remove.');
+                }
+            });
+
+            removeTracerButton.addEventListener('click', () => {
+                textOutput.textContent = '';
+                textContainer.style.display = 'none';
+                textInput.value = '';
+
+                const shapes = document.querySelectorAll('.shape');
+                shapes.forEach(shape => shape.remove());
+            });
+
+            resetButton.addEventListener('click', () => {
+                sizeRange.value = 100;
+                uploadedImage.src = "";
+                uploadedImage.style.display = 'none';
+                rotationRange.value = 0;
+                uploadedImage.style.transform = `translate(-50%, -50%) rotate(0deg)`;
+                rotationValueDisplay.textContent = '0°';
+                textInput.value = '';
+                textOutput.textContent = '';
+                textContainer.style.display = 'none';
+            });
+
+            function updateTextOutput() {
+                const fontSize = sizeRange.value + 'px';
+                textOutput.style.fontSize = fontSize;
+                textOutput.style.fontWeight = isBold ? 'bold' : 'normal';
+                textOutput.style.fontFamily = fontSelect.value;
+                textOutput.textContent = textInput.value || '';
+            }
+
+            textInput.addEventListener('input', updateTextOutput);
+            fontSelect.addEventListener('change', updateTextOutput);
+            boldButton.addEventListener('click', () => {
+                isBold = !isBold;
+                updateTextOutput();
+                boldButton.textContent = isBold ? 'Normal' : 'Bold';
+            });
+
+            toggleShapeButton.addEventListener('click', () => {
+                shapeSelector.style.display = shapeSelector.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -8,7 +8,7 @@
     <title>Grades & Attendance</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" type="text/css" href="css/footing.css" />
-    <link rel="stylesheet" type="text/css" href="css/test.css" />
+    <link rel="stylesheet" type="text/css" href="css/christmas.css" />
 <script>
     // Function to load total time spent and display it
     function displayTotalTimeSpent() {
@@ -43,13 +43,33 @@
     // Call the function to display time when the page loads
     window.onload = displayTotalTimeSpent;
 </script>
+    <!-- Particles.js CDN -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
+    <style>
+        /* Adjust spacing for <br> */
+        br {
+            display: block;
+            line-height: 0.5em; /* Reduces the height of <br> */
+        }
+
+        /* Snow Effect Fullscreen */
+        #snow {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
 </head>
 <body>
+    <div id="snow"></div> <!-- Snow effect container -->
 
     <div class="container">
         <br></br>
-        <h1>Proll's Games V4.0</h1>
+        <h1>Proll's Games V4.2</h1>
         <center>
             <a>Time Spent: </a><span id="timeSpent">Loading...</span>
         </center>
@@ -68,26 +88,33 @@
         <button class="button" onclick="window.location.href = 'save';">Game Save</button>
         <button class="button" onclick="window.location.href = 'leaderboard';">Leaderboard</button>
     </div>
-
 <h1>New Games</h1>
 <div class="button-container new-games">
-    <button class="button" style="background-color: #6e0101; "><a href='games/baldisbasics'><img src="images/baldisbasics.png"> <span><br>Baldisbasics</span></a></button>
-    <button class="button" style="background-color: #6e0101; "><a href='games/wallsmash'><img src="images/wallsmash.png"> <span><br>Wall Smash</span></a></button>
-    <button class="button" style="background-color: #6e0101; "><a href='games/infinitecraft'><img src="images/infinitecraft.png"> <span><br>Infinite Craft</span></a></button>
-    <button class="button" style="background-color: #6e0101; "><a href='games/crazytunnel3d'><img src="images/crazytunnel3d.png"> <span><br>Crazy Tunnel 3D</span></a></button>
-    <button class="button" style="background-color: #6e0101; "><a href='games/lazyjump3d'><img src="images/lazyjump3d.png"> <span><br>Lazy Jump 3D</span></a></button>
-</div>
+    <button class="button" style="background-color: #6e0101; "><a href='games/gunmayhem2'><img src="images/gunmayhem2.png"> <span><br>Gun Mayhem 2</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a href='games/fnaf'><img src="images/fnaf.png"> <span><br>FNAF 1</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a href='games/fnaf-2'><img src="images/fnaf2.png"> <span><br>FNAF 2</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a href='games/driftboss'><img src="images/driftboss.png"> <span><br>Drift Boss</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a href='games/fnaf-2'><img src="images/jacksmith.png"> <span><br>Jack Smith</span></a></button>
+    <button class="button" style="background-color: #6e0101; "><a href='games/imagetracer'><img src="images/imagetracer.png"> <span><br>Image Tracer</span></a></button>
 
+</div>
+<br>
 <div class="button-container regular-games">
-<button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/'><img src="images/proxy.png" alt="DOWN! Unblocked Search V2"> <span><br>Unblocked Search V3 1</span></a></button>
-<button class="button"><a style="text-decoration:none" href='https://school.proll.dev/'><img src="images/proxy.png" alt="DOWN! Unblocked Search V2"> <span><br>Unblocked Search V3 2</span></a></button>
-<button class="button"><a style="text-decoration:none" href='games/1v1lol'><img src="https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co" alt="1v1.lol"> <span><br>1v1.lol</span></a>
+<button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/'><img src="images/proxy.png" alt="DOWN! Unblocked Search V2"> <span><br>Unblocked Search V3</span></a></button>
 <button class="button"><a style="text-decoration:none" href='games/slope'><img src="images/slope.png" alt="Slope"> <span><br>Slope</span></a></button>
-<button class="button"><a style="text-decoration:none" href='games/retro-bowl'><img src="images/retrobowl.jpg" alt="Retro Bowl"> <span><br>Retro Bowl [New Verison]</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/retro-bowl'><img src="images/retrobowl.jpg" alt="Retro Bowl"> <span><br>Retro Bowl</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/gunspin'><img src="/images/gunspin.png" alt=""> <span ><br>Gunspin</span></a></button>
+<button class="button"><a style="text-decoration:none" href='games/1v1lol'><img src="https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co" alt="1v1.lol"> <span><br>1v1.lol</span></a>
 <button class="button"><a style="text-decoration:none" href='games/blockblast'><img src="images/blockblast.png" alt=""> <span><br>Block Blast</span></a></button>
 <button class="button"><a style="text-decoration:none" href='games/idle-breakout'><img src="images/idlebreakout.png" alt=""> <span><br>Idle Breakout</span></a></button>
-<button class="button"><a style="text-decoration:none" href='games/gunspin'><img src="/images/gunspin.png" alt=""> <span ><br>Gunspin</span></a></button>
 <button class="button"><a style="text-decoration:none" href='games/learntofly'><img src="games/learntofly/1/icon.png" alt=""> <span><br>Learn To Fly Games</span></a></button>
+<button class="button"><a href='games/baldisbasics'><img src="images/baldisbasics.png"> <span><br>Baldisbasics</span></a></button>
+<button class="button"><a href='games/gunmayhem'><img src="images/gunmayhem.png"> <span><br>Gun Mayhem</span></a></button>
+<button class="button"><a href='games/gunmayhem2'><img src="images/gunmayhem2.png"> <span><br>Gun Mayhem 2</span></a></button>
+<button class="button"><a href='games/wallsmash'><img src="images/wallsmash.png"> <span><br>Wall Smash</span></a></button>
+<button class="button"><a href='games/infinitecraft'><img src="images/infinitecraft.png"> <span><br>Infinite Craft</span></a></button>
+<button class="button"><a href='games/crazytunnel3d'><img src="images/crazytunnel3d.png"> <span><br>Crazy Tunnel 3D</span></a></button>
+<button class="button"><a href='games/lazyjump3d'><img src="images/lazyjump3d.png"> <span><br>Lazy Jump 3D</span></a></button>
 <button class="button"><a style="text-decoration:none" href='games/houseofhazards'><img src="images/houseofhazards.png" alt=""> <span><br>House Of Hazards</span></a></button>
 <button class="button"><a style="text-decoration:none" href='games/holeio'><img src="images/holeio.png" alt=""> <span><br>Hole.io </span></a></button>
 <button class="button"><a style="text-decoration:none" href='https://325weddk.proll.pro/?movies'><img src="images/movie.png" alt=""> <span><br>Movies</span></a></button>
@@ -98,7 +125,6 @@
 <button class="button"><a href='games/draw-the-hill'><img src="images/drawthehill.png" alt=""> <span><br>Draw The Hill</span></a></button>
 <button class="button"><a href='games/basketballio'><img src="images/basketballio.png"> <span><br>Basketball Bros</span></a></button>
 <button class="button"><a href='games/justfall'><img src="images/justfall.png"> <span><br>Just Fall</span></a></button>
-<button class="button"><a href='games/gunmayhem'><img src="images/gunmayhem.png"> <span><br>Gun Mayhem</span></a></button>
 <button class="button"><a href='games/snowrider3d'><img src="images/snowrider3d.png"> <span><br>Snow Rider 3D</span></a></button>
 <button class="button"><a href='games/tetris'><img src="images/tetris.png" alt="Tetris"><span><br>Tetris</span></a></button>    
 <button class="button"><a style="text-decoration:none" href='games/tinyfishing'><img src="images/tinyfishing.png"> <span><br>Tiny Fishing</span></a></button>
@@ -163,6 +189,9 @@
         <!-- Other buttons here... -->
     </div>
 
+        <!-- Other buttons here... -->
+    </div>
+
     <!-- Footer -->
     <footer>
         <center>
@@ -175,13 +204,61 @@
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
-                <p>2024 Proll's Services  GameSite V4.0 All rights reserved.</p>
-            </div>
+    <p>&copy; <span id="current-year"></span> Proll Services V4.2. All rights reserved.</p>
+
+<script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>            
+</div>
         </center>
     </footer>
 
     <!-- Particles.js Snow Configuration -->
-  <script>
+    <script>
+        particlesJS('snow', {
+            particles: {
+                number: {
+                    value: 150,
+                    density: { enable: true, value_area: 800 }
+                },
+                color: { value: "#ffffff" },
+                shape: {
+                    type: "circle",
+                    stroke: { width: 0, color: "#000000" }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: { enable: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: { enable: false }
+                },
+                line_linked: { enable: false },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "bottom",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true },
+                    onclick: { enable: false },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+      <script>
     function searchButtons() {
         // Get the search query from the input field
         var query = document.getElementById("searchInput").value.toLowerCase();
@@ -200,14 +277,5 @@
         }
     }
   </script>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9PKSQF8"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W9PKSQF8');</script>  
 </body>
 </html>
