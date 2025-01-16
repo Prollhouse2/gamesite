@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+   <head>
+           <script src="/js/timeTracker.js" defer type="4eb4c4b873f690b6829c2881-text/javascript"></script>
+    <script src="/js/favicon.js" type="4eb4c4b873f690b6829c2881-text/javascript"></script>
+    <script src="/js/panic.js" type="4eb4c4b873f690b6829c2881-text/javascript"></script>
+    <script src="/js/autoclicker.js" type="4eb4c4b873f690b6829c2881-text/javascript"></script>
+
+    <title>Grades & Attendance</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--<link rel="stylesheet" href="../../assets/styles/css/global.min.css">-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+      <link rel="stylesheet" href="index.css">
+
+
+      <link rel="stylesheet" href="../assets/font-awesome/css/all.css">
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+        <style>
+            #popularSites img {
+                width: 50px;
+                height: 50px;
+                margin: 10px;
+                cursor: pointer;
+                border-radius: 10px;
+                transition: transform 0.2s;
+            }
+            #popularSites img:hover {
+                transform: scale(1.1);
+            }
+
+            #bigTitle img {
+               width: 75vw;
+            }
+        </style>
+   </head>
+   <body>
+      
+      
+      <canvas id="canvas"></canvas>
+      <div id="header">
+      </div>
+      <div id="content">
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+
+<h1><center>Proll's Web Search</center></h1>         
+         <br>
+
+         <form id="uv-form">
+            <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
+            <input id="uv-address" type="text" placeholder="Search Google or type an URL" class="form__input"/>
+          </form>
+          <br>
+           <div id="popularSites">
+                <img src="https://img.icons8.com/?size=100&id=T2CwYFr5ouk6&format=png&color=000000" alt="Xbox" onclick="autofill('http://xbox.com/play')">
+                <img src="https://img.icons8.com/?size=100&id=48137&format=png&color=000000" alt="Now.gg" onclick="autofill('https://now.gg/')">
+                <img src="https://img.icons8.com/?size=100&id=48166&format=png&color=000000" alt="Google" onclick="autofill('https://google.com')">
+                <img src="https://img.icons8.com/?size=100&id=92582&format=png&color=000000" alt="GeForce NOW" onclick="autofill('https://play.geforcenow.com/')">
+                <img src="https://img.icons8.com/?size=100&id=KeTtCQ_b-ZiV&format=png&color=000000" alt="TikTok" onclick="autofill('https://tiktok.com')">
+                <img src="https://img.icons8.com/?size=100&id=52539&format=png&color=000000" alt="GitHub" onclick="autofill('https://github.com')">
+                <img src="https://img.icons8.com/?size=100&id=53013&format=png&color=000000" alt="Twitch" onclick="autofill('https://twitch.tv')">
+               <img src="https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000" alt="ChatGPT" onclick="autofill('https://chatgpt.com')">
+            </div>
+          <div class="desc left-margin">
+            <p id="uv-error"></p>
+            <pre id="uv-error-code"></pre>
+          </div>
+        
+      </div>
+      <script src="stars.js"></script>
+      <script src="uv/uv.bundle.js" charset="UTF-8" defer></script>
+      <script src="uv/uv.config.js" charset="UTF-8" defer></script>
+      <script src="register-sw.js" charset="UTF-8" defer></script>
+      <script src="search.js" charset="UTF-8" defer></script>
+      <script src="index.js" charset="UTF-8" defer></script>
+      <div id="footer">
+         <footer>Proll's Services, <a href="https://proll.dev/">proll.dev</a></footer>
+      </div>
+   </body>
+</html>

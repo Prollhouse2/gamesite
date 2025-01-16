@@ -1,4 +1,4 @@
-var cacheName = 'TIWcog';
+var cacheName = 'LVcog';
 var filesToCache = [
   '/js/sw.js'
 ];

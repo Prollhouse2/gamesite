@@ -58,7 +58,6 @@
         .shape {
             position: absolute;
             cursor: pointer;
-            border: 2px solid black;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -135,6 +134,10 @@
                 <option value="circle">Circle</option>
                 <option value="square">Square</option>
                 <option value="arrow">Arrow</option>
+                <option value="triangle">Triangle</option>
+                <option value="hexagon">Hexagon</option>
+                <option value="star">Star</option>
+                <option value="pentagon">Pentagon</option>
             </select>
             <button id="addShapeButton">Add Shape</button>
             <button id="removeLastShapeButton">Remove Last Shape</button>
@@ -191,6 +194,16 @@
             let lastShapeElement = null;
             let isBold = false;
 
+            const shapeImages = {
+                arrow: 'https://www.svgrepo.com/show/533621/arrow-sm-right.svg',  // Arrow outline
+                circle: 'https://www.svgrepo.com/show/135058/circle-outline.svg',  // Circle outline
+                square: 'https://www.svgrepo.com/show/7745/square-outline-shape.svg',  // Square outline
+                triangle: 'https://www.svgrepo.com/show/521247/triangle.svg',  // Triangle outline
+                hexagon: 'https://www.svgrepo.com/show/532276/hexagon-alt-1.svg',  // Hexagon outline
+                star: 'https://www.svgrepo.com/show/533052/star.svg',  // Star outline
+                pentagon: 'https://www.svgrepo.com/show/532279/pentagon.svg'  // Pentagon outline
+            };
+
             fileInput.addEventListener('change', (event) => {
                 const file = event.target.files[0];
                 if (file) {
@@ -217,7 +230,7 @@
             rotationRange.addEventListener('input', (event) => {
                 const rotationValue = event.target.value;
                 uploadedImage.style.transform = `translate(-50%, -50%) rotate(${rotationValue}deg)`;
-                rotationValueDisplay.textContent = rotationValue + '°';
+                rotationValueDisplay.textContent = rotationValue + '';
                 rotationInput.value = rotationValue;
             });
 
@@ -260,34 +273,21 @@
             addShapeButton.addEventListener('click', () => {
                 const selectedShape = shapeSelect.value;
                 if (selectedShape) {
-                    const shapeElement = document.createElement('div');
+                    const shapeElement = document.createElement('img');
                     shapeElement.className = 'shape';
-
-                    if (selectedShape === 'circle') {
-                        shapeElement.style.width = sizeRange.value + 'px';
-                        shapeElement.style.height = sizeRange.value + 'px';
-                        shapeElement.style.borderRadius = '50%';
-                    } else if (selectedShape === 'square') {
-                        shapeElement.style.width = sizeRange.value + 'px';
-                        shapeElement.style.height = sizeRange.value + 'px';
-                    } else if (selectedShape === 'arrow') {
-                        shapeElement.innerHTML = '→';
-                        shapeElement.style.fontSize = sizeRange.value + 'px';
-                        shapeElement.style.color = 'black';
-                    }
-
+                    shapeElement.src = shapeImages[selectedShape];
+                    shapeElement.style.width = sizeRange.value + 'px';
+                    shapeElement.style.height = sizeRange.value + 'px';
                     shapeElement.style.position = 'absolute';
                     shapeElement.style.top = '50%';
                     shapeElement.style.left = '50%';
                     shapeElement.style.transform = 'translate(-50%, -50%)';
                     shapeElement.style.cursor = 'pointer';
-
                     shapeElement.addEventListener('click', () => {
                         shapeElement.remove();
                     });
-
                     document.getElementById('imageContainer').appendChild(shapeElement);
-                    lastShapeElement = shapeElement; // Store the last shape element reference
+                    lastShapeElement = shapeElement;
                 } else {
                     alert('Please select a shape to add.');
                 }
