@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Discord Popup</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 20px;
+    }
+
+    /* Main Content */
+    .content {
+      text-align: center;
+    }
+
+    /* Popup Styles */
+    .popup {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background-color: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .popup h2 {
+      margin-bottom: 20px;
+    }
+
+    .popup p {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .popup button {
+      background-color: #444;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin: 10px;
+      border-radius: 5px;
+    }
+
+    .popup button:hover {
+      background-color: #666;
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 25px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Main Content of your website -->
+  <div class="content">
+    <h1>Welcome to my website!</h1>
+    <p>Enjoy browsing through our content.</p>
+  </div>
+
+  <!-- Popup Modal -->
+  <div id="discord-popup" class="popup">
+    <div class="popup-content">
+      <span id="close-btn" class="close-btn">&times;</span>
+      <h2>New Discord!</h2>
+      <p>Join my new discord. Stay up to date on the newest links and request games! <br> (discord.gg/proll)</p>
+      <button id="ok-btn">OK</button>
+      <button id="join-discord-btn">Join Discord</button>
+    </div>
+  </div>
+
+  <script>
+    // Show the popup when the page is loaded
+    window.onload = function() {
+      const popup = document.getElementById('discord-popup');
+      const closeBtn = document.getElementById('close-btn');
+      const okBtn = document.getElementById('ok-btn');
+      const joinDiscordBtn = document.getElementById('join-discord-btn');
+
+      // Show the popup
+      popup.style.display = 'flex';
+
+      // Close the popup when clicking the close button
+      closeBtn.onclick = function() {
+        popup.style.display = 'none';
+      };
+
+      // Close the popup when clicking the OK button
+      okBtn.onclick = function() {
+        popup.style.display = 'none';
+      };
+
+      // Redirect to Discord invite link when clicking the Join Discord button
+      joinDiscordBtn.onclick = function() {
+        window.open('https://discord.gg/proll', '_blank');
+        popup.style.display = 'none';
+      };
+    };
+  </script>
+</body>
+</html>
