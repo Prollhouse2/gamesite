@@ -1,291 +1,296 @@
-/* Galaxy Theme CSS */
-:root {
-  --galaxy-dark: #0a0a1a;
-  --galaxy-deep: #1a1a2e;
-  --galaxy-purple: #6a0dad;
-  --galaxy-blue: #4e54c8;
-  --galaxy-teal: #00f5d4;
-  --galaxy-pink: #f72585;
-  --galaxy-star: rgba(255, 255, 255, 0.8);
-}
-
-/* Cosmic Background with Animated Stars */
+/* Global Styles */
 body {
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  color: #e0e0e0;
-  background: linear-gradient(135deg, var(--galaxy-dark), var(--galaxy-deep));
-  position: relative;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* Animated Starfield Background */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(ellipse at bottom, var(--galaxy-deep) 0%, var(--galaxy-dark) 100%),
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="space-filter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 -1.5 1.5"/></filter><rect width="100%" height="100%" filter="url(%23space-filter)"/></svg>');
-  z-index: -2;
-  animation: spaceAnimation 120s linear infinite;
-}
-
-/* Stardust Particles Overlay */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: url('https://www.transparenttextures.com/patterns/stardust.png');
-  opacity: 0.15;
-  z-index: -1;
-  animation: twinkle 5s ease-in-out infinite alternate;
-}
-
-@keyframes spaceAnimation {
-  0% { background-position: 0 0; }
-  100% { background-position: 1000px 1000px; }
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.1; }
-  100% { opacity: 0.2; }
-}
-
-/* Cosmic Text Styles */
 h1, h2 {
-  text-align: center;
-  background: linear-gradient(90deg, var(--galaxy-teal), var(--galaxy-purple));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin: 1.5rem 0;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(106, 13, 173, 0.3);
+    text-align: center;
+    color: #bb86fc;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
 }
 
 h1 {
-  font-size: 2.5rem;
-  animation: glow 3s ease-in-out infinite alternate;
+    font-size: 2.5rem;
+    margin-top: 2rem;
 }
 
 h2 {
-  font-size: 2rem;
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-purple); }
-  to { text-shadow: 0 0 10px var(--galaxy-teal), 0 0 20px var(--galaxy-purple), 0 0 30px var(--galaxy-pink); }
-}
-
-/* Nebula Links */
 a {
-  color: var(--galaxy-teal);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  position: relative;
+    color: #03dac6;
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 a:hover {
-  color: var(--galaxy-pink);
-  text-shadow: 0 0 8px rgba(247, 37, 133, 0.6);
+    color: #04f7e0;
+    text-shadow: 0 0 8px rgba(3, 218, 198, 0.4);
 }
 
-a::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background: linear-gradient(90deg, var(--galaxy-teal), var(--galaxy-pink));
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
-
-a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-/* Cosmic Search Bar */
+/* Search Bar */
 .search-container {
-  text-align: center;
-  margin: 2rem auto;
-  max-width: 600px;
-  position: relative;
+    text-align: center;
+    margin: 2rem auto;
+    position: relative;
+    max-width: 400px;
 }
 
 #searchInput {
-  padding: 12px 20px;
-  border: 2px solid transparent;
-  border-radius: 30px;
-  background: rgba(26, 26, 46, 0.7);
-  backdrop-filter: blur(5px);
-  color: white;
-  font-size: 16px;
-  width: 100%;
-  max-width: 500px;
-  outline: none;
-  box-shadow: 0 0 15px rgba(78, 84, 200, 0.2);
-  transition: all 0.3s ease;
+    padding: 12px 16px;
+    border: 2px solid #03dac6;
+    border-radius: 8px;
+    background-color: rgba(30, 30, 46, 0.7);
+    color: #e0e0e0;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
 }
 
 #searchInput:focus {
-  border-color: var(--galaxy-teal);
-  box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+    border-color: #bb86fc;
+    box-shadow: 0 4px 20px rgba(187, 134, 252, 0.3);
 }
 
-/* Galactic Buttons */
+#searchInput::placeholder {
+    color: #8a8a8a;
+}
+
+/* Button Containers */
 .button-container,
 .button-container1 {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 2rem auto;
-  max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 1rem;
 }
 
+/* Button Styles - Base */
 .button, .buttonnew {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(26, 26, 46, 0.6);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(78, 84, 200, 0.3);
-  border-radius: 15px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  box-shadow: 0 8px 20px rgba(10, 10, 26, 0.5);
-  width: 160px;
-  position: relative;
-  overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    background: rgba(31, 31, 41, 0.8);
+    color: #e0e0e0;
+    text-align: center;
+    border: 2px solid rgba(3, 218, 198, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
 }
 
 .button::before, .buttonnew::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(106, 13, 173, 0.1) 0%, transparent 70%);
-  transform: rotate(45deg);
-  transition: all 0.5s ease;
-}
-
-.button:hover, .buttonnew:hover {
-  transform: translateY(-5px) scale(1.03);
-  background: rgba(106, 13, 173, 0.2);
-  border-color: var(--galaxy-teal);
-  box-shadow: 0 12px 25px rgba(106, 13, 173, 0.4);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: 0.5s;
 }
 
 .button:hover::before, .buttonnew:hover::before {
-  transform: rotate(45deg) translate(20%, 20%);
+    left: 100%;
 }
 
+.button:hover, .buttonnew:hover {
+    background-color: rgba(55, 71, 79, 0.9);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    border-color: rgba(3, 218, 198, 0.6);
+}
+
+.button:active, .buttonnew:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Specific Styles */
+.button {
+    margin: 10px;
+    width: calc(25% - 20px);
+    min-width: 180px;
+    max-width: 250px;
+}
+
+.buttonnew {
+    margin: 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+/* Button Images */
 .button img, .buttonnew img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin-bottom: 15px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  background: linear-gradient(45deg, var(--galaxy-dark), var(--galaxy-deep)) padding-box,
-              linear-gradient(45deg, var(--galaxy-teal), var(--galaxy-purple)) border-box;
-  padding: 5px;
-  transition: all 0.3s ease;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: 2px solid #03dac6;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .button:hover img, .buttonnew:hover img {
-  transform: rotate(5deg) scale(1.1);
-  box-shadow: 0 0 20px rgba(0, 245, 212, 0.5);
+    transform: scale(1.05);
+    border-color: #bb86fc;
+    box-shadow: 0 6px 12px rgba(187, 134, 252, 0.4);
 }
 
+/* Button Text */
 .button span, .buttonnew span {
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  text-align: center;
-  background: linear-gradient(90deg, var(--galaxy-teal), var(--galaxy-pink));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 600;
+    color: #03dac6;
+    transition: color 0.3s ease;
+    letter-spacing: 0.5px;
 }
 
-/* Cosmic Footer */
+.button:hover span, .buttonnew:hover span {
+    color: #bb86fc;
+}
+
+/* Footer */
 footer {
-  background: linear-gradient(to top, rgba(10, 10, 26, 0.9), transparent);
-  color: var(--galaxy-teal);
-  padding: 30px 20px;
-  text-align: center;
-  margin-top: 50px;
-  border-top: 1px solid rgba(78, 84, 200, 0.2);
-  backdrop-filter: blur(5px);
+    background: linear-gradient(180deg, transparent, rgba(18, 18, 18, 0.9));
+    color: #03dac6;
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: 3rem;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #03dac6, transparent);
 }
 
 footer a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin: 0 10px;
-  background: rgba(106, 13, 173, 0.3);
-  transition: all 0.3s ease;
+    color: #bb86fc;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 0 15px;
+    position: relative;
+    display: inline-block;
+    padding: 5px 0;
 }
 
-footer a:hover {
-  background: rgba(247, 37, 133, 0.3);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+footer a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #03dac6;
+    transition: width 0.3s ease;
 }
 
-/* Responsive Design */
+footer a:hover::after {
+    width: 100%;
+}
+
+/* Paragraphs */
+p {
+    margin: 1rem 0;
+    color: #e0e0e0;
+    text-align: center;
+    font-size: 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-  .button, .buttonnew {
-    width: 140px;
-    padding: 15px;
-  }
-  
-  .button img, .buttonnew img {
-    width: 60px;
-    height: 60px;
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
+    .button {
+        width: calc(50% - 20px);
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
 }
 
-/* Floating Animation for Cosmic Feel */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+@media (max-width: 480px) {
+    .button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .search-container {
+        max-width: 90%;
+    }
+    
+    footer a {
+        margin: 0 10px;
+        font-size: 1rem;
+    }
 }
 
-.button:hover {
-  animation: float 3s ease-in-out infinite;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
 }
+
+::-webkit-scrollbar-track {
+    background: rgba(30, 30, 46, 0.7);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #03dac6;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #bb86fc;
+}
+
+/* Subtle Animations */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.button:nth-child(odd) img {
+    animation: pulse 4s infinite ease-in-out;
+    animation-delay: calc(var(--n, 0) * 0.5s);
+}
+
+.button:nth-child(1) { --n: 1; }
+.button:nth-child(2) { --n: 2; }
+.button:nth-child(3) { --n: 3; }
+.button:nth-child(4) { --n: 4; }
