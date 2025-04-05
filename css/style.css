@@ -163,7 +163,7 @@ a:hover {
 .button span, .buttonnew span {
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff; /* Updated for better readability */
+    color: #03dac6;
     transition: color 0.3s ease;
     letter-spacing: 0.5px;
 }
@@ -171,6 +171,7 @@ a:hover {
 .button:hover span, .buttonnew:hover span {
     color: #bb86fc;
 }
+
 /* Footer */
 footer {
     background: linear-gradient(180deg, transparent, rgba(18, 18, 18, 0.9));
@@ -275,6 +276,18 @@ p {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #bb86fc;
+}
+
+/* Subtle Animations */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.button:nth-child(odd) img {
+    animation: pulse 4s infinite ease-in-out;
+    animation-delay: calc(var(--n, 0) * 0.5s);
 }
 
 .button:nth-child(1) { --n: 1; }
