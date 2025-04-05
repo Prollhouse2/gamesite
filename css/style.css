@@ -1,164 +1,356 @@
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #121212; /* Dark background */
-    background-image: url('https://cdn.pixabay.com/photo/2016/11/23/00/47/abstract-1852511_960_720.jpg'); /* Subtle texture */
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    color: #e0e0e0; /* Light gray for text */
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  background-color: #0f0f13; /* Darker, richer background */
+  background-image: linear-gradient(to bottom, rgba(15, 15, 19, 0.95), rgba(15, 15, 19, 0.98)),
+    url("https://cdn.pixabay.com/photo/2016/11/23/00/47/abstract-1852511_960_720.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #f0f0f0; /* Brighter text for better readability */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-h1, h2 {
-    text-align: center;
-    color: #bb86fc; /* Light purple for headings */
-    text-shadow: 2px 2px 5px #000; /* Add some depth */
+h1,
+h2 {
+  text-align: center;
+  color: #a78bfa; /* More vibrant purple for headings */
+  text-shadow: 0 0 15px rgba(167, 139, 250, 0.3); /* Subtle glow effect */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
 }
 
 a {
-    color: #03dac6; /* Teal color for links */
-    text-decoration: none;
+  color: #5eead4; /* Brighter teal for links */
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+a:hover {
+  color: #7edfd0;
+  text-shadow: 0 0 8px rgba(94, 234, 212, 0.4);
 }
 
 /* Search Bar */
 .search-container {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 500px;
 }
 
 #searchInput {
-    padding: 10px;
-    border: 1px solid #03dac6; /* Teal outline for input */
-    border-radius: 5px;
-    background-color: #1e1e1e; /* Dark background */
-    color: #e0e0e0; /* Light text for contrast */
-    font-size: 16px;
-    width: 300px;
-    outline: none;
+  padding: 12px 16px;
+  border: 2px solid #2d3748;
+  border-radius: 8px;
+  background-color: rgba(30, 30, 46, 0.7); /* Semi-transparent background */
+  color: #f0f0f0;
+  font-size: 16px;
+  width: 100%;
+  max-width: 400px;
+  outline: none;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: #5eead4;
+  box-shadow: 0 4px 12px rgba(94, 234, 212, 0.2), 0 0 0 2px rgba(94, 234, 212, 0.1);
 }
 
 /* Button Styles */
 .button-container,
 .button-container1 {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .button {
-    display: flex;                     /* Flexbox layout */
-    flex-direction: column;            /* Stack items vertically */
-    align-items: center;               /* Center items horizontally */
-    justify-content: center;           /* Center items vertically */
-    margin: 10px;
-    padding: 15px 20px;                /* Padding for the button */
-    background-color: #1f1f1f;         /* Slightly lighter dark background */
-    color: #e0e0e0;                     /* Light text color */
-    text-align: center;                /* Center text */
-    border: 2px solid transparent;     /* Border for aesthetics */
-    border-radius: 5px;                /* Rounded corners */
-    cursor: pointer;                   /* Pointer on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Shadow for depth */
-    transition: background-color 0.3s, transform 0.2s; /* Transition for hover */
-    text-decoration: none;             /* Remove underline from links */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: linear-gradient(145deg, #1a1a24, #232334);
+  color: #f0f0f0;
+  text-align: center;
+  border: 1px solid rgba(94, 234, 212, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-decoration: none;
+  width: 160px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(94, 234, 212, 0.03), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
 }
 
 .button:hover {
-    background-color: #37474f;         /* Slightly brighter dark color on hover */
-    transform: scale(1.05);            /* Scale on hover */
+  background: linear-gradient(145deg, #232334, #2a2a40);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(94, 234, 212, 0.2);
+}
+
+.button:hover::before {
+  transform: translateX(100%);
 }
 
 .button img {
-    width: 100px;                      /* Image width */
-    height: auto;                      /* Maintain aspect ratio */
-    margin-bottom: 5px;                /* Space between image and text */
-    border-radius: 10px;               /* Rounded image corners */
-    border: 2px solid #03dac6;         /* Teal border for images */
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 2px solid rgba(94, 234, 212, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover img {
+  transform: scale(1.05);
+  border-color: rgba(94, 234, 212, 0.8);
+  box-shadow: 0 5px 15px rgba(94, 234, 212, 0.15);
 }
 
 .button span {
-    font-size: 16px;                   /* Font size */
-    font-weight: bold;                 /* Bold text */
-    color: #03dac6;                    /* Teal text color */
+  font-size: 15px;
+  font-weight: 600;
+  color: #5eead4;
+  transition: all 0.3s ease;
+  margin-top: 5px;
+}
+
+.button:hover span {
+  color: #7edfd0;
 }
 
 .buttonnew {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    padding: 15px 20px;
-    background-color: #1f1f1f; /* Background color */
-    color: #e0e0e0; /* Light text */
-    text-align: center;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Add depth */
-    transition: background-color 0.3s, transform 0.2s;
-    width: 100%;
-    max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: linear-gradient(145deg, #1a1a24, #232334);
+  color: #f0f0f0;
+  text-align: center;
+  border: 1px solid rgba(94, 234, 212, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 180px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.buttonnew::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(94, 234, 212, 0.03), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
 }
 
 .buttonnew:hover {
-    background-color: #37474f; /* Brighter dark color for hover */
-    transform: scale(1.05); /* Slight zoom on hover */
+  background: linear-gradient(145deg, #232334, #2a2a40);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(94, 234, 212, 0.2);
+}
+
+.buttonnew:hover::before {
+  transform: translateX(100%);
 }
 
 .buttonnew img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-    border-radius: 10px; /* Rounded images */
-    border: 2px solid #03dac6; /* Teal border */
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: 2px solid rgba(94, 234, 212, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.buttonnew:hover img {
+  transform: scale(1.05);
+  border-color: rgba(94, 234, 212, 0.8);
+  box-shadow: 0 5px 15px rgba(94, 234, 212, 0.15);
 }
 
 .buttonnew span {
-    font-size: 16px;
-    font-weight: bold;
-    color: #03dac6; /* Teal text for buttons */
+  font-size: 16px;
+  font-weight: 600;
+  color: #5eead4;
+  transition: all 0.3s ease;
+}
+
+.buttonnew:hover span {
+  color: #7edfd0;
 }
 
 /* Footer */
 footer {
-    background-color: #121212; /* Match the main theme */
-    color: #03dac6; /* Teal for footer text */
-    padding: 20px;
-    text-align: center;
+  background-color: rgba(15, 15, 19, 0.8);
+  backdrop-filter: blur(10px);
+  color: #5eead4;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 1px solid rgba(94, 234, 212, 0.1);
+  margin-top: 3rem;
 }
 
 footer a {
-    color: #bb86fc; /* Light purple for footer links */
-    text-decoration: none;
-    font-size: 20px;
-    margin: 0 10px;
+  color: #a78bfa;
+  text-decoration: none;
+  font-size: 1.25rem;
+  margin: 0 15px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+footer a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #5eead4;
+  transition: width 0.3s ease;
 }
 
 footer a:hover {
-    color: #03dac6; /* Teal for links on hover */
+  color: #5eead4;
+}
+
+footer a:hover::after {
+  width: 100%;
 }
 
 /* Miscellaneous */
 p {
-    margin: 10px 0;
-    color: #e0e0e0; /* Light text color */
-    text-align: center;
-    font-size: 14px;
+  margin: 1rem 0;
+  color: #d1d5db;
+  text-align: center;
+  font-size: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
 }
 
 /* Adding Some Sparkle */
 body:after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Subtle texture */
-    opacity: 0.1; /* Less pronounced sparkle for a sleek design */
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 30%, rgba(94, 234, 212, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.03) 0%, transparent 20%);
+  opacity: 0.6;
+  z-index: -1;
 }
+
+/* Add a subtle animation for the background */
+@keyframes backgroundShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+body {
+  animation: backgroundShift 60s ease infinite alternate;
+  background-size: 200% 200%;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .button-container,
+  .button-container1 {
+    gap: 1rem;
+  }
+
+  .button,
+  .buttonnew {
+    width: 140px;
+    height: 160px;
+    padding: 1rem;
+  }
+
+  .button img,
+  .buttonnew img {
+    width: 80px;
+    height: 80px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .button,
+  .buttonnew {
+    width: 120px;
+    height: 150px;
+  }
+
+  .button img,
+  .buttonnew img {
+    width: 70px;
+    height: 70px;
+  }
+
+  footer a {
+    margin: 0 10px;
+    font-size: 1.1rem;
+  }
+}
+
