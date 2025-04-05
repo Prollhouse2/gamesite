@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    background-color: #121212;
+    font-family: Arial, sans-serif;
+    background-color: #0a0a14;
     background-image: url('https://cdn.pixabay.com/photo/2016/11/23/00/47/abstract-1852511_960_720.jpg');
     background-size: cover;
     background-attachment: fixed;
@@ -15,7 +15,7 @@ body {
 h1, h2 {
     text-align: center;
     color: #4fe0ff;
-    text-shadow: 0 0 5px #4fe0ff;
+    text-shadow: 0 0 10px #4fe0ff;
 }
 
 a {
@@ -40,7 +40,7 @@ a {
     outline: none;
 }
 
-/* Button Styles */
+/* Button Containers */
 .button-container,
 .button-container1 {
     display: flex;
@@ -49,83 +49,114 @@ a {
     gap: 10px;
 }
 
-.button {
+/* Top Navigation Buttons */
+.button-container .button {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 10px;
     padding: 15px 20px;
-    background-color: rgba(31, 31, 61, 0.9);
+    background-color: rgba(25, 25, 45, 0.8);
     color: #e0e0e0;
     text-align: center;
-    border: 2px solid #1e3a6e;
+    border: 1px solid #1e3a6e;
     border-radius: 12px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all 0.3s ease;
     text-decoration: none;
+    min-width: 120px;
 }
 
-.button:hover {
-    background-color: #37474f;
+.button-container .button:hover {
+    background-color: rgba(30, 58, 110, 0.8);
     transform: scale(1.05);
-    border-color: #4fe0ff;
+    border-color: #4794ff;
 }
 
-.button img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 5px;
-    border-radius: 10px;
+.button-container .button span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #4794ff;
+    text-shadow: 0 0 3px rgba(71, 148, 255, 0.7);
+}
+
+/* Game Cards */
+.button-container1 .button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px;
+    background-color: rgba(25, 25, 45, 0.8);
+    color: #e0e0e0;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    width: 140px;
+    height: 170px;
+}
+
+.button-container1 .button:hover {
+    transform: scale(1.05);
+}
+
+.button-container1 .button img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    border-radius: 50%;
     border: 2px solid #03dac6;
 }
 
-.button span {
-    font-size: 16px;
-    font-weight: bold;
-    color: #4fe0ff;
-    text-shadow: 0 0 3px rgba(79, 224, 255, 0.7);
+.button-container1 .button span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #03dac6;
+    text-shadow: 0 0 5px rgba(3, 218, 198, 0.5);
 }
 
+/* Special Game Card */
 .buttonnew {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 10px;
-    padding: 15px 20px;
-    background-color: rgba(31, 31, 61, 0.9);
+    padding: 15px;
+    background-color: #8b0000;
     color: #e0e0e0;
     text-align: center;
-    border: 2px solid #1e3a6e;
-    border-radius: 12px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    transition: background-color 0.3s, transform 0.2s;
-    width: 100%;
-    max-width: 200px;
+    transition: all 0.3s ease;
+    width: 140px;
+    height: 170px;
 }
 
 .buttonnew:hover {
-    background-color: #37474f;
     transform: scale(1.05);
-    border-color: #4fe0ff;
 }
 
 .buttonnew img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin-bottom: 10px;
     border-radius: 50%;
-    border: 2px solid #03dac6;
+    border: 2px solid white;
 }
 
 .buttonnew span {
-    font-size: 16px;
-    font-weight: bold;
-    color: #4fe0ff;
-    text-shadow: 0 0 3px rgba(79, 224, 255, 0.7);
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
 }
 
 /* Footer */
@@ -150,7 +181,7 @@ footer a:hover {
 /* Miscellaneous */
 p {
     margin: 10px 0;
-    color: #4fe0ff;
+    color: #03dac6;
     text-align: center;
     font-size: 14px;
 }
@@ -168,18 +199,21 @@ body:after {
     opacity: 0.1;
 }
 
-/* Title Styling */
+/* Title Styling - Exact Match to Image */
 .site-title {
-    font-size: 3rem;
+    font-size: 2.8rem;
     color: #4fe0ff;
     text-align: center;
     margin: 2rem 0;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-shadow: 0 0 5px #4fe0ff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 
+        0 0 7px #4fe0ff,
+        0 0 10px #4fe0ff,
+        0 0 21px #4fe0ff;
 }
 
-/* Section Headers */
+/* Section Headers - Exact Match to Image */
 .section-header {
     font-size: 2.5rem;
     text-align: center;
@@ -187,25 +221,33 @@ body:after {
     margin: 2rem 0;
     font-weight: 600;
     letter-spacing: 1px;
-    text-shadow: 0 0 5px #4fe0ff;
+    text-shadow: 
+        0 0 7px #4fe0ff,
+        0 0 10px #4fe0ff,
+        0 0 21px #4fe0ff;
 }
 
-/* Game Buttons */
-.button-container1 .button {
-    background: rgba(25, 25, 45, 0.9);
-    border-radius: 15px;
-    padding: 15px;
-    width: 140px;
-    height: 170px;
+/* Discord Message Styling */
+.discord-message {
+    color: #03dac6;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 1.5rem auto;
+    text-align: center;
+    line-height: 1.6;
 }
 
-.button-container1 .button img {
-    border-radius: 50%;
+/* Time Spent Counter */
+.time-spent {
+    color: #03dac6;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1.5rem 0;
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-    .button {
+    .button-container .button {
         width: calc(33.33% - 20px);
     }
     
@@ -219,7 +261,7 @@ body:after {
 }
 
 @media (max-width: 480px) {
-    .button {
+    .button-container .button {
         width: calc(50% - 20px);
         min-width: 140px;
     }
@@ -232,22 +274,4 @@ body:after {
         margin: 0 10px;
         font-size: 1rem;
     }
-}
-
-/* Discord Message Styling */
-.discord-message {
-    color: #4fe0ff;
-    font-size: 1.1rem;
-    max-width: 800px;
-    margin: 1.5rem auto;
-    text-align: center;
-    line-height: 1.6;
-}
-
-/* Time Spent Counter */
-.time-spent {
-    color: #4fe0ff;
-    font-size: 1.2rem;
-    text-align: center;
-    margin: 1.5rem 0;
 }
