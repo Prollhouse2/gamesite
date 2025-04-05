@@ -10,25 +10,22 @@
   --danger: #f72585;
 }
 
-/* Enhanced Linear Gradient Background with Angular Flow */
+/* Modern Linear Gradient Background */
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(
-    145deg,
-    var(--darker) 0%,
-    var(--dark) 30%,
-    #1a1a2e 70%,
-    #2a2a3a 100%
-  );
-  background-attachment: fixed;
+  background: linear-gradient(135deg, 
+    var(--darker) 0%, 
+    var(--dark) 50%, 
+    #1a1a2e 100%);
   color: var(--light);
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Improved Glow Effect */
+/* Glow Effect for Depth */
 body::before {
   content: '';
   position: fixed;
@@ -36,26 +33,18 @@ body::before {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(123, 44, 191, 0.15) 0%, transparent 25%),
-    radial-gradient(circle at 80% 70%, rgba(0, 180, 216, 0.15) 0%, transparent 25%);
+  background: radial-gradient(circle at center, 
+    rgba(123, 44, 191, 0.15) 0%, 
+    rgba(0, 0, 0, 0) 50%);
   z-index: -1;
   pointer-events: none;
-  opacity: 0.8;
 }
 
-/* Container for centered content */
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* Modern Typography with Consistent Alignment */
-h1, h2, h3, h4, h5, h6 {
+/* Modern Typography */
+h1, h2, h3 {
   font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 1rem 0;
+  letter-spacing: -0.5px;
+  margin: 0.5em 0;
 }
 
 h1 {
@@ -65,42 +54,18 @@ h1 {
   background-clip: text;
   color: transparent;
   text-shadow: 0 2px 10px rgba(0, 180, 216, 0.3);
-  padding: 1rem 0;
-  text-align: center;
 }
 
 h2 {
   font-size: 2rem;
   color: var(--secondary);
-  padding: 0.5rem 0;
-  border-bottom: 2px solid rgba(123, 44, 191, 0.3);
-  margin-bottom: 1.5rem;
 }
 
-h3 {
-  font-size: 1.5rem;
-  color: var(--light);
-  margin-bottom: 1rem;
-}
-
-/* Section styling for better content organization */
-.section {
-  padding: 3rem 0;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-/* Enhanced Search Bar with proper alignment */
+/* Enhanced Search Bar */
 .search-container {
   max-width: 600px;
   margin: 2rem auto;
   position: relative;
-  padding: 0 1rem;
 }
 
 #searchInput {
@@ -126,10 +91,54 @@ h3 {
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* Game Cards from the second code */
+.games-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
 
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px 20px;
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    text-align: center;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    width: 150px;
+}
 
+.button:hover {
+    background-color: #37474f;
+    transform: scale(1.05);
+}
 
-/* Featured Game Banner with better content alignment */
+.button img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: 2px solid #03dac6;
+}
+
+.button span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #03dac6;
+}
+
+/* Featured Game Banner */
 .featured-game {
   grid-column: 1 / -1;
   height: 400px;
@@ -170,16 +179,18 @@ h3 {
   font-size: 1.1rem;
 }
 
-/* Modern Footer with better alignment */
+/* Modern Footer */
 footer {
   background: rgba(15, 15, 19, 0.8);
   backdrop-filter: blur(10px);
-  padding: 3rem 0;
+  padding: 2rem;
   margin-top: 4rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
@@ -187,24 +198,22 @@ footer {
 
 .footer-links h3 {
   color: var(--secondary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   font-size: 1.1rem;
 }
 
 .footer-links ul {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .footer-links li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .footer-links a {
   color: rgba(255, 255, 255, 0.7);
   transition: color 0.3s ease;
-  text-decoration: none;
 }
 
 .footer-links a:hover {
@@ -214,7 +223,7 @@ footer {
 .social-links {
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .social-links a {
@@ -235,7 +244,7 @@ footer {
 
 .copyright {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.5);
@@ -244,12 +253,9 @@ footer {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .container {
-    padding: 0 1rem;
-  }
-  
   .games-grid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    padding: 1rem;
   }
   
   .featured-game {
@@ -263,10 +269,6 @@ footer {
   h1 {
     font-size: 2rem;
   }
-  
-  .section {
-    padding: 2rem 0;
-  }
 }
 
 /* Animation for cards */
@@ -275,17 +277,17 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.game-card {
+.button {
   animation: fadeIn 0.5s ease forwards;
   opacity: 0;
 }
 
 /* Delay animations for staggered effect */
-.game-card:nth-child(1) { animation-delay: 0.1s; }
-.game-card:nth-child(2) { animation-delay: 0.2s; }
-.game-card:nth-child(3) { animation-delay: 0.3s; }
-.game-card:nth-child(4) { animation-delay: 0.4s; }
-.game-card:nth-child(5) { animation-delay: 0.5s; }
-.game-card:nth-child(6) { animation-delay: 0.6s; }
-.game-card:nth-child(7) { animation-delay: 0.7s; }
-.game-card:nth-child(8) { animation-delay: 0.8s; }
+.button:nth-child(1) { animation-delay: 0.1s; }
+.button:nth-child(2) { animation-delay: 0.2s; }
+.button:nth-child(3) { animation-delay: 0.3s; }
+.button:nth-child(4) { animation-delay: 0.4s; }
+.button:nth-child(5) { animation-delay: 0.5s; }
+.button:nth-child(6) { animation-delay: 0.6s; }
+.button:nth-child(7) { animation-delay: 0.7s; }
+.button:nth-child(8) { animation-delay: 0.8s; }
