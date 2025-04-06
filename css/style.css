@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700;800&family=Kanit:wght@400;500;600&display=swap");
 
 :root {
   --bg-primary: #0a0a1a;
@@ -9,8 +9,16 @@
   --accent-purple: #9d6bff;
   --text-primary: #ffffff;
   --text-secondary: #c0c0d0;
+  --button-text-primary: #ffffff;
+  --button-text-hover: #f0f0ff;
   --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
   --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -19,7 +27,8 @@ body {
   color: var(--text-primary);
   margin: 0;
   padding: 0;
-  background-image: radial-gradient(circle at 15% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 30%),
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 30%),
     radial-gradient(circle at 85% 30%, rgba(107, 157, 255, 0.15) 0%, transparent 30%),
     radial-gradient(circle at 50% 70%, rgba(157, 107, 255, 0.1) 0%, transparent 40%),
     linear-gradient(135deg, rgba(10, 10, 26, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%);
@@ -27,6 +36,7 @@ body {
   background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
   animation: backgroundShift 20s ease infinite;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 @keyframes backgroundShift {
@@ -41,6 +51,24 @@ body {
   }
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background: rgba(26, 26, 46, 0.7);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .logo {
   font-family: "Press Start 2P", cursive;
   font-size: 1.8rem;
@@ -51,228 +79,160 @@ body {
   color: transparent;
   text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
   letter-spacing: 1px;
-  margin: 1.5rem 0;
-  padding: 0.5rem 0;
-  position: relative;
+  margin-bottom: 1.5rem;
   display: inline-block;
 }
 
-.logo::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), transparent);
-}
-
-h1 {
-  font-family: "Press Start 2P", cursive;
-  font-size: 1.8rem;
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-}
-
-.button-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1.5rem;
-  padding: 1.5rem;
-  position: relative;
-  z-index: 1;
-}
-
-.button {
-  background-color: var(--bg-secondary);
-  border-radius: 16px;
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.05), rgba(107, 157, 255, 0.05));
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  z-index: -1;
-  border-radius: 16px;
-}
-
-.button:hover {
-  transform: translateY(-5px);
-  background-color: var(--bg-tertiary);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-}
-
-.button:hover::before {
-  opacity: 1;
-}
-
-.button img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-  border: 3px solid var(--accent-pink);
-  box-shadow: 0 0 0 3px rgba(107, 157, 255, 0.3);
-  transition: all var(--transition-normal);
-}
-
-.button:hover img {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 5px rgba(255, 107, 157, 0.3);
-  transform: scale(1.05);
-}
-
-.button span {
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-size: 1.05rem;
-}
-
-.game-card {
-  background-color: var(--bg-secondary);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
-  text-align: center;
-}
-
-.game-card:hover {
-  transform: translateY(-5px);
-  background-color: var(--bg-tertiary);
-}
-
-.game-card-image {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin: 1.5rem auto 1rem;
-  border: 4px solid transparent;
-  background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
-    linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
-}
-
-.game-card-title {
+.discord-notice {
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
   font-size: 1.1rem;
-  color: var(--text-primary);
+  color: var(--accent-blue);
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  line-height: 1.5;
 }
 
-.game-card-button {
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  color: var(--text-primary);
-  border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  margin: 1rem 0;
+.discord-link {
+  color: var(--accent-pink);
+  text-decoration: none;
   font-weight: 600;
-  transition: all var(--transition-normal);
+  transition: color var(--transition-normal);
+}
+
+.discord-link:hover {
+  color: var(--accent-purple);
+  text-decoration: underline;
+}
+
+.status-message {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+.section-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.3rem;
+  margin: 2rem 0 1.5rem;
+  color: var(--accent-blue);
+  text-shadow: 0 0 10px rgba(107, 157, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.menu-button {
+  background: var(--bg-secondary);
+  border: none;
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  color: var(--button-text-primary);
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-}
-
-.game-card-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
-}
-
-.section-divider {
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-pink),
-    var(--accent-blue),
-    var(--accent-purple),
-    transparent
-  );
-  margin: 2.5rem auto;
-  width: 80%;
-  max-width: 600px;
-  border-radius: 3px;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
   position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
 }
 
-.section-divider::before,
-.section-divider::after {
+.menu-button::before {
   content: "";
   position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-pink);
-  top: -1.5px;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 107, 157, 0.1),
+    rgba(107, 157, 255, 0.1),
+    rgba(157, 107, 255, 0.1)
+  );
+  transform: rotate(30deg);
+  transition: all 0.6s ease;
+  opacity: 0;
 }
 
-.section-divider::before {
-  left: 20%;
+.menu-button:hover {
+  transform: translateY(-5px);
+  background: var(--bg-tertiary);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  color: var(--button-text-hover);
 }
 
-.section-divider::after {
-  right: 20%;
-  background: var(--accent-blue);
+.menu-button:hover::before {
+  opacity: 1;
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(30deg) translate(-30%, -30%);
+  }
+  100% {
+    transform: rotate(30deg) translate(30%, 30%);
+  }
+}
+
+.new-games-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .button-container {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  .container {
+    padding: 1.5rem;
   }
-
-  .button img,
-  .game-card-image {
-    width: 70px;
-    height: 70px;
-  }
-
-  .logo,
-  h1 {
+  
+  .logo {
     font-size: 1.5rem;
+  }
+  
+  .discord-notice {
+    font-size: 1rem;
+  }
+  
+  .button-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  
+  .menu-button {
+    padding: 1.25rem 0.75rem;
+    font-size: 0.9rem;
+    min-height: 70px;
   }
 }
 
 @media (max-width: 480px) {
-  .button-container {
+  .header {
+    padding: 1.5rem;
+  }
+  
+  .logo {
+    font-size: 1.3rem;
+  }
+  
+  .button-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 1rem;
   }
-
-  .button {
-    padding: 1rem;
-  }
-
-  .logo,
-  h1 {
-    font-size: 1.2rem;
+  
+  .section-title {
+    font-size: 1.1rem;
   }
 }
-
