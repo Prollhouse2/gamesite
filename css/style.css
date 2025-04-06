@@ -9,6 +9,32 @@ body {
     line-height: 1.6;
 }
 
+/* Title with Neon Effect */
+.site-title {
+    text-align: center;
+    color: #4fe0ff;
+    font-size: 2.8rem;
+    margin: 2rem 0 1rem;
+    text-shadow: 0 0 10px rgba(79, 224, 255, 0.8), 
+                 0 0 20px rgba(79, 224, 255, 0.5),
+                 0 0 30px rgba(79, 224, 255, 0.3);
+    animation: titlePulsate 3s infinite alternate;
+    letter-spacing: 1px;
+}
+
+@keyframes titlePulsate {
+    0% {
+        text-shadow: 0 0 10px rgba(79, 224, 255, 0.8), 
+                     0 0 20px rgba(79, 224, 255, 0.5),
+                     0 0 30px rgba(79, 224, 255, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(79, 224, 255, 1), 
+                     0 0 25px rgba(79, 224, 255, 0.7),
+                     0 0 35px rgba(79, 224, 255, 0.5);
+    }
+}
+
 h1, h2 {
     text-align: center;
     color: #bb86fc;
@@ -24,6 +50,28 @@ h1 {
 h2 {
     font-size: 1.8rem;
     margin-top: 1.5rem;
+}
+
+/* Section Headers - Like "New Games" */
+.section-header {
+    text-align: center;
+    color: #4fe0ff;
+    font-size: 2.2rem;
+    margin: 2rem 0;
+    text-shadow: 0 0 10px rgba(79, 224, 255, 0.8), 
+                 0 0 20px rgba(79, 224, 255, 0.5);
+    animation: pulsate 3s infinite alternate;
+}
+
+@keyframes pulsate {
+    0% {
+        text-shadow: 0 0 10px rgba(79, 224, 255, 0.8), 
+                     0 0 20px rgba(79, 224, 255, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(79, 224, 255, 1), 
+                     0 0 25px rgba(79, 224, 255, 0.7);
+    }
 }
 
 a {
@@ -78,6 +126,30 @@ a:hover {
     margin: 2rem auto;
     max-width: 1200px;
     padding: 0 1rem;
+}
+
+/* Top Navigation Buttons - Styled like in the screenshot */
+.button-container .button {
+    background: rgba(31, 31, 61, 0.6);
+    border: 2px solid #2a4c7d;
+    border-radius: 15px;
+    padding: 12px 15px;
+    min-width: 140px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.button-container .button span {
+    color: #4fe0ff;
+    font-size: 15px;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(79, 224, 255, 0.8);
+    letter-spacing: 0.5px;
+}
+
+.button-container .button:hover {
+    background: rgba(42, 76, 125, 0.8);
+    border-color: #4fe0ff;
+    box-shadow: 0 0 20px rgba(79, 224, 255, 0.4);
 }
 
 /* Button Styles - Base */
@@ -141,6 +213,21 @@ a:hover {
     max-width: 200px;
 }
 
+/* Game Buttons - Circular Style */
+.button-container1 .button {
+    background: rgba(25, 25, 45, 0.8);
+    border: 2px solid #2a4c7d;
+    border-radius: 20px;
+    padding: 15px;
+    width: 150px;
+    height: 180px;
+}
+
+.button-container1 .button span {
+    color: #4fe0ff;
+    text-shadow: 0 0 8px rgba(79, 224, 255, 0.8);
+}
+
 /* Button Images */
 .button img, .buttonnew img {
     width: 100px;
@@ -151,6 +238,13 @@ a:hover {
     border: 2px solid #03dac6;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Game Button Images - Circular */
+.button-container1 .button img {
+    border-radius: 50%;
+    border: 2px solid #4fe0ff;
+    box-shadow: 0 0 10px rgba(79, 224, 255, 0.4);
 }
 
 .button:hover img, .buttonnew:hover img {
@@ -227,6 +321,50 @@ p {
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
+}
+
+/* Discord Message Styling */
+.discord-message {
+    color: #4fe0ff;
+    font-size: 1.1rem;
+    text-shadow: 0 0 5px rgba(79, 224, 255, 0.5);
+    max-width: 800px;
+    margin: 1.5rem auto;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Time Spent Counter */
+.time-spent {
+    color: #4fe0ff;
+    font-size: 1.2rem;
+    text-shadow: 0 0 8px rgba(79, 224, 255, 0.7);
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+/* Desktop Optimization */
+@media (min-width: 1024px) {
+    .button-container {
+        max-width: 1000px;
+        justify-content: center;
+    }
+    
+    .button-container1 {
+        max-width: 1200px;
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+    }
+    
+    .site-title {
+        font-size: 3.5rem;
+    }
+    
+    .section-header {
+        font-size: 2.8rem;
+    }
 }
 
 /* Media Queries for Responsiveness */
