@@ -1,6 +1,4 @@
-/* CSS for Proll's School v4.7 */
 :root {
-  /* Color Scheme */
   --bg-primary: #0a0a1a;
   --bg-secondary: #1a1a2e;
   --bg-tertiary: #25253a;
@@ -9,137 +7,84 @@
   --accent-purple: #9d6bff;
   --text-primary: #ffffff;
   --text-secondary: #c0c0d0;
-  
-  /* Effects */
   --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
   --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  
-  /* Fonts */
-  --pixel-font: 'Press Start 2P', 'Courier New', monospace;
-  --main-font: 'Poppins', sans-serif;
-}
-
-/* Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: var(--main-font);
+  font-family: "Poppins", sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.6;
-  min-height: 100vh;
   background-image: 
     radial-gradient(circle at 20% 30%, rgba(255, 107, 157, 0.1) 0%, transparent 20%),
     radial-gradient(circle at 80% 70%, rgba(107, 157, 255, 0.1) 0%, transparent 20%);
 }
 
-/* Header Section */
-.site-header {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  background: rgba(10, 10, 26, 0.95);
-  border-bottom: 3px solid var(--accent-purple);
-  margin-bottom: 1.5rem;
-  backdrop-filter: blur(5px);
-}
-
-.header-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.site-title {
-  font-family: var(--pixel-font);
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 10px rgba(107, 157, 255, 0.3);
-  letter-spacing: -1px;
 }
 
-.site-subtitle {
-  font-family: var(--pixel-font);
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-  line-height: 1.4;
+h1 {
+  font-size: 2.25rem;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
-.discord-link {
-  display: inline-block;
-  font-family: var(--pixel-font);
-  font-size: 0.65rem;
-  color: var(--accent-blue);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--accent-blue);
-  border-radius: 4px;
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.button {
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.button:hover {
+  transform: translateY(-5px);
+  background-color: var(--bg-tertiary);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
   margin-bottom: 1rem;
+  border: 3px solid var(--accent-pink);
+  box-shadow: 0 0 0 3px rgba(107, 157, 255, 0.3);
   transition: all var(--transition-normal);
 }
 
-.discord-link:hover {
-  background: rgba(107, 157, 255, 0.2);
-  text-shadow: 0 0 8px var(--accent-blue);
+.button:hover img {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 5px rgba(255, 107, 157, 0.3);
+  transform: scale(1.05);
 }
 
-.loading-bar {
-  width: 100%;
-  height: 4px;
-  background: var(--bg-secondary);
-  border-radius: 2px;
-  margin: 0.5rem 0 1rem;
-  overflow: hidden;
-}
-
-.loading-progress {
-  height: 100%;
-  width: 65%;
-  background: linear-gradient(90deg, var(--accent-pink), var(--accent-blue));
-  animation: loading 2s infinite ease-in-out;
-}
-
-@keyframes loading {
-  0% { width: 30%; }
-  50% { width: 80%; }
-  100% { width: 30%; }
-}
-
-/* Main Content */
-.page-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Game Categories */
-.category-section {
-  margin-bottom: 2.5rem;
-}
-
-.category-title {
-  font-family: var(--pixel-font);
-  font-size: 1.1rem;
-  color: var(--accent-pink);
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--accent-purple);
-  text-transform: uppercase;
-}
-
-/* Game Cards Grid */
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+.button span {
+  font-weight: 600;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .game-card {
@@ -149,104 +94,79 @@ body {
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   text-align: center;
-  padding: 1rem;
 }
 
 .game-card:hover {
   transform: translateY(-5px);
   background-color: var(--bg-tertiary);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
 }
 
 .game-card-image {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: 50%;
-  margin: 0 auto 0.75rem;
+  margin: 1.5rem auto 1rem;
   border: 4px solid transparent;
   background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
               linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
-  transition: all var(--transition-normal);
-}
-
-.game-card:hover .game-card-image {
-  transform: scale(1.08);
-  box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
 }
 
 .game-card-title {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1.1rem;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/* Footer */
-.site-footer {
-  background-color: var(--bg-secondary);
-  padding: 2rem 1.5rem;
-  margin-top: 3rem;
-  text-align: center;
-  border-top: 3px solid var(--accent-purple);
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+.game-card-button {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  color: var(--text-primary);
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
   margin: 1rem 0;
-}
-
-.footer-link {
-  font-family: var(--pixel-font);
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  text-decoration: none;
+  font-weight: 600;
   transition: all var(--transition-normal);
 }
 
-.footer-link:hover {
-  color: var(--accent-pink);
-  text-shadow: 0 0 8px var(--accent-pink);
+.game-card-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
 }
 
-.copyright {
-  font-family: var(--pixel-font);
-  font-size: 0.6rem;
-  color: var(--text-secondary);
-  margin-top: 1.5rem;
+.section-divider {
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-pink), var(--accent-blue));
+  margin: 2rem auto;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 3px;
 }
 
-/* Responsive Design */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .site-title {
-    font-size: 1.5rem;
+  .button-container {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
   
-  .game-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1.2rem;
-  }
-  
-  .game-card-image {
-    width: 80px;
-    height: 80px;
+  .button img, .game-card-image {
+    width: 70px;
+    height: 70px;
   }
 }
 
 @media (max-width: 480px) {
-  .site-title {
-    font-size: 1.3rem;
-  }
-  
-  .game-grid {
+  .button-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    padding: 1rem;
   }
   
-  .footer-links {
-    gap: 1rem;
+  .button {
+    padding: 1rem;
   }
 }
