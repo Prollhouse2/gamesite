@@ -19,7 +19,8 @@ body {
   color: var(--text-primary);
   margin: 0;
   padding: 0;
-  background-image: radial-gradient(circle at 15% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 30%),
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 30%),
     radial-gradient(circle at 85% 30%, rgba(107, 157, 255, 0.15) 0%, transparent 30%),
     radial-gradient(circle at 50% 70%, rgba(157, 107, 255, 0.1) 0%, transparent 40%),
     linear-gradient(135deg, rgba(10, 10, 26, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%);
@@ -27,18 +28,19 @@ body {
   background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
   animation: backgroundShift 20s ease infinite;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 @keyframes backgroundShift {
-  0% {
-    background-position: 0% 0%, 100% 0%, 50% 50%, 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%, 0% 100%, 30% 70%, 0% 0%;
-  }
-  100% {
-    background-position: 0% 0%, 100% 0%, 50% 50%, 0% 0%;
-  }
+  0% { background-position: 0% 0%, 100% 0%, 50% 50%, 0% 0%; }
+  50% { background-position: 100% 100%, 0% 100%, 30% 70%, 0% 0%; }
+  100% { background-position: 0% 0%, 100% 0%, 50% 50%, 0% 0%; }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .logo {
@@ -55,21 +57,23 @@ body {
   padding: 0.5rem 0;
   position: relative;
   display: inline-block;
+  text-align: center;
+  width: 100%;
 }
 
 .logo::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), transparent);
 }
 
-h1 {
+h1, h2, h3 {
   font-family: "Press Start 2P", cursive;
-  font-size: 1.8rem;
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
   -webkit-background-clip: text;
   background-clip: text;
@@ -78,6 +82,10 @@ h1 {
   letter-spacing: 1px;
   margin-bottom: 1.5rem;
 }
+
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
 
 .button-container {
   display: grid;
@@ -100,6 +108,9 @@ h1 {
   text-align: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  border: none;
+  color: var(--text-primary);
 }
 
 .button::before {
@@ -152,6 +163,10 @@ h1 {
   font-size: 1.05rem;
 }
 
+.game-section {
+  margin: 2rem 0;
+}
+
 .game-card {
   background-color: var(--bg-secondary);
   border-radius: 16px;
@@ -159,6 +174,8 @@ h1 {
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   text-align: center;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .game-card:hover {
@@ -174,17 +191,36 @@ h1 {
   margin: 1.5rem auto 1rem;
   border: 4px solid transparent;
   background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
-    linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
+              linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
 }
 
 .game-card-title {
   font-size: 1.1rem;
-  color: var(--text-primary);
   margin-bottom: 0.5rem;
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.game-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.game-list li {
+  padding: 0.5rem 1rem;
+  margin: 0.25rem 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: all var(--transition-normal);
+}
+
+.game-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
 }
 
 .game-card-button {
@@ -197,6 +233,7 @@ h1 {
   font-weight: 600;
   transition: all var(--transition-normal);
   cursor: pointer;
+  display: inline-block;
 }
 
 .game-card-button:hover {
@@ -206,14 +243,7 @@ h1 {
 
 .section-divider {
   height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-pink),
-    var(--accent-blue),
-    var(--accent-purple),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), var(--accent-purple), transparent);
   margin: 2.5rem auto;
   width: 80%;
   max-width: 600px;
@@ -239,6 +269,17 @@ h1 {
 .section-divider::after {
   right: 20%;
   background: var(--accent-blue);
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
 }
 
 /* Responsive adjustments */
@@ -273,5 +314,9 @@ h1 {
   .logo,
   h1 {
     font-size: 1.2rem;
+  }
+  
+  .game-card {
+    padding: 1rem;
   }
 }
