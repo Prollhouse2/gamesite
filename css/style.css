@@ -1,9 +1,6 @@
-/* Import Retro Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Orbitron:wght@400;500;700&display=swap');
-
 /* Global Styles */
 body {
-    font-family: 'VT323', 'Segoe UI', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
     color: #e0e0e0;
     margin: 0;
@@ -12,40 +9,11 @@ body {
     line-height: 1.6;
 }
 
-/* Title with Dual-Color Neon Effect */
-.site-title {
-    text-align: center;
-    font-size: 2.8rem;
-    font-family: 'Press Start 2P', cursive;
-    margin: 2rem 0 1rem;
-    letter-spacing: 1px;
-    line-height: 1.3;
-    background: linear-gradient(90deg, #4fe0ff 45%, #ff00ff 55%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 10px rgba(79, 224, 255, 0.3), 
-                 0 0 20px rgba(255, 0, 255, 0.2);
-    animation: titlePulsate 3s infinite alternate;
-}
-
-@keyframes titlePulsate {
-    0% {
-        text-shadow: 0 0 10px rgba(79, 224, 255, 0.3), 
-                     0 0 20px rgba(255, 0, 255, 0.2);
-    }
-    100% {
-        text-shadow: 0 0 15px rgba(79, 224, 255, 0.5), 
-                     0 0 25px rgba(255, 0, 255, 0.4);
-    }
-}
-
 h1, h2 {
     text-align: center;
     color: #bb86fc;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 0.5px;
-    font-family: 'Orbitron', sans-serif;
 }
 
 h1 {
@@ -58,38 +26,10 @@ h2 {
     margin-top: 1.5rem;
 }
 
-/* Section Headers - Dual Color with Neon */
-.section-header {
-    text-align: center;
-    font-size: 2.2rem;
-    font-family: 'Press Start 2P', cursive;
-    margin: 2rem 0;
-    background: linear-gradient(90deg, #4fe0ff 45%, #ff00ff 55%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 10px rgba(79, 224, 255, 0.3), 
-                 0 0 20px rgba(255, 0, 255, 0.2);
-    animation: pulsate 3s infinite alternate;
-    line-height: 1.3;
-}
-
-@keyframes pulsate {
-    0% {
-        text-shadow: 0 0 10px rgba(79, 224, 255, 0.3), 
-                     0 0 20px rgba(255, 0, 255, 0.2);
-    }
-    100% {
-        text-shadow: 0 0 15px rgba(79, 224, 255, 0.5), 
-                     0 0 25px rgba(255, 0, 255, 0.4);
-    }
-}
-
 a {
     color: #03dac6;
     text-decoration: none;
     transition: color 0.2s ease, text-shadow 0.2s ease;
-    font-family: 'VT323', monospace;
 }
 
 a:hover {
@@ -97,18 +37,7 @@ a:hover {
     text-shadow: 0 0 8px rgba(3, 218, 198, 0.4);
 }
 
-/* Discord Message Styling */
-.discord-message {
-    color: #ffffff;
-    font-size: 1.2rem;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-    max-width: 800px;
-    margin: 1.5rem auto;
-    text-align: center;
-    line-height: 1.6;
-}
-
-/* Improved Search Bar */
+/* Search Bar */
 .search-container {
     text-align: center;
     margin: 2rem auto;
@@ -118,35 +47,25 @@ a:hover {
 
 #searchInput {
     padding: 12px 16px;
-    border: 2px solid #4fe0ff;
+    border: 2px solid #03dac6;
     border-radius: 8px;
-    background-color: rgba(15, 15, 25, 0.8);
-    color: #ffffff;
+    background-color: rgba(30, 30, 46, 0.7);
+    color: #e0e0e0;
     font-size: 16px;
     width: 100%;
     outline: none;
-    box-shadow: 0 0 15px rgba(79, 224, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     backdrop-filter: blur(4px);
-    font-family: 'VT323', monospace;
 }
 
 #searchInput:focus {
-    border-color: #ff00ff;
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+    border-color: #bb86fc;
+    box-shadow: 0 4px 20px rgba(187, 134, 252, 0.3);
 }
 
 #searchInput::placeholder {
-    color: #b0b0b0;
-    font-size: 18px;
-}
-
-/* White Text Under Search Bar */
-.search-info {
-    color: #ffffff !important;
-    font-size: 1.2rem;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-    margin: 1rem 0;
+    color: #8a8a8a;
 }
 
 /* Button Containers */
@@ -161,106 +80,96 @@ a:hover {
     padding: 0 1rem;
 }
 
-/* Top Navigation Buttons */
-.button-container .button {
-    background: rgba(31, 31, 61, 0.6);
-    border: 2px solid #2a4c7d;
-    border-radius: 15px;
-    padding: 12px 15px;
-    min-width: 140px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    font-family: 'VT323', monospace;
-}
-
-.button-container .button span {
-    color: #4fe0ff;
-    font-size: 20px;
-    text-shadow: 0 0 8px rgba(79, 224, 255, 0.8);
-    letter-spacing: 0.5px;
-}
-
-.button-container .button:hover {
-    background: rgba(42, 76, 125, 0.8);
-    border-color: #4fe0ff;
-    box-shadow: 0 0 20px rgba(79, 224, 255, 0.4);
-}
-
-/* Game Buttons - Circular Style */
-.button-container1 .button {
+/* Button Styles - Base */
+.button, .buttonnew {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(25, 25, 45, 0.8);
-    border: 2px solid #2a4c7d;
-    border-radius: 20px;
-    padding: 15px;
-    width: 150px;
-    height: 180px;
+    justify-content: center;
+    padding: 1.2rem;
+    background: rgba(31, 31, 41, 0.8);
+    color: #e0e0e0;
+    text-align: center;
+    border: 2px solid rgba(3, 218, 198, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(5px);
 }
 
-/* Game Button Images - Perfectly Circular with Glow */
-.button-container1 .button img {
-    border-radius: 50% !important;
+.button::before, .buttonnew::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.button:hover::before, .buttonnew:hover::before {
+    left: 100%;
+}
+
+.button:hover, .buttonnew:hover {
+    background-color: rgba(55, 71, 79, 0.9);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    border-color: rgba(3, 218, 198, 0.6);
+}
+
+.button:active, .buttonnew:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Specific Styles */
+.button {
+    margin: 10px;
+    width: calc(25% - 20px);
+    min-width: 180px;
+    max-width: 250px;
+}
+
+.buttonnew {
+    margin: 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+/* Button Images */
+.button img, .buttonnew img {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border: 3px solid #4fe0ff;
-    box-shadow: 0 0 15px rgba(79, 224, 255, 0.6);
-    transition: all 0.3s ease;
     margin-bottom: 12px;
-}
-
-.button-container1 .button:hover img {
-    transform: scale(1.05);
-    border-color: #ff00ff;
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-}
-
-/* Game Button Text */
-.button-container1 .button span {
-    color: #4fe0ff;
-    font-size: 20px;
-    text-shadow: 0 0 8px rgba(79, 224, 255, 0.8);
-    transition: color 0.3s ease;
-}
-
-.button-container1 .button:hover span {
-    color: #ff00ff;
-}
-
-/* Game Grid Layout */
-.game-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
-    max-width: 900px;
-    margin: 2rem auto;
-    text-align: center;
-}
-
-.game-grid-item {
-    color: #ffffff;
-    font-size: 1.1rem;
-    padding: 8px;
+    border-radius: 10px;
+    border: 2px solid #03dac6;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.game-grid-item:hover {
-    color: #4fe0ff;
-    text-shadow: 0 0 8px rgba(79, 224, 255, 0.8);
+.button:hover img, .buttonnew:hover img {
+    transform: scale(1.05);
+    border-color: #bb86fc;
+    box-shadow: 0 6px 12px rgba(187, 134, 252, 0.4);
 }
 
-/* Time Spent Counter */
-.time-spent {
-    color: #4fe0ff;
-    font-size: 1.3rem;
-    text-shadow: 0 0 8px rgba(79, 224, 255, 0.7);
-    text-align: center;
-    margin: 1.5rem 0;
+/* Button Text */
+.button span, .buttonnew span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #03dac6;
+    transition: color 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.button:hover span, .buttonnew:hover span {
+    color: #bb86fc;
 }
 
 /* Footer */
@@ -286,7 +195,7 @@ footer::before {
 footer a {
     color: #bb86fc;
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin: 0 15px;
     position: relative;
     display: inline-block;
@@ -308,38 +217,22 @@ footer a:hover::after {
     width: 100%;
 }
 
-/* Desktop Optimization */
-@media (min-width: 1024px) {
-    .button-container {
-        max-width: 1000px;
-    }
-    
-    .button-container1 {
-        max-width: 1200px;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-    
-    .site-title {
-        font-size: 3rem;
-    }
-    
-    .section-header {
-        font-size: 2.5rem;
-    }
-    
-    .game-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
+/* Paragraphs */
+p {
+    margin: 1rem 0;
+    color: #e0e0e0;
+    text-align: center;
+    font-size: 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .button {
         width: calc(50% - 20px);
-    }
-    
-    .game-grid {
-        grid-template-columns: repeat(3, 1fr);
     }
     
     h1 {
@@ -349,10 +242,6 @@ footer a:hover::after {
     h2 {
         font-size: 1.5rem;
     }
-    
-    .site-title {
-        font-size: 2.2rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -361,17 +250,13 @@ footer a:hover::after {
         max-width: 300px;
     }
     
-    .game-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
     .search-container {
         max-width: 90%;
     }
     
     footer a {
         margin: 0 10px;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 }
 
@@ -400,13 +285,12 @@ footer a:hover::after {
     100% { opacity: 0.6; }
 }
 
-.button-container1 .button:nth-child(odd) img {
+.button:nth-child(odd) img {
     animation: pulse 4s infinite ease-in-out;
     animation-delay: calc(var(--n, 0) * 0.5s);
 }
 
-.button-container1 .button:nth-child(1) { --n: 1; }
-.button-container1 .button:nth-child(2) { --n: 2; }
-.button-container1 .button:nth-child(3) { --n: 3; }
-.button-container1 .button:nth-child(4) { --n: 4; }
-.button-container1 .button:nth-child(5) { --n: 5; }
+.button:nth-child(1) { --n: 1; }
+.button:nth-child(2) { --n: 2; }
+.button:nth-child(3) { --n: 3; }
+.button:nth-child(4) { --n: 4; }
