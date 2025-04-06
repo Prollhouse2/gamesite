@@ -1,3 +1,5 @@
+:@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;500;600;700&display=swap");
+
 :root {
   --bg-primary: #0a0a1a;
   --bg-secondary: #1a1a2e;
@@ -9,31 +11,57 @@
   --text-secondary: #c0c0d0;
   --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
   --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --font-retro: "Press Start 2P", cursive;
+  --font-modern: "Outfit", sans-serif;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-modern);
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(255, 107, 157, 0.1) 0%, transparent 20%),
+  background-image: radial-gradient(circle at 20% 30%, rgba(255, 107, 157, 0.1) 0%, transparent 20%),
     radial-gradient(circle at 80% 70%, rgba(107, 157, 255, 0.1) 0%, transparent 20%);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+  text-align: center;
 }
 
 .logo {
   font-size: 2rem;
   font-weight: 800;
+  font-family: var(--font-retro);
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  letter-spacing: -0.5px;
+  margin: 0;
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 2rem;
+  font-family: var(--font-retro);
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
+  color: transparent;
+  text-align: center;
+  margin: 2rem 0;
+  letter-spacing: -0.5px;
+  line-height: 1.4;
 }
 
 .button-container {
@@ -41,6 +69,8 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1.5rem;
   padding: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .button {
@@ -52,7 +82,9 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  height: 100%;
 }
 
 .button:hover {
@@ -80,7 +112,8 @@ h1 {
 
 .button span {
   font-weight: 600;
-  color: var(--text-primary);
+  font-family: var(--font-retro);
+  font-size: 0.9rem;
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
@@ -109,11 +142,13 @@ h1 {
   margin: 1.5rem auto 1rem;
   border: 4px solid transparent;
   background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
-              linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
+    linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
 }
 
 .game-card-title {
   font-size: 1.1rem;
+  font-family: var(--font-modern);
+  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
@@ -130,6 +165,7 @@ h1 {
   border-radius: 9999px;
   margin: 1rem 0;
   font-weight: 600;
+  font-family: var(--font-modern);
   transition: all var(--transition-normal);
 }
 
@@ -152,10 +188,23 @@ h1 {
   .button-container {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
-  
-  .button img, .game-card-image {
+
+  .button img,
+  .game-card-image {
     width: 70px;
     height: 70px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  .button span {
+    font-size: 0.8rem;
   }
 }
 
@@ -165,8 +214,13 @@ h1 {
     gap: 1rem;
     padding: 1rem;
   }
-  
+
   .button {
     padding: 1rem;
   }
+
+  h1 {
+    font-size: 1.4rem;
+  }
 }
+
