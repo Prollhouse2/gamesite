@@ -1,4 +1,4 @@
-::root {
+:root {
   --bg-primary: #0a0a1a;
   --bg-secondary: #1a1a2e;
   --bg-tertiary: #25253a;
@@ -21,25 +21,19 @@ body {
 }
 
 .logo {
-  font-family: 'Press Start 2P', 'VT323', 'Silkscreen', monospace;
   font-size: 2rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  letter-spacing: 1px;
 }
 
 h1 {
-  font-family: 'Press Start 2P', 'VT323', 'Silkscreen', monospace;
   font-size: 2.25rem;
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
-  letter-spacing: 1px;
-  line-height: 1.4;
 }
 
 .button-container {
