@@ -3,7 +3,7 @@
 
 /* Global Styles */
 body {
-    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    font-family: 'VT323', 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
     color: #e0e0e0;
     margin: 0;
@@ -12,31 +12,31 @@ body {
     line-height: 1.6;
 }
 
-/* Title with Neon Effect */
+/* Title with Dual-Color Neon Effect */
 .site-title {
     text-align: center;
-    color: #4fe0ff;
     font-size: 2.8rem;
     font-family: 'Press Start 2P', cursive;
     margin: 2rem 0 1rem;
-    text-shadow: 0 0 10px rgba(79, 224, 255, 0.8), 
-                 0 0 20px rgba(79, 224, 255, 0.5),
-                 0 0 30px rgba(79, 224, 255, 0.3);
-    animation: titlePulsate 3s infinite alternate;
     letter-spacing: 1px;
     line-height: 1.3;
+    background: linear-gradient(90deg, #4fe0ff 45%, #ff00ff 55%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(79, 224, 255, 0.3), 
+                 0 0 20px rgba(255, 0, 255, 0.2);
+    animation: titlePulsate 3s infinite alternate;
 }
 
 @keyframes titlePulsate {
     0% {
-        text-shadow: 0 0 10px rgba(79, 224, 255, 0.8), 
-                     0 0 20px rgba(79, 224, 255, 0.5),
-                     0 0 30px rgba(79, 224, 255, 0.3);
+        text-shadow: 0 0 10px rgba(79, 224, 255, 0.3), 
+                     0 0 20px rgba(255, 0, 255, 0.2);
     }
     100% {
-        text-shadow: 0 0 15px rgba(79, 224, 255, 1), 
-                     0 0 25px rgba(79, 224, 255, 0.7),
-                     0 0 35px rgba(79, 224, 255, 0.5);
+        text-shadow: 0 0 15px rgba(79, 224, 255, 0.5), 
+                     0 0 25px rgba(255, 0, 255, 0.4);
     }
 }
 
@@ -58,27 +58,30 @@ h2 {
     margin-top: 1.5rem;
 }
 
-/* Section Headers - Like "New Games" */
+/* Section Headers - Dual Color with Neon */
 .section-header {
     text-align: center;
-    color: #4fe0ff;
     font-size: 2.2rem;
     font-family: 'Press Start 2P', cursive;
     margin: 2rem 0;
-    text-shadow: 0 0 10px rgba(79, 224, 255, 0.8), 
-                 0 0 20px rgba(79, 224, 255, 0.5);
+    background: linear-gradient(90deg, #4fe0ff 45%, #ff00ff 55%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(79, 224, 255, 0.3), 
+                 0 0 20px rgba(255, 0, 255, 0.2);
     animation: pulsate 3s infinite alternate;
     line-height: 1.3;
 }
 
 @keyframes pulsate {
     0% {
-        text-shadow: 0 0 10px rgba(79, 224, 255, 0.8), 
-                     0 0 20px rgba(79, 224, 255, 0.5);
+        text-shadow: 0 0 10px rgba(79, 224, 255, 0.3), 
+                     0 0 20px rgba(255, 0, 255, 0.2);
     }
     100% {
-        text-shadow: 0 0 15px rgba(79, 224, 255, 1), 
-                     0 0 25px rgba(79, 224, 255, 0.7);
+        text-shadow: 0 0 15px rgba(79, 224, 255, 0.5), 
+                     0 0 25px rgba(255, 0, 255, 0.4);
     }
 }
 
@@ -86,12 +89,23 @@ a {
     color: #03dac6;
     text-decoration: none;
     transition: color 0.2s ease, text-shadow 0.2s ease;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'VT323', monospace;
 }
 
 a:hover {
     color: #04f7e0;
     text-shadow: 0 0 8px rgba(3, 218, 198, 0.4);
+}
+
+/* Discord Message Styling */
+.discord-message {
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    max-width: 800px;
+    margin: 1.5rem auto;
+    text-align: center;
+    line-height: 1.6;
 }
 
 /* Improved Search Bar */
@@ -109,12 +123,12 @@ a:hover {
     background-color: rgba(15, 15, 25, 0.8);
     color: #ffffff;
     font-size: 16px;
-    font-family: 'VT323', monospace;
     width: 100%;
     outline: none;
     box-shadow: 0 0 15px rgba(79, 224, 255, 0.4);
     transition: all 0.3s ease;
     backdrop-filter: blur(4px);
+    font-family: 'VT323', monospace;
 }
 
 #searchInput:focus {
@@ -124,14 +138,12 @@ a:hover {
 
 #searchInput::placeholder {
     color: #b0b0b0;
-    font-family: 'VT323', monospace;
     font-size: 18px;
 }
 
 /* White Text Under Search Bar */
 .search-info {
     color: #ffffff !important;
-    font-family: 'VT323', monospace;
     font-size: 1.2rem;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
     margin: 1rem 0;
@@ -149,7 +161,7 @@ a:hover {
     padding: 0 1rem;
 }
 
-/* Top Navigation Buttons - Styled like in the screenshot */
+/* Top Navigation Buttons */
 .button-container .button {
     background: rgba(31, 31, 61, 0.6);
     border: 2px solid #2a4c7d;
@@ -157,13 +169,11 @@ a:hover {
     padding: 12px 15px;
     min-width: 140px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    font-family: 'VT323', monospace;
 }
 
 .button-container .button span {
     color: #4fe0ff;
-    font-size: 15px;
-    font-weight: 600;
-    font-family: 'VT323', monospace;
     font-size: 20px;
     text-shadow: 0 0 8px rgba(79, 224, 255, 0.8);
     letter-spacing: 0.5px;
@@ -175,152 +185,82 @@ a:hover {
     box-shadow: 0 0 20px rgba(79, 224, 255, 0.4);
 }
 
-/* Button Styles - Base */
-.button, .buttonnew {
+/* Game Buttons - Circular Style */
+.button-container1 .button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 1.2rem;
-    background: rgba(31, 31, 41, 0.8);
-    color: #e0e0e0;
-    text-align: center;
-    border: 2px solid rgba(3, 218, 198, 0.2);
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(5px);
-}
-
-.button::before, .buttonnew::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: 0.5s;
-}
-
-.button:hover::before, .buttonnew:hover::before {
-    left: 100%;
-}
-
-.button:hover, .buttonnew:hover {
-    background-color: rgba(55, 71, 79, 0.9);
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-    border-color: rgba(3, 218, 198, 0.6);
-}
-
-.button:active, .buttonnew:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Button Specific Styles */
-.button {
-    margin: 10px;
-    width: calc(25% - 20px);
-    min-width: 180px;
-    max-width: 250px;
-}
-
-.buttonnew {
-    margin: 10px;
-    width: 100%;
-    max-width: 200px;
-}
-
-/* Game Buttons - Circular Style */
-.button-container1 .button {
     background: rgba(25, 25, 45, 0.8);
     border: 2px solid #2a4c7d;
     border-radius: 20px;
     padding: 15px;
     width: 150px;
     height: 180px;
-}
-
-/* Dual-Color Text Effect for Game Buttons */
-.button-container1 .button span {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
-    font-family: 'VT323', monospace;
-    font-size: 20px;
-    font-weight: bold;
-    color: #4fe0ff; /* Base color */
+    overflow: hidden;
+    backdrop-filter: blur(5px);
 }
 
-/* Pink shadow effect for dual-color */
-.button-container1 .button span::before {
-    content: attr(data-text);
-    position: absolute;
-    left: 1px;
-    top: 1px;
-    color: #ff00ff; /* Pink color */
-    opacity: 0.7;
-    z-index: -1;
-    filter: blur(1.5px);
-}
-
-/* Button Images Container - For Circular Crop */
-.image-container {
-    position: relative;
-    width: 90px;
-    height: 90px;
-    margin-bottom: 12px;
-    border-radius: 50%;
-    overflow: hidden; /* This crops the image to a circle */
-}
-
-/* Gradient Border for Circular Images */
-.image-container::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    background: linear-gradient(45deg, #ff00ff, #4fe0ff);
-    border-radius: 50%;
-    z-index: -1;
-    animation: rotateBorder 4s linear infinite;
-}
-
-@keyframes rotateBorder {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Game Button Images - Perfectly Circular */
-.button-container1 .button .image-container img {
-    width: 100%;
-    height: 100%;
+/* Game Button Images - Perfectly Circular with Glow */
+.button-container1 .button img {
+    border-radius: 50% !important;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
-    border-radius: 50%;
+    border: 3px solid #4fe0ff;
+    box-shadow: 0 0 15px rgba(79, 224, 255, 0.6);
+    transition: all 0.3s ease;
+    margin-bottom: 12px;
 }
 
-/* Button Text */
-.button span, .buttonnew span {
-    font-size: 16px;
-    font-weight: 600;
-    color: #03dac6;
-    transition: color 0.3s ease;
-    letter-spacing: 0.5px;
-    font-family: 'VT323', monospace;
+.button-container1 .button:hover img {
+    transform: scale(1.05);
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+/* Game Button Text */
+.button-container1 .button span {
+    color: #4fe0ff;
     font-size: 20px;
+    text-shadow: 0 0 8px rgba(79, 224, 255, 0.8);
+    transition: color 0.3s ease;
 }
 
-.button:hover span, .buttonnew:hover span {
-    color: #bb86fc;
+.button-container1 .button:hover span {
+    color: #ff00ff;
+}
+
+/* Game Grid Layout */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    max-width: 900px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.game-grid-item {
+    color: #ffffff;
+    font-size: 1.1rem;
+    padding: 8px;
+    transition: all 0.3s ease;
+}
+
+.game-grid-item:hover {
+    color: #4fe0ff;
+    text-shadow: 0 0 8px rgba(79, 224, 255, 0.8);
+}
+
+/* Time Spent Counter */
+.time-spent {
+    color: #4fe0ff;
+    font-size: 1.3rem;
+    text-shadow: 0 0 8px rgba(79, 224, 255, 0.7);
+    text-align: center;
+    margin: 1.5rem 0;
 }
 
 /* Footer */
@@ -331,7 +271,6 @@ footer {
     text-align: center;
     margin-top: 3rem;
     position: relative;
-    font-family: 'VT323', monospace;
 }
 
 footer::before {
@@ -352,7 +291,6 @@ footer a {
     position: relative;
     display: inline-block;
     padding: 5px 0;
-    font-family: 'VT323', monospace;
 }
 
 footer a::after {
@@ -370,54 +308,15 @@ footer a:hover::after {
     width: 100%;
 }
 
-/* Paragraphs */
-p {
-    margin: 1rem 0;
-    color: #ffffff;
-    text-align: center;
-    font-size: 1.1rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-    font-family: 'VT323', monospace;
-}
-
-/* Discord Message Styling */
-.discord-message {
-    color: #ffffff;
-    font-size: 1.2rem;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-    max-width: 800px;
-    margin: 1.5rem auto;
-    text-align: center;
-    line-height: 1.6;
-    font-family: 'VT323', monospace;
-}
-
-/* Time Spent Counter */
-.time-spent {
-    color: #4fe0ff;
-    font-size: 1.3rem;
-    text-shadow: 0 0 8px rgba(79, 224, 255, 0.7);
-    text-align: center;
-    margin: 1.5rem 0;
-    font-family: 'VT323', monospace;
-}
-
 /* Desktop Optimization */
 @media (min-width: 1024px) {
     .button-container {
         max-width: 1000px;
-        justify-content: center;
     }
     
     .button-container1 {
         max-width: 1200px;
-        justify-content: center;
-        display: grid;
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 20px;
     }
     
     .site-title {
@@ -428,8 +327,8 @@ p {
         font-size: 2.5rem;
     }
     
-    p, .discord-message {
-        font-size: 1.3rem;
+    .game-grid {
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
@@ -437,6 +336,10 @@ p {
 @media (max-width: 768px) {
     .button {
         width: calc(50% - 20px);
+    }
+    
+    .game-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
     
     h1 {
@@ -456,6 +359,10 @@ p {
     .button {
         width: 100%;
         max-width: 300px;
+    }
+    
+    .game-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .search-container {
@@ -493,12 +400,13 @@ p {
     100% { opacity: 0.6; }
 }
 
-.button:nth-child(odd) .image-container {
+.button-container1 .button:nth-child(odd) img {
     animation: pulse 4s infinite ease-in-out;
     animation-delay: calc(var(--n, 0) * 0.5s);
 }
 
-.button:nth-child(1) { --n: 1; }
-.button:nth-child(2) { --n: 2; }
-.button:nth-child(3) { --n: 3; }
-.button:nth-child(4) { --n: 4; }
+.button-container1 .button:nth-child(1) { --n: 1; }
+.button-container1 .button:nth-child(2) { --n: 2; }
+.button-container1 .button:nth-child(3) { --n: 3; }
+.button-container1 .button:nth-child(4) { --n: 4; }
+.button-container1 .button:nth-child(5) { --n: 5; }
