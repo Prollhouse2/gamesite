@@ -322,4 +322,157 @@ footer a {
     color: #bb86fc;
     text-decoration: none;
     font-size: 1.4rem;
-    margin: 0 15
+    margin: 0 15px;
+    position: relative;
+    display: inline-block;
+    padding: 5px 0;
+    font-family: 'VT323', monospace;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #03dac6;
+    transition: width 0.3s ease;
+}
+
+footer a:hover::after {
+    width: 100%;
+}
+
+/* Paragraphs */
+p {
+    margin: 1rem 0;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    font-family: 'VT323', monospace;
+}
+
+/* Discord Message Styling */
+.discord-message {
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    max-width: 800px;
+    margin: 1.5rem auto;
+    text-align: center;
+    line-height: 1.6;
+    font-family: 'VT323', monospace;
+}
+
+/* Time Spent Counter */
+.time-spent {
+    color: #4fe0ff;
+    font-size: 1.3rem;
+    text-shadow: 0 0 8px rgba(79, 224, 255, 0.7);
+    text-align: center;
+    margin: 1.5rem 0;
+    font-family: 'VT323', monospace;
+}
+
+/* Desktop Optimization */
+@media (min-width: 1024px) {
+    .button-container {
+        max-width: 1000px;
+        justify-content: center;
+    }
+    
+    .button-container1 {
+        max-width: 1200px;
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+    }
+    
+    .site-title {
+        font-size: 3rem;
+    }
+    
+    .section-header {
+        font-size: 2.5rem;
+    }
+    
+    p, .discord-message {
+        font-size: 1.3rem;
+    }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .button {
+        width: calc(50% - 20px);
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .site-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .search-container {
+        max-width: 90%;
+    }
+    
+    footer a {
+        margin: 0 10px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(30, 30, 46, 0.7);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #03dac6;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #bb86fc;
+}
+
+/* Subtle Animations */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.button:nth-child(odd) img {
+    animation: pulse 4s infinite ease-in-out;
+    animation-delay: calc(var(--n, 0) * 0.5s);
+}
+
+.button:nth-child(1) { --n: 1; }
+.button:nth-child(2) { --n: 2; }
+.button:nth-child(3) { --n: 3; }
+.button:nth-child(4) { --n: 4; }
