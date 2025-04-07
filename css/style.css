@@ -109,6 +109,7 @@ button[class*="Discord"] {
   cursor: pointer;
   border: none;
   margin: 0.5rem; /* Even spacing */
+  color: #ffffff; /* Ensure text color is white */
 }
 
 .button::before {
@@ -152,13 +153,17 @@ button[class*="Discord"] {
   transform: scale(1.05);
 }
 
-/* Restored gradient text effect for buttons */
-.button span {
+/* Changed button text to solid white */
+.button span,
+button[class*="Games"],
+button[class*="Website"],
+button[class*="Source"],
+button[class*="Cheats"],
+button[class*="Save"],
+button[class*="Leaderboard"],
+button[class*="Discord"] {
   font-weight: 600;
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff;
   font-size: 1.05rem;
 }
 
@@ -242,6 +247,26 @@ button[class*="Discord"] {
 .game-card-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+}
+
+/* Ensure all game titles have gradient effect */
+.game-title, 
+[class*="game"] h3, 
+[class*="game"] h4, 
+[class*="game"] .title,
+[id*="game"] h3,
+[id*="game"] h4,
+[id*="game"] .title,
+.slope, .retro-bowl, .gunship, .tvt-io, .block-blast,
+.idle-breakout, .learn-to-fly, .radiobasiscs, .gun-mayhem,
+.gun-mayhem-2, .wall-smash, .fnaf-1, .fnaf-2, .drift-boss {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: "VT323", monospace;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
 }
 
 .section-divider {
