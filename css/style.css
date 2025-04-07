@@ -377,3 +377,81 @@ body:after {
     background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Subtle texture */
     opacity: 0.1; /* Less pronounced sparkle for a sleek design */
 }
+.game-title,
+[class*="game"] h3,
+[class*="game"] h4,
+[class*="game"] .title,
+[id*="game"] h3,
+[id*="game"] h4,
+[id*="game"] .title,
+.slope,
+.retro-bowl,
+.gunship,
+.tvt-io,
+.block-blast,
+.idle-breakout,
+.learn-to-fly,
+.radiobasiscs,
+.gun-mayhem,
+.gun-mayhem-2,
+.wall-smash,
+.fnaf-1,
+.fnaf-2,
+.drift-boss,
+/* Add these selectors to target all game text */
+  .button
+  span,
+.game-card-title,
+[class*="button"] span,
+[id*="button"] span,
+/* Target specific game titles that might be missed */
+  .black-jack,
+.fnaf,
+.dbz-devolution,
+.just-fall,
+.vex-3,
+.vex-4,
+.vex-5,
+.vex-6,
+.paper-io-2,
+.bitlife,
+.one,
+.subway-surfers,
+.smash-karts,
+.slope-ball,
+.moto-x3m,
+.cookie-clicker,
+.flappy-bird,
+.temple-run,
+.crossy-road,
+.eggy-car-tycoon,
+.retrobowl,
+.riddle-school,
+.square-fill,
+.jetpack-joyride,
+.geometry-dash,
+.duck-life,
+.gold-digger {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important; /* Force transparent color for gradient effect */
+  font-family: "VT323", monospace;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-shadow: none; /* Remove any text shadows that might interfere */
+}
+
+/* Add this to override any inline styles that might be applied */
+[style*="color: rgb(0, 0, 255)"],
+[style*="color: #0000ff"],
+[style*="color: blue"],
+[style*="color: darkblue"],
+[style*="color: rgb(0, 0, 128)"],
+[style*="color: #000080"] {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
