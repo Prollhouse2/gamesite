@@ -365,4 +365,15 @@ input[type="search"] {
   .game-card {
     padding: 1rem;
   }
+/* Adding Some Sparkle */
+body:after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Subtle texture */
+    opacity: 0.1; /* Less pronounced sparkle for a sleek design */
 }
