@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proll's AI Assistant</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">Proll's AI Assistant</h1>
+        
+        <div class="section-divider"></div>
+        
+        <div class="chat-container">
+            <div id="chat-messages" class="chat-messages">
+                <div class="message ai-message">
+                    <div class="message-content">
+                        <p>Hello! I'm your AI assistant. How can I help you today?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <textarea id="user-input" class="chat-input" placeholder="Type your message here..." rows="2"></textarea>
+                <button id="send-button" class="send-button">Send</button>
+            </div>
+        </div>
+        
+        <div class="model-selector">
+            <label for="model-select">AI Model:</label>
+            <select id="model-select">
+                <option value="llama3-8b-8192">Llama3 8B</option>
+                <option value="llama3-70b-8192" selected>Llama3 70B</option>
+                <option value="mixtral-8x7b-32768">Mixtral 8x7B</option>
+                <option value="gemma-7b-it">Gemma 7B</option>
+            </select>
+        </div>
+        
+        <div class="button-container">
+            <button id="clear-chat" class="action-button">Clear Chat</button>
+            <a href="/"><button class="action-button">Back to Home</button></a>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
