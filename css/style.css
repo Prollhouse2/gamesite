@@ -167,6 +167,15 @@ button[class*="Discord"] {
   font-size: 1.05rem;
 }
 
+.button span {
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.05rem;
+}
+
 .game-section {
   margin: 2rem 0;
   text-align: center;
@@ -198,6 +207,7 @@ button[class*="Discord"] {
   background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
               linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
 }
+
 
 /* Better font for game cards */
 .game-card-title {
