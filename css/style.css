@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 :root {
   --bg-primary: #0a0a1a;
@@ -14,27 +14,14 @@
 }
 
 body {
-  font-family: "Outfit", sans-serif;
+  font-family: "Press Start 2P", cursive;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   margin: 0;
   padding: 0;
-  background-image: 
-    radial-gradient(circle at 15% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 30%),
-    radial-gradient(circle at 85% 30%, rgba(107, 157, 255, 0.15) 0%, transparent 30%),
-    radial-gradient(circle at 50% 70%, rgba(157, 107, 255, 0.1) 0%, transparent 40%),
-    linear-gradient(135deg, rgba(10, 10, 26, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%);
-  background-attachment: fixed;
-  background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
-  animation: backgroundShift 20s ease infinite;
+  background-image: none;
   line-height: 1.6;
   min-height: 100vh;
-}
-
-@keyframes backgroundShift {
-  0% { background-position: 0% 0%, 100% 0%, 50% 50%, 0% 0%; }
-  50% { background-position: 100% 100%, 0% 100%, 30% 70%, 0% 0%; }
-  100% { background-position: 0% 0%, 100% 0%, 50% 50%, 0% 0%; }
 }
 
 .container {
@@ -56,7 +43,7 @@ body {
   margin: 1.5rem 0;
   padding: 0.5rem 0;
   position: relative;
-  display: inline-block;
+  display: block;
   text-align: center;
   width: 100%;
 }
@@ -81,6 +68,7 @@ h1, h2, h3 {
   text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
   letter-spacing: 1px;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 h1 { font-size: 1.8rem; }
@@ -88,8 +76,10 @@ h2 { font-size: 1.5rem; }
 h3 { font-size: 1.2rem; }
 
 .button-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   padding: 1.5rem;
   position: relative;
@@ -110,7 +100,9 @@ h3 { font-size: 1.2rem; }
   overflow: hidden;
   cursor: pointer;
   border: none;
-  color: var(--text-primary);
+  color: #ffffff;
+  width: 160px;
+  margin: 0.5rem;
 }
 
 .button::before {
@@ -156,15 +148,13 @@ h3 { font-size: 1.2rem; }
 
 .button span {
   font-weight: 600;
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff;
   font-size: 1.05rem;
 }
 
 .game-section {
   margin: 2rem 0;
+  text-align: center;
 }
 
 .game-card {
@@ -225,7 +215,7 @@ h3 { font-size: 1.2rem; }
 
 .game-card-button {
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  color: var(--text-primary);
+  color: #ffffff;
   border: none;
   padding: 0.5rem 1.25rem;
   border-radius: 9999px;
@@ -282,10 +272,26 @@ h3 { font-size: 1.2rem; }
   font-size: 0.9rem;
 }
 
+/* Search bar styling */
+input[type="text"], 
+input[type="search"] {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid var(--accent-blue);
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.8rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .button-container {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    justify-content: center;
   }
 
   .button img,
@@ -302,13 +308,16 @@ h3 { font-size: 1.2rem; }
 
 @media (max-width: 480px) {
   .button-container {
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     padding: 1rem;
   }
 
   .button {
     padding: 1rem;
+    width: 140px;
   }
 
   .logo,
