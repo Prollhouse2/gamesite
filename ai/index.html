@@ -1,49 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proll's AI Assistant</title>
-    <link rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prolls Ai Assistant</title>
+  <style>
+    :root {
+      --background: #181926;
+      --background2: #1e2030;
+      --background3: #363a4f;
+      --background4: #494d64;
+      --shadow: rgba(138, 173, 244, 0.5);
+      --blue: #8aadf4;
+      --green: #a6da95;
+      --mauve: #c6a0f6;
+      --text: #cad3f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: 0.3s;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    svg {
+      height: 16px;
+      width: 16px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 11px 10px;
+      font-size: 16px;
+      outline: none;
+      border-radius: 15px;
+      background: var(--background2);
+      color: var(--text);
+      border: 1px solid var(--background3);
+      font-family: inherit;
+      cursor: pointer;
+      transition: 250ms;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    button:hover {
+      background: var(--background3);
+    }
+
+    button:disabled {
+      background: var(--background4) !important;
+      color: var(--shadow) !important;
+    }
+
+    input {
+      padding: 11px 10px;
+      font-size: 16px;
+      outline: none;
+      border-radius: 10px;
+      background: var(--background2);
+      border: 1px solid var(--background3);
+      color: var(--text);
+      font-family: inherit;
+      width: 100%;
+    }
+
+    ::placeholder {
+      color: var(--shadow);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      width: 200px;
+    }
+
+    .dropdown-button {
+      width: 100%;
+      text-align: left;
+      justify-content: space-between;
+      border: 1px solid var(--background3);
+      border-radius: 15px;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background: var(--background2);
+      border: 1px solid var(--background3);
+      z-index: 1;
+      width: 100%;
+      max-height: 200px;
+      border-radius: 15px;
+      overflow-y: auto;
+      padding: 5px;
+      margin: 5px 0px;
+      list-style: none;
+      gap: 5px;
+      flex-direction: column;
+    }
+
+    .dropdown-menu li {
+      padding: 5px 10px;
+      font-size: 16px;
+      color: var(--text);
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dropdown-menu li p {
+      font-weight: 500;
+    }
+
+    .dropdown-menu li span {
+      font-size: 14px;
+    }
+
+    .dropdown-menu li:hover {
+      background-color: var(--background3);
+    }
+
+    .dropdown-selected {
+      font-weight: bold;
+    }
+
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+
+    .ai-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    #chat-display {
+      flex: 1;
+      background: var(--background2);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    #chat-display.center-message {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .initial-message {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .message {
+      display: flex;
+      flex-direction: column;
+      max-width: 80%;
+      margin: 5px;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    .message.ai {
+      align-self: flex-start;
+      text-align: left;
+    }
+
+    .sender-label {
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 2px;
+      color: var(--text);
+    }
+
+    .message-bubble {
+      padding: 10px 14px;
+      border-radius: 15px;
+      max-width: 100%;
+      word-wrap: break-word;
+      display: inline-block;
+      background: var(--blue);
+      color: var(--background);
+    }
+
+    .message-plain {
+      background: transparent;
+      color: var(--text);
+      padding: 5px 0;
+      word-wrap: break-word;
+    }
+
+    .copy-btn {
+      background: transparent;
+      color: var(--text);
+      border: none !important;
+      padding: 5px 10px;
+      font-size: 12px !important;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 200ms;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .copy-btn:hover {
+      background: var(--background3);
+    }
+
+    .code-block {
+      position: relative;
+      margin-top: 5px;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 5px;
+      background: var(--background4);
+      border-radius: 8px 8px 0 0;
+    }
+
+    pre {
+      background: var(--background3);
+      color: var(--text);
+      padding: 10px;
+      border-radius: 0 0 8px 8px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+
+    code {
+      background: var(--background3);
+      color: var(--text);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    pre code {
+      display: block;
+      padding: 0;
+    }
+
+    .bottom {
+      margin-top: 10px;
+    }
+
+    .input-container {
+      display: flex;
+      width: 100%;
+      gap: 10px;
+      flex-direction: row;
+      padding: 5px;
+      font-size: 16px;
+      outline: none;
+      border-radius: 22.75px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--background3);
+    }
+
+    .input-container.focused {
+      border-color: var(--mauve);
+      box-shadow: 0 0 0 2px rgba(203, 166, 247, 0.25);
+    }
+
+    .input-container #input-box {
+      background: transparent;
+      padding: 8px 10px;
+      border: none;
+    }
+
+    .input-container #submit-btn {
+      background: var(--blue);
+      color: var(--background);
+      width: 35.5px;
+      height: 35.5px;
+      border-radius: 17.75px;
+      display: flex;
+      justify-content: center !important;
+      align-items: center !important;
+      font-size: 20px;
+    }
+
+    #submit-btn:active {
+      opacity: 0.6;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+
+      .message {
+        max-width: 90%;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1 class="logo">Proll's AI Assistant</h1>
-        
-        <div class="section-divider"></div>
-        
-        <div class="chat-container">
-            <div id="chat-messages" class="chat-messages">
-                <div class="message ai-message">
-                    <div class="message-content">
-                        <p>Hello! I'm your AI assistant. How can I help you today?</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="chat-input-container">
-                <textarea id="user-input" class="chat-input" placeholder="Type your message here..." rows="2"></textarea>
-                <button id="send-button" class="send-button">Send</button>
-            </div>
-        </div>
-        
-        <div class="model-selector">
-            <label for="model-select">AI Model:</label>
-            <select id="model-select">
-                <option value="llama3-8b-8192">Llama3 8B</option>
-                <option value="llama3-70b-8192" selected>Llama3 70B</option>
-                <option value="mixtral-8x7b-32768">Mixtral 8x7B</option>
-                <option value="gemma-7b-it">Gemma 7B</option>
-            </select>
-        </div>
-        
-        <div class="button-container">
-            <button id="clear-chat" class="action-button">Clear Chat</button>
-            <a href="/"><button class="action-button">Back to Home</button></a>
-        </div>
+  <div class="container">
+    <div class="header">
+      <h1>Prolls Ai Chat</h1>
+      <div class="dropdown" id="ai-model">
+        <button class="dropdown-button">
+          <span class="dropdown-selected">Mixtral-8x7b</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+        <ul class="dropdown-menu">
+          <li value="mixtral-8x7b-32768">
+            <p>Mixtral-8x7b</p>
+            <span>A powerful mixture-of-experts model</span>
+          </li>
+          <li value="llama3-70b-8192">
+            <p>Llama3-70b</p>
+            <span>Meta's latest large language model</span>
+          </li>
+          <li value="gemma-7b-it">
+            <p>Gemma-7b</p>
+            <span>Google's lightweight instruction-tuned model</span>
+          </li>
+        </ul>
+      </div>
     </div>
-    
-    <script src="index.js"></script>
+
+    <div class="ai-container">
+      <div id="chat-display" class="center-message">
+        <div class="initial-message">What can I help with?</div>
+      </div>
+      <div class="bottom">
+        <div class="input-container">
+          <input type="text" id="input-box" placeholder="Message AI...">
+          <button id="submit-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 12 6-6 6 6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const chatBox = document.getElementById('chat-display');
+      const textInput = document.getElementById('input-box');
+      const sendBtn = document.getElementById('submit-btn');
+      const modelDropdown = document.getElementById('ai-model');
+      const dropdownButton = modelDropdown.querySelector('.dropdown-button');
+      const dropdownMenu = modelDropdown.querySelector('.dropdown-menu');
+      const inputContainer = document.querySelector('.input-container');
+
+      const token = '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'; // Replace this with your Groq API Key
+
+      let currentModel = 'mixtral-8x7b-32768';
+
+      // Focus/blur effects for input
+      textInput.addEventListener('focus', () => {
+        inputContainer.classList.add('focused');
+      });
+
+      textInput.addEventListener('blur', () => {
+        inputContainer.classList.remove('focused');
+      });
+
+      // Dropdown functionality
+      dropdownButton.addEventListener('click', () => {
+        modelDropdown.classList.toggle('open');
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!modelDropdown.contains(event.target)) {
+          modelDropdown.classList.remove('open');
+        }
+      });
+
+      dropdownMenu.addEventListener('click', (event) => {
+        if (event.target.tagName === 'LI' || event.target.parentElement.tagName === 'LI') {
+          const selectedValue = event.target.closest('li').getAttribute('value');
+          const selectedName = event.target.closest('li').querySelector('p').textContent;
+          modelDropdown.querySelector('.dropdown-selected').textContent = selectedName;
+          currentModel = selectedValue;
+          modelDropdown.classList.remove('open');
+        }
+      });
+
+      function sendTextMessage() {
+        const message = textInput.value.trim();
+        if (!message) return;
+
+        displayMessage(message, 'user');
+        textInput.value = '';
+
+        fetchResponse(message);
+      }
+
+      function displayMessage(messageContent, senderType, modelName = '') {
+        removeInitialMessage();
+
+        const messageWrapper = document.createElement('div');
+        messageWrapper.className = `message ${senderType}`;
+
+        let senderLabel = senderType === 'user' ? 'You' : senderType === 'ai' ? 'AI' : 'Info';
+        if (senderType === 'ai' && modelName) {
+          senderLabel += ` (${modelName})`;
+        }
+
+        const senderLabelDiv = document.createElement('div');
+        senderLabelDiv.className = 'sender-label';
+        senderLabelDiv.textContent = senderLabel;
+
+        const messageContentDiv = document.createElement('div');
+        messageContentDiv.className = senderType === 'user' ? 'message-bubble' : 'message-plain';
+        messageContentDiv.innerHTML = formatMessageContent(messageContent);
+
+        messageWrapper.appendChild(senderLabelDiv);
+        messageWrapper.appendChild(messageContentDiv);
+
+        if (senderType === 'ai') {
+          const copyMessageBtn = document.createElement('button');
+          copyMessageBtn.className = 'copy-btn';
+          copyMessageBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>';
+          copyMessageBtn.onclick = () => copyToClipboard(messageContent);
+          messageWrapper.appendChild(copyMessageBtn);
+        }
+
+        chatBox.appendChild(messageWrapper);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      function formatMessageContent(message) {
+        return message
+          .replace(/```(\w+)?\n([\s\S]+?)```/g, (match, lang, code) => {
+            const escapedCode = escapeHTML(code);
+
+            return `
+              <div class="code-block">
+                <div class="code-header">
+                  <button class="copy-btn code-copy"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+                </div>
+                <pre><code class="language-${lang || 'plaintext'}">${escapedCode}</code></pre>
+              </div>
+            `;
+          })
+          .replace(/`([^`]+)`/g, (match, code) => `<code>${escapeHTML(code)}</code>`)
+      }
+
+      document.addEventListener("click", function (event) {
+        if (event.target.closest(".code-copy")) {
+          const codeBlock = event.target.closest(".code-block").querySelector("pre code").textContent;
+          copyToClipboard(codeBlock);
+        }
+      });
+
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Copied to clipboard!');
+        }).catch(err => console.error('Copy failed:', err));
+      }
+
+      function escapeHTML(str) {
+        return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+
+      async function fetchResponse(userMessage) {
+        const apiUrl = 'https://api.groq.com/openai/v1/chat/completions';
+        const systemPrompt = "You are a helpful AI assistant.";
+
+        const requestData = {
+          model: currentModel, // Use the variable instead of localStorage
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userMessage }
+          ],
+          temperature: 0.9,
+          max_tokens: 1024,
+          stream: false
+        };
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+          }
+
+          const { choices, model } = await response.json();
+          const reply = choices[0].message.content;
+          displayMessage(reply, 'ai', model);
+        } catch (err) {
+          console.error('Request Failed:', err);
+          displayMessage(`Failed to get a response. Details: ${err.message}`, 'error');
+        }
+      }
+
+      function removeInitialMessage() {
+        const initialMessage = chatBox.querySelector('.initial-message');
+        if (initialMessage) {
+          initialMessage.remove();
+          chatBox.classList.remove('center-message');
+        }
+      }
+
+      textInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+          event.preventDefault();
+          sendTextMessage();
+        }
+      });
+
+      sendBtn.addEventListener('click', () => {
+        sendTextMessage();
+      });
+    });
+  </script>
 </body>
+
 </html>
