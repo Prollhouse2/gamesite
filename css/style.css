@@ -1,155 +1,370 @@
-/* Global Styles */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+
+:root {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #25253a;
+  --accent-pink: #ff6b9d;
+  --accent-blue: #6b9dff;
+  --accent-purple: #9d6bff;
+  --text-primary: #ffffff;
+  --text-secondary: #c0c0d0;
+  --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+  --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #121212; /* Dark background */
-    background-image: url('https://cdn.pixabay.com/photo/2016/11/23/00/47/abstract-1852511_960_720.jpg'); /* Subtle texture */
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    color: #e0e0e0; /* Light gray for text */
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+  font-family: "Press Start 2P", cursive;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  background-image: none;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
-h1, h2 {
-    text-align: center;
-    color: #bb86fc; /* Light purple for headings */
-    text-shadow: 2px 2px 5px #000; /* Add some depth */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-a {
-    color: #03dac6; /* Teal color for links */
-    text-decoration: none;
+.logo {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+  letter-spacing: 1px;
+  margin: 1.5rem 0;
+  padding: 0.5rem 0;
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
-/* Search Bar */
-.search-container {
-    text-align: center;
-    margin-bottom: 20px;
+.logo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), transparent);
 }
 
-#searchInput {
-    padding: 10px;
-    border: 1px solid #03dac6; /* Teal outline for input */
-    border-radius: 5px;
-    background-color: #1e1e1e; /* Dark background */
-    color: #e0e0e0; /* Light text for contrast */
-    font-size: 16px;
-    width: 300px;
-    outline: none;
+h1, h2, h3 {
+  font-family: "Press Start 2P", cursive;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-/* Button Styles */
-.button-container,
-.button-container1 {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
-.button {
-    display: flex;                     /* Flexbox layout */
-    flex-direction: column;            /* Stack items vertically */
-    align-items: center;               /* Center items horizontally */
-    justify-content: center;           /* Center items vertically */
-    margin: 10px;
-    padding: 15px 20px;                /* Padding for the button */
-    background-color: #1f1f1f;         /* Slightly lighter dark background */
-    color: #e0e0e0;                     /* Light text color */
-    text-align: center;                /* Center text */
-    border: 2px solid transparent;     /* Border for aesthetics */
-    border-radius: 5px;                /* Rounded corners */
-    cursor: pointer;                   /* Pointer on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Shadow for depth */
-    transition: background-color 0.3s, transform 0.2s; /* Transition for hover */
-    text-decoration: none;             /* Remove underline from links */
+/* Navigation buttons - horizontal layout */
+.button, 
+button[class*="Games"],
+button[class*="Website"],
+button[class*="Source"],
+button[class*="Cheats"],
+button[class*="Save"],
+button[class*="Leaderboard"],
+button[class*="Discord"] {
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  padding: 1.25rem;
+  display: inline-block; /* Changed to inline-block for horizontal layout */
+  width: auto; /* Auto width */
+  min-width: 160px; /* Minimum width */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  margin: 0.5rem; /* Even spacing */
+  color: #ffffff; /* Ensure text color is white */
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.05), rgba(107, 157, 255, 0.05));
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: -1;
+  border-radius: 16px;
 }
 
 .button:hover {
-    background-color: #37474f;         /* Slightly brighter dark color on hover */
-    transform: scale(1.05);            /* Scale on hover */
+  transform: translateY(-5px);
+  background-color: var(--bg-tertiary);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover::before {
+  opacity: 1;
 }
 
 .button img {
-    width: 100px;                      /* Image width */
-    height: auto;                      /* Maintain aspect ratio */
-    margin-bottom: 5px;                /* Space between image and text */
-    border-radius: 10px;               /* Rounded image corners */
-    border: 2px solid #03dac6;         /* Teal border for images */
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid var(--accent-pink);
+  box-shadow: 0 0 0 3px rgba(107, 157, 255, 0.3);
+  transition: all var(--transition-normal);
+}
+
+.button:hover img {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 5px rgba(255, 107, 157, 0.3);
+  transform: scale(1.05);
+}
+
+/* Changed button text to solid white */
+.button span,
+button[class*="Games"],
+button[class*="Website"],
+button[class*="Source"],
+button[class*="Cheats"],
+button[class*="Save"],
+button[class*="Leaderboard"],
+button[class*="Discord"] {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 1.05rem;
 }
 
 .button span {
-    font-size: 16px;                   /* Font size */
-    font-weight: bold;                 /* Bold text */
-    color: #03dac6;                    /* Teal text color */
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.05rem;
 }
 
-.buttonnew {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    padding: 15px 20px;
-    background-color: #1f1f1f; /* Background color */
-    color: #e0e0e0; /* Light text */
-    text-align: center;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Add depth */
-    transition: background-color 0.3s, transform 0.2s;
-    width: 100%;
-    max-width: 200px;
+.game-section {
+  margin: 2rem 0;
+  text-align: center;
 }
 
-.buttonnew:hover {
-    background-color: #37474f; /* Brighter dark color for hover */
-    transform: scale(1.05); /* Slight zoom on hover */
+.game-card {
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  text-align: center;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.buttonnew img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-    border-radius: 10px; /* Rounded images */
-    border: 2px solid #03dac6; /* Teal border */
+.game-card:hover {
+  transform: translateY(-5px);
+  background-color: var(--bg-tertiary);
 }
 
-.buttonnew span {
-    font-size: 16px;
-    font-weight: bold;
-    color: #03dac6; /* Teal text for buttons */
+.game-card-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 1.5rem auto 1rem;
+  border: 4px solid transparent;
+  background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
+              linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
 }
 
-/* Footer */
-footer {
-    background-color: #121212; /* Match the main theme */
-    color: #03dac6; /* Teal for footer text */
-    padding: 20px;
-    text-align: center;
+
+/* Better font for game cards */
+.game-card-title {
+  font-family: "VT323", monospace;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
 }
 
-footer a {
-    color: #bb86fc; /* Light purple for footer links */
-    text-decoration: none;
-    font-size: 20px;
-    margin: 0 10px;
+.game-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
 }
 
-footer a:hover {
-    color: #03dac6; /* Teal for links on hover */
+.game-list li {
+  padding: 0.5rem 1rem;
+  margin: 0.25rem 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: all var(--transition-normal);
 }
 
-/* Miscellaneous */
-p {
-    margin: 10px 0;
-    color: #e0e0e0; /* Light text color */
-    text-align: center;
-    font-size: 14px;
+.game-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
 }
 
+.game-card-button {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  margin: 1rem 0;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.game-card-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+}
+
+/* Ensure all game titles have gradient effect */
+.game-title, 
+[class*="game"] h3, 
+[class*="game"] h4, 
+[class*="game"] .title,
+[id*="game"] h3,
+[id*="game"] h4,
+[id*="game"] .title,
+.slope, .retro-bowl, .gunship, .tvt-io, .block-blast,
+.idle-breakout, .learn-to-fly, .radiobasiscs, .gun-mayhem,
+.gun-mayhem-2, .wall-smash, .fnaf-1, .fnaf-2, .drift-boss {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: "VT323", monospace;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.section-divider {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), var(--accent-purple), transparent);
+  margin: 2.5rem auto;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-pink);
+  top: -1.5px;
+}
+
+.section-divider::before {
+  left: 20%;
+}
+
+.section-divider::after {
+  right: 20%;
+  background: var(--accent-blue);
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* Search bar styling with more rounded corners */
+input[type="text"], 
+input[type="search"] {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid var(--accent-blue);
+  border-radius: 9999px; /* Fully rounded corners for pill shape */
+  padding: 8px 16px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px rgba(107, 157, 255, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .button img,
+  .game-card-image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .logo,
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    padding: 1rem;
+    min-width: 140px;
+  }
+
+  .logo,
+  h1 {
+    font-size: 1.2rem;
+  }
+  
+  .game-card {
+    padding: 1rem;
+  }
 /* Adding Some Sparkle */
 body:after {
     content: '';
@@ -162,3 +377,81 @@ body:after {
     background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Subtle texture */
     opacity: 0.1; /* Less pronounced sparkle for a sleek design */
 }
+.game-title,
+[class*="game"] h3,
+[class*="game"] h4,
+[class*="game"] .title,
+[id*="game"] h3,
+[id*="game"] h4,
+[id*="game"] .title,
+.slope,
+.retro-bowl,
+.gunship,
+.tvt-io,
+.block-blast,
+.idle-breakout,
+.learn-to-fly,
+.radiobasiscs,
+.gun-mayhem,
+.gun-mayhem-2,
+.wall-smash,
+.fnaf-1,
+.fnaf-2,
+.drift-boss,
+/* Add these selectors to target all game text */
+  .button
+  span,
+.game-card-title,
+[class*="button"] span,
+[id*="button"] span,
+/* Target specific game titles that might be missed */
+  .black-jack,
+.fnaf,
+.dbz-devolution,
+.just-fall,
+.vex-3,
+.vex-4,
+.vex-5,
+.vex-6,
+.paper-io-2,
+.bitlife,
+.one,
+.subway-surfers,
+.smash-karts,
+.slope-ball,
+.moto-x3m,
+.cookie-clicker,
+.flappy-bird,
+.temple-run,
+.crossy-road,
+.eggy-car-tycoon,
+.retrobowl,
+.riddle-school,
+.square-fill,
+.jetpack-joyride,
+.geometry-dash,
+.duck-life,
+.gold-digger {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important; /* Force transparent color for gradient effect */
+  font-family: "VT323", monospace;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-shadow: none; /* Remove any text shadows that might interfere */
+}
+
+/* Add this to override any inline styles that might be applied */
+[style*="color: rgb(0, 0, 255)"],
+[style*="color: #0000ff"],
+[style*="color: blue"],
+[style*="color: darkblue"],
+[style*="color: rgb(0, 0, 128)"],
+[style*="color: #000080"] {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+

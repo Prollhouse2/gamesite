@@ -4,80 +4,265 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-            padding: 50px;
-        }
+        @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
 
-        h1 {
-            color: white;
-            margin-bottom: 20px;
-        }
+:root {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #25253a;
+  --accent-pink: #ff6b9d;
+  --accent-blue: #6b9dff;
+  --accent-purple: #9d6bff;
+  --text-primary: #ffffff;
+  --text-secondary: #c0c0d0;
+  --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+  --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
-        button {
-            padding: 15px 20px;
-            font-size: 18px;
-            background-color: #444;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            width: 200px;
-        }
+body {
+  font-family: "Press Start 2P", cursive;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 50px;
+  text-align: center;
+  line-height: 1.6;
+  min-height: 100vh;
+}
 
-        button:hover {
-            background-color: #555;
-        }
+h1, h2, h3 {
+  font-family: "Press Start 2P", cursive;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
 
-        .modal-content {
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            background-color: rgba(54, 54, 54, 0.9);
-        }
+button {
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  padding: 15px 20px;
+  font-size: 18px;
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  color: #ffffff;
+  margin: 0.5rem;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.9rem;
+}
 
-        .close {
-            color: white;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.05), rgba(107, 157, 255, 0.05));
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: -1;
+  border-radius: 16px;
+}
 
-        #faviconSelection img {
-            width: 100px;
-            height: 100px;
-            display: inline-block;
-            margin: 10px;
-            cursor: pointer;
-            transition: border 0.3s;
-        }
+button:hover {
+  transform: translateY(-5px);
+  background-color: var(--bg-tertiary);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
 
-        #faviconSelection img:hover {
-            border: 2px solid #555;
-        }
+button:hover::before {
+  opacity: 1;
+}
 
-        #autoClickerModal input {
-            width: 50px;
-            text-align: center;
-        }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  margin: 15% auto;
+  padding: 20px;
+  border: 2px solid var(--accent-blue);
+  width: 80%;
+  max-width: 600px;
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.close {
+  color: var(--text-primary);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color var(--transition-normal);
+}
+
+.close:hover {
+  color: var(--accent-pink);
+}
+
+#faviconSelection img {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border-radius: 12px;
+  border: 3px solid transparent;
+}
+
+#faviconSelection img:hover {
+  transform: scale(1.05);
+  border: 3px solid var(--accent-pink);
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+}
+
+input[type="text"],
+input[type="number"] {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid var(--accent-blue);
+  border-radius: 9999px;
+  padding: 8px 16px;
+  margin: 10px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px rgba(107, 157, 255, 0.3);
+}
+
+input[type="text"] {
+  width: 50px;
+  text-align: center;
+}
+
+input[type="number"] {
+  width: 100px;
+  text-align: center;
+}
+
+label {
+  font-family: "VT323", monospace;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin: 10px 0;
+  display: inline-block;
+}
+
+#saveKeybind,
+#saveAutoClickerSettings {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  margin: 1rem 0;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  display: inline-block;
+  width: auto;
+}
+
+#saveKeybind:hover,
+#saveAutoClickerSettings:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+}
+
+#autoClickerStatusMessage {
+  color: var(--accent-pink);
+  font-family: "VT323", monospace;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.section-divider {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), var(--accent-purple), transparent);
+  margin: 2.5rem auto;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 3px;
+  position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 30px;
+  }
+  
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+  
+  button {
+    width: 180px;
+    font-size: 0.8rem;
+  }
+  
+  #faviconSelection img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+  
+  button {
+    width: 160px;
+    padding: 12px 15px;
+    font-size: 0.7rem;
+  }
+  
+  #faviconSelection img {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+  }
+  
+  .modal-content {
+    margin-top: 20%;
+  }
+}
     </style>
 </head>
     <h1>Settings</h1>
