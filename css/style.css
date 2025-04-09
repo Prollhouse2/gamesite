@@ -442,38 +442,23 @@ body:after {
   text-shadow: none; /* Remove any text shadows that might interfere */
 }
 
-/* Add this to override any inline styles that might be applied */
-[style*="color: rgb(0, 0, 255)"],
-[style*="color: #0000ff"],
-[style*="color: blue"],
-[style*="color: darkblue"],
-[style*="color: rgb(0, 0, 128)"],
-[style*="color: #000080"] {
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
+/* Force black text in search inputs - high specificity override */
+html body input[type="text"],
+html body input[type="search"],
+html body input[type="email"],
+html body input[type="password"],
+html body input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+html body .search-input,
+html body [id*="search"],
+html body [class*="search"],
+html body form input {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  caret-color: #000000 !important;
 }
 
-input[type="text"], 
-input[type="search"] {
-  background-color: #ffffff;
-  color: #000000 !important; /* Added !important to override any conflicting styles */
-  border: 2px solid var(--accent-blue);
-  border-radius: 9999px;
-  padding: 8px 16px;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  display: block;
-  font-family: "Press Start 2P", cursive;
-  font-size: 0.8rem;
-  box-shadow: 0 2px 8px rgba(107, 157, 255, 0.3);
-}
-.container input[type="search"],
-#search,
-.search-input,
-[id*="search"],
-[class*="search"] {
-  color: #000000 !important;
+/* Target input placeholder text as well */
+::placeholder {
+  color: #666666 !important;
+  opacity: 1 !important;
 }
