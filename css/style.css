@@ -455,3 +455,25 @@ body:after {
   color: transparent !important;
 }
 
+input[type="text"], 
+input[type="search"] {
+  background-color: #ffffff;
+  color: #000000 !important; /* Added !important to override any conflicting styles */
+  border: 2px solid var(--accent-blue);
+  border-radius: 9999px;
+  padding: 8px 16px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px rgba(107, 157, 255, 0.3);
+}
+.container input[type="search"],
+#search,
+.search-input,
+[id*="search"],
+[class*="search"] {
+  color: #000000 !important;
+}
