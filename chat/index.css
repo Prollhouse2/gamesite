@@ -19,15 +19,19 @@ body {
   color: var(--text-primary);
   margin: 0;
   padding: 0;
-  background-image: none;
   line-height: 1.6;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-  max-width: 1200px;
+  width: 90%;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+  text-align: center;
 }
 
 .logo {
@@ -40,261 +44,12 @@ body {
   color: transparent;
   text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
   letter-spacing: 1px;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   padding: 0.5rem 0;
   position: relative;
   display: block;
   text-align: center;
   width: 100%;
-}
-
-.logo::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), transparent);
-}
-
-h1,
-h2,
-h3 {
-  font-family: "Press Start 2P", cursive;
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-h1 {
-  font-size: 1.8rem;
-}
-h2 {
-  font-size: 1.5rem;
-}
-h3 {
-  font-size: 1.2rem;
-}
-
-.button-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  position: relative;
-  z-index: 1;
-}
-
-/* Navigation buttons - horizontal layout */
-.button,
-button[class*="Games"],
-button[class*="Website"],
-button[class*="Source"],
-button[class*="Cheats"],
-button[class*="Save"],
-button[class*="Leaderboard"],
-button[class*="Discord"] {
-  background-color: var(--bg-secondary);
-  border-radius: 16px;
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
-  padding: 1.25rem;
-  display: inline-block; /* Changed to inline-block for horizontal layout */
-  width: auto; /* Auto width */
-  min-width: 160px; /* Minimum width */
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  border: none;
-  margin: 0.5rem; /* Even spacing */
-  color: #ffffff; /* Ensure text color is white */
-}
-
-.button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.05), rgba(107, 157, 255, 0.05));
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  z-index: -1;
-  border-radius: 16px;
-}
-
-.button:hover {
-  transform: translateY(-5px);
-  background-color: var(--bg-tertiary);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-}
-
-.button:hover::before {
-  opacity: 1;
-}
-
-.button img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-  border: 3px solid var(--accent-pink);
-  box-shadow: 0 0 0 3px rgba(107, 157, 255, 0.3);
-  transition: all var(--transition-normal);
-}
-
-.button:hover img {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 5px rgba(255, 107, 157, 0.3);
-  transform: scale(1.05);
-}
-
-/* Changed button text to solid white */
-.button span,
-button[class*="Games"],
-button[class*="Website"],
-button[class*="Source"],
-button[class*="Cheats"],
-button[class*="Save"],
-button[class*="Leaderboard"],
-button[class*="Discord"] {
-  font-weight: 600;
-  color: #ffffff;
-  font-size: 1.05rem;
-}
-
-.button span {
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-size: 1.05rem;
-}
-
-.game-section {
-  margin: 2rem 0;
-  text-align: center;
-}
-
-.game-card {
-  background-color: var(--bg-secondary);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
-  text-align: center;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.game-card:hover {
-  transform: translateY(-5px);
-  background-color: var(--bg-tertiary);
-}
-
-.game-card-image {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin: 1.5rem auto 1rem;
-  border: 4px solid transparent;
-  background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
-    linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
-}
-
-/* Better font for game cards */
-.game-card-title {
-  font-family: "VT323", monospace;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  letter-spacing: 1px;
-}
-
-.game-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 1rem 0;
-  text-align: left;
-}
-
-.game-list li {
-  padding: 0.5rem 1rem;
-  margin: 0.25rem 0;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  transition: all var(--transition-normal);
-}
-
-.game-list li:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
-}
-
-.game-card-button {
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  color: #ffffff;
-  border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  margin: 1rem 0;
-  font-weight: 600;
-  transition: all var(--transition-normal);
-  cursor: pointer;
-  display: inline-block;
-}
-
-.game-card-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
-}
-
-/* Ensure all game titles have gradient effect */
-.game-title,
-[class*="game"] h3,
-[class*="game"] h4,
-[class*="game"] .title,
-[id*="game"] h3,
-[id*="game"] h4,
-[id*="game"] .title,
-.slope,
-.retro-bowl,
-.gunship,
-.tvt-io,
-.block-blast,
-.idle-breakout,
-.learn-to-fly,
-.radiobasiscs,
-.gun-mayhem,
-.gun-mayhem-2,
-.wall-smash,
-.fnaf-1,
-.fnaf-2,
-.drift-boss {
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-family: "VT323", monospace;
-  font-size: 1.3rem;
-  letter-spacing: 1px;
 }
 
 .section-divider {
@@ -307,186 +62,93 @@ button[class*="Discord"] {
     var(--accent-purple),
     transparent
   );
-  margin: 2.5rem auto;
+  margin: 1.5rem auto;
   width: 80%;
   max-width: 600px;
   border-radius: 3px;
   position: relative;
 }
 
-.section-divider::before,
-.section-divider::after {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-pink);
-  top: -1.5px;
+.discord-container {
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin: 1rem auto;
+  position: relative;
 }
 
-.section-divider::before {
-  left: 20%;
-}
-
-.section-divider::after {
-  right: 20%;
-  background: var(--accent-blue);
-}
-
-.status-bar {
+.discord-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  background-color: var(--bg-secondary);
-  border-radius: 9999px;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
+  background-color: var(--bg-tertiary);
 }
 
-/* Search bar styling with more rounded corners */
-input[type="text"],
-input[type="search"] {
-  background-color: #ffffff;
-  color: #000000;
-  border: 2px solid var(--accent-blue);
-  border-radius: 9999px; /* Fully rounded corners for pill shape */
-  padding: 8px 16px;
+.discord-header h2 {
+  font-family: "VT323", monospace;
+  font-size: 1.5rem;
+  margin: 0;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
+}
+
+.fullscreen-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.fullscreen-btn:hover {
+  color: var(--accent-pink);
+  transform: scale(1.1);
+}
+
+.discord-frame {
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  display: block;
-  font-family: "Press Start 2P", cursive;
-  font-size: 0.8rem;
-  box-shadow: 0 2px 8px rgba(107, 157, 255, 0.3);
+  height: 500px;
+  border: none;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .button img,
-  .game-card-image {
-    width: 70px;
-    height: 70px;
+  .logo {
+    font-size: 1.5rem;
   }
 
-  .logo,
-  h1 {
-    font-size: 1.5rem;
+  .discord-frame {
+    height: 400px;
   }
 }
 
 @media (max-width: 480px) {
-  .button {
-    padding: 1rem;
-    min-width: 140px;
-  }
-
-  .logo,
-  h1 {
+  .logo {
     font-size: 1.2rem;
   }
 
-  .game-card {
-    padding: 1rem;
+  .discord-frame {
+    height: 350px;
   }
 }
 
-/* Adding Some Sparkle */
-body:after {
-  content: "";
+/* Fullscreen mode */
+.fullscreen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  background: url("https://www.transparenttextures.com/patterns/stardust.png"); /* Subtle texture */
-  opacity: 0.1; /* Less pronounced sparkle for a sleek design */
+  z-index: 1000;
+  border-radius: 0;
 }
 
-.game-title,
-[class*="game"] h3,
-[class*="game"] h4,
-[class*="game"] .title,
-[id*="game"] h3,
-[id*="game"] h4,
-[id*="game"] .title,
-.slope,
-.retro-bowl,
-.gunship,
-.tvt-io,
-.block-blast,
-.idle-breakout,
-.learn-to-fly,
-.radiobasiscs,
-.gun-mayhem,
-.gun-mayhem-2,
-.wall-smash,
-.fnaf-1,
-.fnaf-2,
-.drift-boss,
-/* Add these selectors to target all game text */
-  .button
-  span,
-.game-card-title,
-[class*="button"] span,
-[id*="button"] span,
-/* Target specific game titles that might be missed */
-  .black-jack,
-.fnaf,
-.dbz-devolution,
-.just-fall,
-.vex-3,
-.vex-4,
-.vex-5,
-.vex-6,
-.paper-io-2,
-.bitlife,
-.one,
-.subway-surfers,
-.smash-karts,
-.slope-ball,
-.moto-x3m,
-.cookie-clicker,
-.flappy-bird,
-.temple-run,
-.crossy-road,
-.eggy-car-tycoon,
-.retrobowl,
-.riddle-school,
-.square-fill,
-.jetpack-joyride,
-.geometry-dash,
-.duck-life,
-.gold-digger {
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent !important; /* Force transparent color for gradient effect */
-  font-family: "VT323", monospace;
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  text-shadow: none; /* Remove any text shadows that might interfere */
-}
-
-/* Force black text in search inputs - high specificity override */
-html body input[type="text"],
-html body input[type="search"],
-html body input[type="email"],
-html body input[type="password"],
-html body input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
-html body .search-input,
-html body [id*="search"],
-html body [class*="search"],
-html body form input {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-  caret-color: #000000 !important;
-}
-
-/* Target input placeholder text as well */
-::placeholder {
-  color: #666666 !important;
-  opacity: 1 !important;
+.fullscreen .discord-frame {
+  height: calc(100% - 50px);
 }
