@@ -1,59 +1,35 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proll Services: Discord</title>
-    <link rel="stylesheet" href="chat/index.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <h1 class="logo">Proll Services</h1>
         
-        <div class="status-bar">
-            <span>Online: <span id="online-count">0</span></span>
-            <span>Last Updated: <span id="last-updated">Now</span></span>
-        </div>
+        <div class="section-divider"></div>
         
-        <div class="game-section">
-            <h2>Join Our Discord Community</h2>
-            <p>Connect with other gamers, get support, and stay updated on the latest news!</p>
-            
-            <div class="section-divider"></div>
-            
-            <div class="button-container">
-                <button class="button">
-                    <span>Games</span>
-                </button>
-                <button class="button">
-                    <span>Website</span>
-                </button>
-                <button class="button">
-                    <span>Source</span>
-                </button>
-                <button class="button">
-                    <span>Discord</span>
+        <div class="discord-container">
+            <div class="discord-header">
+                <h2>Discord Chat</h2>
+                <button id="fullscreen-btn" class="fullscreen-btn">
+                    <i class="fas fa-expand"></i>
                 </button>
             </div>
             
-            <div class="section-divider"></div>
-            
-            <div class="game-card">
-                <h3 class="game-card-title">Discord Chat</h3>
-                <p>Chat with our community directly from this page!</p>
-                <p>Click the chat icon in the bottom right corner to open the chat.</p>
-            </div>
+            <!-- Discord widget embedded directly -->
+            <iframe 
+                src="https://e.widgetbot.io/channels/1225803415116972242/1341867678352146474" 
+                class="discord-frame"
+                allow="clipboard-write; clipboard-read">
+            </iframe>
         </div>
     </div>
 
-    <!-- Crate Discord Widget -->
-    <script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
-        new Crate({
-            server: '1225803415116972242', // Proll's Services
-            channel: '1341867678352146474' // #general
-        })
-    </script>
-    
-    <script src="script.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
