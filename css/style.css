@@ -15,14 +15,15 @@
 
 body {
   font-family: "Press Start 2P", cursive;
-  background-color: var(--bg-primary);
+  background: url("assets/bg.jpg") no-repeat center center fixed;
+  background-size: cover;
   color: var(--text-primary);
   margin: 0;
   padding: 0;
-  background-image: none;
   line-height: 1.6;
   min-height: 100vh;
 }
+
 
 .container {
   max-width: 1200px;
