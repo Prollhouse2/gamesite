@@ -19,6 +19,7 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" type="text/css" href="css/footing.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script type="4eb4c4b873f690b6829c2881-text/javascript">
     // Function to load total time spent and display it
     function displayTotalTimeSpent() {
@@ -72,6 +73,19 @@
             left: 0;
             z-index: -1;
         }
+.container {
+      text-align: center;
+      padding: 20px;
+    }
+    .social-icons a {
+      margin: 0 10px;
+      font-size: 24px;
+      color: #5865F2; /* Discord's brand color */
+      text-decoration: none;
+    }
+    .social-icons a.github {
+      color: #333; /* GitHub color */
+    }
     </style>
 </head>
 <body>
@@ -82,6 +96,11 @@
         <h1>Proll's School V4.7</h1>
         <center><a>We Have a New Discord. Please join to stay up to date, request games, and find the newest website links. (discord.gg/proll)</a>
         <center><a>New google search coming soon!</a>
+
+ <div class="social-icons">
+      <a href="https://discord.gg/proll" target="_blank"><i class="fab fa-discord"></i></a>
+      <a href="https://github.com/Prollhouse2/gamesite" target="_blank" class="github"><i class="fab fa-github"></i></a>
+
 </center><br></br>
         <center>
             <a>Time Spent: </a><span id="timeSpent">Loading...</span>
