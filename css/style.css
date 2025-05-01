@@ -938,3 +938,27 @@ button a span {
 .star-animation {
   animation: star-pulse 0.5s ease;
 }
+.favorite-star {
+  transition: all 0.3s ease;
+}
+
+.favorite-star:hover {
+  transform: scale(1.2);
+  color: gold !important;
+}
+
+.no-favorites-message {
+  padding: 20px;
+  color: #888;
+  font-style: italic;
+  text-align: center;
+}
+
+#favorites-section {
+  margin-bottom: 20px;
+}
+
+.button {
+  position: relative !important;
+  overflow: hidden;
+}
