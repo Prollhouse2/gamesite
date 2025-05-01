@@ -4,6 +4,7 @@ function openGame(gameFile, downloadFile) {
   document.getElementById("game-modal").style.display = "block";
   document.getElementById("modal-overlay").style.display = "block";
 
+  // Set download attributes if provided
   if (downloadFile) {
     document.getElementById("download-button").setAttribute("href", downloadFile);
     document.getElementById("download-button").setAttribute("download", downloadFile);
@@ -11,6 +12,8 @@ function openGame(gameFile, downloadFile) {
   } else {
     document.getElementById("download-button").style.display = "none";
   }
+
+  // Make sure footer stays visible
   document.querySelector("footer").style.position = "relative";
   document.querySelector("footer").style.zIndex = "1000";
 }
@@ -23,20 +26,28 @@ function closeGame() {
 
 function openGameInNewTab() {
   const gameFile = document.getElementById("game-iframe").src;
-  if (gameFile) window.open(gameFile, "_blank");
+  if (gameFile) {
+    window.open(gameFile, "_blank");
+  }
 }
 
 function toggleFullScreen() {
   const iframe = document.getElementById("game-iframe");
-  if (iframe.requestFullscreen) iframe.requestFullscreen();
-  else if (iframe.mozRequestFullScreen) iframe.mozRequestFullScreen();
-  else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
-  else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.mozRequestFullScreen) {
+    iframe.mozRequestFullScreen();
+  } else if (iframe.webkitRequestFullscreen) {
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) {
+    iframe.msRequestFullscreen();
+  }
 }
 
 // ===== FAVORITES FUNCTIONALITY =====
 function getFavorites() {
-  return JSON.parse(localStorage.getItem("favoriteGames")) || [];
+  const favorites = localStorage.getItem("favoriteGames");
+  return favorites ? JSON.parse(favorites) : [];
 }
 
 function saveFavorites(favorites) {
@@ -47,24 +58,35 @@ function toggleFavorite(event) {
   event.stopPropagation();
   event.preventDefault();
 
-  const star = event.target.closest(".favorite-star");
-  const button = star.closest(".button");
-  const link = button.querySelector("a");
-  const gamePath = link.getAttribute("href");
-  const gameTitle = link.querySelector("span")?.textContent.trim() || "";
-  const gameImg = link.querySelector("img")?.src || "";
+  const starIcon = event.target;
+  const gameButton = starIcon.closest(".button");
+  const gameLink = gameButton.querySelector("a");
+  
+  if (!gameLink) return;
+  
+  const gamePath = gameLink.getAttribute("href");
+  const gameTitle = gameLink.querySelector("span")?.textContent.trim() || '';
+  const gameImage = gameLink.querySelector("img")?.getAttribute("src") || '';
 
   const favorites = getFavorites();
-  const existingIndex = favorites.findIndex(f => f.path === gamePath);
+  const index = favorites.findIndex(game => game.path === gamePath);
 
-  if (existingIndex === -1) {
-    favorites.push({ path: gamePath, title: gameTitle, image: gameImg });
-    star.classList.replace("far", "fas");
-    star.style.color = "gold";
+  if (index === -1) {
+    // Add to favorites
+    favorites.push({
+      path: gamePath,
+      title: gameTitle,
+      image: gameImage,
+    });
+    starIcon.classList.remove("far");
+    starIcon.classList.add("fas");
+    starIcon.style.color = "#FFD700";
   } else {
-    favorites.splice(existingIndex, 1);
-    star.classList.replace("fas", "far");
-    star.style.color = "#ccc";
+    // Remove from favorites
+    favorites.splice(index, 1);
+    starIcon.classList.remove("fas");
+    starIcon.classList.add("far");
+    starIcon.style.color = "#ffffff";
   }
 
   saveFavorites(favorites);
@@ -73,83 +95,113 @@ function toggleFavorite(event) {
 
 function updateFavoritesSection() {
   const favorites = getFavorites();
-  const container = document.getElementById("favorites-container");
-  container.innerHTML = "";
+  const favoritesContainer = document.getElementById("favorites-container");
+
+  // Clear current favorites
+  favoritesContainer.innerHTML = "";
 
   if (favorites.length === 0) {
-    container.innerHTML = '<div class="no-favorites">Star games to add them here!</div>';
+    const message = document.createElement("div");
+    message.className = "no-favorites-message";
+    message.textContent = "Star your favorite games to see them here!";
+    favoritesContainer.appendChild(message);
     document.getElementById("favorites-section").style.display = "none";
-    return;
-  }
+  } else {
+    document.getElementById("favorites-section").style.display = "block";
 
-  document.getElementById("favorites-section").style.display = "block";
-  favorites.forEach(game => {
-    const button = document.createElement("button");
-    button.className = "button";
-    button.innerHTML = `
-      <div class="game-button-wrapper">
-        <i class="fas fa-star favorite-star" style="color: gold"></i>
-        <a href="${game.path}" style="text-decoration: none">
-          <img src="${game.image}" alt="${game.title}">
-          <span><br>${game.title}</span>
-        </a>
-      </div>
-    `;
-    button.querySelector(".favorite-star").addEventListener("click", toggleFavorite);
-    button.querySelector("a").addEventListener("click", e => {
-      e.preventDefault();
-      openGame(game.path);
+    favorites.forEach((game) => {
+      const button = document.createElement("button");
+      button.className = "button";
+
+      const link = document.createElement("a");
+      link.href = game.path;
+      link.style.textDecoration = "none";
+
+      const img = document.createElement("img");
+      img.src = game.image;
+      img.alt = game.title;
+
+      const span = document.createElement("span");
+      span.innerHTML = `<br>${game.title}`;
+
+      const starIcon = document.createElement("i");
+      starIcon.className = "fas fa-star favorite-star";
+      starIcon.style.color = "#FFD700";
+      starIcon.addEventListener("click", toggleFavorite);
+
+      link.appendChild(img);
+      link.appendChild(span);
+      button.appendChild(link);
+      button.appendChild(starIcon);
+
+      favoritesContainer.appendChild(button);
     });
-    container.appendChild(button);
-  });
+
+    // Add click handlers to favorite game buttons
+    const favoriteGameButtons = favoritesContainer.querySelectorAll(".button a");
+    favoriteGameButtons.forEach((button) => {
+      button.addEventListener("click", function(e) {
+        e.preventDefault();
+        openGame(this.getAttribute("href"));
+      });
+    });
+  }
 }
 
-function addStarsToAllButtons() {
-  document.querySelectorAll(".button").forEach(button => {
+function addStarIconsToGames() {
+  const gameButtons = document.querySelectorAll(".button-container .button, .regular-games .button");
+  
+  gameButtons.forEach(button => {
     if (button.querySelector(".favorite-star")) return;
     
-    const wrapper = document.createElement("div");
-    wrapper.className = "game-button-wrapper";
-    wrapper.innerHTML = button.innerHTML;
-    
-    const star = document.createElement("i");
-    star.className = "far fa-star favorite-star";
-    star.style.color = "#ccc";
-    
-    const favorites = getFavorites();
-    const link = button.querySelector("a");
-    if (link) {
-      const gamePath = link.getAttribute("href");
-      if (favorites.some(f => f.path === gamePath)) {
-        star.className = "fas fa-star favorite-star";
-        star.style.color = "gold";
+    const gameLink = button.querySelector("a");
+    if (gameLink) {
+      const starIcon = document.createElement("i");
+      starIcon.className = "far fa-star favorite-star";
+      starIcon.style.position = "absolute";
+      starIcon.style.top = "5px";
+      starIcon.style.right = "5px";
+      starIcon.style.cursor = "pointer";
+      starIcon.style.zIndex = "10";
+      starIcon.style.color = "#ffffff";
+      starIcon.style.transition = "all 0.3s ease";
+      
+      starIcon.addEventListener("click", toggleFavorite);
+      
+      button.style.position = "relative";
+      button.appendChild(starIcon);
+      
+      // Initialize star state
+      const favorites = getFavorites();
+      const gamePath = gameLink.getAttribute("href");
+      if (favorites.some(game => game.path === gamePath)) {
+        starIcon.classList.remove("far");
+        starIcon.classList.add("fas");
+        starIcon.style.color = "#FFD700";
       }
     }
-    
-    wrapper.prepend(star);
-    button.innerHTML = "";
-    button.appendChild(wrapper);
-    
-    star.addEventListener("click", toggleFavorite);
   });
 }
 
 // ===== INITIALIZATION =====
 document.addEventListener("DOMContentLoaded", () => {
-  // Game buttons
-  document.querySelectorAll(".button a").forEach(link => {
-    link.addEventListener("click", e => {
+  // Initialize game buttons
+  const gameButtons = document.querySelectorAll(".button a");
+  gameButtons.forEach((button) => {
+    button.addEventListener("click", function(e) {
       e.preventDefault();
-      openGame(link.getAttribute("href"));
+      openGame(this.getAttribute("href"));
     });
   });
 
-  // Add stars to all buttons
-  addStarsToAllButtons();
+  // Add star icons to all games
+  addStarIconsToGames();
   
-  // Initialize favorites
+  // Initialize favorites section
   updateFavoritesSection();
 
-  // Modal handling
-  document.querySelector(".game-modal").addEventListener("click", e => e.stopPropagation());
+  // Modal click handling
+  document.querySelector(".game-modal").addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 });
