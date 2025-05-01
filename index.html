@@ -86,50 +86,151 @@
     .social-icons a.github {
       color: #333; /* GitHub color */
     }
+/* Game Modal Styling */
 .game-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            height: 90%;
-            background-color: #282a36;
-            z-index: 3000;
-            border-radius: 50px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-        }
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background-color: #282a36;
+  z-index: 3000;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(157, 107, 255, 0.4);
+  border: 1px solid rgba(255, 107, 157, 0.3);
+}
 
-        .game-iframe {
-            width: 100%;
-            height: calc(100% - 80px);
-            border: none;
-            border-radius: 50px;
-        }
+.game-iframe {
+  width: 100%;
+  height: calc(100% - 60px); /* Increased space for the icon bar */
+  border: none;
+}
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
+.icon-bar {
+  display: flex;
+  justify-content: center; /* Center the icons */
+  align-items: center;
+  gap: 30px; /* More space between icons */
+  height: 60px; /* Taller icon bar */
+  background: linear-gradient(to right, rgba(26, 26, 46, 0.9), rgba(37, 37, 58, 0.9));
+  padding: 0 15px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
-        .modal-content {
-            background-color: #1a1a1a;
-            margin: 10% auto;
-            padding: 20px;
-            border: 4px solid #060080;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 13px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+.icon-bar i {
+  color: #ffffff;
+  font-size: 24px; /* Larger icons */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 8px;
+  width: 45px; /* Fixed width */
+  height: 45px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-bar i:hover {
+  color: var(--accent-pink);
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+}
+
+/* Add a close button in the top-right corner */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 107, 157, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3001;
+  font-size: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.close-button:hover {
+  background: rgba(255, 107, 157, 1);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.7);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2999;
+  backdrop-filter: blur(3px);
+}
+
+/* Make sure footer stays visible and doesn't get pulled into modal */
+footer {
+  position: relative;
+  z-index: 1000; /* Lower than modal but higher than regular content */
+  padding: 0.8rem;
+  margin-top: 1rem;
+  background-color: var(--bg-secondary);
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+/* Ensure footer social icons stay in footer */
+footer .social-icons {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .social-icons a {
+  margin: 0 15px;
+  font-size: 28px; /* Larger icons */
+  color: #5865f2; /* Discord's brand color */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+footer .social-icons a.github {
+  color: #333; /* GitHub color */
+}
+
+/* Add highlight effect for footer icons */
+footer .social-icons a:hover {
+  color: var(--accent-pink) !important;
+  transform: scale(1.15);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
+}
+
+/* Ensure the game modal doesn't affect the footer */
+.game-modal,
+.modal-overlay {
+  position: fixed;
+}
+
     </style>
 </head>
 <body>
@@ -415,7 +516,7 @@
     <div class="icon-bar">
         <i class="fas fa-times" onclick="closeGame();" title="Close Game"></i>
         <i class="fas fa-external-link-alt" onclick="openGameInNewTab();" title="Open in New Tab"></i>
-        <i class="fas fa-download" id="download-button" download="" title="Download Game"></i>
+        <i class="fas fa-download" id="download-button" onclick="openGameInNewTab();" title="Download Game"></i>
         <i class="fas fa-key" onclick="window.open('https://learn.lcps.org/', '_blank');" title="Key"></i>
         <i class="fas fa-expand-arrows-alt" onclick="toggleFullScreen();" title="Full Screen"></i>
     </div>
