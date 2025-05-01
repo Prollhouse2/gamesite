@@ -268,7 +268,7 @@
     </div>
 
 <div class="game-modal" id="game-modal">
-        <iframe class="game-iframe" id="game-iframe" src=""></iframe>
+        <iframe class="game-iframe" id="game-iframe" src="/placeholder.svg"></iframe>
         <div class="icon-bar">
             <i class="fas fa-times" onclick="closeGame();" title="Close Game"></i>
             <i class="fas fa-external-link-alt" onclick="openGameInNewTab();" title="Open in New Tab"></i>
@@ -404,6 +404,26 @@
             document.getElementById('settings-modal').style.display = 'none';
         }
   </script>
+
+<!-- Modal overlay -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeGame();"></div>
+
+<!-- Update your game modal HTML to include a close button -->
+<div class="game-modal" id="game-modal">
+    <button class="close-button" onclick="closeGame();">×</button>
+    <iframe class="game-iframe" id="game-iframe" src="/placeholder.svg"></iframe>
+    <div class="icon-bar">
+        <i class="fas fa-times" onclick="closeGame();" title="Close Game"></i>
+        <i class="fas fa-external-link-alt" onclick="openGameInNewTab();" title="Open in New Tab"></i>
+        <i class="fas fa-download" id="download-button" download="" title="Download Game"></i>
+        <i class="fas fa-key" onclick="window.open('https://learn.lcps.org/', '_blank');" title="Key"></i>
+        <i class="fas fa-expand-arrows-alt" onclick="toggleFullScreen();" title="Full Screen"></i>
+    </div>
+</div>
+
+
+<link rel="stylesheet" type="text/css" href="css/modal-styles.css" />
+<script src="js/index.js"></script>
 
 
 <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="4eb4c4b873f690b6829c2881-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"902eefc78fe6ab2a","version":"2025.1.0","r":1,"token":"ac2fae8692964b53a1e26c9ab0d0ee2f","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
