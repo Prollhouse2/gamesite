@@ -63,3 +63,113 @@ document.addEventListener("DOMContentLoaded", () => {
     e.stopPropagation() // Prevent clicks from affecting elements behind the modal
   })
 })
+// ===== FAVORITES FUNCTIONALITY =====
+// Get favorites from localStorage
+function getFavorites() {
+  const favorites = localStorage.getItem("favoriteGames")
+  return favorites ? JSON.parse(favorites) : []
+}
+
+// Save favorites to localStorage
+function saveFavorites(favorites) {
+  localStorage.setItem("favoriteGames", JSON.stringify(favorites))
+}
+
+// Toggle favorite status for a game
+function toggleFavorite(event) {
+  event.stopPropagation()
+
+  const gameButton = event.target.closest(".button")
+  const gameLink = gameButton.querySelector("a")
+  const gamePath = gameLink.getAttribute("href")
+  const gameTitle = gameLink.querySelector("span").textContent.trim()
+  const gameImage = gameLink.querySelector("img").getAttribute("src")
+
+  const favorites = getFavorites()
+
+  // Check if game is already a favorite
+  const index = favorites.findIndex((game) => game.path === gamePath)
+
+  if (index === -1) {
+    // Add to favorites
+    favorites.push({
+      path: gamePath,
+      title: gameTitle,
+      image: gameImage,
+    })
+    event.target.classList.remove("far")
+    event.target.classList.add("fas")
+    event.target.style.color = "#FFD700" // Gold color for active star
+  } else {
+    // Remove from favorites
+    favorites.splice(index, 1)
+    event.target.classList.remove("fas")
+    event.target.classList.add("far")
+    event.target.style.color = "#ffffff" // White color for inactive star
+  }
+
+  saveFavorites(favorites)
+  updateFavoritesSection()
+}
+
+// Update the favorites section with current favorites
+function updateFavoritesSection() {
+  const favorites = getFavorites()
+  const favoritesContainer = document.getElementById("favorites-container")
+
+  // Clear current favorites
+  favoritesContainer.innerHTML = ""
+
+  // If no favorites, show a message
+  if (favorites.length === 0) {
+    const message = document.createElement("div")
+    message.className = "no-favorites-message"
+    message.textContent = "Star your favorite games to see them here!"
+    favoritesContainer.appendChild(message)
+
+    // Hide the favorites section if there are no favorites
+    document.getElementById("favorites-section").style.display = "none"
+  } else {
+    // Show the favorites section
+    document.getElementById("favorites-section").style.display = "block"
+
+    // Add each favorite game
+    favorites.forEach((game) => {
+      const button = document.createElement("button")
+      button.className = "button"
+
+      const link = document.createElement("a")
+      link.href = game.path
+      link.style.textDecoration = "none"
+
+      const img = document.createElement("img")
+      img.src = game.image
+      img.alt = game.title
+
+      const span = document.createElement("span")
+      span.innerHTML = `<br>${game.title}`
+
+      const starIcon = document.createElement("i")
+      starIcon.className = "fas fa-star favorite-star"
+      starIcon.style.color = "#FFD700" // Gold color
+      starIcon.addEventListener("click", toggleFavorite)
+
+      link.appendChild(img)
+      link.appendChild(span)
+      button.appendChild(link)
+      button.appendChild(starIcon)
+
+      favoritesContainer.appendChild(button)
+    })
+
+    // Add event listeners to the newly created favorite game buttons
+    const favoriteGameButtons = favoritesContainer.querySelectorAll(".button a")
+    favoriteGameButtons.forEach((button) => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault()
+        const gamePath = this.getAttribute("href")
+        openGame(gamePath)
+      })
+    })
+  }
+}
