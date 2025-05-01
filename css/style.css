@@ -20,19 +20,20 @@ body {
   margin: 0;
   padding: 0;
   background-image: none;
-  line-height: 1.6;
+  line-height: 1.4; /* Reduced line height */
   min-height: 100vh;
+  font-size: 0.9rem; /* Reduced base font size */
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.7rem; /* Reduced padding */
 }
 
 .logo {
   font-family: "Press Start 2P", cursive;
-  font-size: 1.5rem;
+  font-size: 1.3rem; /* Smaller font size */
   font-weight: 800;
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
   -webkit-background-clip: text;
@@ -40,8 +41,8 @@ body {
   color: transparent;
   text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
   letter-spacing: 1px;
-  margin: 1rem 0;
-  padding: 0.5rem 0;
+  margin: 0.7rem 0; /* Reduced margin */
+  padding: 0.3rem 0; /* Reduced padding */
   position: relative;
   display: block;
   text-align: center;
@@ -67,23 +68,24 @@ h1, h2, h3 {
   color: transparent;
   text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
   letter-spacing: 1px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem; /* Reduced margin */
   text-align: center;
 }
 
-h1 { font-size: 1.5rem; }
-h2 { font-size: 1.3rem; }
-h3 { font-size: 1.1rem; }
+h1 { font-size: 1.3rem; } /* Smaller headings */
+h2 { font-size: 1.1rem; }
+h3 { font-size: 0.9rem; }
 
-.button-container {
+.button-container1, .button-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.8rem;
-  padding: 0.8rem;
+  justify-content: center; /* Center the buttons */
+  gap: 0.6rem; /* Reduced gap */
+  padding: 0.6rem; /* Reduced padding */
   position: relative;
   z-index: 1;
+  text-align: center; /* Center button content */
 }
 
 /* Navigation buttons - smaller and more compact */
@@ -96,19 +98,19 @@ button[class*="Save"],
 button[class*="Leaderboard"],
 button[class*="Discord"] {
   background-color: var(--bg-secondary);
-  border-radius: 12px;
+  border-radius: 10px; /* Slightly smaller radius */
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
-  padding: 0.75rem;
+  padding: 0.6rem; /* Reduced padding */
   display: inline-block;
   width: auto;
-  min-width: 120px;
+  min-width: 100px; /* Smaller min-width */
   text-align: center;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   border: none;
-  margin: 0.3rem;
+  margin: 0.2rem; /* Reduced margin */
   color: #ffffff;
 }
 
@@ -123,13 +125,13 @@ button[class*="Discord"] {
   opacity: 0;
   transition: opacity var(--transition-normal);
   z-index: -1;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .button:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px); /* Smaller hover effect */
   background-color: var(--bg-tertiary);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .button:hover::before {
@@ -137,11 +139,11 @@ button[class*="Discord"] {
 }
 
 .button img {
-  width: 50px;
-  height: 50px;
+  width: 40px; /* Smaller images */
+  height: 40px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem; /* Reduced margin */
   border: 2px solid var(--accent-pink);
   box-shadow: 0 0 0 2px rgba(107, 157, 255, 0.3);
   transition: all var(--transition-normal);
@@ -149,8 +151,8 @@ button[class*="Discord"] {
 
 .button:hover img {
   border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.3);
-  transform: scale(1.05);
+  box-shadow: 0 0 0 2px rgba(255, 107, 157, 0.3);
+  transform: scale(1.03); /* Smaller scale effect */
 }
 
 /* Changed button text to solid white */
@@ -164,7 +166,8 @@ button[class*="Leaderboard"],
 button[class*="Discord"] {
   font-weight: 600;
   color: #ffffff;
-  font-size: 0.85rem;
+  font-size: 0.75rem; /* Smaller font */
+  font-family: "VT323", monospace; /* Ensure consistent font */
 }
 
 .button span {
@@ -173,30 +176,31 @@ button[class*="Discord"] {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
+  font-family: "VT323", monospace; /* Ensure consistent font */
 }
 
 .game-section {
-  margin: 1.5rem 0;
+  margin: 1.2rem 0; /* Reduced margin */
   text-align: center;
 }
 
 /* Game card grid layout for better space usage */
 .game-cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-  margin: 1rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Smaller cards */
+  gap: 0.8rem; /* Reduced gap */
+  margin: 0.8rem 0; /* Reduced margin */
 }
 
 .game-card {
   background-color: var(--bg-secondary);
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   text-align: center;
-  padding: 1rem;
+  padding: 0.8rem; /* Reduced padding */
   margin-bottom: 0;
   height: 100%;
   display: flex;
@@ -204,17 +208,17 @@ button[class*="Discord"] {
 }
 
 .game-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px); /* Smaller hover effect */
   background-color: var(--bg-tertiary);
 }
 
 .game-card-image {
-  width: 80px;
-  height: 80px;
+  width: 60px; /* Smaller images */
+  height: 60px;
   object-fit: cover;
   border-radius: 50%;
-  margin: 0.5rem auto;
-  border: 3px solid transparent;
+  margin: 0.4rem auto; /* Reduced margin */
+  border: 2px solid transparent;
   background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
               linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
 }
@@ -222,8 +226,8 @@ button[class*="Discord"] {
 /* Better font for game cards */
 .game-card-title {
   font-family: "VT323", monospace;
-  font-size: 1.3rem;
-  margin-bottom: 0.3rem;
+  font-size: 1.1rem; /* Smaller font */
+  margin-bottom: 0.2rem; /* Reduced margin */
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
@@ -234,45 +238,45 @@ button[class*="Discord"] {
 .game-list {
   list-style-type: none;
   padding: 0;
-  margin: 0.5rem 0;
+  margin: 0.4rem 0; /* Reduced margin */
   text-align: left;
 }
 
 .game-list li {
-  padding: 0.3rem 0.5rem;
-  margin: 0.2rem 0;
+  padding: 0.2rem 0.4rem; /* Reduced padding */
+  margin: 0.15rem 0; /* Reduced margin */
   background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
+  border-radius: 5px;
   transition: all var(--transition-normal);
-  font-size: 0.8rem;
+  font-size: 0.7rem; /* Smaller font */
 }
 
 .game-list li:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateX(3px);
+  transform: translateX(2px); /* Smaller hover effect */
 }
 
 .game-card-button {
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   color: #ffffff;
   border: none;
-  padding: 0.4rem 1rem;
+  padding: 0.3rem 0.8rem; /* Reduced padding */
   border-radius: 9999px;
-  margin: 0.5rem 0;
+  margin: 0.4rem 0; /* Reduced margin */
   font-weight: 600;
   transition: all var(--transition-normal);
   cursor: pointer;
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 0.7rem; /* Smaller font */
   margin-top: auto;
 }
 
 .game-card-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+  transform: translateY(-1px); /* Smaller hover effect */
+  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4);
 }
 
-/* Ensure all game titles have gradient effect */
+/* Ensure all game titles have gradient effect and proper font */
 .game-title, 
 [class*="game"] h3, 
 [class*="game"] h4, 
@@ -287,15 +291,15 @@ button[class*="Discord"] {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-family: "VT323", monospace;
-  font-size: 1.2rem;
+  font-family: "VT323", monospace !important; /* Force font family */
+  font-size: 1.1rem; /* Smaller font */
   letter-spacing: 1px;
 }
 
 .section-divider {
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), var(--accent-purple), transparent);
-  margin: 1.5rem auto;
+  margin: 1.2rem auto; /* Reduced margin */
   width: 80%;
   max-width: 600px;
   border-radius: 2px;
@@ -306,8 +310,8 @@ button[class*="Discord"] {
 .section-divider::after {
   content: "";
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 3px; /* Smaller dots */
+  height: 3px;
   border-radius: 50%;
   background: var(--accent-pink);
   top: -1px;
@@ -326,11 +330,11 @@ button[class*="Discord"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.6rem; /* Reduced padding */
   background-color: var(--bg-secondary);
   border-radius: 9999px;
-  margin-bottom: 1rem;
-  font-size: 0.8rem;
+  margin-bottom: 0.8rem; /* Reduced margin */
+  font-size: 0.7rem; /* Smaller font */
 }
 
 /* Search bar styling with more rounded corners */
@@ -340,38 +344,58 @@ input[type="search"] {
   color: #000000;
   border: 2px solid var(--accent-blue);
   border-radius: 9999px;
-  padding: 6px 12px;
+  padding: 5px 10px; /* Reduced padding */
   width: 100%;
-  max-width: 400px;
+  max-width: 350px; /* Smaller max-width */
   margin: 0 auto;
   display: block;
   font-family: "Press Start 2P", cursive;
-  font-size: 0.7rem;
+  font-size: 0.65rem; /* Smaller font */
   box-shadow: 0 2px 8px rgba(107, 157, 255, 0.3);
+}
+
+/* Footer styling - change Discord and GitHub icons to pink on hover */
+footer {
+  padding: 0.8rem; /* Reduced padding */
+  margin-top: 1rem; /* Reduced margin */
+  background-color: var(--bg-secondary);
+  text-align: center;
+  font-size: 0.7rem; /* Smaller font */
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.social-icons {
+  margin-bottom: 0.5rem; /* Reduced margin */
+}
+
+.social-icons a {
+  margin: 0 8px; /* Reduced margin */
+  font-size: 20px; /* Smaller icons */
+  color: #5865F2; /* Discord's brand color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icons a.github {
+  color: #333; /* GitHub color */
+}
+
+/* Change to pink on hover for both Discord and GitHub icons */
+.social-icons a:hover,
+.social-icons a.github:hover {
+  color: var(--accent-pink) !important; /* Force pink color on hover */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .button img,
   .game-card-image {
-    width: 50px;
-    height: 50px;
-  }
-
-  .logo,
-  h1 {
-    font-size: 1.3rem;
-  }
-  
-  .game-cards-container {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .button {
-    padding: 0.6rem;
-    min-width: 100px;
+    width: 35px; /* Even smaller on mobile */
+    height: 35px;
   }
 
   .logo,
@@ -379,12 +403,37 @@ input[type="search"] {
     font-size: 1.1rem;
   }
   
+  .game-cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  
+  .button {
+    min-width: 90px;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    padding: 0.4rem;
+    min-width: 80px;
+  }
+
+  .logo,
+  h1 {
+    font-size: 1rem;
+  }
+  
   .game-card {
-    padding: 0.8rem;
+    padding: 0.6rem;
   }
   
   .game-cards-container {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+  
+  .button span {
+    font-size: 0.65rem;
   }
 }
 
@@ -401,6 +450,7 @@ body:after {
     opacity: 0.1;
 }
 
+/* Fix for game cards at the bottom with blue text and no font */
 .game-title,
 [class*="game"] h3,
 [class*="game"] h4,
@@ -452,13 +502,17 @@ body:after {
 .jetpack-joyride,
 .geometry-dash,
 .duck-life,
-.gold-digger {
+.gold-digger,
+/* Add more specific selectors for bottom game cards */
+.button a span,
+.regular-games .button a span,
+.new-games .button a span {
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent !important;
-  font-family: "VT323", monospace;
-  font-size: 1.2rem;
+  font-family: "VT323", monospace !important; /* Force font family */
+  font-size: 1rem; /* Smaller font */
   letter-spacing: 1px;
   text-shadow: none;
 }
@@ -482,4 +536,29 @@ html body form input {
 ::placeholder {
   color: #666666 !important;
   opacity: 1 !important;
+}
+
+/* Center the buttons in the button container */
+.button-container1, 
+.button-container.new-games, 
+.button-container.regular-games {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Fix for any remaining blue text with no font issues */
+a, a span, button a, button a span {
+  font-family: "VT323", monospace !important;
+  text-decoration: none;
+}
+
+/* Ensure all button text is visible */
+.button a {
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
 }
