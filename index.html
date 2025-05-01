@@ -463,50 +463,7 @@ footer .social-icons a:hover {
                 buttons[i].style.display = "none"; // Hide the button
             }
         }
-      function openGame(gameFile, downloadFile) {
-            if (progress < totalGames) {
-                progress++;
-                localStorage.setItem('progress', progress);
-                updateProgressBar();
-            }
-            document.getElementById('game-iframe').src = gameFile;
-            document.getElementById('game-modal').style.display = 'block';
-            document.getElementById('download-button').setAttribute('href', downloadFile);
-            document.getElementById('download-button').setAttribute('download', downloadFile);
-        }
-
-        function closeGame() {
-            document.getElementById('game-modal').style.display = 'none';
-            document.getElementById('game-iframe').src = '';
-        }
-
-        function openGameInNewTab() {
-            const gameFile = document.getElementById('game-iframe').src;
-            if (gameFile) {
-                window.open(gameFile, '_blank');
-            }
-        }
-
-        function toggleFullScreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
-        }
-
-        function openSettings() {
-            document.getElementById('settings-modal').style.display = 'flex';
-        }
-
-        function closeSettings() {
-            document.getElementById('settings-modal').style.display = 'none';
-        }
+    
   </script>
 
 <!-- Modal overlay -->
