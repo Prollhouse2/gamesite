@@ -265,10 +265,14 @@ footer .social-icons a:hover {
     <button class="button" onclick="if (!window.__cfRLUnblockHandlers) return false; window.location.href = 'https://discord.gg/proll';" data-cf-modified-4eb4c4b873f690b6829c2881-="">Discord!</button>
     <button class="button" onclick="if (!window.__cfRLUnblockHandlers) return false; window.location.href = '/chat';" data-cf-modified-4eb4c4b873f690b6829c2881-="">Chatroom</button>
 </div>
-    </div>
-<h1>New Games</h1>
-<div class="button-container new-games">
-    <button class="button" style="background-color: #6e0101; "><a href='g/geoguesser'><img src="images/geoguesser.png"> <span><br>Geo Geoguesser</span></a></button>
+   <!-- Add this section after the "New Games" section and before the regular games section -->
+<h1 id="favorites-heading">Favorite Games</h1>
+<div id="favorites-section">
+  <div id="favorites-container" class="button-container">
+    <!-- Favorite games will be dynamically added here -->
+    <div class="no-favorites-message">Star your favorite games to see them here!</div>
+  </div>
+</div>
 
 </div>
 <br>
