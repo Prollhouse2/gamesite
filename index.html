@@ -455,22 +455,24 @@ footer .social-icons a:hover {
         });
     </script>
       <script type="4eb4c4b873f690b6829c2881-text/javascript">
-    function searchButtons() {
-        // Get the search query from the input field
-        var query = document.getElementById("searchInput").value.toLowerCase();
+  function searchButtons() {
+    // Get the search query from the input field
+    var query = document.getElementById("searchInput").value.toLowerCase();
 
-        // Get all the buttons on the page
-        var buttons = document.getElementsByTagName("button");
+    // Get all the buttons on the page
+    var buttons = document.getElementsByTagName("button");
 
-        // Loop through the buttons and check if their text contains the search query
-        for (var i = 0; i < buttons.length; i++) {
-            var buttonText = buttons[i].textContent.toLowerCase();
-            if (buttonText.includes(query)) {
-                buttons[i].style.display = "flex"; // Show the button
-            } else {
-                buttons[i].style.display = "none"; // Hide the button
-            }
+    // Loop through the buttons and check if their text contains the search query
+    for (var i = 0; i < buttons.length; i++) {
+        var buttonText = buttons[i].textContent.toLowerCase();
+        if (buttonText.includes(query)) {
+            buttons[i].style.display = "flex"; // Show the button
+        } else {
+            buttons[i].style.display = "none"; // Hide the button
         }
+    }
+} 
+
    // Game modal functionality
 function openGame(gameFile, downloadFile) {
   document.getElementById("game-iframe").src = gameFile
