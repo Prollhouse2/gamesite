@@ -105,47 +105,46 @@
 
 .game-iframe {
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 60px); /* Increased space for the icon bar */
   border: none;
-  background-color: white; /* Add white background for visibility */
-}
-
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* Darker overlay */
-  z-index: 2999;
-  backdrop-filter: blur(5px);
 }
 
 .icon-bar {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Center the icons */
   align-items: center;
-  gap: 20px;
-  height: 60px;
+  gap: 30px; /* More space between icons */
+  height: 60px; /* Taller icon bar */
   background: linear-gradient(to right, rgba(26, 26, 46, 0.9), rgba(37, 37, 58, 0.9));
   padding: 0 15px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .icon-bar i {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 24px; /* Larger icons */
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 8px;
-  border-radius: 50%;
+  padding: 10px;
+  border-radius: 8px;
+  width: 45px; /* Fixed width */
+  height: 45px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon-bar i:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--accent-pink);
   transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
 }
 
+/* Add a close button in the top-right corner */
 .close-button {
   position: absolute;
   top: 10px;
@@ -161,8 +160,10 @@
   justify-content: center;
   cursor: pointer;
   z-index: 3001;
-  font-size: 18px;
+  font-size: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
+
 .close-button:hover {
   background: rgba(255, 107, 157, 1);
   transform: scale(1.1);
@@ -229,6 +230,7 @@ footer .social-icons a:hover {
 .modal-overlay {
   position: fixed;
 }
+
 
     </style>
 </head>
@@ -371,15 +373,21 @@ footer .social-icons a:hover {
         <!-- Other buttons here... -->
     </div>
 
+<!-- Modal overlay -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeGame();"></div>
+
+<!-- Update your game modal HTML to include a close button -->
 <div class="game-modal" id="game-modal">
-        <iframe class="game-iframe" id="game-iframe" src="/placeholder.svg"></iframe>
-        <div class="icon-bar">
-            <i class="fas fa-times" onclick="closeGame();" title="Close Game"></i>
-            <i class="fas fa-external-link-alt" onclick="openGameInNewTab();" title="Open in New Tab"></i>
-            <i class="fas fa-download" id="download-button" download="" title="Download Game"></i>
-            <i class="fas fa-key" onclick="window.open('https://learn.lcps.org/', '_blank');" title="Key"></i>
-            <i class="fas fa-expand-arrows-alt" onclick="toggleFullScreen();" title="Full Screen"></i>
-        </div>
+    <button class="close-button" onclick="closeGame();">×</button>
+    <iframe class="game-iframe" id="game-iframe" src="/placeholder.svg"></iframe>
+    <div class="icon-bar">
+        <i class="fas fa-times" onclick="closeGame();" title="Close Game"></i>
+        <i class="fas fa-external-link-alt" onclick="openGameInNewTab();" title="Open in New Tab"></i>
+        <i class="fas fa-download" id="download-button" onclick="openGameInNewTab();" title="Download Game"></i>
+        <i class="fas fa-key" onclick="window.open('https://learn.lcps.org/', '_blank');" title="Key"></i>
+        <i class="fas fa-expand-arrows-alt" onclick="toggleFullScreen();" title="Full Screen"></i>
+    </div>
+</div>
     <!-- Footer -->
     <footer>
         <center>
@@ -463,67 +471,75 @@ footer .social-icons a:hover {
                 buttons[i].style.display = "none"; // Hide the button
             }
         }
-      function openGame(gameFile, downloadFile) {
-            if (progress < totalGames) {
-                progress++;
-                localStorage.setItem('progress', progress);
-                updateProgressBar();
-            }
-            document.getElementById('game-iframe').src = gameFile;
-            document.getElementById('game-modal').style.display = 'block';
-            document.getElementById('download-button').setAttribute('href', downloadFile);
-            document.getElementById('download-button').setAttribute('download', downloadFile);
-        }
+   // Game modal functionality
+function openGame(gameFile, downloadFile) {
+  document.getElementById("game-iframe").src = gameFile
+  document.getElementById("game-modal").style.display = "block"
+  document.getElementById("modal-overlay").style.display = "block"
 
-        function closeGame() {
-            document.getElementById('game-modal').style.display = 'none';
-            document.getElementById('game-iframe').src = '';
-        }
+  // Set download attributes if provided
+  if (downloadFile) {
+    document.getElementById("download-button").setAttribute("href", downloadFile)
+    document.getElementById("download-button").setAttribute("download", downloadFile)
+    document.getElementById("download-button").style.display = "inline-flex"
+  } else {
+    document.getElementById("download-button").style.display = "none"
+  }
 
-        function openGameInNewTab() {
-            const gameFile = document.getElementById('game-iframe').src;
-            if (gameFile) {
-                window.open(gameFile, '_blank');
-            }
-        }
+  // Make sure footer stays visible
+  document.querySelector("footer").style.position = "relative"
+  document.querySelector("footer").style.zIndex = "1000"
+}
 
-        function toggleFullScreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
-        }
+function closeGame() {
+  document.getElementById("game-modal").style.display = "none"
+  document.getElementById("modal-overlay").style.display = "none"
+  document.getElementById("game-iframe").src = ""
+}
 
-        function openSettings() {
-            document.getElementById('settings-modal').style.display = 'flex';
-        }
+function openGameInNewTab() {
+  const gameFile = document.getElementById("game-iframe").src
+  if (gameFile) {
+    window.open(gameFile, "_blank")
+  }
+}
 
-        function closeSettings() {
-            document.getElementById('settings-modal').style.display = 'none';
-        }
+function toggleFullScreen() {
+  const iframe = document.getElementById("game-iframe")
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen()
+  } else if (iframe.mozRequestFullScreen) {
+    iframe.mozRequestFullScreen()
+  } else if (iframe.webkitRequestFullscreen) {
+    iframe.webkitRequestFullscreen()
+  } else if (iframe.msRequestFullscreen) {
+    iframe.msRequestFullscreen()
+  }
+}
+
+// Initialize game buttons when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  // Get all game buttons
+  const gameButtons = document.querySelectorAll(".button a")
+
+  // Add click event listeners to each button
+  gameButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.preventDefault() // Prevent default link behavior
+      const gamePath = this.getAttribute("href")
+      openGame(gamePath)
+    })
+  })
+
+  // Make sure the modal doesn't affect the footer
+  document.querySelector(".game-modal").addEventListener("click", (e) => {
+    e.stopPropagation() // Prevent clicks from affecting elements behind the modal
+  })
+})
+
   </script>
 
-<!-- Modal overlay -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeGame();"></div>
 
-<!-- Update your game modal HTML to include a close button -->
-<div class="game-modal" id="game-modal">
-    <button class="close-button" onclick="closeGame();">×</button>
-    <iframe class="game-iframe" id="game-iframe" src="/placeholder.svg"></iframe>
-    <div class="icon-bar">
-        <i class="fas fa-times" onclick="closeGame();" title="Close Game"></i>
-        <i class="fas fa-external-link-alt" onclick="openGameInNewTab();" title="Open in New Tab"></i>
-        <i class="fas fa-download" id="download-button" onclick="openGameInNewTab();" title="Download Game"></i>
-        <i class="fas fa-key" onclick="window.open('https://learn.lcps.org/', '_blank');" title="Key"></i>
-        <i class="fas fa-expand-arrows-alt" onclick="toggleFullScreen();" title="Full Screen"></i>
-    </div>
-</div>
 
 
 <link rel="stylesheet" type="text/css" href="css/modal-styles.css" />
