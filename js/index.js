@@ -2,18 +2,25 @@
 function openGame(gameFile, downloadFile) {
   document.getElementById("game-iframe").src = gameFile
   document.getElementById("game-modal").style.display = "block"
+  document.getElementById("modal-overlay").style.display = "block"
 
   // Set download attributes if provided
   if (downloadFile) {
     document.getElementById("download-button").setAttribute("href", downloadFile)
     document.getElementById("download-button").setAttribute("download", downloadFile)
+    document.getElementById("download-button").style.display = "inline-flex"
   } else {
     document.getElementById("download-button").style.display = "none"
   }
+
+  // Make sure footer stays visible
+  document.querySelector("footer").style.position = "relative"
+  document.querySelector("footer").style.zIndex = "1000"
 }
 
 function closeGame() {
   document.getElementById("game-modal").style.display = "none"
+  document.getElementById("modal-overlay").style.display = "none"
   document.getElementById("game-iframe").src = ""
 }
 
@@ -49,5 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const gamePath = this.getAttribute("href")
       openGame(gamePath)
     })
+  })
+
+  // Make sure the modal doesn't affect the footer
+  document.querySelector(".game-modal").addEventListener("click", (e) => {
+    e.stopPropagation() // Prevent clicks from affecting elements behind the modal
   })
 })
