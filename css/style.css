@@ -60,7 +60,34 @@ body {
   background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), transparent);
 }
 
-h1, h2, h3 {
+h1 {
+  position: relative;
+  padding: 0.5rem 0;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+h1:before,
+h1:after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 30%;
+  top: 50%;
+  background: linear-gradient(90deg, transparent, var(--accent-pink));
+}
+
+h1:before {
+  left: 0;
+}
+
+h1:after {
+  right: 0;
+  background: linear-gradient(90deg, var(--accent-blue), transparent);
+}
+
+h2,
+h3 {
   font-family: "Press Start 2P", cursive;
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
   -webkit-background-clip: text;
@@ -72,15 +99,83 @@ h1, h2, h3 {
   text-align: center;
 }
 
-h1 { font-size: 1.3rem; } /* Smaller headings */
-h2 { font-size: 1.1rem; }
-h3 { font-size: 0.9rem; }
+h1 {
+  font-size: 1.3rem;
+} /* Smaller headings */
+h2 {
+  font-size: 1.1rem;
+}
+h3 {
+  font-size: 0.9rem;
+}
 
-.button-container1, .button-container {
+.button-container1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 0.8rem;
+  background: linear-gradient(to right, rgba(26, 26, 46, 0.4), rgba(37, 37, 58, 0.4), rgba(26, 26, 46, 0.4));
+  border-radius: 15px;
+  margin: 0.8rem auto;
+  max-width: 95%;
+  box-shadow: inset 0 0 10px rgba(107, 157, 255, 0.1);
+}
+
+.button-container1 .button {
+  background: linear-gradient(135deg, rgba(37, 37, 58, 0.9), rgba(26, 26, 46, 0.9));
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  min-width: 110px;
+  border: 1px solid rgba(107, 157, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.button-container1 .button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+  opacity: 0.7;
+}
+
+.button-container1 .button:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, rgba(37, 37, 58, 1), rgba(26, 26, 46, 1));
+  border: 1px solid rgba(107, 157, 255, 0.4);
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(107, 157, 255, 0.2);
+}
+
+.button-container1 .button:hover:before {
+  opacity: 1;
+  height: 4px;
+}
+
+.button-container1 .button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button-container,
+.button-container.new-games,
+.button-container.regular-games {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center; /* Center the buttons */
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
   gap: 0.6rem; /* Reduced gap */
   padding: 0.6rem; /* Reduced padding */
   position: relative;
@@ -89,7 +184,7 @@ h3 { font-size: 0.9rem; }
 }
 
 /* Navigation buttons - smaller and more compact */
-.button, 
+.button,
 button[class*="Games"],
 button[class*="Website"],
 button[class*="Source"],
@@ -220,7 +315,7 @@ button[class*="Discord"] {
   margin: 0.4rem auto; /* Reduced margin */
   border: 2px solid transparent;
   background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
-              linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
+    linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
 }
 
 /* Better font for game cards */
@@ -277,16 +372,27 @@ button[class*="Discord"] {
 }
 
 /* Ensure all game titles have gradient effect and proper font */
-.game-title, 
-[class*="game"] h3, 
-[class*="game"] h4, 
+.game-title,
+[class*="game"] h3,
+[class*="game"] h4,
 [class*="game"] .title,
 [id*="game"] h3,
 [id*="game"] h4,
 [id*="game"] .title,
-.slope, .retro-bowl, .gunship, .tvt-io, .block-blast,
-.idle-breakout, .learn-to-fly, .radiobasiscs, .gun-mayhem,
-.gun-mayhem-2, .wall-smash, .fnaf-1, .fnaf-2, .drift-boss {
+.slope,
+.retro-bowl,
+.gunship,
+.tvt-io,
+.block-blast,
+.idle-breakout,
+.learn-to-fly,
+.radiobasiscs,
+.gun-mayhem,
+.gun-mayhem-2,
+.wall-smash,
+.fnaf-1,
+.fnaf-2,
+.drift-boss {
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
@@ -298,7 +404,14 @@ button[class*="Discord"] {
 
 .section-divider {
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), var(--accent-purple), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-pink),
+    var(--accent-blue),
+    var(--accent-purple),
+    transparent
+  );
   margin: 1.2rem auto; /* Reduced margin */
   width: 80%;
   max-width: 600px;
@@ -338,7 +451,7 @@ button[class*="Discord"] {
 }
 
 /* Search bar styling with more rounded corners */
-input[type="text"], 
+input[type="text"],
 input[type="search"] {
   background-color: #ffffff;
   color: #000000;
@@ -352,6 +465,39 @@ input[type="search"] {
   font-family: "Press Start 2P", cursive;
   font-size: 0.65rem; /* Smaller font */
   box-shadow: 0 2px 8px rgba(107, 157, 255, 0.3);
+}
+
+/* Add a subtle glow effect to the search container */
+.search-container {
+  position: relative;
+  margin: 1rem auto;
+  max-width: 400px;
+}
+
+.search-container:after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+  border-radius: 30px;
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(8px);
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.2;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 0.4;
+    filter: blur(12px);
+  }
 }
 
 /* Footer styling - change Discord and GitHub icons to pink on hover */
@@ -375,7 +521,7 @@ footer {
 .social-icons a {
   margin: 0 8px; /* Reduced margin */
   font-size: 20px; /* Smaller icons */
-  color: #5865F2; /* Discord's brand color */
+  color: #5865f2; /* Discord's brand color */
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -390,8 +536,117 @@ footer {
   color: var(--accent-pink) !important; /* Force pink color on hover */
 }
 
+/* Improved New Games section */
+.new-games {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(26, 26, 46, 0.8), rgba(10, 10, 26, 0.8));
+  border-radius: 15px;
+  padding: 1.5rem 1rem;
+  margin: 1rem auto;
+  border: 1px solid rgba(255, 107, 157, 0.3);
+  box-shadow: 0 0 20px rgba(157, 107, 255, 0.2), inset 0 0 15px rgba(107, 157, 255, 0.1);
+  max-width: 95%;
+}
+
+.new-games:before {
+  content: "NEW";
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+  color: white;
+  font-size: 0.6rem;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-family: "Press Start 2P", cursive;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.new-games .button {
+  background: linear-gradient(to bottom, rgba(110, 1, 1, 0.8), rgba(70, 0, 0, 0.9));
+  border: 1px solid rgba(255, 107, 157, 0.3);
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  margin: 0.5rem;
+}
+
+.new-games .button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 107, 157, 0.3);
+  border: 1px solid rgba(255, 107, 157, 0.6);
+}
+
+.new-games .button img {
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(255, 107, 157, 0.5);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+}
+
+.new-games .button:hover img {
+  transform: scale(1.1) rotate(5deg);
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+}
+
+.new-games .button span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #ff8ba7, #ffc2d1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Make regular games section look better too */
+.regular-games {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.8rem;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.regular-games .button {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .button-container1 .button {
+    min-width: 100px;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .new-games .button img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .regular-games {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
   .button img,
   .game-card-image {
     width: 35px; /* Even smaller on mobile */
@@ -402,11 +657,11 @@ footer {
   h1 {
     font-size: 1.1rem;
   }
-  
+
   .game-cards-container {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
-  
+
   .button {
     min-width: 90px;
     padding: 0.5rem;
@@ -414,6 +669,20 @@ footer {
 }
 
 @media (max-width: 480px) {
+  .button-container1 .button {
+    min-width: 90px;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .new-games .button img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .regular-games {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  }
+
   .button {
     padding: 0.4rem;
     min-width: 80px;
@@ -423,15 +692,15 @@ footer {
   h1 {
     font-size: 1rem;
   }
-  
+
   .game-card {
     padding: 0.6rem;
   }
-  
+
   .game-cards-container {
     grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   }
-  
+
   .button span {
     font-size: 0.65rem;
   }
@@ -439,15 +708,15 @@ footer {
 
 /* Adding Some Sparkle */
 body:after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png');
-    opacity: 0.1;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  opacity: 0.1;
 }
 
 /* Fix for game cards at the bottom with blue text and no font */
@@ -504,7 +773,9 @@ body:after {
 .duck-life,
 .gold-digger,
 /* Add more specific selectors for bottom game cards */
-.button a span,
+  .button
+  a
+  span,
 .regular-games .button a span,
 .new-games .button a span {
   background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
@@ -538,20 +809,11 @@ html body form input {
   opacity: 1 !important;
 }
 
-/* Center the buttons in the button container */
-.button-container1, 
-.button-container.new-games, 
-.button-container.regular-games {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0 auto;
-}
-
 /* Fix for any remaining blue text with no font issues */
-a, a span, button a, button a span {
+a,
+a span,
+button a,
+button a span {
   font-family: "VT323", monospace !important;
   text-decoration: none;
 }
