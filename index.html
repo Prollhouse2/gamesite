@@ -213,13 +213,12 @@
 
 
 
- /* Search Bar Styling */
+/* Search Bar Styling */
 .search-container {
     margin: 20px auto;
     max-width: 500px;
     position: relative;
     text-align: center;
-    animation: float 6s infinite ease-in-out;
 }
 
 .search-wrapper {
@@ -231,12 +230,12 @@
     padding: 12px 18px 12px 45px;
     width: 350px;
     border: 2px solid rgba(255, 107, 157, 0.6);
-    background-color: rgba(26, 26, 46, 0.9);
-    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.8); /* Solid black background */
+    border-radius: 30px; /* Rounded corners */
     font-family: "VT323", monospace;
     font-size: 18px;
     outline: none;
-    color: var(--text-primary);
+    color: white;
     box-shadow: 0 0 15px rgba(157, 107, 255, 0.3);
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -248,8 +247,8 @@
 
 #searchInput:focus {
     border-color: var(--accent-pink);
-    box-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 
-                0 0 30px rgba(157, 107, 255, 0.4);
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+    background-color: rgba(0, 0, 0, 0.9); /* Slightly darker on focus */
 }
 
 .search-icon {
@@ -259,37 +258,16 @@
     transform: translateY(-50%);
     color: rgba(255, 107, 157, 0.8);
     pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    animation: pulse 2s infinite;
+    transition: all 0.3s ease;
 }
 
 #searchInput:focus + .search-icon {
     color: var(--accent-pink);
+}
+
+/* Remove animations if not needed */
+.search-container {
     animation: none;
-    transform: translateY(-50%) scale(1.1);
-}
-
-/* Floating animation */
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* Pulsing icon animation */
-@keyframes pulse {
-    0% {
-        transform: translateY(-50%) scale(1);
-    }
-    50% {
-        transform: translateY(-50%) scale(1.1);
-    }
-    100% {
-        transform: translateY(-50%) scale(1);
-    }
 }
 
         .star-animation {
