@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeteZah | Proxy</title>
+    <link rel="icon" href="storage/images/logo-png-removebg-preview.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta property="og:title" content="PeteZah | Proxy">
+    <meta property="og:description" content="Next-gen proxy browsing">
+    <meta property="og:image" content="/storage/images/logo-png-removebg-preview.png">
+    <meta name="keywords" content="PeteZah Proxy, bypass restrictions, web proxy">
+
+    <style>
+        * {
+            font-family: 'Arial', sans-serif;
+            font-weight: 400;
+        }
+
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #05080f 0%, #121929 100%);
+            color: #d0d0d0;
+        }
+
+        .tabs {
+            display: flex;
+            align-items: center;
+            background-color: #121929;
+            padding: 5px 6px;
+            border-bottom: 1px solid #1e2a44;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            overflow-x: auto;
+        }
+
+        .tab {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 14px 6px 18px;
+            color: #a0b0cc;
+            cursor: pointer;
+            background-color: #121929;
+            border-radius: 10px;
+            margin-right: 6px;
+            transition: all 0.3s ease;
+            max-width: 250px;
+            min-width: 160px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: relative;
+            font-weight: 400;
+        }
+
+        .tab.active {
+            background: linear-gradient(to bottom, #263552, #1e2a44);
+            color: #ffffff;
+            font-weight: 450;
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+        }
+
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #1e2a44;
+        }
+
+
+
+
+        .tab:hover {
+            background-color: #182133;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .add-tab-button {
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #121929;
+            color: #d0d0d0;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .add-tab-button:hover {
+            background-color: #182133;
+        }
+
+        .tab .close-button {
+            margin-left: auto;
+            padding-left: 10px;
+            color: #a0b0cc;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .tab .close-button:hover {
+            color: #ff4444;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #121929;
+            padding: 1px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .navbar-left,
+        .navbar-right {
+            display: flex;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .navbar button {
+            background: none;
+            border: none;
+            color: #a0b0cc;
+            cursor: pointer;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar button:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            background-color: #1e2a44;
+            border-radius: 24px;
+            margin: 0 14px;
+            padding: 2px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .search-container input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border: 1px solid #1e2a44;
+            background: #1e2a44;
+            color: #d0d0d0;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+            border-radius: 24px;
+        }
+
+        .search-container input:hover {
+            background: #252f4a;
+        }
+
+        .search-container input:focus {
+            background: #252f4a;
+            outline: none;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            border-color: #0066cc;
+        }
+
+        .search-container button {
+            padding: 6px;
+            color: #a0b0cc;
+        }
+
+        .content-wrapper {
+            flex-grow: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+            background-color: #ffffff;
+        }
+
+        iframe.active {
+            display: block;
+        }
+
+        .internal-page {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 25px;
+            background: linear-gradient(135deg, #121929 0%, #1e2a44 100%);
+            color: #d0d0d0;
+            overflow-y: auto;
+        }
+
+        .internal-page.active {
+            display: block;
+        }
+
+        .menu-button {
+            position: relative;
+            padding: 8px;
+        }
+
+        .menu-button::before {
+            content: '⋮';
+            font-size: 22px;
+            color: #a0b0cc;
+        }
+
+        .menu-button:hover::before {
+            color: #ffffff;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            /* Adjusted to appear below the 3 dots */
+            right: 12px;
+            background-color: #1e2a44;
+            border: 1px solid #2d3b5e;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            min-width: 220px;
+            padding: 10px 0;
+        }
+
+        .menu.active {
+            display: block;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 18px;
+            color: #d0d0d0;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #2d3b5e;
+            color: #ffffff;
+        }
+
+        .menu-item i {
+            margin-right: 14px;
+            width: 22px;
+            text-align: center;
+        }
+
+        .menu-item.zoom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-item.zoom .zoom-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .menu-item.zoom button {
+            background: none;
+            border: none;
+            color: #d0d0d0;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 3px 8px;
+        }
+
+        .menu-item.zoom button:hover {
+            color: #ffffff;
+        }
+
+        .menu-item.zoom span {
+            color: #a0b0cc;
+            font-size: 15px;
+        }
+
+        .menu hr {
+            border: none;
+            border-top: 1px solid #2d3b5e;
+            margin: 6px 0;
+        }
+
+        .internal-page h2 {
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .internal-page .action-bar {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .internal-page button {
+            background-color: #0066cc;
+            border: none;
+            padding: 10px 18px;
+            color: #ffffff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .internal-page button:hover {
+            background-color: #007bff;
+            transform: translateY(-1px);
+        }
+
+        .internal-page button.danger {
+            background-color: #ff4444;
+        }
+
+        .internal-page button.danger:hover {
+            background-color: #cc3333;
+        }
+
+        .internal-page ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .internal-page li {
+            padding: 14px;
+            background-color: #1e2a44;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .internal-page li:hover {
+            background-color: #252f4a;
+            transform: translateY(-1px);
+        }
+
+        .internal-page li a {
+            color: #66b3ff;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .internal-page li a:hover {
+            text-decoration: underline;
+        }
+
+        .internal-page li .meta {
+            color: #a0b0cc;
+            font-size: 13px;
+        }
+
+        .extensions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+            padding: 15px;
+            background: #182133;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .extension-card {
+            background: linear-gradient(135deg, #1e2a44 0%, #252f4a 100%);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #2d3b5e;
+        }
+
+        .extension-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+        }
+
+        .extension-card img {
+            max-width: 72px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            border: 2px solid #0066cc;
+        }
+
+        .extension-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .extension-card p {
+            font-size: 15px;
+            color: #a0b0cc;
+            margin-bottom: 14px;
+        }
+
+        .extension-card .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .extension-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1e2a44 0%, #252f4a 100%);
+            border: 1px solid #2d3b5e;
+            border-radius: 12px;
+            padding: 25px;
+            z-index: 1001;
+            width: 550px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .extension-popup.active {
+            display: block;
+        }
+
+        .extension-popup h3 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .extension-popup textarea {
+            width: 100%;
+            height: 220px;
+            background-color: #121929;
+            color: #d0d0d0;
+            border: 1px solid #2d3b5e;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            resize: vertical;
+        }
+
+        .extension-popup .button-group {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tabs" id="tabs">
+        <div class="tab active" onclick="selectTab(this)">New Tab <span class="close-button"
+                onclick="closeTab(event, this)">×</span></div>
+        <button class="add-tab-button" onclick="addTab()">+</button>
+    </div>
+    <div class="navbar" id="navbar">
+        <div class="navbar-left">
+            <button onclick="goHome()"><i class="fa fa-home"></i></button>
+            <button onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+            <button onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
+            <button onclick="refresh()"><i class="fas fa-redo"></i></button>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search or enter a URL"
+                onkeydown="if(event.key === 'Enter') search(event)">
+            <button onclick="search(event)"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="navbar-right">
+            <button onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
+            <button class="menu-button" onclick="toggleMenu()"></button>
+        </div>
+    </div>
+    <div class="content-wrapper" id="content-wrapper">
+        <iframe class="tab-iframe active" src="/static/index.html" id="iframe-1"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads"></iframe>
+        <div class="internal-page bookmarks-page" id="bookmarks-page"></div>
+        <div class="internal-page history-page" id="history-page"></div>
+        <div class="internal-page extensions-page" id="extensions-page"></div>
+    </div>
+    <div class="menu" id="menu">
+        <div class="menu-item" onclick="addTab()"><i class="fas fa-plus"></i> New Tab</div>
+        <div class="menu-item" onclick="addBookmark()"><i class="fas fa-bookmark"></i> New Bookmark</div>
+        <hr>
+        <div class="menu-item zoom">
+            <span><i class="fas fa-search"></i> Zoom</span>
+            <div class="zoom-controls">
+                <button onclick="zoomOut()">-</button>
+                <span id="zoom-level">100%</span>
+                <button onclick="zoomIn()">+</button>
+            </div>
+        </div>
+        <hr>
+        <div class="menu-item" onclick="showBookmarks()"><i class="fas fa-bookmark"></i> Bookmarks</div>
+        <div class="menu-item" onclick="showHistory()"><i class="fas fa-history"></i> History</div>
+        <div class="menu-item" onclick="showExtensions()"><i class="fas fa-puzzle-piece"></i> Extensions</div>
+        <hr>
+        <div class="menu-item" onclick="openInNewTab()"><i class="fas fa-external-link-alt"></i> Open in New Tab</div>
+        <div class="menu-item" onclick="openInAboutBlank()"><i class="fas fa-window-restore"></i> Open in about:blank
+        </div>
+        <div class="menu-item" onclick="settings()"><i class="fas fa-cog"></i> Settings</div>
+    </div>
+    <div class="extension-popup" id="extension-popup">
+        <h3>Install Extension</h3>
+        <input type="file" id="extension-file" accept=".js" style="margin-bottom: 12px;">
+        <textarea id="extension-code" placeholder="Or paste extension JavaScript code here"></textarea>
+        <div class="button-group">
+            <button onclick="cancelExtension()">Cancel</button>
+            <button onclick="installExtension()">Install</button>
+        </div>
+    </div>
+
+    <script>
+        let tabCount = 1;
+        let zoomLevel = 1;
+        const proxyPrefix = "/static/embed.html#";
+        let tabHistory = [];
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+        let history = JSON.parse(localStorage.getItem('history')) || [];
+        let extensions = JSON.parse(localStorage.getItem('extensions')) || [];
+        let currentTabState = { type: 'iframe', url: '/static/index.html' };
+
+        function selectTab(tabElement) {
+            try {
+                const tabs = document.querySelectorAll('.tab');
+                const iframes = document.querySelectorAll('.tab-iframe');
+                const internalPages = document.querySelectorAll('.internal-page');
+                tabs.forEach(tab => tab.classList.remove('active'));
+                iframes.forEach(iframe => iframe.classList.remove('active'));
+                internalPages.forEach(page => page.classList.remove('active'));
+                tabElement.classList.add('active');
+                const tabIndex = [...tabElement.parentElement.children].indexOf(tabElement);
+                if (currentTabState.type === 'iframe') {
+                    const iframe = iframes[tabIndex];
+                    iframe.classList.add('active');
+                    updateSearchBar(iframe);
+                    updatePageTitle(iframe);
+                } else {
+                    document.querySelector(`#${currentTabState.url.replace('petezah://', '')}-page`).classList.add('active');
+                }
+                const currentTabIndex = tabIndex;
+                tabHistory = tabHistory.filter(index => index !== currentTabIndex);
+                tabHistory.push(currentTabIndex);
+            } catch (e) {
+                console.error('Error selecting tab:', e);
+            }
+        }
+
+        function addTab(url = "/static/index.html") {
+            try {
+                tabCount++;
+                const tabsContainer = document.getElementById('tabs');
+                const newTab = document.createElement('div');
+                newTab.classList.add('tab');
+                newTab.textContent = "New Tab";
+                newTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
+                newTab.onclick = (e) => { e.preventDefault(); selectTab(newTab); };
+                tabsContainer.insertBefore(newTab, document.querySelector('.add-tab-button'));
+
+                const iframe = document.createElement('iframe');
+                iframe.classList.add('tab-iframe');
+                iframe.id = `iframe-${tabCount}`;
+                iframe.src = encodeURI(url);
+                iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms allow-downloads');
+                document.getElementById('content-wrapper').appendChild(iframe);
+                currentTabState = { type: 'iframe', url };
+                selectTab(newTab);
+                updateHistory(url);
+                updateTabName(iframe, newTab);
+            } catch (e) {
+                console.error('Error adding tab:', e);
+            }
+        }
+
+        function closeTab(event, closeButton) {
+            try {
+                event.stopPropagation();
+                const tab = closeButton.parentElement;
+                const tabIndex = [...tab.parentElement.children].indexOf(tab);
+                const iframe = document.getElementById(`iframe-${tabIndex + 1}`);
+
+                tabHistory = tabHistory.filter(index => index !== tabIndex);
+
+                if (tab.classList.contains('active') && tabCount > 1) {
+                    const lastVisitedIndex = tabHistory.length > 0 ? tabHistory[tabHistory.length - 1] : 0;
+                    const tabs = document.querySelectorAll('.tab');
+                    const nextTab = tabs[lastVisitedIndex];
+                    if (nextTab && nextTab.className === 'tab') selectTab(nextTab);
+                }
+
+                tab.remove();
+                iframe.remove();
+                tabCount--;
+                if (tabCount === 0) addTab();
+            } catch (e) {
+                console.error('Error closing tab:', e);
+            }
+        }
+
+        function updateTabName(iframe, tabElement) {
+            try {
+                iframe.onload = () => {
+                    try {
+                        const title = iframe.contentDocument?.title || getTabTitleFromUrl(iframe.src);
+                        tabElement.childNodes[0].textContent = title.substring(0, 30);
+                        updateSearchBar(iframe);
+                        updatePageTitle(iframe);
+                    } catch (e) {
+                        console.error('Error updating tab name:', e);
+                        tabElement.childNodes[0].textContent = getTabTitleFromUrl(iframe.src);
+                    }
+                };
+            } catch (e) {
+                console.error('Error setting up tab name update:', e);
+            }
+        }
+
+        function getTabTitleFromUrl(url) {
+            try {
+                if (url === "/static/index.html") return "New Tab";
+                if (url === "/static/prox/settings.html") return "Settings";
+                if (url.includes("bookmarks")) return "Bookmarks";
+                if (url.includes("history")) return "History";
+                if (url.includes("extensions")) return "Extensions";
+                return "New Tab";
+            } catch (e) {
+                console.error('Error getting tab title:', e);
+                return "New Tab";
+            }
+        }
+
+        function updatePageTitle(iframe) {
+            try {
+                const title = currentTabState.type === 'iframe' ?
+                    (iframe.contentDocument?.title || getTabTitleFromUrl(iframe.src)) :
+                    getTabTitleFromUrl(currentTabState.url);
+                document.title = title;
+            } catch (e) {
+                console.error('Error updating page title:', e);
+                document.title = getTabTitleFromUrl(currentTabState.url);
+            }
+        }
+
+        function getUnproxifiedUrl(proxifiedUrl) {
+            try {
+                if (proxifiedUrl.startsWith(proxyPrefix)) {
+                    return decodeURI(proxifiedUrl.replace(proxyPrefix, ""));
+                }
+                switch (proxifiedUrl) {
+                    case "/static/index.html":
+                        return "petezah://newtab";
+                    case "/static/prox/settings.html":
+                        return "petezah://settings";
+                    default:
+                        return proxifiedUrl.includes("bookmarks") ? "petezah://bookmarks" :
+                            proxifiedUrl.includes("history") ? "petezah://history" :
+                                proxifiedUrl.includes("extensions") ? "petezah://extensions" :
+                                    decodeURI(proxifiedUrl);
+                }
+            } catch (e) {
+                console.error('Error unproxifying URL:', e);
+                return proxifiedUrl;
+            }
+        }
+
+        function search(event) {
+            try {
+                event.preventDefault();
+                const input = document.getElementById('search-input').value.trim();
+                if (!input) return;
+                const iframe = document.querySelector('.tab-iframe.active');
+                let url;
+                if (input.startsWith('petezah://')) {
+                    switch (input) {
+                        case 'petezah://newtab':
+                            url = '/static/index.html';
+                            break;
+                        case 'petezah://settings':
+                            url = '/static/prox/settings.html';
+                            break;
+                        case 'petezah://bookmarks':
+                            showBookmarks();
+                            return;
+                        case 'petezah://history':
+                            showHistory();
+                            return;
+                        case 'petezah://extensions':
+                            showExtensions();
+                            return;
+                        default:
+                            url = input;
+                    }
+                } else {
+                    url = input.startsWith('http') ? input : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
+                    url = `${proxyPrefix}${encodeURI(url)}`;
+                }
+                iframe.src = url;
+                currentTabState = { type: 'iframe', url };
+                document.getElementById('search-input').value = getUnproxifiedUrl(url);
+                const activeTab = document.querySelector('.tab.active');
+                updateTabName(iframe, activeTab);
+                updateHistory(url);
+            } catch (e) {
+                console.error('Error in search:', e);
+            }
+        }
+
+        function goHome() {
+            try {
+                const iframe = document.querySelector('.tab-iframe.active');
+                const internalPages = document.querySelectorAll('.internal-page');
+                internalPages.forEach(page => page.classList.remove('active'));
+                iframe.src = "/static/index.html";
+                currentTabState = { type: 'iframe', url: '/static/index.html' };
+                document.getElementById('search-input').value = "petezah://newtab";
+                const activeTab = document.querySelector('.tab.active');
+                activeTab.childNodes[0].textContent = "New Tab";
+                updateHistory("/static/index.html");
+            } catch (e) {
+                console.error('Error going home:', e);
+            }
+        }
+
+        function goBack() {
+            try {
+                const iframe = document.querySelector('.tab-iframe.active');
+                iframe.contentWindow.history.back();
+                updateSearchBar(iframe);
+            } catch (e) {
+                console.error('Error navigating back:', e);
+            }
+        }
+
+        function goForward() {
+            try {
+                const iframe = document.querySelector('.tab-iframe.active');
+                iframe.contentWindow.history.forward();
+                updateSearchBar(iframe);
+            } catch (e) {
+                console.error('Error navigating forward:', e);
+            }
+        }
+
+        function refresh() {
+            try {
+                const iframe = document.querySelector('.tab-iframe.active');
+                iframe.contentWindow.location.reload();
+                updateSearchBar(iframe);
+            } catch (e) {
+                console.error('Error refreshing:', e);
+            }
+        }
+
+        function settings() {
+            try {
+                const iframe = document.querySelector('.tab-iframe.active');
+                const internalPages = document.querySelectorAll('.internal-page');
+                internalPages.forEach(page => page.classList.remove('active'));
+                iframe.src = "/static/prox/settings.html";
+                currentTabState = { type: 'iframe', url: '/static/prox/settings.html' };
+                document.getElementById('search-input').value = "petezah://settings";
+                const activeTab = document.querySelector('.tab.active');
+                activeTab.childNodes[0].textContent = "Settings";
+                updateHistory("/static/prox/settings.html");
+                toggleMenu();
+            } catch (e) {
+                console.error('Error opening settings:', e);
+            }
+        }
+
+        function toggleFullscreen() {
+            try {
+                const iframe = document.querySelector('.tab-iframe.active');
+                if (!document.fullscreenElement) {
+                    iframe.requestFullscreen().catch(e => console.error('Fullscreen error:', e));
+                } else {
+                    document.exitFullscreen();
+                }
+            } catch (e) {
+                console.error('Error toggling fullscreen:', e);
+            }
+        }
+
+        function updateSearchBar(iframe) {
+            try {
+                const unproxifiedUrl = getUnproxifiedUrl(iframe.src);
+                document.getElementById('search-input').value = unproxifiedUrl;
+                const activeTab = document.querySelector('.tab.active');
+                updateTabName(iframe, activeTab);
+            } catch (e) {
+                console.error('Error updating search bar:', e);
+            }
+        }
+
+        function toggleMenu() {
+            try {
+                const menu = document.getElementById('menu');
+                menu.classList.toggle('active');
+            } catch (e) {
+                console.error('Error toggling menu:', e);
+            }
+        }
+
+        function addBookmark() {
+            try {
+                if (currentTabState.type !== 'iframe') return;
+                const iframe = document.querySelector('.tab-iframe.active');
+                const url = getUnproxifiedUrl(iframe.src);
+                if (url.startsWith('petezah://')) return;
+                let title;
+                try {
+                    title = iframe.contentDocument?.title || "New Bookmark";
+                } catch (e) {
+                    title = "New Bookmark";
+                }
+                bookmarks.push({ url, title, id: Date.now() });
+                localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+                toggleMenu();
+            } catch (e) {
+                console.error('Error adding bookmark:', e);
+            }
+        }
+
+        function deleteBookmark(id) {
+            try {
+                bookmarks = bookmarks.filter(b => b.id !== id);
+                localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+                showBookmarks();
+            } catch (e) {
+                console.error('Error deleting bookmark:', e);
+            }
+        }
+
+        function navigateToBookmark(url) {
+            try {
+                const iframe = document.querySelector('.tab-iframe.active');
+                const activeTab = document.querySelector('.tab.active');
+                const internalPages = document.querySelectorAll('.internal-page');
+                internalPages.forEach(page => page.classList.remove('active'));
+                if (url.startsWith('petezah://')) {
+                    switch (url) {
+                        case 'petezah://bookmarks':
+                            showBookmarks();
+                            break;
+                        case 'petezah://history':
+                            showHistory();
+                            break;
+                        case 'petezah://extensions':
+                            showExtensions();
+                            break;
+                        default:
+                            iframe.src = mapPetezahUrlToSrc(url);
+                            currentTabState = { type: 'iframe', url: mapPetezahUrlToSrc(url) };
+                    }
+                } else {
+                    const encodedUrl = encodeURI(url);
+                    iframe.src = `${proxyPrefix}${encodedUrl}`;
+                    currentTabState = { type: 'iframe', url: `${proxyPrefix}${encodedUrl}` };
+                }
+                document.getElementById('search-input').value = url;
+                updateTabName(iframe, activeTab);
+                updateHistory(url);
+            } catch (e) {
+                console.error('Error navigating to bookmark:', e);
+            }
+        }
+
+        function mapPetezahUrlToSrc(url) {
+            try {
+                switch (url) {
+                    case 'petezah://newtab':
+                        return '/static/index.html';
+                    case 'petezah://settings':
+                        return '/static/prox/settings.html';
+                    default:
+                        return url;
+                }
+            } catch (e) {
+                console.error('Error mapping Petezah URL:', e);
+                return url;
+            }
+        }
+
+        function showBookmarks() {
+            try {
+                const bookmarksPage = document.getElementById('bookmarks-page');
+                const activeTab = document.querySelector('.tab.active');
+                const iframes = document.querySelectorAll('.tab-iframe');
+                const internalPages = document.querySelectorAll('.internal-page');
+
+                iframes.forEach(f => f.classList.remove('active'));
+                internalPages.forEach(page => page.classList.remove('active'));
+                bookmarksPage.classList.add('active');
+
+                activeTab.childNodes[0].textContent = "Bookmarks";
+                document.getElementById('search-input').value = "petezah://bookmarks";
+                currentTabState = { type: 'internal', url: 'petezah://bookmarks' };
+
+                const bookmarkList = bookmarks.map(b => `
+                <li>
+                    <a href="#" onclick="navigateToBookmark('${b.url.replace(/'/g, "\\'")}')">${b.title}</a>
+                    <button class="danger" onclick="deleteBookmark(${b.id})">Delete</button>
+                </li>
+            `).join('');
+
+                bookmarksPage.innerHTML = `
+                <h2>Bookmarks</h2>
+                <div class="action-bar">
+                    <button onclick="addBookmark()">Add Current Page</button>
+                </div>
+                <ul>${bookmarkList || '<li>No bookmarks yet.</li>'}</ul>
+            `;
+
+                updateHistory("petezah://bookmarks");
+                toggleMenu();
+            } catch (e) {
+                console.error('Error showing bookmarks:', e);
+            }
+        }
+
+        function clearHistory() {
+            try {
+                history = [];
+                localStorage.setItem('history', JSON.stringify(history));
+                showHistory();
+            } catch (e) {
+                console.error('Error clearing history:', e);
+            }
+        }
+
+        function showHistory() {
+            try {
+                const historyPage = document.getElementById('history-page');
+                const activeTab = document.querySelector('.tab.active');
+                const iframes = document.querySelectorAll('.tab-iframe');
+                const internalPages = document.querySelectorAll('.internal-page');
+
+                iframes.forEach(f => f.classList.remove('active'));
+                internalPages.forEach(page => page.classList.remove('active'));
+                historyPage.classList.add('active');
+
+                activeTab.childNodes[0].textContent = "History";
+                document.getElementById('search-input').value = "petezah://history";
+                currentTabState = { type: 'internal', url: 'petezah://history' };
+
+                const historyList = history.map(h => `
+                <li>
+                    <a href="#" onclick="navigateToBookmark('${h.url.replace(/'/g, "\\'")}')">${h.title}</a>
+                    <span class="meta">${new Date(h.timestamp).toLocaleString()}</span>
+                </li>
+            `).join('');
+
+                historyPage.innerHTML = `
+                <h2>History</h2>
+                <div class="action-bar">
+                    <button class="danger" onclick="clearHistory()">Clear History</button>
+                </div>
+                <ul>${historyList || '<li>No history yet.</li>'}</ul>
+            `;
+
+                updateHistory("petezah://history");
+                toggleMenu();
+            } catch (e) {
+                console.error('Error showing history:', e);
+            }
+        }
+
+        function showExtensionPopup() {
+            try {
+                const popup = document.getElementById('extension-popup');
+                popup.classList.add('active');
+                document.getElementById('extension-code').value = '';
+                document.getElementById('extension-file').value = '';
+            } catch (e) {
+                console.error('Error showing extension popup:', e);
+            }
+        }
+
+        function cancelExtension() {
+            try {
+                const popup = document.getElementById('extension-popup');
+                popup.classList.remove('active');
+            } catch (e) {
+                console.error('Error cancelling extension:', e);
+            }
+        }
+
+        function installExtension() {
+            try {
+                const fileInput = document.getElementById('extension-file');
+                const codeInput = document.getElementById('extension-code').value;
+                let code = codeInput;
+
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        code = e.target.result;
+                        addExtension(code);
+                    };
+                    reader.readAsText(file);
+                } else if (code) {
+                    addExtension(code);
+                }
+                document.getElementById('extension-popup').classList.remove('active');
+            } catch (e) {
+                console.error('Error installing extension:', e);
+            }
+        }
+
+        function addExtension(code) {
+            try {
+                const extension = {
+                    id: Date.now(),
+                    name: `Extension ${extensions.length + 1}`,
+                    code: code,
+                    enabled: true,
+                    icon: "https://via.placeholder.com/64"
+                };
+                extensions.push(extension);
+                localStorage.setItem('extensions', JSON.stringify(extensions));
+
+                if (extension.enabled) {
+                    executeExtension(extension);
+                }
+                showExtensions();
+            } catch (e) {
+                console.error('Error adding extension:', e);
+            }
+        }
+
+        function executeExtension(extension) {
+            try {
+                const iframe = document.querySelector('.tab-iframe.active');
+                const script = document.createElement('script');
+                script.textContent = extension.code;
+                iframe.contentDocument.head.appendChild(script);
+            } catch (e) {
+                console.error('Error executing extension:', e);
+            }
+        }
+
+        function toggleExtension(id) {
+            try {
+                extensions = extensions.map(ext =>
+                    ext.id === id ? { ...ext, enabled: !ext.enabled } : ext
+                );
+                localStorage.setItem('extensions', JSON.stringify(extensions));
+                const extension = extensions.find(ext => ext.id === id);
+                if (extension.enabled) {
+                    executeExtension(extension);
+                }
+                showExtensions();
+            } catch (e) {
+                console.error('Error toggling extension:', e);
+            }
+        }
+
+        function removeExtension(id) {
+            try {
+                extensions = extensions.filter(ext => ext.id !== id);
+                localStorage.setItem('extensions', JSON.stringify(extensions));
+                showExtensions();
+            } catch (e) {
+                console.error('Error removing extension:', e);
+            }
+        }
+
+        function showExtensions() {
+            try {
+                const extensionsPage = document.getElementById('extensions-page');
+                const activeTab = document.querySelector('.tab.active');
+                const iframes = document.querySelectorAll('.tab-iframe');
+                const internalPages = document.querySelectorAll('.internal-page');
+
+                iframes.forEach(f => f.classList.remove('active'));
+                internalPages.forEach(page => page.classList.remove('active'));
+                extensionsPage.classList.add('active');
+
+                activeTab.childNodes[0].textContent = "Extensions";
+                document.getElementById('search-input').value = "petezah://extensions";
+                currentTabState = { type: 'internal', url: 'petezah://extensions' };
+
+                const extensionsList = extensions.map(ext => `
+                <div class="extension-card">
+                    <img src="${ext.icon}" alt="${ext.name}">
+                    <h3>${ext.name}</h3>
+                    <p>Status: ${ext.enabled ? 'Enabled' : 'Disabled'}</p>
+                    <div class="button-group">
+                        <button onclick="toggleExtension(${ext.id})">
+                            ${ext.enabled ? 'Disable' : 'Enable'}
+                        </button>
+                        <button class="danger" onclick="removeExtension(${ext.id})">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+
+                extensionsPage.innerHTML = `
+                <h2>Extensions</h2>
+                <div class="action-bar">
+                    <button onclick="showExtensionPopup()">Install Extension</button>
+                </div>
+                <div class="extensions-grid">${extensionsList || '<p>No extensions installed.</p>'}</div>
+            `;
+
+                updateHistory("petezah://extensions");
+                toggleMenu();
+            } catch (e) {
+                console.error('Error showing extensions:', e);
+            }
+        }
+
+        function openInNewTab() {
+            try {
+                if (currentTabState.type !== 'iframe') return;
+                const iframe = document.querySelector('.tab-iframe.active');
+                const url = getUnproxifiedUrl(iframe.src);
+                window.open(url, '_blank');
+                toggleMenu();
+            } catch (e) {
+                console.error('Error opening in new tab:', e);
+            }
+        }
+
+        function openInAboutBlank() {
+            try {
+                if (currentTabState.type !== 'iframe') return;
+                const iframe = document.querySelector('.tab-iframe.active');
+                const url = getUnproxifiedUrl(iframe.src);
+                const win = window.open('about:blank', '_blank');
+                win.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <title>${iframe.contentDocument?.title || 'New Tab'}</title>
+                </head>
+                <body style="margin:0;padding:0;">
+                    <iframe src="${url}" style="border:none;width:100%;height:100vh;margin:0;" referrerpolicy="no-referrer" allow="fullscreen"></iframe>
+                </body>
+                </html>
+            `);
+                win.document.close();
+                toggleMenu();
+            } catch (e) {
+                console.error('Error opening in about:blank:', e);
+            }
+        }
+
+        function zoomIn() {
+            try {
+                if (currentTabState.type !== 'iframe') return;
+                zoomLevel += 0.1;
+                updateZoom();
+            } catch (e) {
+                console.error('Error zooming in:', e);
+            }
+        }
+
+        function zoomOut() {
+            try {
+                if (currentTabState.type !== 'iframe') return;
+                zoomLevel = Math.max(0.1, zoomLevel - 0.1);
+                updateZoom();
+            } catch (e) {
+                console.error('Error zooming out:', e);
+            }
+        }
+
+        function updateZoom() {
+            try {
+                const iframe = document.querySelector('.tab-iframe.active');
+                iframe.style.transform = `scale(${zoomLevel})`;
+                iframe.style.transformOrigin = '0 0';
+                document.getElementById('zoom-level').textContent = `${Math.round(zoomLevel * 100)}%`;
+            } catch (e) {
+                console.error('Error updating zoom:', e);
+            }
+        }
+
+        function updateHistory(url) {
+            try {
+                let title = getTabTitleFromUrl(url);
+                if (currentTabState.type === 'iframe') {
+                    try {
+                        const iframe = document.querySelector('.tab-iframe.active');
+                        title = iframe.contentDocument?.title || title;
+                    } catch (e) {
+                        console.error('Error getting title for history:', e);
+                    }
+                }
+                history.push({ url, title, timestamp: new Date().toISOString(), id: Date.now() });
+                localStorage.setItem('history', JSON.stringify(history));
+            } catch (e) {
+                console.error('Error updating history:', e);
+            }
+        }
+
+        // Initialize
+        try {
+            const initialIframe = document.querySelector('.tab-iframe.active');
+            const initialTab = document.querySelector('.tab.active');
+            document.getElementById('search-input').value = "petezah://newtab";
+            updateTabName(initialIframe, initialTab);
+
+            document.addEventListener('click', (e) => {
+                try {
+                    const menu = document.getElementById('menu');
+                    const menuButton = document.querySelector('.menu-button');
+                    const extensionPopup = document.getElementById('extension-popup');
+                    if (!menu.contains(e.target) && !menuButton.contains(e.target)) {
+                        menu.classList.remove('active');
+                    }
+                    if (!extensionPopup.contains(e.target) && !e.target.closest('button[onclick="showExtensionPopup()"]')) {
+                        extensionPopup.classList.remove('active');
+                    }
+                } catch (error) {
+                    console.error('Error handling click event:', error);
+                }
+            });
+
+            // Handle iframe errors
+            document.querySelectorAll('.tab-iframe').forEach(iframe => {
+                iframe.addEventListener('error', (e) => {
+                    console.error('Iframe error:', e);
+                    iframe.src = 'data:text/html,<h2>Error loading page</h2>';
+                });
+            });
+
+            // Load and execute enabled extensions
+            extensions.forEach(ext => {
+                if (ext.enabled) {
+                    executeExtension(ext);
+                }
+            });
+        } catch (e) {
+            console.error('Error during initialization:', e);
+        }
+    </script>
+</body>
+
+</html>
