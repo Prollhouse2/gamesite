@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+v<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -244,6 +244,11 @@ h1:hover {
     }
 }
 
+.search-bar-container {
+    position: relative;
+    display: inline-block;
+}
+
 .search-bar-home {
     padding: 12px 18px 12px 45px;
     width: 350px;
@@ -293,6 +298,30 @@ h1:hover {
 
 .search-button i {
     margin-left: 8px;
+}
+
+/* Animation for search icon */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 107, 157, 0.8);
+    pointer-events: none;
+    transition: all var(--transition-normal);
+    animation: pulse 2s infinite;
 }
 
 #time {
@@ -456,30 +485,6 @@ h1:hover {
     background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
     color: var(--text-primary);
     box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
-}
-
-/* Animation for search icon */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.search-icon {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgba(255, 107, 157, 0.8);
-    pointer-events: none;
-    transition: all var(--transition-normal);
-    animation: pulse 2s infinite;
 }
 
 /* Enhanced pinned icons */
@@ -711,23 +716,25 @@ button[class*="Discord"] {
     <div id="search-container">
         <form id="uv-form">
             <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden"/>
-            <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <div class="search-bar-container">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
+            </div>
             <button class="search-button" onclick="submitSearch()">SEARCH <i class="fa-solid fa-magnifying-glass"></i></button>
         </form> 
 
- <div class="button-container1">
-   <a href="index.html" class="button">Home</a>
-  <a href="static" class="button">Web Browser</a>
-   <a href="https://tinyurl.com/45j4r62u" class="button">Games Request</a>
-    <a href="settings" class="button">Website Settings</a>
-    <a href="https://github.com/Prollhouse2/gamesite" class="button">Source / Updates</a>
-    <a href="bookmarks" class="button">Gms Cheats</a>
-    <a href="save" class="button">Gms Save</a>
-    <a href="leaderboard" class="button">Leaderboard</a>
-    <a href="https://discord.gg/proll" class="button">Discord!</a>
-    <a href="chat" class="button">Chatroom</a>
-</div>
+        <div class="button-container1">
+           <a href="index.html" class="button">Home</a>
+          <a href="/static" class="button">Web Browser</a>
+           <a href="https://tinyurl.com/45j4r62u" class="button">Games Request</a>
+            <a href="/settings" class="button">Website Settings</a>
+            <a href="https://github.com/Prollhouse2/gamesite" class="button">Source / Updates</a>
+            <a href="/bookmarks" class="button">Gms Cheats</a>
+            <a href="/save" class="button">Gms Save</a>
+            <a href="/leaderboard" class="button">Leaderboard</a>
+            <a href="https://discord.gg/proll" class="button">Discord!</a>
+            <a href="/chat" class="button">Chatroom</a>
+        </div>
 
         <div class="desc left-margin">
             <p id="uv-error"></p>
@@ -768,7 +775,7 @@ button[class*="Discord"] {
     <div id="time"></div>
     
     <!-- Version tag -->
-    <div class="version-tag">Prolls Proxy v1.0</div>
+    <div class="version-tag">Prolls Proxy v5.0</div>
 
     <script src="/static/uv/uv.bundle.js" defer></script>
     <script src="/static/uv/uv.config.js" defer></script>
@@ -779,7 +786,18 @@ button[class*="Discord"] {
     <script>
         // Initialize snow effect
         document.addEventListener("DOMContentLoaded", function() {
+            // First try to load particles.js from CDN
             if (typeof particlesJS !== "undefined") {
+                initSnow();
+            } else {
+                // If not loaded, load it dynamically
+                var script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+                script.onload = initSnow;
+                document.head.appendChild(script);
+            }
+            
+            function initSnow() {
                 particlesJS("snow", {
                     particles: {
                         number: {
@@ -822,56 +840,6 @@ button[class*="Discord"] {
                     },
                     retina_detect: true,
                 });
-            } else {
-                console.error("particles.js is not loaded");
-                // Fallback to load particles.js if it wasn't loaded
-                var script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
-                script.onload = function() {
-                    particlesJS("snow", {
-                        particles: {
-                            number: {
-                                value: 150,
-                                density: { enable: true, value_area: 800 },
-                            },
-                            color: { value: "#ffffff" },
-                            shape: {
-                                type: "circle",
-                                stroke: { width: 0, color: "#000000" },
-                            },
-                            opacity: {
-                                value: 0.5,
-                                random: false,
-                                anim: { enable: false },
-                            },
-                            size: {
-                                value: 3,
-                                random: true,
-                                anim: { enable: false },
-                            },
-                            line_linked: { enable: false },
-                            move: {
-                                enable: true,
-                                speed: 2,
-                                direction: "bottom",
-                                random: false,
-                                straight: false,
-                                out_mode: "out",
-                                bounce: false,
-                            },
-                        },
-                        interactivity: {
-                            detect_on: "canvas",
-                            events: {
-                                onhover: { enable: true },
-                                onclick: { enable: false },
-                                resize: true,
-                            },
-                        },
-                        retina_detect: true,
-                    });
-                };
-                document.head.appendChild(script);
             }
         });
 
@@ -947,8 +915,6 @@ button[class*="Discord"] {
             img.style.transition = 'transform 0.3s, box-shadow 0.3s';
             img.style.boxShadow = '0 0 10px rgba(157, 107, 255, 0.4)';
             img.onmouseover = function() { 
-                this.style.transform = 'scale(1.2)'; 
-                this.style.boxShadow = '0 0 15px rgba(  { 
                 this.style.transform = 'scale(1.2)'; 
                 this.style.boxShadow = '0 0 15px rgba(255, 107, 157, 0.6)';
             };
