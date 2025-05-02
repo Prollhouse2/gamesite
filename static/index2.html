@@ -1,0 +1,538 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tab</title>
+    <link rel="stylesheet" type="text/css" href="/storage/css/themes2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+    body {
+        color: #e0e0ff;
+        background: radial-gradient(circle at center, #0a0a1a, #000022);
+        font-family: "Orbitron", sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Starfield Background */
+    .starfield {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        z-index: -2;
+        animation: starfield 100s linear infinite;
+    }
+
+    .starfield::before,
+    .starfield::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        animation: twinkle 5s infinite;
+    }
+
+    .starfield::before {
+        top: 20%;
+        left: 30%;
+        animation-delay: 1s;
+    }
+
+    .starfield::after {
+        top: 60%;
+        left: 70%;
+        animation-delay: 3s;
+    }
+
+    @keyframes twinkle {
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 0.8; }
+    }
+
+    .god-rays {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 550px;
+        --stripes: repeating-linear-gradient(100deg, rgba(10, 20, 40, 0.7) 0%, rgba(10, 20, 40, 0.7) 7%, transparent 10%, transparent 12%, rgba(10, 20, 40, 0.7) 16%);
+        --rays: repeating-linear-gradient(100deg, rgba(20, 30, 60, 0.8) 10%, rgba(10, 20, 50, 0.8) 15%, rgba(20, 30, 60, 0.8) 20%, rgba(10, 20, 50, 0.8) 25%, rgba(20, 30, 60, 0.8) 30%);
+        background-image: var(--stripes), var(--rays);
+        background-size: 300%, 200%;
+        background-position: 50% 50%, 50% 50%;
+        animation: fadeIn 2s ease;
+        mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+        -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
+        pointer-events: none;
+        z-index: -1;
+        mix-blend-mode: overlay;
+    }
+
+    .god-rays::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--stripes), var(--rays);
+        background-size: 200%, 100%;
+        animation: god-rays 60s linear infinite;
+        background-attachment: fixed;
+        mix-blend-mode: difference;
+        opacity: 0.5;
+    }
+
+    @keyframes god-rays {
+        0% { background-position: 0% 0%, 0% 0%; }
+        100% { background-position: 300% 300%, 200% 200%; }
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        color: #e0e0ff;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+        margin-top: 50px;
+        text-shadow: 0 0 20px rgba(100, 150, 255, 0.8), 0 0 30px rgba(100, 150, 255, 0.5);
+        transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    }
+
+    h1:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 30px rgba(100, 150, 255, 1), 0 0 40px rgba(100, 150, 255, 0.7);
+    }
+
+    #dynamicParagraph {
+        color: #c0c0ff;
+        font-size: 1.25rem;
+        margin-top: 5px;
+        font-weight: 400;
+        text-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+        transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    }
+
+    #dynamicParagraph:hover {
+        color: #80a0ff;
+        text-shadow: 0 0 15px rgba(100, 150, 255, 0.8);
+    }
+
+    #search-container {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .search-bar-home {
+        padding: 12px 18px;
+        width: 350px;
+        border: 2px solid rgba(100, 150, 255, 0.3);
+        background-color: rgba(10, 10, 20, 0.8);
+        border-radius: 30px;
+        font-family: "Orbitron", sans-serif;
+        outline: none;
+        margin: 0;
+        color: #e0e0ff;
+        font-size: 16px;
+        text-shadow: 0 0 10px rgba(100, 150, 255, 0.3);
+        transition: all 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        backdrop-filter: blur(5px);
+    }
+
+    .search-bar-home::placeholder {
+        color: #80a0ff;
+        opacity: 0.7;
+        font-size: 14px;
+    }
+
+    .search-bar-home:focus {
+        border-color: #64a6ff;
+        background-color: rgba(20, 30, 60, 0.9);
+        box-shadow: 0 0 15px rgba(100, 150, 255, 0.5);
+    }
+
+    .search-button {
+        padding: 10px 20px;
+        background: linear-gradient(135deg, rgba(100, 150, 255, 0.3), rgba(150, 100, 255, 0.3));
+        color: #e0e0ff;
+        font-size: 16px;
+        border: 2px solid rgba(100, 150, 255, 0.5);
+        border-radius: 30px;
+        margin-top: 10px;
+        cursor: pointer;
+        text-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+        transition: all 0.3s ease-in-out;
+        backdrop-filter: blur(5px);
+    }
+
+    .search-button:hover {
+        background: linear-gradient(135deg, rgba(100, 150, 255, 0.8), rgba(150, 100, 255, 0.8));
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(100, 150, 255, 0.7);
+    }
+
+    .search-button i {
+        margin-left: 8px;
+    }
+
+    #time {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        font-size: 18px;
+        color: #e0e0ff;
+        font-family: "Orbitron", sans-serif;
+        background: rgba(10, 10, 20, 0.8);
+        padding: 5px 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+        backdrop-filter: blur(5px);
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(10, 10, 20, 0.9);
+        border: 1px solid rgba(100, 150, 255, 0.5);
+        padding: 35px;
+        border-radius: 20px;
+        z-index: 1000;
+        color: #e0e0ff;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), inset 0 0 10px rgba(100, 150, 255, 0.2);
+        animation: popupFadeIn 0.3s ease-out;
+        min-width: 400px;
+        max-width: 450px;
+        backdrop-filter: blur(10px);
+    }
+
+    @keyframes popupFadeIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -40%) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+
+    .popup h3 {
+        margin: 0 0 20px;
+        font-weight: 700;
+        color: #e0e0ff;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+    }
+
+    .popup input[type="text"] {
+        margin: 10px 0;
+        width: 100%;
+        background: rgba(20, 30, 60, 0.8);
+        border: 1px solid rgba(100, 150, 255, 0.3);
+        color: #e0e0ff;
+        padding: 12px 15px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        font-family: "Orbitron", sans-serif;
+    }
+
+    .popup input[type="text"]:focus {
+        border-color: rgba(100, 150, 255, 0.8);
+        background: rgba(20, 30, 60, 0.9);
+        box-shadow: 0 0 15px rgba(100, 150, 255, 0.5);
+        outline: none;
+    }
+
+    .popup input[type="file"] {
+        margin: 15px 0;
+        color: #e0e0ff;
+        width: 100%;
+        font-family: "Orbitron", sans-serif;
+    }
+
+    .popup input[type="file"]::-webkit-file-upload-button {
+        background: rgba(20, 30, 60, 0.8);
+        border: 1px solid rgba(100, 150, 255, 0.3);
+        padding: 8px 15px;
+        border-radius: 10px;
+        color: #e0e0ff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .popup input[type="file"]::-webkit-file-upload-button:hover {
+        background: rgba(20, 30, 60, 0.9);
+        border-color: rgba(100, 150, 255, 0.8);
+        box-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+    }
+
+    .popup-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+    .popup button {
+        padding: 10px 20px;
+        background: rgba(20, 30, 60, 0.8);
+        border: 1px solid rgba(100, 150, 255, 0.3);
+        border-radius: 10px;
+        color: #e0e0ff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 500;
+    }
+
+    .popup button:hover {
+        background: rgba(20, 30, 60, 0.9);
+        transform: translateY(-2px);
+        box-shadow: 0 0 15px rgba(100, 150, 255, 0.5);
+    }
+
+    .popup button#add-btn {
+        background: linear-gradient(135deg, #64a6ff, #a064ff);
+        color: #0a0a1a;
+        border: none;
+    }
+
+    .popup button#add-btn:hover {
+        background: linear-gradient(135deg, #a064ff, #64a6ff);
+        box-shadow: 0 0 20px rgba(100, 150, 255, 0.7);
+    }
+
+    .add-pin-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        background: linear-gradient(135deg, #64a6ff, #a064ff);
+        border: 2px solid rgba(100, 150, 255, 0.5);
+        border-radius: 50%;
+        color: #0a0a1a;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+    }
+
+    .add-pin-btn:hover {
+        transform: scale(1.2);
+        background: linear-gradient(135deg, #a064ff, #64a6ff);
+        box-shadow: 0 0 20px rgba(100, 150, 255, 0.7);
+    }
+
+    .pinned-icons img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid rgba(100, 150, 255, 0.3);
+    }
+
+    .pinned-icons img:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 15px rgba(100, 150, 255, 0.7);
+    }
+    </style>
+</head>
+<body>
+    <div class="starfield"></div>
+    <div class="god-rays"></div>
+    <br><br><br><br><br>
+
+    <h1>Pete Prօxy</h1> 
+    <p id="dynamicParagraph">(TEXT)</p> 
+
+    <div id="search-container">
+        <form id="uv-form">
+            <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden"/>
+            <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
+            <button class="search-button" onclick="submitSearch()">SEARCH <i class="fa-solid fa-magnifying-glass"></i></button>
+        </form> 
+
+        <div class="desc left-margin">
+            <p id="uv-error"></p>
+            <pre id="uv-error-code"></pre>
+        </div>
+    </div>  
+
+    <div class="pinned-icons" style="display: flex; justify-content: center; align-items: center; gap: 15px;">
+        <a href="/static/embed.html#https://tiktok.com" style="display: inline-block;">
+            <img src="/storage/ag/a/tiktok/IMG_5335.png" alt="TikTok">
+        </a>
+        <a href="/static/embed.html#https://twitch.tv" style="display: inline-block;">
+            <img src="/storage/ag/a/twitch/IMG_5336.png" alt="Twitch">
+        </a>
+        <a href="/static/embed.html#https://google.com" style="display: inline-block;">
+            <img src="/storage/ag/a/google/IMG_5324.webp" alt="Google">
+        </a>
+        <a href="/static/embed.html#https://now.gg" style="display: inline-block;">
+            <img src="/storage/ag/a/nowgg/IMG_5325.png" alt="Now.gg">
+        </a>
+        <a href="#" id="add-pin-btn" class="add-pin-btn">
+            <span class="material-icons" style="font-size: 20px;">add</span>
+        </a>
+    </div>
+
+    <!-- Popup for adding new pin -->
+    <div id="add-pin-popup" class="popup">
+        <h3>Add New Pin</h3>
+        <input type="text" id="pin-url" placeholder="Enter URL (https:// required)">
+        <input type="file" id="pin-image" accept="image/*">
+        <div class="popup-buttons">
+            <button id="cancel-btn">Cancel</button>
+            <button id="add-btn">Add</button>
+        </div>
+    </div>
+
+    <!-- Time Display Element -->
+    <div id="time"></div>
+
+    <script src="/static/uv/uv.bundle.js" defer></script>
+    <script src="/static/uv/uv.config.js" defer></script>
+    <script src="/static/register-sw.js" defer></script>
+    <script src="/static/search.js" defer></script>
+    <script src="/static/index.js" defer></script>
+
+    <script>
+        const phrases = [
+            "PeteZah best unblocked games site!", 
+            "https://petezahgames.com", 
+            "Credits to Brunys and Voucan for proxy help", 
+            "just had a major update ¯\\_(ツ)_/¯", 
+            "Roblox should now work my fellow pizzas", 
+            "IVE EDGED TO Pete Zah -idkiguess",
+        ];
+
+        const paragraph = document.getElementById('dynamicParagraph');
+
+        function changeText() {
+            const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+            paragraph.textContent = randomPhrase;
+        }
+
+        paragraph.addEventListener('click', changeText);
+        window.onload = changeText;
+
+        function updateTime() {
+            const timeElement = document.getElementById("time");
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateTime, 1000);
+
+        // Updated add pin functionality
+        const addPinBtn = document.getElementById('add-pin-btn');
+        const popup = document.getElementById('add-pin-popup');
+        const addBtn = document.getElementById('add-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const pinnedIcons = document.querySelector('.pinned-icons');
+
+        // Load saved pins from localStorage on page load
+        function loadSavedPins() {
+            const savedPins = JSON.parse(localStorage.getItem('pinnedBookmarks') || '[]');
+            savedPins.forEach(pin => {
+                createPinElement(pin.url, pin.image);
+            });
+        }
+
+        // Create pin element
+        function createPinElement(url, imageData) {
+            const newPin = document.createElement('a');
+            newPin.href = `/static/embed.html#${url}`;
+            newPin.style.display = 'inline-block';
+
+            const img = document.createElement('img');
+            img.src = imageData;
+            img.alt = url;
+            img.style.width = '30px';
+            img.style.height = '30px';
+            img.style.borderRadius = '50%';
+            img.style.transition = 'transform 0.3s, box-shadow 0.3s';
+            img.style.border = '1px solid rgba(100, 150, 255, 0.3)';
+            img.onmouseover = function() { 
+                this.style.transform = 'scale(1.2)'; 
+                this.style.boxShadow = '0 0 15px rgba(100, 150, 255, 0.7)';
+            };
+            img.onmouseout = function() { 
+                this.style.transform = 'scale(1)'; 
+                this.style.boxShadow = 'none';
+            };
+
+            newPin.appendChild(img);
+            pinnedIcons.insertBefore(newPin, addPinBtn);
+        }
+
+        // Save pin to localStorage
+        function savePin(url, imageData) {
+            const savedPins = JSON.parse(localStorage.getItem('pinnedBookmarks') || '[]');
+            savedPins.push({ url, image: imageData });
+            localStorage.setItem('pinnedBookmarks', JSON.stringify(savedPins));
+        }
+
+        addPinBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            popup.style.display = 'block';
+        });
+
+        addBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const urlInput = document.getElementById('pin-url').value;
+            const imageInput = document.getElementById('pin-image').files[0];
+
+            if (!urlInput.startsWith('https://')) {
+                alert('URL must start with https://');
+                return;
+            }
+
+            if (!imageInput) {
+                alert('Please select an image');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageData = e.target.result;
+                createPinElement(urlInput, imageData);
+                savePin(urlInput, imageData);
+                popup.style.display = 'none';
+                document.getElementById('pin-url').value = '';
+                document.getElementById('pin-image').value = '';
+            };
+            reader.readAsDataURL(imageInput);
+        });
+
+        cancelBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            popup.style.display = 'none';
+            document.getElementById('pin-url').value = '';
+            document.getElementById('pin-image').value = '';
+        });
+
+        // Load pins when page loads
+        window.addEventListener('load', loadSavedPins);
+    </script>
+    <script src="/storage/js/settings.js"></script>
+</body>
+</html>
