@@ -211,46 +211,69 @@
                 transform: scale(1);
             }
         /* Search Bar Styling */
-.search-container {
-    margin: 1rem auto;
-    max-width: 500px;
+#search-container {
+    margin-top: 20px;
+    text-align: center;
     position: relative;
+    animation: float 6s infinite ease-in-out;
 }
 
-.search-wrapper {
+.search-bar-container {
     position: relative;
-    display: flex;
-    align-items: center;
+    display: inline-block;
 }
 
-#searchInput {
-    width: 100%;
-    padding: 10px 15px 10px 40px;
-    border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background-color: rgba(40, 42, 54, 0.8);
-    color: white;
-    font-size: 16px;
+.search-bar-home {
+    padding: 12px 18px 12px 45px;
+    width: 350px;
+    border: 2px solid rgba(255, 107, 157, 0.6);
+    background-color: rgba(26, 26, 46, 0.9);
+    border-radius: 30px;
+    font-family: "VT323", monospace;
+    font-size: 18px;
     outline: none;
-    transition: all 0.3s ease;
+    margin: 0;
+    color: var(--text-primary);
+    box-shadow: 0 0 15px rgba(157, 107, 255, 0.3);
+    transition: all var(--transition-normal);
+    position: relative;
 }
 
-#searchInput:focus {
+.search-bar-home::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+}
+
+.search-bar-home:focus {
     border-color: var(--accent-pink);
-    box-shadow: 0 0 10px rgba(157, 107, 255, 0.4);
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 0 0 30px rgba(157, 107, 255, 0.4);
 }
 
-.search-icon {
-    position: absolute;
-    left: 15px;
-    color: rgba(255, 255, 255, 0.7);
-    pointer-events: none;
-    transition: all 0.3s ease;
+.search-button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.8), rgba(157, 107, 255, 0.8));
+    color: white;
+    font-size: 14px;
+    font-family: "Press Start 2P", cursive;
+    border: none;
+    border-radius: 30px;
+    margin-top: 15px;
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-#searchInput:focus + .search-icon {
-    color: var(--accent-pink);
+.search-button:hover {
+    background: linear-gradient(135deg, rgba(255, 107, 157, 1), rgba(157, 107, 255, 1));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 157, 0.4);
 }
+
+.search-button i {
+    margin-left: 8px;
+}
+
 
         .star-animation {
             animation: star-pulse 0.5s ease;
