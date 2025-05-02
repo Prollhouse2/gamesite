@@ -76,15 +76,17 @@
             width: 100%;
         }
 
-        .nav-container {
+        /* Button Container - Matching home page style */
+        .button-container1 {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 10px;
             margin: 1.5rem 0;
         }
 
-        .nav-button {
+        /* Button styling to match home page */
+        .button {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(37, 37, 58, 0.9));
             border: 1px solid rgba(255, 107, 157, 0.3);
             border-radius: 8px;
@@ -99,7 +101,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .nav-button:hover {
+        .button:hover {
             transform: translateY(-3px);
             box-shadow: 0 7px 14px rgba(157, 107, 255, 0.4);
             border-color: var(--accent-pink);
@@ -301,7 +303,7 @@
                 height: 450px;
             }
             
-            .nav-button {
+            .button {
                 font-size: 0.6rem;
                 padding: 8px 12px;
             }
@@ -316,7 +318,7 @@
                 height: 400px;
             }
             
-            .nav-button {
+            .button {
                 font-size: 0.5rem;
                 padding: 6px 10px;
             }
@@ -334,13 +336,14 @@
         <header class="site-header">
             <h1 class="logo">Proll's School V4.7</h1>
             
-            <div class="nav-container">
-                <a href="/" class="nav-button">Home</a>
-                <a href="https://tinyurl.com/45j4r62u" class="nav-button">Games Request</a>
-                <a href="settings" class="nav-button">Settings</a>
-                <a href="https://github.com/Prollhouse2/gamesite" class="nav-button">Source</a>
-                <a href="leaderboard" class="nav-button">Leaderboard</a>
-                <a href="https://discord.gg/proll" class="nav-button">Discord</a>
+            <div class="button-container1">
+                <a href="/" class="button">Home</a>
+                <a href="https://tinyurl.com/45j4r62u" class="button">Games Request</a>
+                <a href="settings" class="button">Website Settings</a>
+                <a href="https://github.com/Prollhouse2/gamesite" class="button">Source / Updates</a>
+                <a href="bookmarks" class="button">Gms Cheats</a>
+                <a href="leaderboard" class="button">Leaderboard</a>
+                <a href="https://discord.gg/proll" class="button">Discord!</a>
             </div>
         </header>
         
@@ -348,7 +351,7 @@
         
         <div class="chat-container" id="chat-container">
             <div class="chat-header">
-                <h2><i class="fas fa-gamepad"></i>Chat</h2>
+                <h2><i class="fas fa-gamepad"></i> Game Chat</h2>
                 <div class="chat-controls">
                     <button class="control-btn" id="refresh-btn" title="Refresh Chat">
                         <i class="fas fa-sync-alt"></i>
@@ -368,7 +371,12 @@
             </iframe>
         </div>
         
-     
+        <div class="online-users">
+            <h3>Online Gamers</h3>
+            <div class="user-list" id="user-list">
+                <!-- Users will be dynamically added here -->
+            </div>
+        </div>
         
         <div class="section-divider"></div>
         
@@ -386,8 +394,9 @@
     </div>
 
     <script>
-        // Initialize snow effect
-        document.addEventListener("DOMContentLoaded", function() {
+        // Initialize snow effect when the page is fully loaded
+        window.onload = function() {
+            // Make sure particles.js is loaded
             if (typeof particlesJS !== "undefined") {
                 particlesJS("snow", {
                     particles: {
@@ -431,65 +440,133 @@
                     },
                     retina_detect: true,
                 });
+            } else {
+                console.error("particles.js is not loaded");
+                // Fallback to load particles.js if it wasn't loaded
+                var script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+                script.onload = function() {
+                    particlesJS("snow", {
+                        particles: {
+                            number: {
+                                value: 150,
+                                density: { enable: true, value_area: 800 },
+                            },
+                            color: { value: "#ffffff" },
+                            shape: {
+                                type: "circle",
+                                stroke: { width: 0, color: "#000000" },
+                            },
+                            opacity: {
+                                value: 0.5,
+                                random: false,
+                                anim: { enable: false },
+                            },
+                            size: {
+                                value: 3,
+                                random: true,
+                                anim: { enable: false },
+                            },
+                            line_linked: { enable: false },
+                            move: {
+                                enable: true,
+                                speed: 2,
+                                direction: "bottom",
+                                random: false,
+                                straight: false,
+                                out_mode: "out",
+                                bounce: false,
+                            },
+                        },
+                        interactivity: {
+                            detect_on: "canvas",
+                            events: {
+                                onhover: { enable: true },
+                                onclick: { enable: false },
+                                resize: true,
+                            },
+                        },
+                        retina_detect: true,
+                    });
+                };
+                document.head.appendChild(script);
             }
             
             // Set current year
             document.getElementById("current-year").textContent = new Date().getFullYear();
             
-            // Fullscreen functionality
+            // Fullscreen functionality - Fixed
             const fullscreenBtn = document.getElementById("fullscreen-btn");
             const chatContainer = document.getElementById("chat-container");
-            
-            fullscreenBtn.addEventListener("click", function() {
-                if (!document.fullscreenElement) {
-                    if (chatContainer.requestFullscreen) {
-                        chatContainer.requestFullscreen();
-                    } else if (chatContainer.mozRequestFullScreen) {
-                        chatContainer.mozRequestFullScreen();
-                    } else if (chatContainer.webkitRequestFullscreen) {
-                        chatContainer.webkitRequestFullscreen();
-                    } else if (chatContainer.msRequestFullscreen) {
-                        chatContainer.msRequestFullscreen();
-                    }
-                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-                } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-                }
-            });
-            
-            document.addEventListener("fullscreenchange", function() {
-                if (!document.fullscreenElement) {
-                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-                }
-            });
-            
-            // Refresh button functionality
-            const refreshBtn = document.getElementById("refresh-btn");
             const chatFrame = document.getElementById("chat-frame");
             
+            fullscreenBtn.addEventListener("click", function() {
+                // Try to make the iframe fullscreen first
+                try {
+                    if (chatFrame.requestFullscreen) {
+                        chatFrame.requestFullscreen();
+                    } else if (chatFrame.mozRequestFullScreen) {
+                        chatFrame.mozRequestFullScreen();
+                    } else if (chatFrame.webkitRequestFullscreen) {
+                        chatFrame.webkitRequestFullscreen();
+                    } else if (chatFrame.msRequestFullscreen) {
+                        chatFrame.msRequestFullscreen();
+                    } else {
+                        // Fallback to opening in new tab
+                        window.open(chatFrame.src, '_blank');
+                    }
+                } catch (e) {
+                    console.error("Fullscreen failed:", e);
+                    // Fallback to opening in new tab
+                    window.open(chatFrame.src, '_blank');
+                }
+            });
+            
+            // Refresh button functionality - Fixed
+            const refreshBtn = document.getElementById("refresh-btn");
+            
             refreshBtn.addEventListener("click", function() {
+                // Store the current src
                 const currentSrc = chatFrame.src;
-                chatFrame.src = "";
-                setTimeout(() => {
-                    chatFrame.src = currentSrc;
-                }, 100);
                 
                 // Add spinning animation to refresh icon
-                refreshBtn.querySelector("i").classList.add("fa-spin");
+                this.querySelector("i").classList.add("fa-spin");
+                
+                // Actually reload the iframe
+                chatFrame.src = "about:blank";
+                
                 setTimeout(() => {
-                    refreshBtn.querySelector("i").classList.remove("fa-spin");
-                }, 1000);
+                    chatFrame.src = currentSrc;
+                    
+                    // Remove spinning animation after a delay
+                    setTimeout(() => {
+                        this.querySelector("i").classList.remove("fa-spin");
+                    }, 500);
+                }, 100);
             });
-          
+            
+            // Simulate online users (replace with actual data if available)
+            const userList = document.getElementById("user-list");
+            const sampleUsers = [
+                "GamerPro123", "EpicPlayer", "NinjaWarrior", "PixelMaster", 
+                "GameWizard", "LevelBoss", "QuestHunter", "ProGamer99"
+            ];
+            
+            sampleUsers.forEach(user => {
+                const userBadge = document.createElement("div");
+                userBadge.className = "user-badge";
+                
+                const userStatus = document.createElement("span");
+                userStatus.className = "user-status";
+                
+                const userName = document.createElement("span");
+                userName.textContent = user;
+                
+                userBadge.appendChild(userStatus);
+                userBadge.appendChild(userName);
+                userList.appendChild(userBadge);
+            });
+        };
     </script>
 </body>
 </html>
