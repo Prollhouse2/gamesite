@@ -255,6 +255,91 @@
         .star-animation {
             animation: star-pulse 0.5s ease;
         }
+/* Fade-in Animation Styles */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Initial state for buttons before animation */
+.button-container1 .button,
+.button-container.regular-games .button,
+#favorites-container .button {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+/* Class that gets added when element is in viewport */
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* Staggered animation delay for buttons */
+.button-container1 .button:nth-child(1),
+.button-container.regular-games .button:nth-child(1),
+#favorites-container .button:nth-child(1) { animation-delay: 0.05s; }
+.button-container1 .button:nth-child(2),
+.button-container.regular-games .button:nth-child(2),
+#favorites-container .button:nth-child(2) { animation-delay: 0.1s; }
+.button-container1 .button:nth-child(3),
+.button-container.regular-games .button:nth-child(3),
+#favorites-container .button:nth-child(3) { animation-delay: 0.15s; }
+.button-container1 .button:nth-child(4),
+.button-container.regular-games .button:nth-child(4),
+#favorites-container .button:nth-child(4) { animation-delay: 0.2s; }
+.button-container1 .button:nth-child(5),
+.button-container.regular-games .button:nth-child(5),
+#favorites-container .button:nth-child(5) { animation-delay: 0.25s; }
+.button-container1 .button:nth-child(6),
+.button-container.regular-games .button:nth-child(6),
+#favorites-container .button:nth-child(6) { animation-delay: 0.3s; }
+.button-container1 .button:nth-child(7),
+.button-container.regular-games .button:nth-child(7),
+#favorites-container .button:nth-child(7) { animation-delay: 0.35s; }
+.button-container1 .button:nth-child(8),
+.button-container.regular-games .button:nth-child(8),
+#favorites-container .button:nth-child(8) { animation-delay: 0.4s; }
+
+/* Page load animation for header elements */
+.container h1,
+.container .search-wrapper,
+#favorites-heading {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.container h1 { animation-delay: 0.1s; }
+.container .search-wrapper { animation-delay: 0.3s; }
+#favorites-heading { animation-delay: 0.5s; }
+
+/* Add a subtle glow effect during fade-in */
+@keyframes glowFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+        box-shadow: 0 0 0 rgba(157, 107, 255, 0);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        box-shadow: 0 0 5px rgba(157, 107, 255, 0.3);
+    }
+}
+
+/* Apply the glow effect to buttons when they fade in */
+.button-container.regular-games .button.glow-fade {
+    animation: glowFadeIn 0.8s ease forwards;
+}
     </style>
 </head>
 <body>
@@ -720,6 +805,90 @@
             // Initialize favorites section
             updateFavoritesSection();
         });
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // If the element is in the viewport
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                
+                // Add glow effect to some buttons for variety
+                if (Math.random() > 0.7 && entry.target.closest('.regular-games')) {
+                    entry.target.classList.add('glow-fade');
+                }
+            } else {
+                // Reset the animation when element leaves viewport
+                entry.target.classList.remove('fade-in');
+                entry.target.classList.remove('glow-fade');
+            }
+        });
+    }, {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    });
+
+    // Observe all buttons
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(button => {
+        observer.observe(button);
+    });
+    
+    // Observe favorites heading
+    const favoritesHeading = document.getElementById('favorites-heading');
+    if (favoritesHeading) {
+        observer.observe(favoritesHeading);
+    }
+    
+    // Function to add staggered delay based on position
+    function addStaggeredDelay() {
+        const gameButtons = document.querySelectorAll('.button-container.regular-games .button');
+        gameButtons.forEach((button, index) => {
+            const row = Math.floor(index / 8); // Assuming 8 buttons per row
+            const col = index % 8;
+            
+            // Calculate delay based on position (diagonal wave effect)
+            const delay = (row + col) * 0.05;
+            button.style.animationDelay = `${delay}s`;
+        });
+    }
+    
+    // Call the function to set up staggered delays
+    addStaggeredDelay();
+    
+    // Update animation delays when window is resized
+    window.addEventListener('resize', addStaggeredDelay);
+});
+
+// Add this function to your existing script
+function updateAnimations() {
+    // Get all buttons that need animation
+    const buttons = document.querySelectorAll('.button');
+    
+    // Check if each button is in viewport and animate accordingly
+    buttons.forEach(button => {
+        const rect = button.getBoundingClientRect();
+        const isInViewport = (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+        
+        if (isInViewport) {
+            button.classList.add('fade-in');
+        } else {
+            button.classList.remove('fade-in');
+        }
+    });
+}
+
+// Add scroll event listener to trigger animations while scrolling
+window.addEventListener('scroll', function() {
+    // Use requestAnimationFrame for better performance
+    requestAnimationFrame(updateAnimations);
+});
     </script>
 </body>
 </html>
