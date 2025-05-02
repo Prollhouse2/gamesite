@@ -4,15 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loading</title>
-
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'Inter';
-      src: url('images/Inter-Regular.woff2') format('woff2');
-      font-weight: 400;
-      font-style: normal;
-    }
-
     * {
       box-sizing: border-box;
     }
@@ -21,23 +14,88 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      font-family: 'Press Start 2P', cursive;
       height: 100vh;
       width: 100vw;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #d0eaff;
-      background: radial-gradient(circle at center, #001b33 0%, #000814 100%);
-      background-size: 200% 200%;
-      animation: bgShift 20s ease-in-out infinite;
+      color: #ffffff;
+      background-color: #0a0a1a;
       position: relative;
     }
 
-    @keyframes bgShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Grid background from main site */
+    .grid-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+          linear-gradient(rgba(26, 26, 46, 0.3) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26, 26, 46, 0.3) 1px, transparent 1px);
+      background-size: 30px 30px;
+      z-index: -3;
+      animation: gridMove 20s linear infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes gridMove {
+      0% {
+          background-position: 0 0;
+      }
+      100% {
+          background-position: 30px 30px;
+      }
+    }
+
+    /* Glow effect from main site */
+    .glow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -4;
+      overflow: hidden;
+    }
+
+    .glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(
+          circle,
+          rgba(157, 107, 255, 0.15) 0%,
+          rgba(255, 107, 157, 0.1) 30%,
+          rgba(0, 0, 0, 0) 70%
+      );
+      filter: blur(40px);
+      animation: glow-move 15s infinite alternate ease-in-out;
+    }
+
+    .glow:nth-child(2) {
+      background: radial-gradient(
+          circle,
+          rgba(255, 107, 157, 0.15) 0%,
+          rgba(107, 157, 255, 0.1) 30%,
+          rgba(0, 0, 0, 0) 70%
+      );
+      animation-delay: -5s;
+    }
+
+    @keyframes glow-move {
+      0% {
+          top: 10%;
+          left: 10%;
+      }
+      100% {
+          top: 60%;
+          left: 60%;
+      }
     }
 
     #main {
@@ -53,7 +111,7 @@
       height: 140px;
       position: relative;
       margin-bottom: 20px;
-      filter: drop-shadow(0 0 12px #00bfff);
+      filter: drop-shadow(0 0 12px rgba(255, 107, 157, 0.8));
     }
 
     .spinner-circle {
@@ -66,8 +124,8 @@
     .spinner-circle:nth-child(1) {
       width: 100%;
       height: 100%;
-      border-top-color: #00bfff;
-      border-left-color: #0074D9;
+      border-top-color: #ff6b9d; /* Pink */
+      border-left-color: #9d6bff; /* Purple */
     }
 
     .spinner-circle:nth-child(2) {
@@ -75,8 +133,8 @@
       height: 72%;
       top: 14%;
       left: 14%;
-      border-top-color: #003366;
-      border-left-color: #0055aa;
+      border-top-color: #6b9dff; /* Blue */
+      border-left-color: #ff6b9d; /* Pink */
       animation-duration: 2.5s;
       animation-direction: reverse;
     }
@@ -87,41 +145,40 @@
     }
 
     #glitch-text {
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: 4px;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: #d0eaff;
+      color: #ffffff;
       margin-top: 30px;
       text-shadow:
-        0 0 10px #00bfff,
-        0 0 20px #0074D9,
-        0 0 30px #0055aa,
-        0 0 50px #003366;
-      animation: glowPulse 2s ease-in-out infinite, bounce 3s ease-in-out infinite;
+        0 0 10px rgba(255, 107, 157, 0.8),
+        0 0 20px rgba(157, 107, 255, 0.6),
+        0 0 30px rgba(107, 157, 255, 0.4);
+      animation: 
+        glowPulse 2s ease-in-out infinite, 
+        bounce 3s ease-in-out infinite,
+        scanlineFlicker 0.1s linear infinite;
     }
 
     @keyframes glowPulse {
       0% {
         text-shadow:
-          0 0 6px #00bfff,
-          0 0 12px #0074D9,
-          0 0 18px #0055aa,
-          0 0 30px #003366;
+          0 0 6px rgba(255, 107, 157, 0.8),
+          0 0 12px rgba(157, 107, 255, 0.6),
+          0 0 18px rgba(107, 157, 255, 0.4);
       }
       50% {
         text-shadow:
-          0 0 20px #00d5ff,
-          0 0 30px #0094ff,
-          0 0 40px #0077cc,
-          0 0 60px #004488;
+          0 0 20px rgba(255, 107, 157, 1),
+          0 0 30px rgba(157, 107, 255, 0.8),
+          0 0 40px rgba(107, 157, 255, 0.6);
       }
       100% {
         text-shadow:
-          0 0 6px #00bfff,
-          0 0 12px #0074D9,
-          0 0 18px #0055aa,
-          0 0 30px #003366;
+          0 0 6px rgba(255, 107, 157, 0.8),
+          0 0 12px rgba(157, 107, 255, 0.6),
+          0 0 18px rgba(107, 157, 255, 0.4);
       }
     }
 
@@ -134,28 +191,55 @@
       }
     }
 
-    .shadow-layer {
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
-      background: radial-gradient(ellipse at center, rgba(0, 10, 30, 0.6), rgba(0, 0, 0, 0.95));
-      z-index: 0;
-    }
-
-    .stars {
-      position: absolute;
+    /* Scanline effect from main site */
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-      opacity: 0.08;
-      z-index: 0;
+      background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0) 50%,
+          rgba(0, 0, 0, 0.02) 50%
+      );
+      background-size: 100% 4px;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    /* CRT flicker effect */
+    @keyframes scanlineFlicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.95; }
+    }
+
+    /* Pixelated dots overlay */
+    .pixel-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+      z-index: 1;
     }
   </style>
 </head>
 
 <body>
-  <div class="stars"></div>
-  <div class="shadow-layer"></div>
+  <!-- Background elements from main site -->
+  <div class="grid-background"></div>
+  <div class="glow-container">
+    <div class="glow"></div>
+    <div class="glow"></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="pixel-overlay"></div>
 
   <div id="main">
     <div class="spinner">
@@ -190,9 +274,9 @@
       }
     }, 50);
   </script>
-    <script src="uv/uv.bundle.js"></script>
-    <script src="uv/uv.config.js"></script>
-    <script src="register-sw.js"></script>
-    <script src="embed.js"></script>
+  <script src="uv/uv.bundle.js"></script>
+  <script src="uv/uv.config.js"></script>
+  <script src="register-sw.js"></script>
+  <script src="embed.js"></script>
 </body>
 </html>
