@@ -8,15 +8,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&family=Outfit:wght@100..900&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #1a1a2e;
+    --bg-tertiary: #25253a;
+    --accent-pink: #ff6b9d;
+    --accent-blue: #6b9dff;
+    --accent-purple: #9d6bff;
+    --text-primary: #ffffff;
+    --text-secondary: #c0c0d0;
+    --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+    --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
 body {
-    color: #fff;
-    background-color: #0A1D37;
-    font-family: "Outfit", sans-serif; /* Changed to blockier font */
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    font-family: "Press Start 2P", cursive;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Changed from center to flex-start */
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
     margin: 0;
@@ -29,8 +42,8 @@ body {
     left: 0;
     width: 100%;
     height: 550px;
-    --stripes: repeating-linear-gradient( 100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16% );
-    --rays: repeating-linear-gradient( 100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30% );
+    --stripes: repeating-linear-gradient(100deg, rgba(26, 26, 46, 0.8) 0%, rgba(26, 26, 46, 0.8) 7%, transparent 10%, transparent 12%, rgba(26, 26, 46, 0.8) 16%);
+    --rays: repeating-linear-gradient(100deg, rgba(157, 107, 255, 0.2) 10%, rgba(255, 107, 157, 0.2) 15%, rgba(157, 107, 255, 0.2) 20%, rgba(255, 107, 157, 0.2) 25%, rgba(157, 107, 255, 0.2) 30%);
     background-image: var(--stripes), var(--rays);
     background-size: 300%, 200%;
     background-position: 50% 50%, 50% 50%;
@@ -52,15 +65,35 @@ body {
     mix-blend-mode: difference;
 }
 
+@keyframes god-rays {
+    0% {
+        background-position: 0% 0%, 0% 0%;
+    }
+    100% {
+        background-position: 200% 200%, 100% 100%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 h1 {
-    font-size: 3rem;
-    color: #ffffff;
-    font-weight: 900; /* Maximum boldness (already bold) */
-    text-transform: none;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
     letter-spacing: 2px;
     margin-bottom: 20px;
-    margin-top: 5px;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.3);
+    margin-top: 20px;
+    text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
     transition: transform 0.3s ease-in-out;
 }
 
@@ -69,16 +102,17 @@ h1:hover {
 }
 
 #dynamicParagraph {
-    color: #ffffff;
-    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
     margin-top: 5px;
     font-weight: 300;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
     transition: color 0.3s ease-in-out;
+    line-height: 1.5;
 }
 
 #dynamicParagraph:hover {
-    color: #a0a0a0;
+    color: var(--accent-pink);
 }
 
 #search-container {
@@ -87,47 +121,50 @@ h1:hover {
 }
 
 .search-bar-home {
-    padding: 12px 18px;
+    padding: 12px 18px 12px 45px;
     width: 350px;
-    border: 2px solid #1e2a47;
-    background-color: #141414;
+    border: 2px solid rgba(255, 107, 157, 0.6);
+    background-color: rgba(26, 26, 46, 0.9);
     border-radius: 30px;
-    font-family: "Outfit", sans-serif; /* Changed to blockier font */
+    font-family: "VT323", monospace;
+    font-size: 18px;
     outline: none;
     margin: 0;
-    color: #fff;
-    font-size: 16px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease-in-out;
+    color: var(--text-primary);
+    box-shadow: 0 0 15px rgba(157, 107, 255, 0.3);
+    transition: all var(--transition-normal);
+    position: relative;
 }
 
 .search-bar-home::placeholder {
-    color: #bbb;
-    opacity: 0.8;
-    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
 }
 
 .search-bar-home:focus {
-    border-color: #64a6e0;
-    background-color: #1d2537;
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 0 0 30px rgba(157, 107, 255, 0.4);
 }
 
 .search-button {
     padding: 10px 20px;
-    background-color: #1e2a47;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.8), rgba(157, 107, 255, 0.8));
     color: white;
-    font-size: 16px;
+    font-size: 14px;
+    font-family: "Press Start 2P", cursive;
     border: none;
     border-radius: 30px;
-    margin-top: 10px;
+    margin-top: 15px;
     cursor: pointer;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease-in-out;
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .search-button:hover {
-    background-color: #64a6e0;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 1), rgba(157, 107, 255, 1));
     transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 157, 0.4);
 }
 
 .search-button i {
@@ -138,12 +175,14 @@ h1:hover {
     position: fixed;
     top: 10px;
     right: 10px;
-    font-size: 18px;
-    color: white;
-    font-family: "Outfit", sans-serif; /* Changed to blockier font */
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 5px 10px;
+    font-size: 12px;
+    color: var(--text-primary);
+    font-family: "VT323", monospace;
+    background-color: rgba(26, 26, 46, 0.8);
+    padding: 8px 12px;
     border-radius: 10px;
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    box-shadow: 0 0 10px rgba(157, 107, 255, 0.3);
 }
 
 .popup {
@@ -152,14 +191,13 @@ h1:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #0A1D37;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: var(--bg-secondary);
+    border: 1px solid rgba(255, 107, 157, 0.3);
     padding: 35px;
-    border-radius: 20px;
+    border-radius: 15px;
     z-index: 1000;
-    color: #fff;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
-               inset 0 0 10px rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    box-shadow: 0 0 30px rgba(157, 107, 255, 0.4);
     animation: popupFadeIn 0.3s ease-out;
     min-width: 400px;
     max-width: 450px;
@@ -180,49 +218,60 @@ h1:hover {
 .popup h3 {
     margin: 0 0 20px;
     font-weight: 600;
-    color: #fff;
+    color: var(--text-primary);
     letter-spacing: 0.5px;
+    font-family: "Press Start 2P", cursive;
+    font-size: 16px;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .popup input[type="text"] {
     margin: 10px 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    color: var(--text-primary);
     padding: 12px 15px;
     border-radius: 10px;
-    transition: all 0.3s ease;
-    font-family: "Outfit", sans-serif; /* Changed to blockier font */
+    transition: all var(--transition-normal);
+    font-family: "VT323", monospace;
+    font-size: 18px;
 }
 
 .popup input[type="text"]:focus {
-    border-color: rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-pink);
+    background: rgba(37, 37, 58, 0.9);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
     outline: none;
 }
 
 .popup input[type="file"] {
     margin: 15px 0;
-    color: #fff;
+    color: var(--text-primary);
     width: 100%;
-    font-family: "Outfit", sans-serif; /* Changed to blockier font */
+    font-family: "VT323", monospace;
+    font-size: 16px;
 }
 
 .popup input[type="file"]::-webkit-file-upload-button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(255, 107, 157, 0.3);
     padding: 8px 15px;
     border-radius: 10px;
-    color: #fff;
+    color: var(--text-primary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
+    font-family: "Press Start 2P", cursive;
+    font-size: 10px;
 }
 
 .popup input[type="file"]::-webkit-file-upload-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(37, 37, 58, 0.9);
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
 }
 
 .popup-buttons {
@@ -234,52 +283,93 @@ h1:hover {
 
 .popup button {
     padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(255, 107, 157, 0.3);
     border-radius: 10px;
-    color: #fff;
+    color: var(--text-primary);
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: "Outfit", sans-serif; /* Changed to blockier font */
-    font-weight: 500;
+    transition: all var(--transition-normal);
+    font-family: "Press Start 2P", cursive;
+    font-size: 10px;
 }
 
 .popup button:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(37, 37, 58, 0.9);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
+    border-color: var(--accent-pink);
 }
 
 .popup button#add-btn {
-    background: linear-gradient(135deg, #ffffff, #e0e0e0);
-    color: #0A1D37;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    color: var(--text-primary);
     border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .popup button#add-btn:hover {
-    background: linear-gradient(135deg, #e0e0e0, #ffffff);
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
 }
 
 .add-pin-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
-    background: #ffffff;
-    border: 2px solid #0A1D37;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    border: none;
     border-radius: 50%;
-    color: #0A1D37;
+    color: var(--text-primary);
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-normal);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
 }
 
 .add-pin-btn:hover {
     transform: scale(1.2);
-    background: #e0e0e0;
-    color: #0A1D37;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+    color: var(--text-primary);
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+/* Animation for search icon */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 107, 157, 0.8);
+    pointer-events: none;
+    transition: all var(--transition-normal);
+    animation: pulse 2s infinite;
+}
+
+#search-container {
+    position: relative;
+}
+
+/* Add snow effect compatibility */
+#snow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2;
 }
 </style>
 </head>
