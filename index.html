@@ -11,19 +11,19 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
 
         :root {
             --bg-primary: #0a0a1a;
-            --bg-secondary: #12121f;
-            --bg-card: #1a1a2e;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #25253a;
             --accent-pink: #ff6b9d;
             --accent-blue: #6b9dff;
             --accent-purple: #9d6bff;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition-normal: 0.2s ease;
+            --text-secondary: #c0c0d0;
+            --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+            --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
             --border-radius: 8px;
         }
 
@@ -34,7 +34,7 @@
         }
 
         body {
-            font-family: "Inter", sans-serif;
+            font-family: "Press Start 2P", cursive;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             margin: 0;
@@ -63,12 +63,12 @@
 
         /* Header Styling */
         .app-header {
-            background-color: var(--bg-primary);
+            background-color: var(--bg-secondary);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 107, 157, 0.2);
         }
 
         .header-content {
@@ -88,8 +88,11 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--text-primary);
-            margin: 0;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
             letter-spacing: 1px;
         }
 
@@ -97,14 +100,7 @@
             font-size: 0.8rem;
             color: var(--text-secondary);
             margin-top: 2px;
-        }
-
-        .fps-counter {
-            font-size: 14px;
-            color: var(--text-secondary);
-            position: absolute;
-            top: 15px;
-            left: 15px;
+            font-family: "VT323", monospace;
         }
 
         /* Search Bar Styling */
@@ -122,17 +118,23 @@
         #searchInput {
             width: 100%;
             padding: 10px 40px 10px 15px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: none;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 107, 157, 0.3);
             border-radius: 20px;
             color: var(--text-primary);
             font-size: 14px;
             outline: none;
             transition: all 0.3s ease;
+            font-family: "VT323", monospace;
         }
 
         #searchInput::placeholder {
             color: var(--text-secondary);
+        }
+
+        #searchInput:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
         }
 
         .search-icon {
@@ -140,7 +142,7 @@
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-secondary);
+            color: var(--accent-pink);
             pointer-events: none;
         }
 
@@ -156,20 +158,24 @@
             border-radius: 20px;
             background-color: transparent;
             color: var(--text-secondary);
-            font-size: 14px;
-            border: none;
+            font-size: 12px;
+            border: 1px solid rgba(255, 107, 157, 0.2);
             cursor: pointer;
             transition: all 0.3s ease;
+            font-family: "VT323", monospace;
         }
 
         .category-button:hover {
             color: var(--text-primary);
+            border-color: var(--accent-pink);
+            background-color: rgba(255, 107, 157, 0.1);
         }
 
         .category-button.active {
-            background-color: white;
-            color: var(--bg-primary);
-            font-weight: 500;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(107, 157, 255, 0.2));
+            color: var(--text-primary);
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.2);
         }
 
         /* Featured Game Banner */
@@ -180,6 +186,15 @@
             overflow: hidden;
             margin: 30px 0;
             height: 320px;
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .featured-game:hover {
+            border-color: var(--accent-pink);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
         }
 
         .featured-game-info {
@@ -191,24 +206,31 @@
         }
 
         .featured-game-title {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 15px;
             letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .featured-game-description {
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 30px;
             max-width: 500px;
+            font-family: "VT323", monospace;
+            font-size: 1.2rem;
+            line-height: 1.4;
         }
 
         .play-button {
             display: inline-flex;
             align-items: center;
             padding: 12px 24px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
             color: white;
             border: none;
             border-radius: 30px;
@@ -218,10 +240,12 @@
             transition: all 0.3s ease;
             text-decoration: none;
             width: fit-content;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
         }
 
         .play-button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
         }
 
         .play-button i {
@@ -243,6 +267,11 @@
             letter-spacing: 1px;
             position: relative;
             padding-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
         }
 
         .section-title::after {
@@ -252,7 +281,7 @@
             left: 0;
             width: 40px;
             height: 3px;
-            background-color: var(--text-primary);
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
         }
 
         /* Game Cards Grid */
@@ -264,21 +293,26 @@
         }
 
         .game-card {
-            background-color: var(--bg-card);
+            background-color: var(--bg-tertiary);
             border-radius: var(--border-radius);
             overflow: hidden;
             transition: transform 0.3s ease;
             position: relative;
+            border: 1px solid rgba(107, 157, 255, 0.2);
+            box-shadow: var(--shadow-md);
         }
 
         .game-card:hover {
             transform: translateY(-5px);
+            border-color: var(--accent-pink);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .game-card-image {
             width: 100%;
             height: 150px;
             object-fit: cover;
+            border-bottom: 2px solid rgba(255, 107, 157, 0.2);
         }
 
         .game-card-content {
@@ -288,13 +322,19 @@
         .game-card-title {
             font-weight: 600;
             margin-bottom: 5px;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .game-card-category {
             color: var(--text-secondary);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
+            font-family: "VT323", monospace;
+            font-size: 1rem;
         }
 
         .favorite-star {
@@ -311,6 +351,7 @@
 
         .favorite-star:hover {
             transform: scale(1.2);
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.7));
         }
 
         .favorite-star.active {
@@ -323,20 +364,90 @@
             flex-wrap: wrap;
             gap: 10px;
             margin: 20px 0;
+            background: linear-gradient(to right, rgba(26, 26, 46, 0.4), rgba(37, 37, 58, 0.4), rgba(26, 26, 46, 0.4));
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: inset 0 0 10px rgba(107, 157, 255, 0.1);
         }
 
         .quick-link {
             padding: 8px 16px;
-            background-color: var(--bg-card);
-            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, rgba(37, 37, 58, 0.9), rgba(26, 26, 46, 0.9));
+            border-radius: 12px;
             color: var(--text-primary);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 0.7rem;
             transition: all 0.3s ease;
+            border: 1px solid rgba(107, 157, 255, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-link:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(107, 157, 255, 0.1), rgba(255, 107, 157, 0.1));
+            opacity: 0;
+            transition  rgba(107, 157, 255, 0.1), rgba(255, 107, 157, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 11px;
+        }
+
+        .quick-link:hover:before {
+            opacity: 1;
+            height: 100%;
+        }
+
+        .quick-link:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+            opacity: 0.7;
+            border-top-left-radius: 11px;
+            border-top-right-radius: 11px;
+        }
+
+        .quick-link:hover:after {
+            opacity: 1;
         }
 
         .quick-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .quick-link:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Welcome Message */
+        .welcome-message {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            line-height: 1.6;
+        }
+
+        /* Time Spent */
+        .time-spent {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            font-family: "VT323", monospace;
+            font-size: 1.1rem;
         }
 
         /* Time Display */
@@ -344,8 +455,14 @@
             position: fixed;
             top: 15px;
             right: 15px;
-            font-size: 14px;
+            font-size: 12px;
             color: var(--text-secondary);
+            font-family: "VT323", monospace;
+            background-color: rgba(26, 26, 46, 0.8);
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            box-shadow: 0 0 10px rgba(157, 107, 255, 0.3);
         }
 
         /* Footer */
@@ -354,8 +471,9 @@
             margin-top: 50px;
             background-color: var(--bg-secondary);
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 107, 157, 0.2);
         }
 
         .footer-content {
@@ -376,23 +494,7 @@
         }
 
         .social-icons a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Welcome Message */
-        .welcome-message {
-            text-align: center;
-            margin: 20px 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Time Spent */
-        .time-spent {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--accent-pink);
         }
 
         /* Responsive Adjustments */
@@ -462,7 +564,7 @@
             }
             
             .game-card-title {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -474,8 +576,6 @@
     <!-- Header -->
     <header class="app-header">
         <div class="header-content">
-            <div class="fps-counter">165 FPS</div>
-            
             <div class="logo-container">
                 <h1 class="logo">PROLL'S SCHOOL</h1>
                 <span class="logo-subtitle">Entertainment Hub</span>
@@ -539,109 +639,15 @@
         <!-- Popular Games Section -->
         <h2 class="section-title">POPULAR TITLES</h2>
         
-        <div class="games-grid">
-            <!-- Game Card 1 -->
-            <div class="game-card">
-                <a href="g/slope" target="_blank" style="text-decoration: none; color: inherit;">
-                    <img src="images/slope.png" alt="Slope" class="game-card-image">
-                    <div class="game-card-content">
-                        <h3 class="game-card-title">Slope</h3>
-                        <div class="game-card-category">RACING</div>
-                    </div>
-                </a>
-                <i class="far fa-star favorite-star"></i>
-            </div>
-            
-            <!-- Game Card 2 -->
-            <div class="game-card">
-                <a href="g/retro-bowl" target="_blank" style="text-decoration: none; color: inherit;">
-                    <img src="images/retrobowl.jpg" alt="Retro Bowl" class="game-card-image">
-                    <div class="game-card-content">
-                        <h3 class="game-card-title">Retro Bowl</h3>
-                        <div class="game-card-category">SPORTS</div>
-                    </div>
-                </a>
-                <i class="far fa-star favorite-star"></i>
-            </div>
-            
-            <!-- Game Card 3 -->
-            <div class="game-card">
-                <a href="g/blockblast" target="_blank" style="text-decoration: none; color: inherit;">
-                    <img src="images/blockblast.png" alt="Block Blast" class="game-card-image">
-                    <div class="game-card-content">
-                        <h3 class="game-card-title">Block Blast</h3>
-                        <div class="game-card-category">PUZZLE</div>
-                    </div>
-                </a>
-                <i class="far fa-star favorite-star"></i>
-            </div>
-            
-            <!-- Game Card 4 -->
-            <div class="game-card">
-                <a href="g/mc" target="_blank" style="text-decoration: none; color: inherit;">
-                    <img src="images/mc.png" alt="Minecraft" class="game-card-image">
-                    <div class="game-card-content">
-                        <h3 class="game-card-title">Minecraft</h3>
-                        <div class="game-card-category">ADVENTURE</div>
-                    </div>
-                </a>
-                <i class="far fa-star favorite-star"></i>
-            </div>
-            
-            <!-- Game Card 5 -->
-            <div class="game-card">
-                <a href="g/1v1lol" target="_blank" style="text-decoration: none; color: inherit;">
-                    <img src="https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co" alt="1v1.lol" class="game-card-image">
-                    <div class="game-card-content">
-                        <h3 class="game-card-title">1v1.lol</h3>
-                        <div class="game-card-category">ACTION</div>
-                    </div>
-                </a>
-                <i class="far fa-star favorite-star"></i>
-            </div>
-            
-            <!-- Game Card 6 -->
-            <div class="game-card">
-                <a href="g/idle-breakout" target="_blank" style="text-decoration: none; color: inherit;">
-                    <img src="images/idlebreakout.png" alt="Idle Breakout" class="game-card-image">
-                    <div class="game-card-content">
-                        <h3 class="game-card-title">Idle Breakout</h3>
-                        <div class="game-card-category">IDLE</div>
-                    </div>
-                </a>
-                <i class="far fa-star favorite-star"></i>
-            </div>
-            
-            <!-- Game Card 7 -->
-            <div class="game-card">
-                <a href="g/learntofly" target="_blank" style="text-decoration: none; color: inherit;">
-                    <img src="g/learntofly/1/icon.png" alt="Learn To Fly" class="game-card-image">
-                    <div class="game-card-content">
-                        <h3 class="game-card-title">Learn To Fly</h3>
-                        <div class="game-card-category">ARCADE</div>
-                    </div>
-                </a>
-                <i class="far fa-star favorite-star"></i>
-            </div>
-            
-            <!-- Game Card 8 -->
-            <div class="game-card">
-                <a href="g/baldisbasics" target="_blank" style="text-decoration: none; color: inherit;">
-                    <img src="images/baldisbasics.png" alt="Baldi's Basics" class="game-card-image">
-                    <div class="game-card-content">
-                        <h3 class="game-card-title">Baldi's Basics</h3>
-                        <div class="game-card-category">HORROR</div>
-                    </div>
-                </a>
-                <i class="far fa-star favorite-star"></i>
-            </div>
+        <div class="games-grid" id="popular-games-grid">
+            <!-- Popular games will be dynamically loaded here -->
         </div>
 
         <!-- All Games Section -->
         <h2 class="section-title">ALL TITLES</h2>
         
         <div class="games-grid" id="all-games-grid">
-            <!-- Game cards will be dynamically generated here -->
+            <!-- All games will be dynamically loaded here -->
         </div>
     </div>
 
@@ -664,92 +670,17 @@
     </footer>
 
     <script>
-        // Game data - all your games
-        const allGames = [
-            { title: "Slope", path: "g/slope", image: "images/slope.png", category: "RACING" },
-            { title: "Retro Bowl", path: "g/retro-bowl", image: "images/retrobowl.jpg", category: "SPORTS" },
-            { title: "Gunspin", path: "g/gunspin", image: "/images/gunspin.png", category: "ACTION" },
-            { title: "1v1.lol", path: "g/1v1lol", image: "https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co", category: "ACTION" },
-            { title: "Block Blast", path: "g/blockblast", image: "images/blockblast.png", category: "PUZZLE" },
-            { title: "Idle Breakout", path: "g/idle-breakout", image: "images/idlebreakout.png", category: "IDLE" },
-            { title: "Learn To Fly", path: "g/learntofly", image: "g/learntofly/1/icon.png", category: "ARCADE" },
-            { title: "Baldi's Basics", path: "g/baldisbasics", image: "images/baldisbasics.png", category: "HORROR" },
-            { title: "Gun Mayhem", path: "g/gunmayhem", image: "images/gunmayhem.png", category: "ACTION" },
-            { title: "Gun Mayhem 2", path: "g/gunmayhem2", image: "images/gunmayhem2.png", category: "ACTION" },
-            { title: "Wall Smash", path: "g/wallsmash", image: "images/wallsmash.png", category: "ARCADE" },
-            { title: "FNAF 1", path: "g/fnaf", image: "images/fnaf.png", category: "HORROR" },
-            { title: "FNAF 2", path: "g/fnaf-2", image: "images/fnaf2.png", category: "HORROR" },
-            { title: "Drift Boss", path: "g/driftboss", image: "images/driftboss.png", category: "RACING" },
-            { title: "Jack Smith", path: "g/jacksmith", image: "images/jacksmith.png", category: "ADVENTURE" },
-            { title: "Image Tracer", path: "/imagetracer", image: "images/imagetracer.png", category: "TOOLS" },
-            { title: "Infinite Craft", path: "g/infinitecraft", image: "images/infinitecraft.png", category: "PUZZLE" },
-            { title: "Crazy Tunnel 3D", path: "g/crazytunnel3d", image: "images/crazytunnel3d.png", category: "RACING" },
-            { title: "Lazy Jump 3D", path: "g/lazyjump3d", image: "images/lazyjump3d.png", category: "ARCADE" },
-            { title: "House Of Hazards", path: "g/houseofhazards", image: "images/houseofhazards.png", category: "ACTION" },
-            { title: "Hole.io", path: "g/holeio", image: "images/holeio.png", category: "IO" },
-            { title: "Cut The Rope", path: "g/cut-the-rope", image: "images/cuttherope.png", category: "PUZZLE" },
-            { title: "Tank Trouble", path: "g/tanktrouble", image: "images/tanktrouble.png", category: "ACTION" },
-            { title: "Drift Hunters", path: "g/drifthunters", image: "images/drifthunters.png", category: "RACING" },
-            { title: "Volley Random", path: "g/volleyrandom", image: "images/volleyrandom.png", category: "SPORTS" },
-            { title: "Draw The Hill", path: "g/draw-the-hill", image: "images/drawthehill.png", category: "PUZZLE" },
-            { title: "Basketball Bros", path: "g/basketballio", image: "images/basketballio.png", category: "SPORTS" },
-            { title: "Just Fall", path: "g/justfall", image: "images/justfall.png", category: "ARCADE" },
-            { title: "Snow Rider 3D", path: "g/snowrider3d", image: "images/snowrider3d.png", category: "RACING" },
-            { title: "Tetris", path: "g/tetris", image: "images/tetris.png", category: "PUZZLE" },
-            { title: "Checkout Frenzy", path: "g/checkoutfrenzy", image: "images/checkoutfrenzy.png", category: "SIMULATION" },
-            { title: "Fireboy & Watergirl", path: "g/fireboywatergirlforsettemple", image: "images/fireboywatergirl.jpeg", category: "PUZZLE" },
-            { title: "Tiny Fishing", path: "g/tinyfishing", image: "images/tinyfishing.png", category: "CASUAL" },
-            { title: "Time Shooter", path: "g/timeshooter", image: "images/timeshooter.png", category: "ACTION" },
-            { title: "Getaway Shootout", path: "g/getaway-shootout", image: "images/getawayshootout.png", category: "ACTION" },
-            { title: "Soccer Random", path: "g/soccer-random", image: "images/soccerrandom.png", category: "SPORTS" },
-            { title: "Crossy Road", path: "g/crossyroad", image: "images/crossyroad.png", category: "ARCADE" },
-            { title: "Rooftop Sniper", path: "g/rooftopsnipers", image: "images/rooftopsnipers.png", category: "ACTION" },
-            { title: "Boxing Random", path: "g/boxingrandom", image: "images/boxingrandom.png", category: "SPORTS" },
-            { title: "Adventure Capitalist", path: "g/adventurecapitalist", image: "images/adventurecapitalist.png", category: "IDLE" },
-            { title: "Hide & Smash", path: "g/hideandsmash", image: "images/hideandsmash.png", category: "ACTION" },
-            { title: "MonkeyMart", path: "g/monkey-mart", image: "images/monkeymart.png", category: "SIMULATION" },
-            { title: "Retro Bowl College", path: "g/rb-college", image: "images/retrobowlcollege.jpg", category: "SPORTS" },
-            { title: "Windows Desktop", path: "server", image: "images/windows.png", category: "SIMULATION" },
-            { title: "Minecraft", path: "g/mc", image: "images/mc.png", category: "ADVENTURE" },
-            { title: "Bloons TD5", path: "g/btd5", image: "images/btd5.png", category: "STRATEGY" },
-            { title: "Mr Mine", path: "g/mrmine", image: "images/mrmine.png", category: "IDLE" },
-            { title: "Run 2", path: "g/run2", image: "images/run2.png", category: "ARCADE" },
-            { title: "Run 3", path: "g/run3", image: "images/run3.png", category: "ARCADE" },
-            { title: "Spend Elon's Money", path: "g/elonmusk", image: "images/elonmusk.png", category: "SIMULATION" },
-            { title: "Plants V Zombies", path: "g/pvz", image: "images/pvz.png", category: "STRATEGY" },
-            { title: "Duck Life", path: "g/ducklife", image: "images/ducklife.png", category: "SIMULATION" },
-            { title: "Mine Sweeper", path: "g/minesweeper", image: "images/minesweeper.png", category: "PUZZLE" },
-            { title: "Pixel Gun", path: "g/pixelgun", image: "images/pixelgun.png", category: "ACTION" },
-            { title: "Google Snake", path: "g/googlesnake", image: "images/googlesnake.jpg", category: "ARCADE" },
-            { title: "N Gon", path: "g/ngon", image: "images/ngon.jpg", category: "ACTION" },
-            { title: "OVO", path: "g/ovo", image: "images/ovo.jpg", category: "PLATFORMER" },
-            { title: "Basketball Stars", path: "g/basketballstars", image: "images/basketballstars.png", category: "SPORTS" },
-            { title: "Stacktris", path: "g/stacktris", image: "images/stacktris.jpg", category: "PUZZLE" },
-            { title: "Black Jack", path: "g/blackjack", image: "images/blackjack.png", category: "CARD" },
-            { title: "DBZ Devolution", path: "g/dbz", image: "images/dbz.png", category: "FIGHTING" },
-            { title: "Drive Mad", path: "g/drivemad", image: "images/drivemad.png", category: "RACING" },
-            { title: "Papa's Games", path: "g/papas-game", image: "images/papasgame.jpg", category: "SIMULATION" },
-            { title: "Stickman Games", path: "g/henry-stickman", image: "https://cdn2.steamgriddb.com/icon/9f61408e3afb633e50cdf1b20de6f466.png", category: "ADVENTURE" },
-            { title: "Vex Games", path: "g/vex", image: "https://play-lh.googleusercontent.com/0OnVFzHIMuLLeMjvACoNzxRbungfOH1zH4hUWQnIg5KfM2va_mFssFuRGq26WqWA", category: "PLATFORMER" },
-            { title: "2048", path: "g/2048", image: "images/2048.png", category: "PUZZLE" },
-            { title: "Paper.io 2", path: "g/paperio2", image: "images/paperio2.png", category: "IO" },
-            { title: "Bitlife", path: "g/bitlife", image: "https://play-lh.googleusercontent.com/fUM-UyywXxjC8soxAZdIlxJrlRRXmql8wkE426SHzft4lJycSKVd2jCYQQX1BEG9Xw", category: "SIMULATION" },
-            { title: "1", path: "g/1", image: "https://d3nsrxdg84ic1d.cloudfront.net/uploads/5a145eaa-3696-4de4-8c1d-41400e3d296c/e8ccaaae.PNG?v=0", category: "PUZZLE" },
-            { title: "Subway Surfers", path: "g/subway-surfers", image: "https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/81a0a3f18cf0ee129e56edb50fc52c3b.png", category: "ENDLESS RUNNER" },
-            { title: "Basketball Random", path: "g/basketball-random", image: "https://play-lh.googleusercontent.com/gP8T5Z1O-ngxIloiwcBZzrzyLPYDp0R_1BDNKUDZboIRPVImeyWI8-7aExvB9gAGNKc=w240-h480-rw", category: "SPORTS" },
-            { title: "MotoX3M", path: "g/motox3m", image: "images/motocross.png", category: "RACING" },
-            { title: "Cookie Clicker", path: "g/cookieclicker", image: "https://play-lh.googleusercontent.com/Z1MOuuiD05ZN5LkVmMEvKF0mqAc-FknaQ2j8s4dZiO-LSPQX4EEA3RVJdlQEtxe96ok", category: "IDLE" },
-            { title: "Temple Run 2", path: "g/temple-run-2", image: "https://play-lh.googleusercontent.com/go4XqS4mYs-G2tZymiVLF4wJYXIi5QrvwixNRzssk4G_vRBHrAdg4E1ddNwy9c2cZA", category: "ENDLESS RUNNER" },
-            { title: "Stickman Golf", path: "g/stickman-golf", image: "https://image.spreadshirtmedia.com/image-server/v1/products/T1459A839PA3861PT28D12687618W6161H10000/views/1,width=550,height=550,appearanceId=839,backgroundColor=F2F2F2/golf-stickman-sticker.jpg", category: "SPORTS" },
-            { title: "CSGO Case Opener", path: "g/case-clicker", image: "images/csgoclicker.png", category: "SIMULATION" },
-            { title: "Pandemic 2", path: "g/pandemic2", image: "images/pandemic2.png", category: "STRATEGY" },
-            { title: "Riddle School Games", path: "g/riddleschool", image: "https://i.ytimg.com/vi/Ls5rT-7_4d4/sddefault.jpg", category: "ADVENTURE" },
-            { title: "Cupcake 2048", path: "g/cupcake2048", image: "images/cupcake2048.png", category: "PUZZLE" },
-            { title: "Jetpack Joyride", path: "g/jetpack-joyride", image: "images/jetpackjoyride.png", category: "ARCADE" },
-            { title: "Geometry Dash", path: "g/geodash", image: "images/geodash.jpg", category: "PLATFORMER" },
-            { title: "Duck Life 1", path: "g/ducklife1", image: "images/ducklife1.png", category: "SIMULATION" },
-            { title: "Sand Boxels", path: "g/sandboxels", image: "https://sandboxels.r74n.com/icons/icon.png", category: "SANDBOX" }
-        ];
+        // ===== LOAD GAMES FROM JSON =====
+        async function loadGames() {
+            try {
+                const response = await fetch('games.json');
+                const data = await response.json();
+                return data.games;
+            } catch (error) {
+                console.error('Error loading games:', error);
+                return [];
+            }
+        }
 
         // ===== FAVORITES FUNCTIONALITY =====
         // Get favorites from localStorage
@@ -802,12 +733,15 @@
         }
 
         // ===== SEARCH FUNCTIONALITY =====
-        function searchGames() {
+        async function searchGames() {
             const query = document.getElementById("searchInput").value.toLowerCase();
             const allGamesGrid = document.getElementById("all-games-grid");
             
             // Clear current games
             allGamesGrid.innerHTML = "";
+            
+            // Get games from JSON
+            const allGames = await loadGames();
             
             // Filter games based on search query
             const filteredGames = allGames.filter(game => 
@@ -848,9 +782,12 @@
         }
 
         // ===== CATEGORY FILTER FUNCTIONALITY =====
-        function setupCategoryFilters() {
+        async function setupCategoryFilters() {
             const categoryButtons = document.querySelectorAll('.category-button');
             const allGamesGrid = document.getElementById("all-games-grid");
+            
+            // Get games from JSON
+            const allGames = await loadGames();
             
             categoryButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -905,7 +842,7 @@
         }
 
         // ===== INITIALIZE EVERYTHING WHEN PAGE LOADS =====
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", async () => {
             // Initialize time tracking
             displayTotalTimeSpent();
             
@@ -957,6 +894,13 @@
                     retina_detect: true,
                 });
             }
+            
+            // Load games from JSON
+            const allGames = await loadGames();
+            
+            // Render popular games (first 8 games)
+            const popularGamesGrid = document.getElementById("popular-games-grid");
+            renderGames(allGames.slice(0, 8), popularGamesGrid);
             
             // Render all games
             const allGamesGrid = document.getElementById("all-games-grid");
