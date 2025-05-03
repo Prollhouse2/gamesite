@@ -228,6 +228,12 @@
             padding: 0 20px;
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -239,6 +245,12 @@
             letter-spacing: 1px;
         }
 
+        .time-spent {
+            color: var(--text-secondary);
+            font-family: "VT323", monospace;
+            font-size: 1.1rem;
+        }
+        
         /* Search Bar Styling */
         .search-container {
             flex: 1;
@@ -612,38 +624,19 @@
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         }
 
-        /* Welcome Message */
-        .welcome-message {
-            text-align: center;
-            margin: 20px 0;
-            color: var(--text-secondary);
-            font-size: 0.7rem;
-            line-height: 1.6;
+        /* Content Areas */
+        .content-area {
+            display: none;
+            animation: fadeIn 0.5s ease;
         }
-
-        /* Time Spent */
-        .time-spent {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--text-secondary);
-            font-size: 0.7rem;
-            font-family: "VT323", monospace;
-            font-size: 1.1rem;
+        
+        .content-area.active {
+            display: block;
         }
-
-        /* Time Display */
-        #time {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-family: "VT323", monospace;
-            background-color: rgba(26, 26, 46, 0.8);
-            padding: 8px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 107, 157, 0.3);
-            box-shadow: 0 0 10px rgba(157, 107, 255, 0.3);
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Footer */
@@ -784,6 +777,12 @@
             .sidebar.expanded ~ .sidebar-overlay {
                 display: block;
             }
+
+            .logo-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -799,35 +798,6 @@
             .game-card-title {
                 font-size: 0.7rem;
             }
-        
-        .content-area {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .content-area.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Loading spinner */
-        .loader {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            font-size: 2rem;
-            color: var(--accent-pink);
-        }
-        
-        .loader.active {
-            display: block;
         }
     </style>
 </head>
@@ -893,17 +863,15 @@
     <!-- Sidebar Overlay (for mobile) -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Loading Spinner -->
-    <div class="loader" id="pageLoader">
-        <i class="fas fa-spinner fa-spin"></i>
-    </div>
-
     <!-- Main Content -->
     <div class="main-container">
         <!-- Header -->
         <header class="app-header">
             <div class="header-content">
-                <h1 class="logo">PROLL'S SCHOOL</h1>
+                <div class="logo-container">
+                    <h1 class="logo">PROLL'S SCHOOL</h1>
+                    <div class="time-spent" id="timeSpent">Loading...</div>
+                </div>
                 
                 <div class="search-container">
                     <div class="search-wrapper">
@@ -917,16 +885,6 @@
         <!-- Content Areas -->
         <div id="home-content" class="content-area active">
             <div class="container">
-                <!-- Welcome Message -->
-                <div class="welcome-message">
-                    <p>We Have a New Discord. Please join to stay up to date, request games, and find the newest website links. (discord.gg/proll)</p>
-                </div>
-                
-                <!-- Time Spent -->
-                <div class="time-spent">
-                    <span>Time Spent: </span><span id="timeSpent">Loading...</span>
-                </div>
-               
                 <!-- Featured Game Banner -->
                 <div class="featured-game">
                     <div class="featured-game-info">
@@ -964,7 +922,7 @@
             </div>
         </div>
 
-        <!-- Other Content Areas -->
+        <!-- Web Browser Content -->
         <div id="browser-content" class="content-area">
             <div class="container">
                 <h2 class="section-title">WEB BROWSER</h2>
@@ -972,6 +930,7 @@
             </div>
         </div>
 
+        <!-- Settings Content -->
         <div id="settings-content" class="content-area">
             <div class="container">
                 <h2 class="section-title">SETTINGS</h2>
@@ -979,6 +938,7 @@
             </div>
         </div>
 
+        <!-- Leaderboard Content -->
         <div id="leaderboard-content" class="content-area">
             <div class="container">
                 <h2 class="section-title">LEADERBOARD</h2>
@@ -986,15 +946,13 @@
             </div>
         </div>
 
+        <!-- Chat Content -->
         <div id="chat-content" class="content-area">
             <div class="container">
                 <h2 class="section-title">CHATROOM</h2>
                 <iframe src="/chat" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
             </div>
         </div>
-
-        <!-- Time Display -->
-        <div id="time"></div>
 
         <!-- Footer -->
         <footer>
@@ -1012,34 +970,32 @@
         </footer>
     </div>
 
-    <script src="/js/global-loader.js"></script>
     <script>
         // ===== SPA ROUTING FUNCTIONALITY =====
         document.addEventListener('DOMContentLoaded', function() {
             // Handle navigation between pages
             function navigateToPage(pageId) {
-                // Show loading spinner
-                document.getElementById('pageLoader').classList.add('active');
-                
                 // Hide all content areas
                 document.querySelectorAll('.content-area').forEach(area => {
                     area.classList.remove('active');
                 });
                 
-                // Show the selected content area after a small delay
-                setTimeout(() => {
-                    document.getElementById(pageId + '-content').classList.add('active');
-                    document.getElementById('pageLoader').classList.remove('active');
-                    
-                    // Update URL hash
-                    window.location.hash = pageId;
-                    
-                    // Update active nav item
-                    document.querySelectorAll('.nav-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    document.querySelector(`.nav-item[data-page="${pageId}"]`).classList.add('active');
-                }, 300);
+                // Show the selected content area
+                const contentArea = document.getElementById(pageId + '-content');
+                if (contentArea) {
+                    contentArea.classList.add('active');
+                }
+                
+                // Update URL hash
+                window.location.hash = pageId;
+                
+                // Update active nav item
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('data-page') === pageId) {
+                        item.classList.add('active');
+                    }
+                });
             }
             
             // Handle initial page load based on hash
@@ -1079,9 +1035,11 @@
             const sidebarOverlay = document.querySelector('.sidebar-overlay');
             
             // Toggle sidebar on button click
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('expanded');
-            });
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('expanded');
+                });
+            }
             
             // Mobile toggle
             if (sidebarMobileToggle) {
@@ -1355,6 +1313,4 @@
             updateTime();
             setInterval(updateTime, 1000);
         });
-    </script>
-</body>
-</html>
+ </script>
