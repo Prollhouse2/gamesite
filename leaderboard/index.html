@@ -575,7 +575,6 @@ body {
     .sidebar.expanded ~ .sidebar-overlay {
         display: block;
     }
-}
   </style>
 </head>
 <body>
@@ -732,7 +731,10 @@ body {
       `;
       scoreList.appendChild(listItem);
     }
- // ===== SIDEBAR FUNCTIONALITY =====
+
+ leaderboardData.forEach(item => createLeaderboardItem(item));
+
+          // ===== SIDEBAR FUNCTIONALITY =====
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.querySelector('.sidebar');
             const sidebarToggle = document.querySelector('.sidebar-toggle');
@@ -771,7 +773,6 @@ body {
                 }
             });
 
-    leaderboardData.forEach(item => createLeaderboardItem(item));
   </script>
 
 </body>
