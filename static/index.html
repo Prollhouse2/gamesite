@@ -890,15 +890,11 @@ body {
             <i class="fas fa-chevron-right"></i>
         </div>
         <div class="sidebar-nav">
-            <a href="index.html" class="nav-item active">
+            <a href="/index.html" class="nav-item active">
                 <div class="nav-icon"><i class="fas fa-home"></i></div>
                 <div class="nav-text">Home</div>
             </a>
-            <a href="g/retro-bowl" class="nav-item">
-                <div class="nav-icon"><i class="fas fa-gamepad"></i></div>
-                <div class="nav-text">Games</div>
-            </a>
-            <a href="static" class="nav-item">
+            <a href="/static" class="nav-item">
                 <div class="nav-icon"><i class="fas fa-globe"></i></div>
                 <div class="nav-text">Web Browser</div>
             </a>
@@ -909,11 +905,11 @@ body {
         </div>
         <div class="sidebar-divider"></div>
         <div class="sidebar-nav">
-            <a href="settings" class="nav-item">
+            <a href="/settings" class="nav-item">
                 <div class="nav-icon"><i class="fas fa-cog"></i></div>
                 <div class="nav-text">Settings</div>
             </a>
-            <a href="leaderboard" class="nav-item">
+            <a href="/leaderboard" class="nav-item">
                 <div class="nav-icon"><i class="fas fa-trophy"></i></div>
                 <div class="nav-text">Leaderboard</div>
             </a>
@@ -921,7 +917,7 @@ body {
                 <div class="nav-icon"><i class="fab fa-discord"></i></div>
                 <div class="nav-text">Discord</div>
             </a>
-            <a href="chat" class="nav-item">
+            <a href="/chat" class="nav-item">
                 <div class="nav-icon"><i class="fas fa-comments"></i></div>
                 <div class="nav-text">Chatroom</div>
             </a>
@@ -1192,6 +1188,45 @@ body {
             popup.style.display = 'none';
             document.getElementById('pin-url').value = '';
             document.getElementById('pin-image').value = '';
+        });
+    // ===== SIDEBAR FUNCTIONALITY =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebarMobileToggle = document.querySelector('.sidebar-mobile-toggle');
+            const sidebarOverlay = document.querySelector('.sidebar-overlay');
+            
+            // Toggle sidebar on button click
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('expanded');
+            });
+            
+            // Mobile toggle
+            if (sidebarMobileToggle) {
+                sidebarMobileToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('expanded');
+                });
+            }
+            
+            // Close sidebar when clicking overlay (mobile)
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', function() {
+                    sidebar.classList.remove('expanded');
+                });
+            }
+            
+            // Highlight active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            const currentPath = window.location.pathname;
+            
+            navItems.forEach(item => {
+                const itemPath = item.getAttribute('href');
+                if (currentPath.includes(itemPath) && itemPath !== 'index.html') {
+                    item.classList.add('active');
+                } else if (currentPath === '/' && itemPath === 'index.html') {
+                    item.classList.add('active');
+                }
+            });
         });
 
         // Load pins when page loads
