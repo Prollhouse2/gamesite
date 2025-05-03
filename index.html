@@ -41,6 +41,7 @@
             padding: 0;
             line-height: 1.5;
             min-height: 100vh;
+            font-size: 0.9rem;
         }
 
         /* Snow Effect */
@@ -80,11 +81,6 @@
             padding: 0 20px;
         }
 
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-        }
-
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -94,13 +90,6 @@
             color: transparent;
             text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
             letter-spacing: 1px;
-        }
-
-        .logo-subtitle {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: 2px;
-            font-family: "VT323", monospace;
         }
 
         /* Search Bar Styling */
@@ -272,23 +261,50 @@
             background-clip: text;
             color: transparent;
             text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+            text-align: center;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+        /* Favorites Section */
+        #favorites-heading {
+            position: relative;
+            padding: 0.5rem 0;
+            margin: 1rem 0;
+            overflow: hidden;
+            text-align: center;
+            font-family: "Press Start 2P", cursive;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        #favorites-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: linear-gradient(to bottom, rgba(26, 26, 46, 0.8), rgba(10, 10, 26, 0.8));
+            border-radius: 15px;
+            margin: 1rem auto;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.1);
+            max-width: 95%;
+        }
+
+        .no-favorites-message {
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
         }
 
         /* Game Cards Grid */
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
             margin-bottom: 40px;
         }
 
@@ -300,41 +316,47 @@
             position: relative;
             border: 1px solid rgba(107, 157, 255, 0.2);
             box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.6rem;
+            min-height: 120px;
+            text-align: center;
         }
 
         .game-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-pink);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--bg-tertiary);
         }
 
         .game-card-image {
-            width: 100%;
-            height: 150px;
+            width: 60px;
+            height: 60px;
             object-fit: cover;
-            border-bottom: 2px solid rgba(255, 107, 157, 0.2);
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+            border: 2px solid var(--accent-pink);
+            box-shadow: 0 0 0 2px rgba(107, 157, 255, 0.3);
+            transition: all var(--transition-normal);
         }
 
-        .game-card-content {
-            padding: 15px;
+        .game-card:hover .game-card-image {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(255, 107, 157, 0.3);
+            transform: scale(1.1);
         }
 
         .game-card-title {
             font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-        }
-
-        .game-card-category {
-            color: var(--text-secondary);
-            font-size: 0.7rem;
-            text-transform: uppercase;
+            font-size: 0.75rem;
             font-family: "VT323", monospace;
-            font-size: 1rem;
+            margin-top: 5px;
         }
 
         .favorite-star {
@@ -358,6 +380,17 @@
             color: #FFD700;
         }
 
+        /* Animation for adding to favorites */
+        @keyframes star-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+
+        .star-animation {
+            animation: star-pulse 0.5s ease;
+        }
+
         /* Quick Links */
         .quick-links {
             display: flex;
@@ -368,6 +401,7 @@
             border-radius: 15px;
             padding: 15px;
             box-shadow: inset 0 0 10px rgba(107, 157, 255, 0.1);
+            justify-content: center;
         }
 
         .quick-link {
@@ -382,6 +416,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
+            min-width: 110px;
+            text-align: center;
         }
 
         .quick-link:before {
@@ -392,8 +428,6 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, rgba(107, 157, 255, 0.1), rgba(255, 107, 157, 0.1));
-            opacity: 0;
-            transition  rgba(107, 157, 255, 0.1), rgba(255, 107, 157, 0.1));
             opacity: 0;
             transition: opacity 0.3s ease;
             border-radius: 11px;
@@ -508,7 +542,7 @@
             }
             
             .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             }
         }
 
@@ -552,19 +586,16 @@
 
         @media (max-width: 480px) {
             .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
             
             .game-card-image {
-                height: 120px;
-            }
-            
-            .game-card-content {
-                padding: 10px;
+                width: 50px;
+                height: 50px;
             }
             
             .game-card-title {
-                font-size: 0.8rem;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -576,10 +607,7 @@
     <!-- Header -->
     <header class="app-header">
         <div class="header-content">
-            <div class="logo-container">
-                <h1 class="logo">PROLL'S SCHOOL</h1>
-                <span class="logo-subtitle">Entertainment Hub</span>
-            </div>
+            <h1 class="logo">PROLL'S SCHOOL</h1>
             
             <div class="search-container">
                 <div class="search-wrapper">
@@ -634,6 +662,15 @@
                 </a>
             </div>
             <div class="featured-game-image" style="background-image: url('images/retrobowl.jpg')"></div>
+        </div>
+
+        <!-- Favorites Section -->
+        <h2 id="favorites-heading">FAVORITE GAMES</h2>
+        <div id="favorites-section">
+            <div id="favorites-container">
+                <!-- Favorite games will be dynamically added here -->
+                <div class="no-favorites-message">Star your favorite games to see them here!</div>
+            </div>
         </div>
 
         <!-- Popular Games Section -->
@@ -704,7 +741,6 @@
             const gamePath = gameLink.getAttribute("href");
             const gameTitle = gameLink.querySelector(".game-card-title").textContent;
             const gameImage = gameLink.querySelector(".game-card-image").getAttribute("src");
-            const gameCategory = gameLink.querySelector(".game-card-category").textContent;
 
             const favorites = getFavorites();
 
@@ -716,12 +752,15 @@
                 favorites.push({
                     path: gamePath,
                     title: gameTitle,
-                    image: gameImage,
-                    category: gameCategory
+                    image: gameImage
                 });
                 event.target.classList.remove("far");
                 event.target.classList.add("fas");
                 event.target.classList.add("active");
+                event.target.classList.add("star-animation");
+                setTimeout(() => {
+                    event.target.classList.remove("star-animation");
+                }, 500);
             } else {
                 // Remove from favorites
                 favorites.splice(index, 1);
@@ -730,6 +769,45 @@
             }
 
             saveFavorites(favorites);
+            updateFavoritesSection();
+        }
+
+        // Update the favorites section with current favorites
+        function updateFavoritesSection() {
+            const favorites = getFavorites();
+            const favoritesContainer = document.getElementById("favorites-container");
+            const favoritesSection = document.getElementById("favorites-section");
+            const favoritesHeading = document.getElementById("favorites-heading");
+
+            // Clear current favorites
+            favoritesContainer.innerHTML = "";
+
+            // If no favorites, show a message
+            if (favorites.length === 0) {
+                const message = document.createElement("div");
+                message.className = "no-favorites-message";
+                message.textContent = "Star your favorite games to see them here!";
+                favoritesContainer.appendChild(message);
+            } else {
+                // Add each favorite game
+                favorites.forEach((game) => {
+                    const gameCard = document.createElement("div");
+                    gameCard.className = "game-card";
+                    
+                    gameCard.innerHTML = `
+                        <a href="${game.path}" target="_blank" style="text-decoration: none; color: inherit;">
+                            <img src="${game.image}" alt="${game.title}" class="game-card-image">
+                            <div class="game-card-title">${game.title}</div>
+                        </a>
+                        <i class="fas fa-star favorite-star active"></i>
+                    `;
+                    
+                    const starIcon = gameCard.querySelector(".favorite-star");
+                    starIcon.addEventListener("click", toggleFavorite);
+                    
+                    favoritesContainer.appendChild(gameCard);
+                });
+            }
         }
 
         // ===== SEARCH FUNCTIONALITY =====
@@ -766,10 +844,7 @@
                 gameCard.innerHTML = `
                     <a href="${game.path}" target="_blank" style="text-decoration: none; color: inherit;">
                         <img src="${game.image}" alt="${game.title}" class="game-card-image">
-                        <div class="game-card-content">
-                            <h3 class="game-card-title">${game.title}</h3>
-                            <div class="game-card-category">${game.category}</div>
-                        </div>
+                        <div class="game-card-title">${game.title}</div>
                     </a>
                     <i class="${isFavorite ? 'fas' : 'far'} fa-star favorite-star ${isFavorite ? 'active' : ''}"></i>
                 `;
@@ -908,6 +983,9 @@
             
             // Setup category filters
             setupCategoryFilters();
+            
+            // Initialize favorites section
+            updateFavoritesSection();
             
             // Update time display
             function updateTime() {
