@@ -1,156 +1,316 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta name="robots" content="noindex">
-    <title>Grades & Attendance</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-    <link rel="stylesheet" type="text/css" href="css/footing.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prolls Proxy</title>
+    <link rel="stylesheet" type="text/css" href="/storage/css/themes2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Particles.js CDN -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
     <style>
-        /* Adjust spacing for <br> */
-        br {
-            display: block;
-            line-height: 0.5em; /* Reduces the height of <br> */
-        }
+   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
-        /* Snow Effect Fullscreen */
-        #snow {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-        }
-        .social-icons a {
-            margin: 0 10px;
-            font-size: 24px;
-            color: #5865F2; /* Discord's brand color */
-            text-decoration: none;
-        }
-        .social-icons a.github {
-            color: #ffffff; /* White color */
-        }
-
-        /* Favorites Section Styling */
-        #favorites-section {
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        #favorites-heading {
-            position: relative;
-            padding: 0.5rem 0;
-            margin: 1rem 0;
-            overflow: hidden;
-            text-align: center;
-            font-family: "Press Start 2P", cursive;
-            background: linear-gradient(135deg, #ffd700, #ffa500);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-        }
-
-        #favorites-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.8rem;
-            padding: 1rem;
-            background: linear-gradient(to bottom, rgba(26, 26, 46, 0.8), rgba(10, 10, 26, 0.8));
-            border-radius: 15px;
-            margin: 1rem auto;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.1);
-            max-width: 95%;
-        }
-
-        .favorite-star {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 10;
-            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
-            transition: all 0.3s ease;
-        }
-
-        .favorite-star:hover {
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.7));
-        }
-
-        .button {
-            position: relative;
-        }
-
-        .no-favorites-message {
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        /* Animation for adding to favorites */
-        @keyframes star-pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.5);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-/* Search Bar Styling */
-.search-container {
-    margin: 20px auto;
-    max-width: 500px;
-    position: relative;
-    text-align: center;
+:root {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #1a1a2e;
+    --bg-tertiary: #25253a;
+    --accent-pink: #ff6b9d;
+    --accent-blue: #6b9dff;
+    --accent-purple: #9d6bff;
+    --text-primary: #ffffff;
+    --text-secondary: #c0c0d0;
+    --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+    --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.search-wrapper {
+body {
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    font-family: "Press Start 2P", cursive;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Snow Effect */
+#snow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+/* Animated Background Grid */
+.grid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(26, 26, 46, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 26, 46, 0.3) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: -3;
+    animation: gridMove 20s linear infinite;
+    opacity: 0.4;
+}
+
+@keyframes gridMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 30px 30px;
+    }
+}
+
+.god-rays {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 550px;
+    --stripes: repeating-linear-gradient(100deg, rgba(26, 26, 46, 0.8) 0%, rgba(26, 26, 46, 0.8) 7%, transparent 10%, transparent 12%, rgba(26, 26, 46, 0.8) 16%);
+    --rays: repeating-linear-gradient(100deg, rgba(157, 107, 255, 0.2) 10%, rgba(255, 107, 157, 0.2) 15%, rgba(157, 107, 255, 0.2) 20%, rgba(255, 107, 157, 0.2) 25%, rgba(157, 107, 255, 0.2) 30%);
+    background-image: var(--stripes), var(--rays);
+    background-size: 300%, 200%;
+    background-position: 50% 50%, 50% 50%;
+    animation: fadeIn 2s ease;
+    mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.god-rays::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--stripes), var(--rays);
+    background-size: 200%, 100%;
+    animation: god-rays 40s linear infinite;
+    background-attachment: fixed;
+    mix-blend-mode: difference;
+}
+
+@keyframes god-rays {
+    0% {
+        background-position: 0% 0%, 0% 0%;
+    }
+    100% {
+        background-position: 200% 200%, 100% 100%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Scanline effect */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.02) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Glow effect around the page */
+.glow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -4;
+    overflow: hidden;
+}
+
+.glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(157, 107, 255, 0.15) 0%,
+        rgba(255, 107, 157, 0.1) 30%,
+        rgba(0, 0, 0, 0) 70%
+    );
+    filter: blur(40px);
+    animation: glow-move 15s infinite alternate ease-in-out;
+}
+
+.glow:nth-child(2) {
+    background: radial-gradient(
+        circle,
+        rgba(255, 107, 157, 0.15) 0%,
+        rgba(107, 157, 255, 0.1) 30%,
+        rgba(0, 0, 0, 0) 70%
+    );
+    animation-delay: -5s;
+}
+
+@keyframes glow-move {
+    0% {
+        top: 10%;
+        left: 10%;
+    }
+    100% {
+        top: 60%;
+        left: 60%;
+    }
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+    transition: transform 0.3s ease-in-out;
+    animation: title-glow 3s infinite alternate;
+}
+
+@keyframes title-glow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 0 0 30px rgba(157, 107, 255, 0.4);
+    }
+}
+
+h1:hover {
+    transform: scale(1.05);
+}
+
+#dynamicParagraph {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    font-weight: 300;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transition: color 0.3s ease-in-out;
+    line-height: 1.5;
+}
+
+#dynamicParagraph:hover {
+    color: var(--accent-pink);
+}
+
+#search-container {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+    animation: float 6s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.search-bar-container {
     position: relative;
     display: inline-block;
 }
 
-#searchInput {
+.search-bar-home {
     padding: 12px 18px 12px 45px;
     width: 350px;
     border: 2px solid rgba(255, 107, 157, 0.6);
-    background-color: rgba(0, 0, 0, 0.8); /* Solid black background */
-    border-radius: 30px; /* Rounded corners */
+    background-color: rgba(26, 26, 46, 0.9);
+    border-radius: 30px;
     font-family: "VT323", monospace;
     font-size: 18px;
     outline: none;
-    color: white;
+    margin: 0;
+    color: var(--text-primary);
     box-shadow: 0 0 15px rgba(157, 107, 255, 0.3);
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all var(--transition-normal);
+    position: relative;
 }
 
-#searchInput::placeholder {
+.search-bar-home::placeholder {
     color: rgba(255, 255, 255, 0.6);
     font-size: 16px;
 }
 
-#searchInput:focus {
+.search-bar-home:focus {
     border-color: var(--accent-pink);
-    box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
-    background-color: rgba(0, 0, 0, 0.9); /* Slightly darker on focus */
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 0 0 30px rgba(157, 107, 255, 0.4);
+}
+
+.search-button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.8), rgba(157, 107, 255, 0.8));
+    color: white;
+    font-size: 14px;
+    font-family: "Press Start 2P", cursive;
+    border: none;
+    border-radius: 30px;
+    margin-top: 15px;
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.search-button:hover {
+    background: linear-gradient(135deg, rgba(255, 107, 157, 1), rgba(157, 107, 255, 1));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 157, 0.4);
+}
+
+.search-button i {
+    margin-left: 8px;
+}
+
+/* Animation for search icon */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .search-icon {
@@ -160,440 +320,1012 @@
     transform: translateY(-50%);
     color: rgba(255, 107, 157, 0.8);
     pointer-events: none;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
+    animation: pulse 2s infinite;
 }
 
-#searchInput:focus + .search-icon {
-    color: var(--accent-pink);
+#time {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    color: var(--text-primary);
+    font-family: "VT323", monospace;
+    background-color: rgba(26, 26, 46, 0.8);
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    box-shadow: 0 0 10px rgba(157, 107, 255, 0.3);
 }
 
-/* Remove animations if not needed */
-.search-container {
-    animation: none;
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-secondary);
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    padding: 35px;
+    border-radius: 15px;
+    z-index: 1000;
+    color: var(--text-primary);
+    box-shadow: 0 0 30px rgba(157, 107, 255, 0.4);
+    animation: popupFadeIn 0.3s ease-out;
+    min-width: 400px;
+    max-width: 450px;
+    backdrop-filter: blur(8px);
 }
 
-        .star-animation {
-            animation: star-pulse 0.5s ease;
-        }
-/* Fade-in Animation Styles */
-@keyframes fadeIn {
+@keyframes popupFadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translate(-50%, -40%);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(-50%, -50%);
     }
 }
 
-/* Initial state for buttons before animation */
-.button-container1 .button,
-.button-container.regular-games .button,
-#favorites-container .button {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease;
+.popup h3 {
+    margin: 0 0 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+    font-family: "Press Start 2P", cursive;
+    font-size: 16px;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-/* Class that gets added when element is in viewport */
-.fade-in {
-    animation: fadeIn 0.6s ease forwards;
+.popup input[type="text"] {
+    margin: 10px 0;
+    width: 100%;
+    background: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    color: var(--text-primary);
+    padding: 12px 15px;
+    border-radius: 10px;
+    transition: all var(--transition-normal);
+    font-family: "VT323", monospace;
+    font-size: 18px;
 }
 
-/* Staggered animation delay for buttons */
-.button-container1 .button:nth-child(1),
-.button-container.regular-games .button:nth-child(1),
-#favorites-container .button:nth-child(1) { animation-delay: 0.05s; }
-.button-container1 .button:nth-child(2),
-.button-container.regular-games .button:nth-child(2),
-#favorites-container .button:nth-child(2) { animation-delay: 0.1s; }
-.button-container1 .button:nth-child(3),
-.button-container.regular-games .button:nth-child(3),
-#favorites-container .button:nth-child(3) { animation-delay: 0.15s; }
-.button-container1 .button:nth-child(4),
-.button-container.regular-games .button:nth-child(4),
-#favorites-container .button:nth-child(4) { animation-delay: 0.2s; }
-.button-container1 .button:nth-child(5),
-.button-container.regular-games .button:nth-child(5),
-#favorites-container .button:nth-child(5) { animation-delay: 0.25s; }
-.button-container1 .button:nth-child(6),
-.button-container.regular-games .button:nth-child(6),
-#favorites-container .button:nth-child(6) { animation-delay: 0.3s; }
-.button-container1 .button:nth-child(7),
-.button-container.regular-games .button:nth-child(7),
-#favorites-container .button:nth-child(7) { animation-delay: 0.35s; }
-.button-container1 .button:nth-child(8),
-.button-container.regular-games .button:nth-child(8),
-#favorites-container .button:nth-child(8) { animation-delay: 0.4s; }
-
-/* Page load animation for header elements */
-.container h1,
-.container .search-wrapper,
-#favorites-heading {
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
+.popup input[type="text"]:focus {
+    border-color: var(--accent-pink);
+    background: rgba(37, 37, 58, 0.9);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
+    outline: none;
 }
 
-.container h1 { animation-delay: 0.1s; }
-.container .search-wrapper { animation-delay: 0.3s; }
-#favorites-heading { animation-delay: 0.5s; }
-
-/* Add a subtle glow effect during fade-in */
-@keyframes glowFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-        box-shadow: 0 0 0 rgba(157, 107, 255, 0);
-    }
-    50% {
-        box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        box-shadow: 0 0 5px rgba(157, 107, 255, 0.3);
-    }
+.popup input[type="file"] {
+    margin: 15px 0;
+    color: var(--text-primary);
+    width: 100%;
+    font-family: "VT323", monospace;
+    font-size: 16px;
 }
 
-/* Apply the glow effect to buttons when they fade in */
-.button-container.regular-games .button.glow-fade {
-    animation: glowFadeIn 0.8s ease forwards;
+.popup input[type="file"]::-webkit-file-upload-button {
+    background: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-family: "Press Start 2P", cursive;
+    font-size: 10px;
 }
-    </style>
+
+.popup input[type="file"]::-webkit-file-upload-button:hover {
+    background: rgba(37, 37, 58, 0.9);
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.popup button {
+    padding: 10px 20px;
+    background: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    border-radius: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-family: "Press Start 2P", cursive;
+    font-size: 10px;
+}
+
+.popup button:hover {
+    background: rgba(37, 37, 58, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
+    border-color: var(--accent-pink);
+}
+
+.popup button#add-btn {
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    color: var(--text-primary);
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup button#add-btn:hover {
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+}
+
+.add-pin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    border: none;
+    border-radius: 50%;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
+}
+
+.add-pin-btn:hover {
+    transform: scale(1.2);
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+    color: var(--text-primary);
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+/* Enhanced pinned icons */
+.pinned-icons {
+    margin-top: 30px;
+    background: rgba(26, 26, 46, 0.6);
+    padding: 15px 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 107, 157, 0.2);
+    animation: float 6s infinite ease-in-out;
+    animation-delay: 1s;
+}
+
+.pinned-icons a img {
+    box-shadow: 0 0 10px rgba(157, 107, 255, 0.4);
+}
+
+/* Version tag */
+.version-tag {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 10px;
+    color: var(--text-secondary);
+    font-family: "VT323", monospace;
+    background-color: rgba(26, 26, 46, 0.8);
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 107, 157, 0.3);
+}
+
+/* Modern UI Styles */
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: rgba(10, 10, 26, 0.95);
+    border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.app-logo {
+    font-family: "Press Start 2P", cursive;
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.app-subtitle {
+    font-family: "VT323", monospace;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-left: 5px;
+    opacity: 0.8;
+}
+
+.header-search {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+    position: relative;
+}
+
+.header-search input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    background-color: rgba(26, 26, 46, 0.8);
+    color: var(--text-primary);
+    font-family: "VT323", monospace;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.header-search input:focus {
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
+}
+
+.header-search .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 107, 157, 0.8);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.fps-counter {
+    font-family: "VT323", monospace;
+    font-size: 14px;
+    color: var(--text-secondary);
+    background-color: rgba(26, 26, 46, 0.8);
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 107, 157, 0.3);
+}
+
+.category-filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 70px;
+    padding: 15px;
+    background-color: rgba(10, 10, 26, 0.8);
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 107, 157, 0.2);
+}
+
+.category-button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-family: "VT323", monospace;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-button:hover {
+    color: var(--text-primary);
+    background-color: rgba(255, 107, 157, 0.1);
+}
+
+.category-button.active {
+    background-color: rgba(255, 107, 157, 0.2);
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.content-area {
+    margin-top: 130px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.featured-game {
+    display: flex;
+    background-color: rgba(26, 26, 46, 0.8);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 107, 157, 0.2);
+    transition: all 0.3s ease;
+}
+
+.featured-game:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
+    border-color: rgba(255, 107, 157, 0.4);
+}
+
+.featured-game-info {
+    padding: 30px;
+    flex: 1;
+}
+
+.featured-game-title {
+    font-family: "Press Start 2P", cursive;
+    font-size: 24px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.featured-game-description {
+    color: var(--text-secondary);
+    font-family: "VT323", monospace;
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.play-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: "Press Start 2P", cursive;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+}
+
+.play-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
+}
+
+.play-button i {
+    margin-right: 10px;
+}
+
+.featured-game-image {
+    width: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.game-card {
+    background-color: rgba(26, 26, 46, 0.8);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 107, 157, 0.1);
+    position: relative;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 107, 157, 0.2);
+    border-color: rgba(255, 107, 157, 0.3);
+}
+
+.game-card-image {
+    width: 100%;
+    height: 140px;
+    background-size: cover;
+    background-position: center;
+}
+
+.game-card-info {
+    padding: 15px;
+}
+
+.game-card-title {
+    font-family: "Press Start 2P", cursive;
+    font-size: 14px;
+    margin-bottom: 5px;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.game-card-category {
+    font-family: "VT323", monospace;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.game-card-favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-card-favorite:hover {
+    background-color: rgba(255, 107, 157, 0.3);
+}
+
+.game-card-favorite i {
+    color: white;
+    font-size: 14px;
+}
+
+.game-card-favorite.active i {
+    color: var(--accent-pink);
+}
+
+/* Quick Links Button Container */
+.button-container1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 0.8rem;
+  background: linear-gradient(to right, 
+    rgba(26, 26, 46, 0.4), 
+    rgba(37, 37, 58, 0.4), 
+    rgba(26, 26, 46, 0.4));
+  border-radius: 15px;
+  margin: 0.8rem auto;
+  max-width: 95%;
+  box-shadow: 
+    inset 0 0 10px rgba(107, 157, 255, 0.1),
+    0 0 15px rgba(157, 107, 255, 0.2);
+  border: 1px solid rgba(255, 107, 157, 0.3);
+}
+
+/* Quick Link Buttons */
+.button-container1 .button {
+  background: linear-gradient(135deg, 
+    rgba(37, 37, 58, 0.9), 
+    rgba(26, 26, 46, 0.9));
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  min-width: 110px;
+  border: 1px solid rgba(107, 157, 255, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: white;
+  text-decoration: none;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Button Hover Effect */
+.button-container1 .button:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 107, 157, 0.2), 
+    rgba(157, 107, 255, 0.2));
+  transform: translateY(-3px);
+  box-shadow: 
+    0 6px 15px rgba(255, 107, 157, 0.4),
+    0 0 20px rgba(157, 107, 255, 0.3);
+  border-color: var(--accent-pink);
+  color: white;
+}
+
+/* Button Active Effect */
+.button-container1 .button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Top Accent Border */
+.button-container1 .button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--accent-blue), 
+    var(--accent-purple), 
+    var(--accent-pink));
+  opacity: 0.7;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
+  transition: all 0.3s ease;
+}
+
+.button-container1 .button:hover::before {
+  opacity: 1;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(255, 107, 157, 0.1), 
+    rgba(157, 107, 255, 0.1));
+}
+
+/* Button Text Styling */
+.button-container1 .button span {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(135deg, 
+    var(--accent-pink), 
+    var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+  transition: all 0.3s ease;
+}
+
+.button-container1 .button:hover span {
+  text-shadow: 0 0 15px rgba(255, 107, 157, 0.6);
+}
+
+/* Browser Tab System Styles */
+.browser-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-primary);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.tab-bar {
+    display: flex;
+    background-color: #0f0f1e;
+    padding: 0;
+    height: 40px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 107, 157, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+}
+
+.tab-bar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    min-width: 180px;
+    max-width: 200px;
+    height: 40px;
+    background-color: #1a1a2e;
+    color: var(--text-primary);
+    padding: 0 15px;
+    margin-right: 1px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+}
+
+.tab.active {
+    background-color: #25253a;
+    border-top: 2px solid var(--accent-pink);
+}
+
+.tab:hover {
+    background-color: #25253a;
+}
+
+.tab-title {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+.tab-close {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 107, 157, 0.2);
+    color: var(--text-primary);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-close:hover {
+    background-color: rgba(255, 107, 157, 0.8);
+    transform: scale(1.1);
+}
+
+.new-tab-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    color: var(--text-primary);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.new-tab-button:hover {
+    color: var(--accent-pink);
+}
+
+.navigation-bar {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a2e;
+    padding: 10px;
+    height: 50px;
+    border-bottom: 1px solid rgba(255, 107, 157, 0.3);
+}
+
+.nav-button {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(26, 26, 46, 0.8);
+    color: var(--text-primary);
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 107, 157, 0.2);
+}
+
+.nav-button:hover {
+    background-color: rgba(37, 37, 58, 0.9);
+    color: var(--accent-pink);
+    border-color: var(--accent-pink);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-button:active {
+    transform: translateY(0);
+}
+
+.nav-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.url-bar {
+    flex-grow: 1;
+    height: 36px;
+    background-color: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    border-radius: 18px;
+    color: var(--text-primary);
+    padding: 0 15px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.url-bar:focus {
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
+}
+
+.browser-content {
+    flex-grow: 1;
+    position: relative;
+    background-color: white;
+}
+
+.browser-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+}
+
+.browser-frame.active {
+    display: block;
+}
+
+.home-content {
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: var(--bg-primary);
+}
+
+.home-content.active {
+    display: block;
+}
+</style>
 </head>
 <body>
-    <div id="snow"></div> <!-- Snow effect container -->
-
-    <div class="container">
-        <br></br>
-        <h1>Proll's School V5.0</h1>
-        <center><a>We Have a New Discord. Please join to stay up to date, request games, and find the newest website links. (discord.gg/proll)</a>
-        <center><a>New google search coming soon!</a>
-        </center><br></br>
-        <center>
-            <a>Time Spent: </a><span id="timeSpent">Loading...</span>
-        </center>
-        <br></br>
-        <div class="search-wrapper">
-            <input type="text" style="color:white" id="searchInput" onkeyup="searchButtons()" placeholder="Search for games...">
-            <i class="fas fa-search search-icon"></i>
-        </div>
-    </div>
-</div>
-    <p id="time"></p>
-
-   <div class="button-container1">
-   <a href="index.html" class="button">Home</a>
-  <a href="static" class="button">Web Browser</a>
-   <a href="https://tinyurl.com/45j4r62u" class="button">Games Request</a>
-    <a href="settings" class="button">Website Settings</a>
-    <a href="https://github.com/Prollhouse2/gamesite" class="button">Source / Updates</a>
-    <a href="bookmarks" class="button">Gms Cheats</a>
-    <a href="save" class="button">Gms Save</a>
-    <a href="leaderboard" class="button">Leaderboard</a>
-    <a href="https://discord.gg/proll" class="button">Discord!</a>
-    <a href="chat" class="button">Chatroom</a>
-</div>
-
-    
-    <!-- Favorites Section -->
-    <h1 id="favorites-heading">Favorite Games</h1>
-    <div id="favorites-section">
-        <div id="favorites-container" class="button-container">
-            <!-- Favorite games will be dynamically added here -->
-            <div class="no-favorites-message">Star your favorite games to see them here!</div>
-        </div>
-    </div>
-    <br>
-    
-    <div class="button-container regular-games">
-        <button class="button"><a style="text-decoration:none" href='g/slope' target="_blank"><img src="images/slope.png" alt="Slope"> <span><br>Slope</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/retro-bowl' target="_blank"><img src="images/retrobowl.jpg" alt="Retro Bowl"> <span><br>Retro Bowl</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/gunspin' target="_blank"><img src="/images/gunspin.png" alt=""> <span ><br>Gunspin</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/1v1lol' target="_blank"><img src="https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co" alt="1v1.lol"> <span><br>1v1.lol</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/blockblast' target="_blank"><img src="images/blockblast.png" alt=""> <span><br>Block Blast</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/idle-breakout' target="_blank"><img src="images/idlebreakout.png" alt=""> <span><br>Idle Breakout</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/learntofly' target="_blank"><img src="g/learntofly/1/icon.png" alt=""> <span><br>Learn To Fly Gms</span></a></button>
-        <button class="button"><a href='g/baldisbasics' target="_blank"><img src="images/baldisbasics.png"> <span><br>Baldisbasics</span></a></button>
-        <button class="button"><a href='g/gunmayhem' target="_blank"><img src="images/gunmayhem.png"> <span><br>Gun Mayhem</span></a></button>
-        <button class="button"><a href='g/gunmayhem2' target="_blank"><img src="images/gunmayhem2.png"> <span><br>Gun Mayhem 2</span></a></button>
-        <button class="button"><a href='g/wallsmash' target="_blank"><img src="images/wallsmash.png"> <span><br>Wall Smash</span></a></button>
-        <button class="button"><a href='g/gunmayhem2' target="_blank"><img src="images/gunmayhem2.png"> <span><br>Gun Mayhem 2</span></a></button>
-        <button class="button" ><a href='g/fnaf' target="_blank"><img src="images/fnaf.png"> <span><br>FNAF 1</span></a></button>
-        <button class="button" ><a href='g/fnaf-2' target="_blank"><img src="images/fnaf2.png"> <span><br>FNAF 2</span></a></button>
-        <button class="button" ><a href='g/driftboss' target="_blank"><img src="images/driftboss.png"> <span><br>Drift Boss</span></a></button>
-        <button class="button"  ><a href='g/jacksmith' target="_blank"><img src="images/jacksmith.png"> <span><br>Jack Smith</span></a></button>
-        <button class="button" ><a href='/imagetracer' target="_blank"><img src="images/imagetracer.png"> <span><br>Image Tracer</span></a></button>
-        <button class="button"><a href='g/infinitecraft' target="_blank"><img src="images/infinitecraft.png"> <span><br>Infinite Craft</span></a></button>
-        <button class="button"><a href='g/crazytunnel3d' target="_blank"><img src="images/crazytunnel3d.png"> <span><br>Crazy Tunnel 3D</span></a></button>
-        <button class="button"><a href='g/lazyjump3d' target="_blank"><img src="images/lazyjump3d.png"> <span><br>Lazy Jump 3D</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/houseofhazards' target="_blank"><img src="images/houseofhazards.png" alt=""> <span><br>House Of Hazards</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/holeio' target="_blank"><img src="images/holeio.png" alt=""> <span><br>Hole.io </span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/cut-the-rope' target="_blank"><img src="images/cuttherope.png" alt=""> <span><br>Cut The Rope</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/tanktrouble' target="_blank"><img src="images/tanktrouble.png" alt=""> <span><br>Tank Trouble</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/drifthunters' target="_blank"><img src="images/drifthunters.png" alt=""> <span><br>Drift Hunters </span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/volleyrandom' target="_blank"><img src="images/volleyrandom.png" alt=""> <span ><br>Volley Random</span></a></button>
-        <button class="button"><a href='g/draw-the-hill' target="_blank"><img src="images/drawthehill.png" alt=""> <span><br>Draw The Hill</span></a></button>
-        <button class="button"><a href='g/basketballio' target="_blank"><img src="images/basketballio.png"> <span><br>Basketball Bros</span></a></button>
-        <button class="button"><a href='g/justfall' target="_blank"><img src="images/justfall.png"> <span><br>Just Fall</span></a></button>
-        <button class="button"><a href='g/snowrider3d' target="_blank"><img src="images/snowrider3d.png"> <span><br>Snow Rider 3D</span></a></button>
-        <button class="button"><a href='g/tetris' target="_blank"><img src="images/tetris.png" alt="Tetris"><span><br>Tetris</span></a></button>    
-        <button class="button"><a href='g/checkoutfrenzy' target="_blank"><img src="images/checkoutfrenzy.png"> <span><br>Checkout Frenzy</span></a></button>
-        <button class="button"><a href='g/fireboywatergirlforsettemple' target="_blank"><img src="images/fireboywatergirl.jpeg"> <span><br>Fireboy & Watergirl</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/tinyfishing' target="_blank"><img src="images/tinyfishing.png"> <span><br>Tiny Fishing</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/timeshooter' target="_blank"><img src="images/timeshooter.png"> <span><br>Time Shooter Gms</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/getaway-shootout' target="_blank"><img src="images/getawayshootout.png" alt=""> <span><br>Getaway Shootout</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/soccer-random' target="_blank"><img src="images/soccerrandom.png" alt=""> <span><br>Soccer Random</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/crossyroad' target="_blank"><img src="images/crossyroad.png" alt=""> <span><br>Crossy Road</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/rooftopsnipers' target="_blank"><img src="images/rooftopsnipers.png" alt=""> <span><br>Rooftop Sniper</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/boxingrandom' target="_blank"><img src="images/boxingrandom.png" alt=""> <span><br>Boxing Random</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/adventurecapitalist' target="_blank"><img src="images/adventurecapitalist.png" alt=""> <span><br>Adventure Capitalist</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/hideandsmash' target="_blank"><img src="images/hideandsmash.png" alt=""> <span><br>Hide & Smash</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/monkey-mart' target="_blank"><img src="images/monkeymart.png" alt=""> <span><br>MonkeyMart</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/rb-college' target="_blank"><img src="images/retrobowlcollege.jpg" alt="Retro Bowl"> <span><br>Retro Bowl College</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='server' target="_blank"><img src="images/windows.png" alt=""> <span><br>Windows Desktop</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/mc' target="_blank"><img src="images/mc.png" alt=""> <span><br>Minecraft (Eagler)</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/btd5' target="_blank"><img src="images/btd5.png" alt="BTD"> <span><br>Bloons TD5</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/mrmine' target="_blank"><img src="images/mrmine.png" alt="BTD"> <span><br>Mr Mine</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/run2' target="_blank"><img src="images/run2.png" alt=""> <span><br>Run 2</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/run3' target="_blank"><img src="images/run3.png" alt=""> <span><br>Run 3</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/elonmusk' target="_blank"><img src="images/elonmusk.png" alt=""> <span><br>Spend Elon's Money</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/pvz' target="_blank"><img src="images/pvz.png" alt=""> <span><br>Plants V Zombies</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/ducklife' target="_blank"><img src="images/ducklife.png"> <span><br>Duck Life</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/minesweeper' target="_blank"><img src="images/minesweeper.png" alt=""> <span><br>Mine Sweeper</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/pixelgun' target="_blank"><img src="images/pixelgun.png" alt=""> <span><br>Pixel Gun</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/googlesnake' target="_blank"><img src="images/googlesnake.jpg" alt=""> <span><br>Google Snake </span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/ngon' target="_blank"><img src="images/ngon.jpg" alt=""> <span><br>N Gon</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/ovo' target="_blank"><img src="images/ovo.jpg" alt="R"> <span><br>OVO</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/basketballstars' target="_blank"><img src="images/basketballstars.png" alt="Basketball Stars"> <span><br>Basketball Stars</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/stacktris' target="_blank"><img src="images/stacktris.jpg" alt=""> <span><br>Stacktris</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/blackjack' target="_blank"><img src="images/blackjack.png" alt=""> <span><br>Black Jack</span></button>
-        <button class="button"><a style="text-decoration:none" href='g/fnaf' target="_blank"><img src="images/fnaf.png" alt=""> <span><br>FNAF</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/dbz' target="_blank"><img src="images/dbz.png" alt=""> <span><br>DBZ Devolution</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/drivemad' target="_blank"><img src="images/drivemad.png" width="200" height="200" alt=""> <br>Drive Mad</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/papas-game' target="_blank"><img src="images/papasgame.jpg" width="200" height="200"> <br>Papa's Gms</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/henry-stickman' target="_blank"><img src="https://cdn2.steamgriddb.com/icon/9f61408e3afb633e50cdf1b20de6f466.png" width="200" height="200"> <br>Stickman Gms</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/vex' target="_blank"><img src="https://play-lh.googleusercontent.com/0OnVFzHIMuLLeMjvACoNzxRbungfOH1zH4hUWQnIg5KfM2va_mFssFuRGq26WqWA" width="200" height="200"> <br>Vex's Gms</a></button>    
-        <button class="button"><a style="text-decoration:none" href='g/2048' target="_blank"><img src="images/2048.png" alt="2048"> <span><br>2048</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/paperio2' target="_blank"><img src="images/paperio2.png" alt="Paper.io 2"> <span><br>Paper.io 2</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/bitlife' target="_blank"><img src="https://play-lh.googleusercontent.com/fUM-UyywXxjC8soxAZdIlxJrlRRXmql8wkE426SHzft4lJycSKVd2jCYQQX1BEG9Xw" width="200" height="200"><br><br>Bitlife</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/1' target="_blank"><img src="https://d3nsrxdg84ic1d.cloudfront.net/uploads/5a145eaa-3696-4de4-8c1d-41400e3d296c/e8ccaaae.PNG?v=0" width="200" height="200"> <br>1</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/subway-surfers' target="_blank"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/81a0a3f18cf0ee129e56edb50fc52c3b.png" width="200" height="200"> <br>Subway Surfers</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/basketball-random' target="_blank"><img src="https://play-lh.googleusercontent.com/gP8T5Z1O-ngxIloiwcBZzrzyLPYDp0R_1BDNKUDZboIRPVImeyWI8-7aExvB9gAGNKc=w240-h480-rw" width="200" height="200" alt=""> <br>Basketball Random</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/soccer-random' target="_blank"><img src="https://play-lh.googleusercontent.com/G1PIlb6HWKSaDre0XpUcmKGps9T4iamsSlwrogB3EJzYv4bz0M2am4D17MtGzndaOOU" width="200" height="200" alt=""> <br>Soccer Random</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/motox3m' target="_blank"><img src="images/motocross.png" width="200" height="200" alt=""><br>MotoX3M Gms</a></button>
-        <button class="button">  width="200" height="200" alt=""><br>MotoX3M Gms</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/cookieclicker' target="_blank"><img src="https://play-lh.googleusercontent.com/Z1MOuuiD05ZN5LkVmMEvKF0mqAc-FknaQ2j8s4dZiO-LSPQX4EEA3RVJdlQEtxe96ok" width="200" height="200" alt=""> <br>Cookie Clicker</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/crossyroad' target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/7/71/Crossy_Road_icon.jpeg" width="200" height="200" alt=""> <br>Crossy Road</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/temple-run-2' target="_blank"><img src="https://play-lh.googleusercontent.com/go4XqS4mYs-G2tZymiVLF4wJYXIi5QrvwixNRzssk4G_vRBHrAdg4E1ddNwy9c2cZA" width="200" height="200"> <br>Temple Run 2</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/stickman-golf' target="_blank"><img src="https://image.spreadshirtmedia.com/image-server/v1/products/T1459A839PA3861PT28D12687618W6161H10000/views/1,width=550,height=550,appearanceId=839,backgroundColor=F2F2F2/golf-stickman-sticker.jpg" width="200" height="200" alt=""> <br>Stickman Golf</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/case-clicker' target="_blank"><img src="images/csgoclicker.png" width="200" height="200" alt=""> <br>CSGO Case Opener</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/pandemic2' target="_blank"><img src="images/pandemic2.png" width="200" height="200" alt=""> <br>Pandemic 2</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/riddleschool' target="_blank"><img src="https://i.ytimg.com/vi/Ls5rT-7_4d4/sddefault.jpg" width="200" height="200" alt=""> <br>Riddle School Games</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/cupcake2048' target="_blank"><img src="images/cupcake2048.png" width="200" height="200"> <br>Cupcake 2048</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/jetpack-joyride' target="_blank"><img src="images/jetpackjoyride.png" width="200" height="200" alt=""> <br>Jetpack Joyride</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/geodash' target="_blank"><img src="images/geodash.jpg" width="200" height="200" alt=""> <br>Geometry Dash</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/ducklife1' target="_blank"><img src="images/ducklife1.png" width="200" height="200" alt=""> <br>Duck Life 1</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/sandboxels' target="_blank"><img src="https://sandboxels.r74n.com/icons/icon.png" width="200" height="200" alt=""> <br>Sand Boxels</a></button>
-    </div>
-
-  
-
-    <!-- Footer -->
-    <footer>
-        <center>
-            <div class="footer-content">
-                <div class="social-icons">
-                    <a href="https://discord.com/invite/proll" class="icon" target="_blank" title="Discord">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                    <a href="https://github.com/prollhouse2" class="icon github" target="_blank" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
-                <p>© <span id="current-year"></span> Proll Services V5.0. All rights reserved.</p>
+    <!-- Browser Tab System -->
+    <div class="browser-container">
+        <!-- App Header -->
+        <div class="app-header">
+            <div class="app-branding">
+                <h2 class="app-logo">PROLLS</h2>
+                <span class="app-subtitle">Proxy</span>
             </div>
-        </center>
-    </footer>
+            <div class="header-search">
+                <input type="text" placeholder="Search for titles...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="header-actions">
+                <div class="fps-counter">165 FPS</div>
+            </div>
+        </div>
+
+        <!-- Tab Bar -->
+        <div class="tab-bar" id="tab-bar">
+            <div class="tab active" data-tab-id="home">
+                <span class="tab-title">New Tab</span>
+                <div class="tab-close"><i class="fas fa-times"></i></div>
+            </div>
+            <button class="new-tab-button" id="new-tab-button">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="navigation-bar">
+            <div class="nav-button" id="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="nav-button" id="forward-button">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="nav-button" id="refresh-button">
+                <i class="fas fa-redo-alt"></i>
+            </div>
+            <div class="nav-button" id="home-button">
+                <i class="fas fa-home"></i>
+            </div>
+            <input type="text" class="url-bar" id="url-bar" placeholder="Search or enter a URL">
+            <div class="nav-button" id="fullscreen-button">
+                <i class="fas fa-expand"></i>
+            </div>
+            <div class="nav-button" id="menu-button">
+                <i class="fas fa-ellipsis-v"></i>
+            </div>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="category-filters">
+            <button class="category-button active">All</button>
+            <button class="category-button">New</button>
+            <button class="category-button">Racing</button>
+            <button class="category-button">Action</button>
+            <button class="category-button">Puzzle</button>
+        </div>
+
+        <!-- Browser Content -->
+        <div class="browser-content" id="browser-content">
+            <!-- Home Content -->
+            <div class="home-content active" id="home-content">
+                <!-- Background elements -->
+                <div id="snow"></div>
+                <div class="grid-background"></div>
+                <div class="god-rays"></div>
+                <div class="scanlines"></div>
+                <div class="glow-container">
+                    <div class="glow"></div>
+                    <div class="glow"></div>
+                </div>
+                
+                <div class="content-area">
+                    <!-- Featured Game -->
+                    <div class="featured-game">
+                        <div class="featured-game-info">
+                            <h3 class="featured-game-title">RETRO BOWL</h3>
+                            <p class="featured-game-description">Lead your football team to glory in this nostalgic sports management simulator.</p>
+                            <button class="play-button"><i class="fas fa-play"></i> PLAY NOW</button>
+                        </div>
+                        <div class="featured-game-image" style="background-image: url('/placeholder.svg?height=400&width=600')"></div>
+                    </div>
+                    
+                    <h3>POPULAR TITLES</h3>
+                    
+                    <div class="games-grid">
+                        <!-- Game Cards -->
+                        <div class="game-card">
+                            <div class="game-card-image" style="background-image: url('/images/slope.png')"></div>
+                            <div class="game-card-info">
+                                <h4 class="game-card-title">Polytrack</h4>
+                                <div class="game-card-category">RACING</div>
+                            </div>
+                            <div class="game-card-favorite">
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-card-image" style="background-image: url('/images/blockblast.png')"></div>
+                            <div class="game-card-info">
+                                <h4 class="game-card-title">Block Blast</h4>
+                                <div class="game-card-category">PUZZLE</div>
+                            </div>
+                            <div class="game-card-favorite">
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-card-image" style="background-image: url('/images/crossyroad.png')"></div>
+                            <div class="game-card-info">
+                                <h4 class="game-card-title">Cluster Rush</h4>
+                                <div class="game-card-category">ACTION</div>
+                            </div>
+                            <div class="game-card-favorite">
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-card-image" style="background-image: url('/images/mc.png')"></div>
+                            <div class="game-card-info">
+                                <h4 class="game-card-title">Minecraft</h4>
+                                <div class="game-card-category">ADVENTURE</div>
+                            </div>
+                            <div class="game-card-favorite">
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>ALL TITLES</h3>
+                    
+                    <div id="search-container">
+                        <form id="uv-form">
+                            <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden"/>
+                            <div class="search-bar-container">
+                                <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
+                                <i class="fas fa-search search-icon"></i>
+                            </div>
+                            <button class="search-button" onclick="submitSearch()">SEARCH> </button>
+                        </form> 
+
+                        <div class="button-container1">
+                           <a href="/index.html" class="button">Home</a>
+                          <a href="/static" class="button">Web Browser</a>
+                           <a href="https://tinyurl.com/45j4r62u" class="button">Games Request</a>
+                            <a href="/settings" class="button">Website Settings</a>
+                            <a href="https://github.com/Prollhouse2/gamesite" class="button">Source / Updates</a>
+                            <a href="/bookmarks" class="button">Gms Cheats</a>
+                            <a href="/save" class="button">Gms Save</a>
+                            <a href="/leaderboard" class="button">Leaderboard</a>
+                            <a href="https://discord.gg/proll" class="button">Discord!</a>
+                            <a href="/chat" class="button">Chatroom</a>
+                        </div>
+
+                        <div class="desc left-margin">
+                            <p id="uv-error"></p>
+                            <pre id="uv-error-code"></pre>
+                        </div>
+                    </div>  
+
+                    <div class="pinned-icons" style="display: flex; justify-content: center; align-items: center; gap: 15px;">
+                        <a href="#" class="pinned-link" data-url="https://tiktok.com" style="display: inline-block;">
+                            <img src="/assets/tiktok.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                        </a>
+                        <a href="#" class="pinned-link" data-url="https://twitch.tv" style="display: inline-block;">
+                            <img src="/assets/twitch.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                        </a>
+                        <a href="#" class="pinned-link" data-url="https://google.com" style="display: inline-block;">
+                            <img src="/assets/google.webp" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                        </a>
+                        <a href="#" class="pinned-link" data-url="https://now.gg" style="display: inline-block;">
+                            <img src="/assets/nowgg.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                        </a>
+                        <a href="#" id="add-pin-btn" class="add-pin-btn">
+                            <span class="material-icons" style="font-size: 20px;">add</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Browser Frames -->
+            <!-- Frames will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Popup for adding new pin -->
+    <div id="add-pin-popup" class="popup">
+        <h3>Add New Pin</h3>
+        <input type="text" id="pin-url" placeholder="Enter URL (https:// required)">
+        <input type="file" id="pin-image" accept="image/*">
+        <div class="popup-buttons">
+            <button id="cancel-btn">Cancel</button>
+            <button id="add-btn">Add</button>
+        </div>
+    </div>
+
+    <!-- Time Display Element -->
+    <div id="time"></div>
+    
+    <!-- Version tag -->
+    <div class="version-tag">Prolls Proxy v5.0</div>
+
+    <script src="/static/uv/uv.bundle.js" defer></script>
+    <script src="/static/uv/uv.config.js" defer></script>
+    <script src="/static/register-sw.js" defer></script>
+    <script src="/static/search.js" defer></script>
+    <script src="/static/index.js" defer></script>
 
     <script>
-        // ===== FAVORITES FUNCTIONALITY =====
-        // Get favorites from localStorage
-        function getFavorites() {
-            const favorites = localStorage.getItem("favoriteGames");
-            return favorites ? JSON.parse(favorites) : [];
-        }
-
-        // Save favorites to localStorage
-        function saveFavorites(favorites) {
-            localStorage.setItem("favoriteGames", JSON.stringify(favorites));
-        }
-
-        // Toggle favorite status for a game
-        function toggleFavorite(event) {
-            event.stopPropagation();
-
-            const gameButton = event.target.closest(".button");
-            const gameLink = gameButton.querySelector("a");
-            const gamePath = gameLink.getAttribute("href");
-            const gameTitle = gameLink.querySelector("span") ? 
-                              gameLink.querySelector("span").textContent.trim() : 
-                              gameLink.textContent.trim();
-            const gameImage = gameLink.querySelector("img").getAttribute("src");
-
-            const favorites = getFavorites();
-
-            // Check if game is already a favorite
-            const index = favorites.findIndex((game) => game.path === gamePath);
-
-            if (index === -1) {
-                // Add to favorites
-                favorites.push({
-                    path: gamePath,
-                    title: gameTitle,
-                    image: gameImage,
-                });
-                event.target.classList.remove("far");
-                event.target.classList.add("fas");
-                event.target.style.color = "#FFD700"; // Gold color for active star
-                event.target.classList.add("star-animation");
-                setTimeout(() => {
-                    event.target.classList.remove("star-animation");
-                }, 500);
-            } else {
-                // Remove from favorites
-                favorites.splice(index, 1);
-                event.target.classList.remove("fas");
-                event.target.classList.add("far");
-                event.target.style.color = "#ffffff"; // White color for inactive star
-            }
-
-            saveFavorites(favorites);
-            updateFavoritesSection();
-        }
-
-        // Update the favorites section with current favorites
-        function updateFavoritesSection() {
-            const favorites = getFavorites();
-            const favoritesContainer = document.getElementById("favorites-container");
-            const favoritesSection = document.getElementById("favorites-section");
-            const favoritesHeading = document.getElementById("favorites-heading");
-
-            // Clear current favorites
-            favoritesContainer.innerHTML = "";
-
-            // If no favorites, show a message
-            if (favorites.length === 0) {
-                const message = document.createElement("div");
-                message.className = "no-favorites-message";
-                message.textContent = "Star your favorite games to see them here!";
-                favoritesContainer.appendChild(message);
-                
-                // Hide the favorites section
-                favoritesSection.style.display = "none";
-                favoritesHeading.style.display = "none";
-            } else {
-                // Show the favorites section
-                favoritesSection.style.display = "block";
-                favoritesHeading.style.display = "block";
-
-                // Add each favorite game
-                favorites.forEach((game) => {
-                    const button = document.createElement("button");
-                    button.className = "button";
-
-                    const link = document.createElement("a");
-                    link.href = game.path;
-                    link.target = "_blank"; // Open in new tab
-                    link.style.textDecoration = "none";
-
-                    const img = document.createElement("img");
-                    img.src = game.image;
-                    img.alt = game.title;
-
-                    const span = document.createElement("span");
-                    span.innerHTML = `<br>${game.title}`;
-
-                    const starIcon = document.createElement("i");
-                    starIcon.className = "fas fa-star favorite-star";
-                    starIcon.style.color = "#FFD700"; // Gold color
-                    starIcon.addEventListener("click", toggleFavorite);
-
-                    link.appendChild(img);
-                    link.appendChild(span);
-                    button.appendChild(link);
-                    button.appendChild(starIcon);
-
-                    favoritesContainer.appendChild(button);
-                });
-            }
-        }
-
-        // ===== SEARCH FUNCTIONALITY =====
-        function searchButtons() {
-            // Get the search query from the input field
-            var query = document.getElementById("searchInput").value.toLowerCase();
-
-            // Get all the buttons on the page
-            var buttons = document.getElementsByTagName("button");
-
-            // Loop through the buttons and check if their text contains the search query
-            for (var i = 0; i < buttons.length; i++) {
-                var buttonText = buttons[i].textContent.toLowerCase();
-                if (buttonText.includes(query)) {
-                    buttons[i].style.display = "flex"; // Show the button
-                } else {
-                    buttons[i].style.display = "none"; // Hide the button
-                }
-            }
-        }
-
-        // ===== TIME TRACKING FUNCTIONALITY =====
-        function displayTotalTimeSpent() {
-            const totalKey = "totalTimeSpent";
-            let totalTimeSpent = Number.parseInt(localStorage.getItem(totalKey)) || 0;
-
-            // Function to format and display time
-            function updateDisplay() {
-                const totalDays = Math.floor(totalTimeSpent / 86400); // Calculate days
-                const totalHours = Math.floor((totalTimeSpent % 86400) / 3600); // Remaining hours
-                const totalMinutes = Math.floor((totalTimeSpent % 3600) / 60); // Remaining minutes
-                const totalSeconds = totalTimeSpent % 60; // Remaining seconds
-
-                const message = `
-                    ${totalDays} days, ${totalHours} hours, 
-                    ${totalMinutes} minutes, and ${totalSeconds} seconds.
-                `;
-                document.getElementById("timeSpent").innerHTML = message;
-            }
-
-            // Initial display
-            updateDisplay();
-
-            // Increment total time every second
-            setInterval(() => {
-                totalTimeSpent++;
-                localStorage.setItem(totalKey, totalTimeSpent);
-                updateDisplay();
-            }, 1000);
-        }
-
-        // ===== CURRENT YEAR FOR FOOTER =====
-        function setCurrentYear() {
-            document.getElementById("current-year").textContent = new Date().getFullYear();
-        }
-
-        // ===== INITIALIZE EVERYTHING WHEN PAGE LOADS =====
-        document.addEventListener("DOMContentLoaded", () => {
-            // Initialize time tracking
-            displayTotalTimeSpent();
-
-            // Set current year in footer
-            setCurrentYear();
-
-            // Initialize snow effect
+        // Initialize snow effect
+        document.addEventListener("DOMContentLoaded", function() {
+            // First try to load particles.js from CDN
             if (typeof particlesJS !== "undefined") {
+                initSnow();
+            } else {
+                // If not loaded, load it dynamically
+                var script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+                script.onload = initSnow;
+                document.head.appendChild(script);
+            }
+            
+            function initSnow() {
                 particlesJS("snow", {
                     particles: {
                         number: {
@@ -637,116 +1369,438 @@
                     retina_detect: true,
                 });
             }
-
-            // Add star icons to all game buttons
-            const allGameButtons = document.querySelectorAll(".button");
-            const favorites = getFavorites();
-
-            allGameButtons.forEach((button) => {
-                // Skip buttons that don't have game links (like navigation buttons)
-                if (!button.querySelector("a") || !button.querySelector("a").getAttribute("href")) {
-                    return;
-                }
-
-                const gamePath = button.querySelector("a").getAttribute("href");
-                const isFavorite = favorites.some((game) => game.path === gamePath);
-
-                const starIcon = document.createElement("i");
-                starIcon.className = isFavorite ? "fas fa-star favorite-star" : "far fa-star favorite-star";
-                starIcon.style.color = isFavorite ? "#FFD700" : "#ffffff";
-                starIcon.addEventListener("click", toggleFavorite);
-
-                button.appendChild(starIcon);
-            });
-
-            // Initialize favorites section
-            updateFavoritesSection();
         });
+
+        const phrases = [
+            "prollschool best unblocked games site!",
+            "https://prollschool.com",
+            "Access your favorite games and sites from anywhere",
+            "Fast reliable and always up to date",
+            "Built for students by students",
+            "Stay low stay fast stay prollschool"
+        ];
+
+        const paragraph = document.getElementById('dynamicParagraph');
+
+        function changeText() {
+            const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+            paragraph.textContent = randomPhrase;
+        }
+
+        paragraph.addEventListener('click', changeText);
         
-        document.addEventListener("DOMContentLoaded", function() {
-            // Initialize Intersection Observer
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    // If the element is in the viewport
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                        
-                        // Add glow effect to some buttons for variety
-                        if (Math.random() > 0.7 && entry.target.closest('.regular-games')) {
-                            entry.target.classList.add('glow-fade');
-                        }
-                    } else {
-                        // Reset the animation when element leaves viewport
-                        entry.target.classList.remove('fade-in');
-                        entry.target.classList.remove('glow-fade');
-                    }
-                });
-            }, {
-                root: null, // Use the viewport as the root
-                rootMargin: '0px',
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            });
+        function updateTime() {
+            const timeElement = document.getElementById("time");
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
 
-            // Observe all buttons
-            const buttons = document.querySelectorAll('.button');
-            buttons.forEach(button => {
-                observer.observe(button);
-            });
-            
-            // Observe favorites heading
-            const favoritesHeading = document.getElementById('favorites-heading');
-            if (favoritesHeading) {
-                observer.observe(favoritesHeading);
-            }
-            
-            // Function to add staggered delay based on position
-            function addStaggeredDelay() {
-                const gameButtons = document.querySelectorAll('.button-container.regular-games .button');
-                gameButtons.forEach((button, index) => {
-                    const row = Math.floor(index / 8); // Assuming 8 buttons per row
-                    const col = index % 8;
-                    
-                    // Calculate delay based on position (diagonal wave effect)
-                    const delay = (row + col) * 0.05;
-                    button.style.animationDelay = `${delay}s`;
-                });
-            }
-            
-            // Call the function to set up staggered delays
-            addStaggeredDelay();
-            
-            // Update animation delays when window is resized
-            window.addEventListener('resize', addStaggeredDelay);
-        });
+        setInterval(updateTime, 1000);
 
-        // Add this function to your existing script
-        function updateAnimations() {
-            // Get all buttons that need animation
-            const buttons = document.querySelectorAll('.button');
-            
-            // Check if each button is in viewport and animate accordingly
-            buttons.forEach(button => {
-                const rect = button.getBoundingClientRect();
-                const isInViewport = (
-                    rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                );
-                
-                if (isInViewport) {
-                    button.classList.add('fade-in');
-                } else {
-                    button.classList.remove('fade-in');
-                }
+        // Updated add pin functionality
+        const addPinBtn = document.getElementById('add-pin-btn');
+        const popup = document.getElementById('add-pin-popup');
+        const addBtn = document.getElementById('add-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const pinnedIcons = document.querySelector('.pinned-icons');
+
+        // Load saved pins from localStorage on page load
+        function loadSavedPins() {
+            const savedPins = JSON.parse(localStorage.getItem('pinnedBookmarks') || '[]');
+            savedPins.forEach(pin => {
+                createPinElement(pin.url, pin.image);
             });
         }
 
-        // Add scroll event listener to trigger animations while scrolling
-        window.addEventListener('scroll', function() {
-            // Use requestAnimationFrame for better performance
-            requestAnimationFrame(updateAnimations);
+        // Create pin element
+        function createPinElement(url, imageData) {
+            const newPin = document.createElement('a');
+            newPin.href = "#";
+            newPin.className = "pinned-link";
+            newPin.setAttribute("data-url", url);
+            newPin.style.display = 'inline-block';
+
+            const img = document.createElement('img');
+            img.src = imageData;
+            img.style.width = '30px';
+            img.style.height = '30px';
+            img.style.borderRadius = '50%';
+            img.style.transition = 'transform 0.3s, box-shadow 0.3s';
+            img.style.boxShadow = '0 0 10px rgba(157, 107, 255, 0.4)';
+            img.onmouseover = function() { 
+                this.style.transform = 'scale(1.2)'; 
+                this.style.boxShadow = '0 0 15px rgba(255, 107, 157, 0.6)';
+            };
+            img.onmouseout = function() { 
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 0 10px rgba(157, 107, 255, 0.4)';
+            };
+
+            newPin.appendChild(img);
+            pinnedIcons.insertBefore(newPin, addPinBtn);
+        }
+
+        // Save pin to localStorage
+        function savePin(url, imageData) {
+            const savedPins = JSON.parse(localStorage.getItem('pinnedBookmarks') || '[]');
+            savedPins.push({ url, image: imageData });
+            localStorage.setItem('pinnedBookmarks', JSON.stringify(savedPins));
+        }
+
+        addPinBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            popup.style.display = 'block';
+        });
+
+        addBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const urlInput = document.getElementById('pin-url').value;
+            const imageInput = document.getElementById('pin-image').files[0];
+
+            if (!urlInput.startsWith('https://')) {
+                alert('URL must start with https://');
+                return;
+            }
+
+            if (!imageInput) {
+                alert('Please select an image');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageData = e.target.result;
+                createPinElement(urlInput, imageData);
+                savePin(urlInput, imageData);
+                popup.style.display = 'none';
+                document.getElementById('pin-url').value = '';
+                document.getElementById('pin-image').value = '';
+            };
+            reader.readAsDataURL(imageInput);
+        });
+
+        cancelBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            popup.style.display = 'none';
+            document.getElementById('pin-url').value = '';
+            document.getElementById('pin-image').value = '';
+        });
+
+        // Browser Tab System Functionality
+        let tabCounter = 1;
+        let activeTabId = "home";
+        const tabBar = document.getElementById("tab-bar");
+        const newTabButton = document.getElementById("new-tab-button");
+        const browserContent = document.getElementById("browser-content");
+        const urlBar = document.getElementById("url-bar");
+        const backButton = document.getElementById("back-button");
+        const forwardButton = document.getElementById("forward-button");
+        const refreshButton = document.getElementById("refresh-button");
+        const homeButton = document.getElementById("home-button");
+        const fullscreenButton = document.getElementById("fullscreen-button");
+        const menuButton = document.getElementById("menu-button");
+
+        // Create a new tab
+        function createNewTab(url = null) {
+            const tabId = `tab-${tabCounter++}`;
+            
+            // Create tab element
+            const tab = document.createElement("div");
+            tab.className = "tab";
+            tab.setAttribute("data-tab-id", tabId);
+            tab.innerHTML = `
+                <span class="tab-title">New Tab</span>
+                <div class="tab-close"><i class="fas fa-times"></i></div>
+            `;
+            
+            // Insert before the new tab button
+            tabBar.insertBefore(tab, newTabButton);
+            
+            // Create iframe for the tab content
+            const frame = document.createElement("iframe");
+            frame.className = "browser-frame";
+            frame.id = tabId;
+            frame.setAttribute("sandbox", "allow-same-origin allow-scripts allow-forms allow-popups");
+            browserContent.appendChild(frame);
+            
+            // Set up event listeners
+            tab.addEventListener("click", () => switchTab(tabId));
+            tab.querySelector(".tab-close").addEventListener("click", (e) => {
+                e.stopPropagation();
+                closeTab(tabId);
+            });
+            
+            // Switch to the new tab
+            switchTab(tabId);
+            
+            // If URL is provided, navigate to it
+            if (url) {
+                navigateToUrl(url);
+            } else {
+                // Otherwise show home content
+                showHomeContent();
+            }
+            
+            return tabId;
+        }
+
+        // Switch to a tab
+        function switchTab(tabId) {
+            // Deactivate all tabs
+            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+            document.querySelectorAll(".browser-frame").forEach(f => f.classList.remove("active"));
+            document.getElementById("home-content").classList.remove("active");
+            
+            // Activate the selected tab
+            const tab = document.querySelector(`.tab[data-tab-id="${tabId}"]`);
+            if (tab) {
+                tab.classList.add("active");
+                activeTabId = tabId;
+                
+                if (tabId === "home") {
+                    // Show home content
+                    document.getElementById("home-content").classList.add("active");
+                    urlBar.value = "";
+                } else {
+                    // Show the iframe
+                    const frame = document.getElementById(tabId);
+                    if (frame) {
+                        frame.classList.add("active");
+                        urlBar.value = frame.src || "";
+                    }
+                }
+            }
+        }
+
+        // Close a tab
+        function closeTab(tabId) {
+            const tab = document.querySelector(`.tab[data-tab-id="${tabId}"]`);
+            const frame = document.getElementById(tabId);
+            
+            if (tab && frame) {
+                // Check if this is the active tab
+                const isActive = tab.classList.contains("active");
+                
+                // Remove the tab and frame
+                tab.remove();
+                frame.remove();
+                
+                // If this was the active tab, switch to another tab
+                if (isActive) {
+                    const remainingTabs = document.querySelectorAll(".tab");
+                    if (remainingTabs.length > 0) {
+                        // Switch to the first remaining tab
+                        switchTab(remainingTabs[0].getAttribute("data-tab-id"));
+                    } else {
+                        // If no tabs left, create a new one
+                        createNewTab();
+                    }
+                }
+            }
+        }
+
+        // Navigate to a URL
+        function navigateToUrl(url) {
+            if (activeTabId === "home") {
+                // If we're on the home tab, create a new tab
+                const newTabId = createNewTab(url);
+                activeTabId = newTabId;
+            } else {
+                // Update the current tab
+                const frame = document.getElementById(activeTabId);
+                const tab = document.querySelector(`.tab[data-tab-id="${activeTabId}"]`);
+                
+                if (frame && tab) {
+                    // Format the URL
+                    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                        url = "https://" + url;
+                    }
+                    
+                    // Update the iframe src
+                    frame.src = url;
+                    
+                    // Update the tab title (will be updated properly when page loads)
+                    tab.querySelector(".tab-title").textContent = new URL(url).hostname;
+                    
+                    // Update URL bar
+                    urlBar.value = url;
+                }
+            }
+        }
+
+        // Show home content in the current tab
+        function showHomeContent() {
+            if (activeTabId !== "home") {
+                const frame = document.getElementById(activeTabId);
+                const tab = document.querySelector(`.tab[data-tab-id="${activeTabId}"]`);
+                
+                if (frame && tab) {
+                    frame.src = "";
+                    tab.querySelector(".tab-title").textContent = "New Tab";
+                    urlBar.value = "";
+                }
+            }
+        }
+
+        // Event Listeners
+        newTabButton.addEventListener("click", () => createNewTab());
+        
+        urlBar.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                navigateToUrl(urlBar.value);
+            }
+        });
+        
+        backButton.addEventListener("click", () => {
+            if (activeTabId !== "home") {
+                const frame = document.getElementById(activeTabId);
+                if (frame) {
+                    frame.contentWindow.history.back();
+                }
+            }
+        });
+        
+        forwardButton.addEventListener("click", () => {
+            if (activeTabId !== "home") {
+                const frame = document.getElementById(activeTabId);
+                if (frame) {
+                    frame.contentWindow.history.forward();
+                }
+            }
+        });
+        
+        refreshButton.addEventListener("click", () => {
+            if (activeTabId !== "home") {
+                const frame = document.getElementById(activeTabId);
+                if (frame) {
+                    frame.src = frame.src;
+                }
+            } else {
+                // Refresh home content
+                changeText();
+            }
+        });
+        
+        homeButton.addEventListener("click", () => {
+            showHomeContent();
+        });
+        
+        fullscreenButton.addEventListener("click", () => {
+            if (activeTabId !== "home") {
+                const frame = document.getElementById(activeTabId);
+                if (frame) {
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                        fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
+                    } else {
+                        frame.requestFullscreen();
+                        fullscreenButton.innerHTML = '<i class="fas fa-compress"></i>';
+                    }
+                }
+            }
+        });
+
+        // Handle pinned links
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.pinned-link')) {
+                e.preventDefault();
+                const link = e.target.closest('.pinned-link');
+                const url = link.getAttribute('data-url');
+                navigateToUrl(url);
+            }
+        });
+
+        // Category filter functionality
+        const categoryButtons = document.querySelectorAll('.category-button');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Here you would filter the games based on category
+                // For now, just a placeholder
+                console.log(`Filtering by: ${button.textContent}`);
+            });
+        });
+
+        // Initialize the browser
+        window.addEventListener('load', function() {
+            loadSavedPins();
+            changeText();
+            updateTime();
+            
+            // Set up event listeners for search form
+            const uvForm = document.getElementById('uv-form');
+            if (uvForm) {
+                uvForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const address = document.getElementById('uv-address').value;
+                    if (address) {
+                        navigateToUrl(address);
+                    }
+                });
+            }
+            
+            // Set up event listeners for search button
+            window.submitSearch = function() {
+                const address = document.getElementById('uv-address').value;
+                if (address) {
+                    navigateToUrl(address);
+                }
+                return false;
+            };
+            
+            // Set up event listeners for featured game
+            const playButton = document.querySelector('.play-button');
+            if (playButton) {
+                playButton.addEventListener('click', function() {
+                    navigateToUrl('/g/retro-bowl');
+                });
+            }
+            
+            // Set up event listeners for game cards
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Get the game title and navigate to it
+                    const gameTitle = card.querySelector('.game-card-title').textContent.toLowerCase().replace(/\s+/g, '-');
+                    navigateToUrl(`/g/${gameTitle}`);
+                });
+                
+                // Set up favorite functionality
+                const favoriteBtn = card.querySelector('.game-card-favorite');
+                favoriteBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const icon = favoriteBtn.querySelector('i');
+                    if (icon.classList.contains('far')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        favoriteBtn.classList.add('active');
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        favoriteBtn.classList.remove('active');
+                    }
+                });
+            });
         });
     </script>
+    <script src="/storage/js/settings.js"></script>
 </body>
 </html>
+
+
+
+<Actions>
+  <Action name="Add dark mode toggle" description="Implement a dark/light theme toggle for the browser interface" />
+  <Action name="Create game categories" description="Add more game categories and filtering functionality" />
+  <Action name="Add user profiles" description="Implement user profiles to save favorites across devices" />
+  <Action name="Improve game cards" description="Add more details and hover effects to game cards" />
+  <Action name="Add search filters" description="Implement advanced search filters for games" />
+</Actions>
+
