@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+v<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -636,311 +636,68 @@ h1:hover {
     font-size: 0.9rem;
   }
 }
-
-/* Browser Tab System Styles */
-.browser-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--bg-primary);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-}
-
-.tab-bar {
-    display: flex;
-    background-color: #0f0f1e;
-    padding: 0;
-    height: 40px;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 107, 157, 0.3);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-}
-
-.tab-bar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
-}
-
-.tab {
-    display: flex;
-    align-items: center;
-    min-width: 180px;
-    max-width: 200px;
-    height: 40px;
-    background-color: #1a1a2e;
-    color: var(--text-primary);
-    padding: 0 15px;
-    margin-right: 1px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-family: 'VT323', monospace;
-    font-size: 14px;
-}
-
-.tab.active {
-    background-color: #25253a;
-    border-top: 2px solid var(--accent-pink);
-}
-
-.tab:hover {
-    background-color: #25253a;
-}
-
-.tab-title {
-    flex-grow: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-right: 10px;
-}
-
-.tab-close {
-    width: 16px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: rgba(255, 107, 157, 0.2);
-    color: var(--text-primary);
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.tab-close:hover {
-    background-color: rgba(255, 107, 157, 0.8);
-    transform: scale(1.1);
-}
-
-.new-tab-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    color: var(--text-primary);
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-}
-
-.new-tab-button:hover {
-    color: var(--accent-pink);
-}
-
-.navigation-bar {
-    display: flex;
-    align-items: center;
-    background-color: #1a1a2e;
-    padding: 10px;
-    height: 50px;
-    border-bottom: 1px solid rgba(255, 107, 157, 0.3);
-}
-
-.nav-button {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(26, 26, 46, 0.8);
-    color: var(--text-primary);
-    border-radius: 50%;
-    margin-right: 10px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid rgba(255, 107, 157, 0.2);
-}
-
-.nav-button:hover {
-    background-color: rgba(37, 37, 58, 0.9);
-    color: var(--accent-pink);
-    border-color: var(--accent-pink);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.nav-button:active {
-    transform: translateY(0);
-}
-
-.nav-button.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.url-bar {
-    flex-grow: 1;
-    height: 36px;
-    background-color: rgba(26, 26, 46, 0.9);
-    border: 1px solid rgba(255, 107, 157, 0.3);
-    border-radius: 18px;
-    color: var(--text-primary);
-    padding: 0 15px;
-    font-family: 'VT323', monospace;
-    font-size: 16px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.url-bar:focus {
-    border-color: var(--accent-pink);
-    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
-}
-
-.browser-content {
-    flex-grow: 1;
-    position: relative;
-    background-color: white;
-}
-
-.browser-frame {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: none;
-}
-
-.browser-frame.active {
-    display: block;
-}
-
-.home-content {
-    display: none;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    background-color: var(--bg-primary);
-}
-
-.home-content.active {
-    display: block;
-}
 </style>
 </head>
 <body>
-    <!-- Browser Tab System -->
-    <div class="browser-container">
-        <!-- Tab Bar -->
-        <div class="tab-bar" id="tab-bar">
-            <div class="tab active" data-tab-id="home">
-                  id="tab-bar">
-            <div class="tab active" data-tab-id="home">
-                <span class="tab-title">New Tab</span>
-                <div class="tab-close"><i class="fas fa-times"></i></div>
+    <!-- Background elements -->
+    <div id="snow"></div>
+    <div class="grid-background"></div>
+    <div class="god-rays"></div>
+    <div class="scanlines"></div>
+    <div class="glow-container">
+        <div class="glow"></div>
+        <div class="glow"></div>
+    </div>
+    
+    <br><br><br><br><br>
+
+    <h1>Prolls Proxy</h1> 
+    <p id="dynamicParagraph">(loading...)</p> 
+
+    <div id="search-container">
+        <form id="uv-form">
+            <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden"/>
+            <div class="search-bar-container">
+                <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
             </div>
-            <button class="new-tab-button" id="new-tab-button">
-                <i class="fas fa-plus"></i>
-            </button>
+            <button class="search-button" onclick="submitSearch()">SEARCH> </button>
+        </form> 
+
+        <div class="button-container1">
+           <a href="/index.html" class="button">Home</a>
+          <a href="/static" class="button">Web Browser</a>
+           <a href="https://tinyurl.com/45j4r62u" class="button">Games Request</a>
+            <a href="/settings" class="button">Website Settings</a>
+            <a href="https://github.com/Prollhouse2/gamesite" class="button">Source / Updates</a>
+            <a href="/bookmarks" class="button">Gms Cheats</a>
+            <a href="/save" class="button">Gms Save</a>
+            <a href="/leaderboard" class="button">Leaderboard</a>
+            <a href="https://discord.gg/proll" class="button">Discord!</a>
+            <a href="/chat" class="button">Chatroom</a>
         </div>
 
-        <!-- Navigation Bar -->
-        <div class="navigation-bar">
-            <div class="nav-button" id="back-button">
-                <i class="fas fa-arrow-left"></i>
-            </div>
-            <div class="nav-button" id="forward-button">
-                <i class="fas fa-arrow-right"></i>
-            </div>
-            <div class="nav-button" id="refresh-button">
-                <i class="fas fa-redo-alt"></i>
-            </div>
-            <div class="nav-button" id="home-button">
-                <i class="fas fa-home"></i>
-            </div>
-            <input type="text" class="url-bar" id="url-bar" placeholder="Search or enter a URL">
-            <div class="nav-button" id="fullscreen-button">
-                <i class="fas fa-expand"></i>
-            </div>
-            <div class="nav-button" id="menu-button">
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
+        <div class="desc left-margin">
+            <p id="uv-error"></p>
+            <pre id="uv-error-code"></pre>
         </div>
+    </div>  
 
-        <!-- Browser Content -->
-        <div class="browser-content" id="browser-content">
-            <!-- Home Content -->
-            <div class="home-content active" id="home-content">
-                <!-- Background elements -->
-                <div id="snow"></div>
-                <div class="grid-background"></div>
-                <div class="god-rays"></div>
-                <div class="scanlines"></div>
-                <div class="glow-container">
-                    <div class="glow"></div>
-                    <div class="glow"></div>
-                </div>
-                
-                <br><br><br><br><br>
-
-                <h1>Prolls Proxy</h1> 
-                <p id="dynamicParagraph">(loading...)</p> 
-
-                <div id="search-container">
-                    <form id="uv-form">
-                        <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden"/>
-                        <div class="search-bar-container">
-                            <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
-                            <i class="fas fa-search search-icon"></i>
-                        </div>
-                        <button class="search-button" onclick="submitSearch()">SEARCH> </button>
-                    </form> 
-
-                    <div class="button-container1">
-                       <a href="/index.html" class="button">Home</a>
-                      <a href="/static" class="button">Web Browser</a>
-                       <a href="https://tinyurl.com/45j4r62u" class="button">Games Request</a>
-                        <a href="/settings" class="button">Website Settings</a>
-                        <a href="https://github.com/Prollhouse2/gamesite" class="button">Source / Updates</a>
-                        <a href="/bookmarks" class="button">Gms Cheats</a>
-                        <a href="/save" class="button">Gms Save</a>
-                        <a href="/leaderboard" class="button">Leaderboard</a>
-                        <a href="https://discord.gg/proll" class="button">Discord!</a>
-                        <a href="/chat" class="button">Chatroom</a>
-                    </div>
-
-                    <div class="desc left-margin">
-                        <p id="uv-error"></p>
-                        <pre id="uv-error-code"></pre>
-                    </div>
-                </div>  
-
-                <div class="pinned-icons" style="display: flex; justify-content: center; align-items: center; gap: 15px;">
-                    <a href="#" class="pinned-link" data-url="https://tiktok.com" style="display: inline-block;">
-                        <img src="/assets/tiktok.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                    </a>
-                    <a href="#" class="pinned-link" data-url="https://twitch.tv" style="display: inline-block;">
-                        <img src="/assets/twitch.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                    </a>
-                    <a href="#" class="pinned-link" data-url="https://google.com" style="display: inline-block;">
-                        <img src="/assets/google.webp" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                    </a>
-                    <a href="#" class="pinned-link" data-url="https://now.gg" style="display: inline-block;">
-                        <img src="/assets/nowgg.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                    </a>
-                    <a href="#" id="add-pin-btn" class="add-pin-btn">
-                        <span class="material-icons" style="font-size: 20px;">add</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Browser Frames -->
-            <!-- Frames will be dynamically added here -->
-        </div>
+    <div class="pinned-icons" style="display: flex; justify-content: center; align-items: center; gap: 15px;">
+        <a href="/static/embed.html#https://tiktok.com" style="display: inline-block;">
+            <img src="/assets/tiktok.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="/static/embed.html#https://twitch.tv" style="display: inline-block;">
+            <img src="/assets/twitch.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="/static/embed.html#https://google.com" style="display: inline-block;">
+            <img src="/assets/google.webp" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="/static/embed.html#https://now.gg" style="display: inline-block;">
+            <img src="/assets/nowgg.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="#" id="add-pin-btn" class="add-pin-btn">
+            <span class="material-icons" style="font-size: 20px;">add</span>
+        </a>
     </div>
 
     <!-- Popup for adding new pin -->
@@ -1043,7 +800,21 @@ h1:hover {
         }
 
         paragraph.addEventListener('click', changeText);
-        
+        window.onload = function() {
+            changeText();
+            
+            // Add animated cursor effect to search input
+            const searchInput = document.getElementById('uv-address');
+            if (searchInput) {
+                searchInput.addEventListener('focus', function() {
+                    this.classList.add('focused');
+                });
+                searchInput.addEventListener('blur', function() {
+                    this.classList.remove('focused');
+                });
+            }
+        };
+
         function updateTime() {
             const timeElement = document.getElementById("time");
             const now = new Date();
@@ -1073,9 +844,7 @@ h1:hover {
         // Create pin element
         function createPinElement(url, imageData) {
             const newPin = document.createElement('a');
-            newPin.href = "#";
-            newPin.className = "pinned-link";
-            newPin.setAttribute("data-url", url);
+            newPin.href = `/static/embed.html#${url}`;
             newPin.style.display = 'inline-block';
 
             const img = document.createElement('img');
@@ -1144,257 +913,8 @@ h1:hover {
             document.getElementById('pin-image').value = '';
         });
 
-        // Browser Tab System Functionality
-        let tabCounter = 1;
-        let activeTabId = "home";
-        const tabBar = document.getElementById("tab-bar");
-        const newTabButton = document.getElementById("new-tab-button");
-        const browserContent = document.getElementById("browser-content");
-        const urlBar = document.getElementById("url-bar");
-        const backButton = document.getElementById("back-button");
-        const forwardButton = document.getElementById("forward-button");
-        const refreshButton = document.getElementById("refresh-button");
-        const homeButton = document.getElementById("home-button");
-        const fullscreenButton = document.getElementById("fullscreen-button");
-        const menuButton = document.getElementById("menu-button");
-
-        // Create a new tab
-        function createNewTab(url = null) {
-            const tabId = `tab-${tabCounter++}`;
-            
-            // Create tab element
-            const tab = document.createElement("div");
-            tab.className = "tab";
-            tab.setAttribute("data-tab-id", tabId);
-            tab.innerHTML = `
-                <span class="tab-title">New Tab</span>
-                <div class="tab-close"><i class="fas fa-times"></i></div>
-            `;
-            
-            // Insert before the new tab button
-            tabBar.insertBefore(tab, newTabButton);
-            
-            // Create iframe for the tab content
-            const frame = document.createElement("iframe");
-            frame.className = "browser-frame";
-            frame.id = tabId;
-            frame.setAttribute("sandbox", "allow-same-origin allow-scripts allow-forms allow-popups");
-            browserContent.appendChild(frame);
-            
-            // Set up event listeners
-            tab.addEventListener("click", () => switchTab(tabId));
-            tab.querySelector(".tab-close").addEventListener("click", (e) => {
-                e.stopPropagation();
-                closeTab(tabId);
-            });
-            
-            // Switch to the new tab
-            switchTab(tabId);
-            
-            // If URL is provided, navigate to it
-            if (url) {
-                navigateToUrl(url);
-            } else {
-                // Otherwise show home content
-                showHomeContent();
-            }
-            
-            return tabId;
-        }
-
-        // Switch to a tab
-        function switchTab(tabId) {
-            // Deactivate all tabs
-            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-            document.querySelectorAll(".browser-frame").forEach(f => f.classList.remove("active"));
-            document.getElementById("home-content").classList.remove("active");
-            
-            // Activate the selected tab
-            const tab = document.querySelector(`.tab[data-tab-id="${tabId}"]`);
-            if (tab) {
-                tab.classList.add("active");
-                activeTabId = tabId;
-                
-                if (tabId === "home") {
-                    // Show home content
-                    document.getElementById("home-content").classList.add("active");
-                    urlBar.value = "";
-                } else {
-                    // Show the iframe
-                    const frame = document.getElementById(tabId);
-                    if (frame) {
-                        frame.classList.add("active");
-                        urlBar.value = frame.src || "";
-                    }
-                }
-            }
-        }
-
-        // Close a tab
-        function closeTab(tabId) {
-            const tab = document.querySelector(`.tab[data-tab-id="${tabId}"]`);
-            const frame = document.getElementById(tabId);
-            
-            if (tab && frame) {
-                // Check if this is the active tab
-                const isActive = tab.classList.contains("active");
-                
-                // Remove the tab and frame
-                tab.remove();
-                frame.remove();
-                
-                // If this was the active tab, switch to another tab
-                if (isActive) {
-                    const remainingTabs = document.querySelectorAll(".tab");
-                    if (remainingTabs.length > 0) {
-                        // Switch to the first remaining tab
-                        switchTab(remainingTabs[0].getAttribute("data-tab-id"));
-                    } else {
-                        // If no tabs left, create a new one
-                        createNewTab();
-                    }
-                }
-            }
-        }
-
-        // Navigate to a URL
-        function navigateToUrl(url) {
-            if (activeTabId === "home") {
-                // If we're on the home tab, create a new tab
-                const newTabId = createNewTab(url);
-                activeTabId = newTabId;
-            } else {
-                // Update the current tab
-                const frame = document.getElementById(activeTabId);
-                const tab = document.querySelector(`.tab[data-tab-id="${activeTabId}"]`);
-                
-                if (frame && tab) {
-                    // Format the URL
-                    if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                        url = "https://" + url;
-                    }
-                    
-                    // Update the iframe src
-                    frame.src = url;
-                    
-                    // Update the tab title (will be updated properly when page loads)
-                    tab.querySelector(".tab-title").textContent = new URL(url).hostname;
-                    
-                    // Update URL bar
-                    urlBar.value = url;
-                }
-            }
-        }
-
-        // Show home content in the current tab
-        function showHomeContent() {
-            if (activeTabId !== "home") {
-                const frame = document.getElementById(activeTabId);
-                const tab = document.querySelector(`.tab[data-tab-id="${activeTabId}"]`);
-                
-                if (frame && tab) {
-                    frame.src = "";
-                    tab.querySelector(".tab-title").textContent = "New Tab";
-                    urlBar.value = "";
-                }
-            }
-        }
-
-        // Event Listeners
-        newTabButton.addEventListener("click", () => createNewTab());
-        
-        urlBar.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                navigateToUrl(urlBar.value);
-            }
-        });
-        
-        backButton.addEventListener("click", () => {
-            if (activeTabId !== "home") {
-                const frame = document.getElementById(activeTabId);
-                if (frame) {
-                    frame.contentWindow.history.back();
-                }
-            }
-        });
-        
-        forwardButton.addEventListener("click", () => {
-            if (activeTabId !== "home") {
-                const frame = document.getElementById(activeTabId);
-                if (frame) {
-                    frame.contentWindow.history.forward();
-                }
-            }
-        });
-        
-        refreshButton.addEventListener("click", () => {
-            if (activeTabId !== "home") {
-                const frame = document.getElementById(activeTabId);
-                if (frame) {
-                    frame.src = frame.src;
-                }
-            } else {
-                // Refresh home content
-                changeText();
-            }
-        });
-        
-        homeButton.addEventListener("click", () => {
-            showHomeContent();
-        });
-        
-        fullscreenButton.addEventListener("click", () => {
-            if (activeTabId !== "home") {
-                const frame = document.getElementById(activeTabId);
-                if (frame) {
-                    if (document.fullscreenElement) {
-                        document.exitFullscreen();
-                        fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
-                    } else {
-                        frame.requestFullscreen();
-                        fullscreenButton.innerHTML = '<i class="fas fa-compress"></i>';
-                    }
-                }
-            }
-        });
-
-        // Handle pinned links
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.pinned-link')) {
-                e.preventDefault();
-                const link = e.target.closest('.pinned-link');
-                const url = link.getAttribute('data-url');
-                navigateToUrl(url);
-            }
-        });
-
-        // Initialize the browser
-        window.addEventListener('load', function() {
-            loadSavedPins();
-            changeText();
-            updateTime();
-            
-            // Set up event listeners for search form
-            const uvForm = document.getElementById('uv-form');
-            if (uvForm) {
-                uvForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const address = document.getElementById('uv-address').value;
-                    if (address) {
-                        navigateToUrl(address);
-                    }
-                });
-            }
-            
-            // Set up event listeners for search button
-            window.submitSearch = function() {
-                const address = document.getElementById('uv-address').value;
-                if (address) {
-                    navigateToUrl(address);
-                }
-                return false;
-            };
-        });
+        // Load pins when page loads
+        window.addEventListener('load', loadSavedPins);
     </script>
     <script src="/storage/js/settings.js"></script>
 </body>
