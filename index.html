@@ -41,103 +41,6 @@
             color: #ffffff; /* White color */
         }
 
-        /* Game Modal Styling */
-        .game-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            height: 90%;
-            background-color: #282a36;
-            z-index: 3000;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(157, 107, 255, 0.4);
-            border: 1px solid rgba(255, 107, 157, 0.3);
-        }
-
-        .game-iframe {
-            width: 100%;
-            height: calc(100% - 60px); /* Increased space for the icon bar */
-            border: none;
-        }
-
-        .icon-bar {
-            display: flex;
-            justify-content: center; /* Center the icons */
-            align-items: center;
-            gap: 30px; /* More space between icons */
-            height: 60px; /* Taller icon bar */
-            background: linear-gradient(to right, rgba(26, 26, 46, 0.9), rgba(37, 37, 58, 0.9));
-            padding: 0 15px;
-            position: relative;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
-
-        .icon-bar i {
-            color: #ffffff;
-            font-size: 24px; /* Larger icons */
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 10px;
-            border-radius: 8px;
-            width: 45px; /* Fixed width */
-            height: 45px; /* Fixed height */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icon-bar i:hover {
-            color: var(--accent-pink);
-            transform: scale(1.1);
-            background-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
-        }
-
-        /* Add a close button in the top-right corner */
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 107, 157, 0.8);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 3001;
-            font-size: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .close-button:hover {
-            background: rgba(255, 107, 157, 1);
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 107, 157, 0.7);
-        }
-
-        /* Modal overlay */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2999;
-            backdrop-filter: blur(3px);
-        }
-
         /* Favorites Section Styling */
         #favorites-section {
             margin: 2rem 0;
@@ -210,8 +113,7 @@
             100% {
                 transform: scale(1);
             }
-
-
+        }
 
 /* Search Bar Styling */
 .search-container {
@@ -406,93 +308,94 @@
     <br>
     
     <div class="button-container regular-games">
-        <button class="button"><a style="text-decoration:none" href='g/slope'><img src="images/slope.png" alt="Slope"> <span><br>Slope</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/retro-bowl'><img src="images/retrobowl.jpg" alt="Retro Bowl"> <span><br>Retro Bowl</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/gunspin'><img src="/images/gunspin.png" alt=""> <span ><br>Gunspin</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/1v1lol'><img src="https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co" alt="1v1.lol"> <span><br>1v1.lol</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/blockblast'><img src="images/blockblast.png" alt=""> <span><br>Block Blast</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/idle-breakout'><img src="images/idlebreakout.png" alt=""> <span><br>Idle Breakout</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/learntofly'><img src="g/learntofly/1/icon.png" alt=""> <span><br>Learn To Fly Gms</span></a></button>
-        <button class="button"><a href='g/baldisbasics'><img src="images/baldisbasics.png"> <span><br>Baldisbasics</span></a></button>
-        <button class="button"><a href='g/gunmayhem'><img src="images/gunmayhem.png"> <span><br>Gun Mayhem</span></a></button>
-        <button class="button"><a href='g/gunmayhem2'><img src="images/gunmayhem2.png"> <span><br>Gun Mayhem 2</span></a></button>
-        <button class="button"><a href='g/wallsmash'><img src="images/wallsmash.png"> <span><br>Wall Smash</span></a></button>
-        <button class="button"><a href='g/gunmayhem2'><img src="images/gunmayhem2.png"> <span><br>Gun Mayhem 2</span></a></button>
-        <button class="button" ><a href='g/fnaf'><img src="images/fnaf.png"> <span><br>FNAF 1</span></a></button>
-        <button class="button" ><a href='g/fnaf-2'><img src="images/fnaf2.png"> <span><br>FNAF 2</span></a></button>
-        <button class="button" ><a href='g/driftboss'><img src="images/driftboss.png"> <span><br>Drift Boss</span></a></button>
-        <button class="button"  ><a href='g/jacksmith'><img src="images/jacksmith.png"> <span><br>Jack Smith</span></a></button>
-        <button class="button" ><a href='/imagetracer'><img src="images/imagetracer.png"> <span><br>Image Tracer</span></a></button>
-        <button class="button"><a href='g/infinitecraft'><img src="images/infinitecraft.png"> <span><br>Infinite Craft</span></a></button>
-        <button class="button"><a href='g/crazytunnel3d'><img src="images/crazytunnel3d.png"> <span><br>Crazy Tunnel 3D</span></a></button>
-        <button class="button"><a href='g/lazyjump3d'><img src="images/lazyjump3d.png"> <span><br>Lazy Jump 3D</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/houseofhazards'><img src="images/houseofhazards.png" alt=""> <span><br>House Of Hazards</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/holeio'><img src="images/holeio.png" alt=""> <span><br>Hole.io </span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/cut-the-rope'><img src="images/cuttherope.png" alt=""> <span><br>Cut The Rope</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/tanktrouble'><img src="images/tanktrouble.png" alt=""> <span><br>Tank Trouble</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/drifthunters'><img src="images/drifthunters.png" alt=""> <span><br>Drift Hunters </span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/volleyrandom'><img src="images/volleyrandom.png" alt=""> <span ><br>Volley Random</span></a></button>
-        <button class="button"><a href='g/draw-the-hill'><img src="images/drawthehill.png" alt=""> <span><br>Draw The Hill</span></a></button>
-        <button class="button"><a href='g/basketballio'><img src="images/basketballio.png"> <span><br>Basketball Bros</span></a></button>
-        <button class="button"><a href='g/justfall'><img src="images/justfall.png"> <span><br>Just Fall</span></a></button>
-        <button class="button"><a href='g/snowrider3d'><img src="images/snowrider3d.png"> <span><br>Snow Rider 3D</span></a></button>
-        <button class="button"><a href='g/tetris'><img src="images/tetris.png" alt="Tetris"><span><br>Tetris</span></a></button>    
-        <button class="button"><a href='g/checkoutfrenzy'><img src="images/checkoutfrenzy.png"> <span><br>Checkout Frenzy</span></a></button>
-        <button class="button"><a href='g/fireboywatergirlforsettemple'><img src="images/fireboywatergirl.jpeg"> <span><br>Fireboy & Watergirl</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/tinyfishing'><img src="images/tinyfishing.png"> <span><br>Tiny Fishing</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/timeshooter'><img src="images/timeshooter.png"> <span><br>Time Shooter Gms</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/getaway-shootout'><img src="images/getawayshootout.png" alt=""> <span><br>Getaway Shootout</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/soccer-random'><img src="images/soccerrandom.png" alt=""> <span><br>Soccer Random</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/crossyroad'><img src="images/crossyroad.png" alt=""> <span><br>Crossy Road</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/rooftopsnipers'><img src="images/rooftopsnipers.png" alt=""> <span><br>Rooftop Sniper</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/boxingrandom'><img src="images/boxingrandom.png" alt=""> <span><br>Boxing Random</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/adventurecapitalist'><img src="images/adventurecapitalist.png" alt=""> <span><br>Adventure Capitalist</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/hideandsmash'><img src="images/hideandsmash.png" alt=""> <span><br>Hide & Smash</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/monkey-mart'><img src="images/monkeymart.png" alt=""> <span><br>MonkeyMart</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/rb-college'><img src="images/retrobowlcollege.jpg" alt="Retro Bowl"> <span><br>Retro Bowl College</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='server'><img src="images/windows.png" alt=""> <span><br>Windows Desktop</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/mc'><img src="images/mc.png" alt=""> <span><br>Minecraft (Eagler)</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/btd5'><img src="images/btd5.png" alt="BTD"> <span><br>Bloons TD5</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/mrmine'><img src="images/mrmine.png" alt="BTD"> <span><br>Mr Mine</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/run2'><img src="images/run2.png" alt=""> <span><br>Run 2</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/run3'><img src="images/run3.png" alt=""> <span><br>Run 3</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/elonmusk'><img src="images/elonmusk.png" alt=""> <span><br>Spend Elon's Money</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/pvz'><img src="images/pvz.png" alt=""> <span><br>Plants V Zombies</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/ducklife'><img src="images/ducklife.png"> <span><br>Duck Life</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/minesweeper'><img src="images/minesweeper.png" alt=""> <span><br>Mine Sweeper</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/pixelgun'><img src="images/pixelgun.png" alt=""> <span><br>Pixel Gun</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/googlesnake'><img src="images/googlesnake.jpg" alt=""> <span><br>Google Snake </span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/ngon'><img src="images/ngon.jpg" alt=""> <span><br>N Gon</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/ovo'><img src="images/ovo.jpg" alt="R"> <span><br>OVO</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/basketballstars'><img src="images/basketballstars.png" alt="Basketball Stars"> <span><br>Basketball Stars</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/stacktris'><img src="images/stacktris.jpg" alt=""> <span><br>Stacktris</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/blackjack'><img src="images/blackjack.png" alt=""> <span><br>Black Jack</span></button>
-        <button class="button"><a style="text-decoration:none" href='g/fnaf'><img src="images/fnaf.png" alt=""> <span><br>FNAF</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/dbz'><img src="images/dbz.png" alt=""> <span><br>DBZ Devolution</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/drivemad'><img src="images/drivemad.png" width="200" height="200" alt=""> <br>Drive Mad</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/papas-game'><img src="images/papasgame.jpg" width="200" height="200"> <br>Papa's Gms</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/henry-stickman'><img src="https://cdn2.steamgriddb.com/icon/9f61408e3afb633e50cdf1b20de6f466.png" width="200" height="200"> <br>Stickman Gms</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/vex'><img src="https://play-lh.googleusercontent.com/0OnVFzHIMuLLeMjvACoNzxRbungfOH1zH4hUWQnIg5KfM2va_mFssFuRGq26WqWA" width="200" height="200"> <br>Vex's Gms</a></button>    
-        <button class="button"><a style="text-decoration:none" href='g/2048'><img src="images/2048.png" alt="2048"> <span><br>2048</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/paperio2'><img src="images/paperio2.png" alt="Paper.io 2"> <span><br>Paper.io 2</span></a></button>
-        <button class="button"><a style="text-decoration:none" href='g/bitlife'><img src="https://play-lh.googleusercontent.com/fUM-UyywXxjC8soxAZdIlxJrlRRXmql8wkE426SHzft4lJycSKVd2jCYQQX1BEG9Xw" width="200" height="200"><br><br>Bitlife</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/1'><img src="https://d3nsrxdg84ic1d.cloudfront.net/uploads/5a145eaa-3696-4de4-8c1d-41400e3d296c/e8ccaaae.PNG?v=0" width="200" height="200"> <br>1</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/subway-surfers'><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/81a0a3f18cf0ee129e56edb50fc52c3b.png" width="200" height="200"> <br>Subway Surfers</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/basketball-random'><img src="https://play-lh.googleusercontent.com/gP8T5Z1O-ngxIloiwcBZzrzyLPYDp0R_1BDNKUDZboIRPVImeyWI8-7aExvB9gAGNKc=w240-h480-rw" width="200" height="200" alt=""> <br>Basketball Random</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/soccer-random'><img src="https://play-lh.googleusercontent.com/G1PIlb6HWKSaDre0XpUcmKGps9T4iamsSlwrogB3EJzYv4bz0M2am4D17MtGzndaOOU" width="200" height="200" alt=""> <br>Soccer Random</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/motox3m'><img src="images/motocross.png" width="200" height="200" alt=""><br>MotoX3M Gms</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/cookieclicker'><img src="https://play-lh.googleusercontent.com/Z1MOuuiD05ZN5LkVmMEvKF0mqAc-FknaQ2j8s4dZiO-LSPQX4EEA3RVJdlQEtxe96ok" width="200" height="200" alt=""> <br>Cookie Clicker</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/crossyroad'><img src="https://upload.wikimedia.org/wikipedia/en/7/71/Crossy_Road_icon.jpeg" width="200" height="200" alt=""> <br>Crossy Road</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/temple-run-2'><img src="https://play-lh.googleusercontent.com/go4XqS4mYs-G2tZymiVLF4wJYXIi5QrvwixNRzssk4G_vRBHrAdg4E1ddNwy9c2cZA" width="200" height="200"> <br>Temple Run 2</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/stickman-golf'><img src="https://image.spreadshirtmedia.com/image-server/v1/products/T1459A839PA3861PT28D12687618W6161H10000/views/1,width=550,height=550,appearanceId=839,backgroundColor=F2F2F2/golf-stickman-sticker.jpg" width="200" height="200" alt=""> <br>Stickman Golf</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/case-clicker'><img src="images/csgoclicker.png" width="200" height="200" alt=""> <br>CSGO Case Opener</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/pandemic2'><img src="images/pandemic2.png" width="200" height="200" alt=""> <br>Pandemic 2</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/riddleschool'><img src="https://i.ytimg.com/vi/Ls5rT-7_4d4/sddefault.jpg" width="200" height="200" alt=""> <br>Riddle School Games</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/cupcake2048'><img src="images/cupcake2048.png" width="200" height="200"> <br>Cupcake 2048</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/jetpack-joyride'><img src="images/jetpackjoyride.png" width="200" height="200" alt=""> <br>Jetpack Joyride</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/geodash'><img src="images/geodash.jpg" width="200" height="200" alt=""> <br>Geometry Dash</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/ducklife1'><img src="images/ducklife1.png" width="200" height="200" alt=""> <br>Duck Life 1</a></button>
-        <button class="button"><a style="text-decoration:none" href='g/sandboxels'><img src="https://sandboxels.r74n.com/icons/icon.png" width="200" height="200" alt=""> <br>Sand Boxels</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/slope' target="_blank"><img src="images/slope.png" alt="Slope"> <span><br>Slope</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/retro-bowl' target="_blank"><img src="images/retrobowl.jpg" alt="Retro Bowl"> <span><br>Retro Bowl</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/gunspin' target="_blank"><img src="/images/gunspin.png" alt=""> <span ><br>Gunspin</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/1v1lol' target="_blank"><img src="https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co" alt="1v1.lol"> <span><br>1v1.lol</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/blockblast' target="_blank"><img src="images/blockblast.png" alt=""> <span><br>Block Blast</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/idle-breakout' target="_blank"><img src="images/idlebreakout.png" alt=""> <span><br>Idle Breakout</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/learntofly' target="_blank"><img src="g/learntofly/1/icon.png" alt=""> <span><br>Learn To Fly Gms</span></a></button>
+        <button class="button"><a href='g/baldisbasics' target="_blank"><img src="images/baldisbasics.png"> <span><br>Baldisbasics</span></a></button>
+        <button class="button"><a href='g/gunmayhem' target="_blank"><img src="images/gunmayhem.png"> <span><br>Gun Mayhem</span></a></button>
+        <button class="button"><a href='g/gunmayhem2' target="_blank"><img src="images/gunmayhem2.png"> <span><br>Gun Mayhem 2</span></a></button>
+        <button class="button"><a href='g/wallsmash' target="_blank"><img src="images/wallsmash.png"> <span><br>Wall Smash</span></a></button>
+        <button class="button"><a href='g/gunmayhem2' target="_blank"><img src="images/gunmayhem2.png"> <span><br>Gun Mayhem 2</span></a></button>
+        <button class="button" ><a href='g/fnaf' target="_blank"><img src="images/fnaf.png"> <span><br>FNAF 1</span></a></button>
+        <button class="button" ><a href='g/fnaf-2' target="_blank"><img src="images/fnaf2.png"> <span><br>FNAF 2</span></a></button>
+        <button class="button" ><a href='g/driftboss' target="_blank"><img src="images/driftboss.png"> <span><br>Drift Boss</span></a></button>
+        <button class="button"  ><a href='g/jacksmith' target="_blank"><img src="images/jacksmith.png"> <span><br>Jack Smith</span></a></button>
+        <button class="button" ><a href='/imagetracer' target="_blank"><img src="images/imagetracer.png"> <span><br>Image Tracer</span></a></button>
+        <button class="button"><a href='g/infinitecraft' target="_blank"><img src="images/infinitecraft.png"> <span><br>Infinite Craft</span></a></button>
+        <button class="button"><a href='g/crazytunnel3d' target="_blank"><img src="images/crazytunnel3d.png"> <span><br>Crazy Tunnel 3D</span></a></button>
+        <button class="button"><a href='g/lazyjump3d' target="_blank"><img src="images/lazyjump3d.png"> <span><br>Lazy Jump 3D</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/houseofhazards' target="_blank"><img src="images/houseofhazards.png" alt=""> <span><br>House Of Hazards</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/holeio' target="_blank"><img src="images/holeio.png" alt=""> <span><br>Hole.io </span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/cut-the-rope' target="_blank"><img src="images/cuttherope.png" alt=""> <span><br>Cut The Rope</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/tanktrouble' target="_blank"><img src="images/tanktrouble.png" alt=""> <span><br>Tank Trouble</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/drifthunters' target="_blank"><img src="images/drifthunters.png" alt=""> <span><br>Drift Hunters </span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/volleyrandom' target="_blank"><img src="images/volleyrandom.png" alt=""> <span ><br>Volley Random</span></a></button>
+        <button class="button"><a href='g/draw-the-hill' target="_blank"><img src="images/drawthehill.png" alt=""> <span><br>Draw The Hill</span></a></button>
+        <button class="button"><a href='g/basketballio' target="_blank"><img src="images/basketballio.png"> <span><br>Basketball Bros</span></a></button>
+        <button class="button"><a href='g/justfall' target="_blank"><img src="images/justfall.png"> <span><br>Just Fall</span></a></button>
+        <button class="button"><a href='g/snowrider3d' target="_blank"><img src="images/snowrider3d.png"> <span><br>Snow Rider 3D</span></a></button>
+        <button class="button"><a href='g/tetris' target="_blank"><img src="images/tetris.png" alt="Tetris"><span><br>Tetris</span></a></button>    
+        <button class="button"><a href='g/checkoutfrenzy' target="_blank"><img src="images/checkoutfrenzy.png"> <span><br>Checkout Frenzy</span></a></button>
+        <button class="button"><a href='g/fireboywatergirlforsettemple' target="_blank"><img src="images/fireboywatergirl.jpeg"> <span><br>Fireboy & Watergirl</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/tinyfishing' target="_blank"><img src="images/tinyfishing.png"> <span><br>Tiny Fishing</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/timeshooter' target="_blank"><img src="images/timeshooter.png"> <span><br>Time Shooter Gms</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/getaway-shootout' target="_blank"><img src="images/getawayshootout.png" alt=""> <span><br>Getaway Shootout</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/soccer-random' target="_blank"><img src="images/soccerrandom.png" alt=""> <span><br>Soccer Random</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/crossyroad' target="_blank"><img src="images/crossyroad.png" alt=""> <span><br>Crossy Road</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/rooftopsnipers' target="_blank"><img src="images/rooftopsnipers.png" alt=""> <span><br>Rooftop Sniper</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/boxingrandom' target="_blank"><img src="images/boxingrandom.png" alt=""> <span><br>Boxing Random</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/adventurecapitalist' target="_blank"><img src="images/adventurecapitalist.png" alt=""> <span><br>Adventure Capitalist</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/hideandsmash' target="_blank"><img src="images/hideandsmash.png" alt=""> <span><br>Hide & Smash</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/monkey-mart' target="_blank"><img src="images/monkeymart.png" alt=""> <span><br>MonkeyMart</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/rb-college' target="_blank"><img src="images/retrobowlcollege.jpg" alt="Retro Bowl"> <span><br>Retro Bowl College</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='server' target="_blank"><img src="images/windows.png" alt=""> <span><br>Windows Desktop</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/mc' target="_blank"><img src="images/mc.png" alt=""> <span><br>Minecraft (Eagler)</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/btd5' target="_blank"><img src="images/btd5.png" alt="BTD"> <span><br>Bloons TD5</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/mrmine' target="_blank"><img src="images/mrmine.png" alt="BTD"> <span><br>Mr Mine</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/run2' target="_blank"><img src="images/run2.png" alt=""> <span><br>Run 2</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/run3' target="_blank"><img src="images/run3.png" alt=""> <span><br>Run 3</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/elonmusk' target="_blank"><img src="images/elonmusk.png" alt=""> <span><br>Spend Elon's Money</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/pvz' target="_blank"><img src="images/pvz.png" alt=""> <span><br>Plants V Zombies</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/ducklife' target="_blank"><img src="images/ducklife.png"> <span><br>Duck Life</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/minesweeper' target="_blank"><img src="images/minesweeper.png" alt=""> <span><br>Mine Sweeper</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/pixelgun' target="_blank"><img src="images/pixelgun.png" alt=""> <span><br>Pixel Gun</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/googlesnake' target="_blank"><img src="images/googlesnake.jpg" alt=""> <span><br>Google Snake </span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/ngon' target="_blank"><img src="images/ngon.jpg" alt=""> <span><br>N Gon</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/ovo' target="_blank"><img src="images/ovo.jpg" alt="R"> <span><br>OVO</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/basketballstars' target="_blank"><img src="images/basketballstars.png" alt="Basketball Stars"> <span><br>Basketball Stars</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/stacktris' target="_blank"><img src="images/stacktris.jpg" alt=""> <span><br>Stacktris</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/blackjack' target="_blank"><img src="images/blackjack.png" alt=""> <span><br>Black Jack</span></button>
+        <button class="button"><a style="text-decoration:none" href='g/fnaf' target="_blank"><img src="images/fnaf.png" alt=""> <span><br>FNAF</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/dbz' target="_blank"><img src="images/dbz.png" alt=""> <span><br>DBZ Devolution</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/drivemad' target="_blank"><img src="images/drivemad.png" width="200" height="200" alt=""> <br>Drive Mad</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/papas-game' target="_blank"><img src="images/papasgame.jpg" width="200" height="200"> <br>Papa's Gms</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/henry-stickman' target="_blank"><img src="https://cdn2.steamgriddb.com/icon/9f61408e3afb633e50cdf1b20de6f466.png" width="200" height="200"> <br>Stickman Gms</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/vex' target="_blank"><img src="https://play-lh.googleusercontent.com/0OnVFzHIMuLLeMjvACoNzxRbungfOH1zH4hUWQnIg5KfM2va_mFssFuRGq26WqWA" width="200" height="200"> <br>Vex's Gms</a></button>    
+        <button class="button"><a style="text-decoration:none" href='g/2048' target="_blank"><img src="images/2048.png" alt="2048"> <span><br>2048</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/paperio2' target="_blank"><img src="images/paperio2.png" alt="Paper.io 2"> <span><br>Paper.io 2</span></a></button>
+        <button class="button"><a style="text-decoration:none" href='g/bitlife' target="_blank"><img src="https://play-lh.googleusercontent.com/fUM-UyywXxjC8soxAZdIlxJrlRRXmql8wkE426SHzft4lJycSKVd2jCYQQX1BEG9Xw" width="200" height="200"><br><br>Bitlife</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/1' target="_blank"><img src="https://d3nsrxdg84ic1d.cloudfront.net/uploads/5a145eaa-3696-4de4-8c1d-41400e3d296c/e8ccaaae.PNG?v=0" width="200" height="200"> <br>1</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/subway-surfers' target="_blank"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/81a0a3f18cf0ee129e56edb50fc52c3b.png" width="200" height="200"> <br>Subway Surfers</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/basketball-random' target="_blank"><img src="https://play-lh.googleusercontent.com/gP8T5Z1O-ngxIloiwcBZzrzyLPYDp0R_1BDNKUDZboIRPVImeyWI8-7aExvB9gAGNKc=w240-h480-rw" width="200" height="200" alt=""> <br>Basketball Random</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/soccer-random' target="_blank"><img src="https://play-lh.googleusercontent.com/G1PIlb6HWKSaDre0XpUcmKGps9T4iamsSlwrogB3EJzYv4bz0M2am4D17MtGzndaOOU" width="200" height="200" alt=""> <br>Soccer Random</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/motox3m' target="_blank"><img src="images/motocross.png" width="200" height="200" alt=""><br>MotoX3M Gms</a></button>
+        <button class="button">  width="200" height="200" alt=""><br>MotoX3M Gms</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/cookieclicker' target="_blank"><img src="https://play-lh.googleusercontent.com/Z1MOuuiD05ZN5LkVmMEvKF0mqAc-FknaQ2j8s4dZiO-LSPQX4EEA3RVJdlQEtxe96ok" width="200" height="200" alt=""> <br>Cookie Clicker</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/crossyroad' target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/7/71/Crossy_Road_icon.jpeg" width="200" height="200" alt=""> <br>Crossy Road</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/temple-run-2' target="_blank"><img src="https://play-lh.googleusercontent.com/go4XqS4mYs-G2tZymiVLF4wJYXIi5QrvwixNRzssk4G_vRBHrAdg4E1ddNwy9c2cZA" width="200" height="200"> <br>Temple Run 2</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/stickman-golf' target="_blank"><img src="https://image.spreadshirtmedia.com/image-server/v1/products/T1459A839PA3861PT28D12687618W6161H10000/views/1,width=550,height=550,appearanceId=839,backgroundColor=F2F2F2/golf-stickman-sticker.jpg" width="200" height="200" alt=""> <br>Stickman Golf</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/case-clicker' target="_blank"><img src="images/csgoclicker.png" width="200" height="200" alt=""> <br>CSGO Case Opener</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/pandemic2' target="_blank"><img src="images/pandemic2.png" width="200" height="200" alt=""> <br>Pandemic 2</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/riddleschool' target="_blank"><img src="https://i.ytimg.com/vi/Ls5rT-7_4d4/sddefault.jpg" width="200" height="200" alt=""> <br>Riddle School Games</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/cupcake2048' target="_blank"><img src="images/cupcake2048.png" width="200" height="200"> <br>Cupcake 2048</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/jetpack-joyride' target="_blank"><img src="images/jetpackjoyride.png" width="200" height="200" alt=""> <br>Jetpack Joyride</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/geodash' target="_blank"><img src="images/geodash.jpg" width="200" height="200" alt=""> <br>Geometry Dash</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/ducklife1' target="_blank"><img src="images/ducklife1.png" width="200" height="200" alt=""> <br>Duck Life 1</a></button>
+        <button class="button"><a style="text-decoration:none" href='g/sandboxels' target="_blank"><img src="https://sandboxels.r74n.com/icons/icon.png" width="200" height="200" alt=""> <br>Sand Boxels</a></button>
     </div>
 
   
@@ -515,52 +418,6 @@
     </footer>
 
     <script>
-        // ===== GAME MODAL FUNCTIONALITY =====
-        function openGame(gameFile, downloadFile) {
-            document.getElementById("game-iframe").src = gameFile;
-            document.getElementById("game-modal").style.display = "block";
-            document.getElementById("modal-overlay").style.display = "block";
-
-            // Set download attributes if provided
-            if (downloadFile) {
-                document.getElementById("download-button").setAttribute("href", downloadFile);
-                document.getElementById("download-button").setAttribute("download", downloadFile);
-                document.getElementById("download-button").style.display = "inline-flex";
-            } else {
-                document.getElementById("download-button").style.display = "none";
-            }
-
-            // Make sure footer stays visible
-            document.querySelector("footer").style.position = "relative";
-            document.querySelector("footer").style.zIndex = "1000";
-        }
-
-        function closeGame() {
-            document.getElementById("game-modal").style.display = "none";
-            document.getElementById("modal-overlay").style.display = "none";
-            document.getElementById("game-iframe").src = "";
-        }
-
-        function openGameInNewTab() {
-            const gameFile = document.getElementById("game-iframe").src;
-            if (gameFile) {
-                window.open(gameFile, "_blank");
-            }
-        }
-
-        function toggleFullScreen() {
-            const iframe = document.getElementById("game-iframe");
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
-        }
-
         // ===== FAVORITES FUNCTIONALITY =====
         // Get favorites from localStorage
         function getFavorites() {
@@ -648,6 +505,7 @@
 
                     const link = document.createElement("a");
                     link.href = game.path;
+                    link.target = "_blank"; // Open in new tab
                     link.style.textDecoration = "none";
 
                     const img = document.createElement("img");
@@ -668,16 +526,6 @@
                     button.appendChild(starIcon);
 
                     favoritesContainer.appendChild(button);
-                });
-
-                // Add event listeners to the newly created favorite game buttons
-                const favoriteGameButtons = favoritesContainer.querySelectorAll(".button a");
-                favoriteGameButtons.forEach((button) => {
-                    button.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        const gamePath = this.getAttribute("href");
-                        openGame(gamePath);
-                    });
                 });
             }
         }
@@ -790,18 +638,6 @@
                 });
             }
 
-            // Initialize game buttons
-            const gameButtons = document.querySelectorAll(".button a");
-
-            // Add click event listeners to each button
-            gameButtons.forEach((button) => {
-                button.addEventListener("click", function (e) {
-                    e.preventDefault(); // Prevent default link behavior
-                    const gamePath = this.getAttribute("href");
-                    openGame(gamePath);
-                });
-            });
-
             // Add star icons to all game buttons
             const allGameButtons = document.querySelectorAll(".button");
             const favorites = getFavorites();
@@ -826,90 +662,91 @@
             // Initialize favorites section
             updateFavoritesSection();
         });
-document.addEventListener("DOMContentLoaded", function() {
-    // Initialize Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // If the element is in the viewport
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-                
-                // Add glow effect to some buttons for variety
-                if (Math.random() > 0.7 && entry.target.closest('.regular-games')) {
-                    entry.target.classList.add('glow-fade');
-                }
-            } else {
-                // Reset the animation when element leaves viewport
-                entry.target.classList.remove('fade-in');
-                entry.target.classList.remove('glow-fade');
-            }
-        });
-    }, {
-        root: null, // Use the viewport as the root
-        rootMargin: '0px',
-        threshold: 0.1 // Trigger when 10% of the element is visible
-    });
-
-    // Observe all buttons
-    const buttons = document.querySelectorAll('.button');
-    buttons.forEach(button => {
-        observer.observe(button);
-    });
-    
-    // Observe favorites heading
-    const favoritesHeading = document.getElementById('favorites-heading');
-    if (favoritesHeading) {
-        observer.observe(favoritesHeading);
-    }
-    
-    // Function to add staggered delay based on position
-    function addStaggeredDelay() {
-        const gameButtons = document.querySelectorAll('.button-container.regular-games .button');
-        gameButtons.forEach((button, index) => {
-            const row = Math.floor(index / 8); // Assuming 8 buttons per row
-            const col = index % 8;
-            
-            // Calculate delay based on position (diagonal wave effect)
-            const delay = (row + col) * 0.05;
-            button.style.animationDelay = `${delay}s`;
-        });
-    }
-    
-    // Call the function to set up staggered delays
-    addStaggeredDelay();
-    
-    // Update animation delays when window is resized
-    window.addEventListener('resize', addStaggeredDelay);
-});
-
-// Add this function to your existing script
-function updateAnimations() {
-    // Get all buttons that need animation
-    const buttons = document.querySelectorAll('.button');
-    
-    // Check if each button is in viewport and animate accordingly
-    buttons.forEach(button => {
-        const rect = button.getBoundingClientRect();
-        const isInViewport = (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
         
-        if (isInViewport) {
-            button.classList.add('fade-in');
-        } else {
-            button.classList.remove('fade-in');
-        }
-    });
-}
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // If the element is in the viewport
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        
+                        // Add glow effect to some buttons for variety
+                        if (Math.random() > 0.7 && entry.target.closest('.regular-games')) {
+                            entry.target.classList.add('glow-fade');
+                        }
+                    } else {
+                        // Reset the animation when element leaves viewport
+                        entry.target.classList.remove('fade-in');
+                        entry.target.classList.remove('glow-fade');
+                    }
+                });
+            }, {
+                root: null, // Use the viewport as the root
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
 
-// Add scroll event listener to trigger animations while scrolling
-window.addEventListener('scroll', function() {
-    // Use requestAnimationFrame for better performance
-    requestAnimationFrame(updateAnimations);
-});
+            // Observe all buttons
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach(button => {
+                observer.observe(button);
+            });
+            
+            // Observe favorites heading
+            const favoritesHeading = document.getElementById('favorites-heading');
+            if (favoritesHeading) {
+                observer.observe(favoritesHeading);
+            }
+            
+            // Function to add staggered delay based on position
+            function addStaggeredDelay() {
+                const gameButtons = document.querySelectorAll('.button-container.regular-games .button');
+                gameButtons.forEach((button, index) => {
+                    const row = Math.floor(index / 8); // Assuming 8 buttons per row
+                    const col = index % 8;
+                    
+                    // Calculate delay based on position (diagonal wave effect)
+                    const delay = (row + col) * 0.05;
+                    button.style.animationDelay = `${delay}s`;
+                });
+            }
+            
+            // Call the function to set up staggered delays
+            addStaggeredDelay();
+            
+            // Update animation delays when window is resized
+            window.addEventListener('resize', addStaggeredDelay);
+        });
+
+        // Add this function to your existing script
+        function updateAnimations() {
+            // Get all buttons that need animation
+            const buttons = document.querySelectorAll('.button');
+            
+            // Check if each button is in viewport and animate accordingly
+            buttons.forEach(button => {
+                const rect = button.getBoundingClientRect();
+                const isInViewport = (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+                
+                if (isInViewport) {
+                    button.classList.add('fade-in');
+                } else {
+                    button.classList.remove('fade-in');
+                }
+            });
+        }
+
+        // Add scroll event listener to trigger animations while scrolling
+        window.addEventListener('scroll', function() {
+            // Use requestAnimationFrame for better performance
+            requestAnimationFrame(updateAnimations);
+        });
     </script>
 </body>
 </html>
