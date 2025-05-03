@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeteZah | Proxy</title>
+    <link rel="icon" href="storage/images/logo-png-removebg-preview.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta property="og:title" content="PeteZah | Proxy">
+    <meta property="og:description" content="Next-gen proxy browsing">
+    <meta property="og:image" content="/storage/images/logo-png-removebg-preview.png">
+    <meta name="keywords" content="PeteZah Proxy, bypass restrictions, web proxy">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            font-weight: 400;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #05080f;
+            color: #d0d0d0;
+        }
+
+        .tabs {
+            display: flex;
+            align-items: center;
+            background-color: #121929;
+            padding: 4px 6px;
+            border-bottom: 1px solid #1e2a44;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            overflow-x: auto;
+        }
+
+        .tab {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 12px 6px 16px;
+            color: #a0b0cc;
+            cursor: pointer;
+            background-color: #121929;
+            border-radius: 8px;
+            margin-right: 4px;
+            transition: all 0.2s ease;
+            max-width: 340px;
+            min-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: relative;
+            border-bottom: 1px solid #1e2a44;
+        }
+
+        .tab:last-child {
+            border-bottom: none;
+        }
+
+        .tab.active {
+            background-color: #1e2a44;
+            color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .tab:hover {
+            background-color: #182133;
+            color: #ffffff;
+        }
+
+        .tab .close-button {
+            margin-left: auto;
+            padding-left: 10px;
+            color: #a0b0cc;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .tab .close-button:hover {
+            color: #ff4444;
+        }
+
+        .add-tab-button {
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #121929;
+            color: #d0d0d0;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .add-tab-button:hover {
+            background-color: #182133;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #121929;
+            padding: 4px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-left, .navbar-right {
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .navbar button {
+            background: none;
+            border: none;
+            color: #a0b0cc;
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .navbar button:hover {
+            color: #ffffff;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            background-color: #1e2a44;
+            border-radius: 20px;
+            margin: 0 12px;
+            padding: 2px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-container input {
+            flex-grow: 1;
+            padding: 6px 10px;
+            border: 1px solid #1e2a44;
+            background: #1e2a44;
+            color: #d0d0d0;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.2s ease;
+            border-radius: 20px;
+        }
+
+        .search-container input:hover {
+            background: #252f4a;
+        }
+
+        .search-container input:focus {
+            background: #252f4a;
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            border-color: #0066cc;
+        }
+
+        .search-container button {
+            padding: 6px;
+            color: #a0b0cc;
+        }
+
+        .content-wrapper {
+            flex-grow: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+            background-color: #ffffff;
+        }
+
+        iframe.active {
+            display: block;
+        }
+
+        .menu-button {
+            position: relative;
+            padding: 6px;
+        }
+
+        .menu-button::before {
+            content: '⋮';
+            font-size: 20px;
+            color: #a0b0cc;
+        }
+
+        .menu-button:hover::before {
+            color: #ffffff;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            background-color: #1e2a44;
+            border: 1px solid #2d3b5e;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            min-width: 200px;
+            padding: 8px 0;
+        }
+
+        .menu.active {
+            display: block;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            color: #d0d0d0;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .menu-item:hover {
+            background-color: #2d3b5e;
+            color: #ffffff;
+        }
+
+        .menu-item i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .menu-item.zoom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-item.zoom .zoom-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .menu-item.zoom button {
+            background: none;
+            border: none;
+            color: #d0d0d0;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 2px 6px;
+        }
+
+        .menu-item.zoom button:hover {
+            color: #ffffff;
+        }
+
+        .menu-item.zoom span {
+            color: #a0b0cc;
+            font-size: 14px;
+        }
+
+        .menu hr {
+            border: none;
+            border-top: 1px solid #2d3b5e;
+            margin: 4px 0;
+        }
+
+        /* Internal page styles */
+        .internal-page {
+            padding: 30px;
+            background-color: #121929;
+            color: #d0d0d0;
+            height: 100%;
+            overflow-y: auto;
+            font-size: 16px;
+        }
+
+        .internal-page h2 {
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .internal-page .action-bar {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .internal-page button {
+            background-color: #2d3b5e;
+            border: none;
+            padding: 8px 16px;
+            color: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .internal-page button:hover {
+            background-color: #3b4b7e;
+        }
+
+        .internal-page button.danger {
+            background-color: #ff4444;
+        }
+
+        .internal-page button.danger:hover {
+            background-color: #cc3333;
+        }
+
+        .internal-page ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .internal-page li {
+            padding: 12px;
+            background-color: #1e2a44;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .internal-page li:hover {
+            background-color: #252f4a;
+        }
+
+        .internal-page li a {
+            color: #66b3ff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .internal-page li a:hover {
+            text-decoration: underline;
+        }
+
+        .internal-page li .meta {
+            color: #a0b0cc;
+            font-size: 12px;
+        }
+
+        .extensions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .extension-card {
+            background-color: #1e2a44;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .extension-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .extension-card img {
+            max-width: 64px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .extension-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .extension-card p {
+            font-size: 14px;
+            color: #a0b0cc;
+            margin-bottom: 12px;
+        }
+
+        .extension-card .button-group {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .inspect-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .inspect-tree {
+            width: 40%;
+            padding: 20px;
+            background-color: #1e2a44;
+            overflow-y: auto;
+            border-right: 1px solid #2d3b5e;
+        }
+
+        .inspect-details {
+            width: 60%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .inspect-tree ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .inspect-tree li {
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .inspect-tree li:hover {
+            background-color: #2d3b5e;
+        }
+
+        .inspect-details pre {
+            background-color: #1e2a44;
+            padding: 15px;
+            border-radius: 6px;
+            color: #d0d0d0;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs" id="tabs">
+        <div class="tab active" onclick="selectTab(this)">New Tab <span class="close-button" onclick="closeTab(event, this)">×</span></div>
+        <button class="add-tab-button" onclick="addTab()">+</button>
+    </div>
+    <div class="navbar" id="navbar">
+        <div class="navbar-left">
+            <button onclick="goHome()"><i class="fa fa-home"></i></button>
+            <button onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+            <button onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
+            <button onclick="refresh()"><i class="fas fa-redo"></i></button>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search or enter a URL" onkeydown="if(event.key === 'Enter') search()">
+            <button onclick="search()"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="navbar-right">
+            <button onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
+            <button class="menu-button" onclick="toggleMenu()"></button>
+        </div>
+    </div>
+    <div class="content-wrapper" id="content-wrapper">
+        <iframe class="tab-iframe active" src="/static/index.html" id="iframe-1"></iframe>
+    </div>
+    <div class="menu" id="menu">
+        <div class="menu-item" onclick="addTab()"><i class="fas fa-plus"></i> New Tab</div>
+        <div class="menu-item" onclick="addBookmark()"><i class="fas fa-bookmark"></i> New Bookmark</div>
+        <hr>
+        <div class="menu-item zoom">
+            <span><i class="fas fa-search"></i> Zoom</span>
+            <div class="zoom-controls">
+                <button onclick="zoomOut()">-</button>
+                <span id="zoom-level">100%</span>
+                <button onclick="zoomIn()">+</button>
+            </div>
+        </div>
+        <hr>
+        <div class="menu-item" onclick="showBookmarks()"><i class="fas fa-bookmark"></i> Bookmarks</div>
+        <div class="menu-item" onclick="showHistory()"><i class="fas fa-history"></i> History</div>
+        <div class="menu-item" onclick="showExtensions()"><i class="fas fa-puzzle-piece"></i> Extensions</div>
+        <div class="menu-item" onclick="openInspect()"><i class="fas fa-code"></i> Inspect</div>
+        <hr>
+        <div class="menu-item" onclick="openInNewTab()"><i class="fas fa-external-link-alt"></i> Open in New Tab</div>
+        <div class="menu-item" onclick="openInAboutBlank()"><i class="fas fa-window-restore"></i> Open in about:blank</div>
+        <div class="menu-item" onclick="settings()"><i class="fas fa-cog"></i> Settings</div>
+    </div>
+
+    <script>
+    let tabCount = 1;
+    let zoomLevel = 1;
+    const proxyPrefix = "/static/embed.html#";
+    let tabHistory = [];
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+    let history = JSON.parse(localStorage.getItem('history')) || [];
+    let extensions = JSON.parse(localStorage.getItem('extensions')) || [];
+
+    function selectTab(tabElement) {
+        const tabs = document.querySelectorAll('.tab');
+        const iframes = document.querySelectorAll('.tab-iframe');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        iframes.forEach(iframe => iframe.classList.remove('active'));
+        tabElement.classList.add('active');
+        const tabIndex = [...tabElement.parentElement.children].indexOf(tabElement);
+        const iframe = iframes[tabIndex];
+        iframe.classList.add('active');
+        updateSearchBar(iframe);
+        updatePageTitle(iframe);
+        
+        const currentTabIndex = tabIndex;
+        tabHistory = tabHistory.filter(index => index !== currentTabIndex);
+        tabHistory.push(currentTabIndex);
+    }
+
+    function addTab(url = "/static/index.html") {
+        tabCount++;
+        const tabsContainer = document.getElementById('tabs');
+        const newTab = document.createElement('div');
+        newTab.classList.add('tab');
+        newTab.textContent = "New Tab";
+        newTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
+        newTab.onclick = () => selectTab(newTab);
+        tabsContainer.insertBefore(newTab, document.querySelector('.add-tab-button'));
+
+        const iframe = document.createElement('iframe');
+        iframe.classList.add('tab-iframe');
+        iframe.id = `iframe-${tabCount}`;
+        iframe.src = url;
+        document.getElementById('content-wrapper').appendChild(iframe);
+        selectTab(newTab);
+        updateHistory(url);
+    }
+
+    function closeTab(event, closeButton) {
+        event.stopPropagation();
+        const tab = closeButton.parentElement;
+        const tabIndex = [...tab.parentElement.children].indexOf(tab);
+        const iframe = document.getElementById(`iframe-${tabIndex + 1}`);
+        
+        tabHistory = tabHistory.filter(index => index !== tabIndex);
+        
+        if (tab.classList.contains('active') && tabCount > 1) {
+            const lastVisitedIndex = tabHistory.length > 0 ? tabHistory[tabHistory.length - 1] : 0;
+            const tabs = document.querySelectorAll('.tab');
+            const nextTab = tabs[lastVisitedIndex];
+            if (nextTab && nextTab.className === 'tab') selectTab(nextTab);
+        }
+        
+        tab.remove();
+        iframe.remove();
+        tabCount--;
+        if (tabCount === 0) addTab();
+    }
+
+    function updateTabName(iframe, tabElement) {
+        iframe.onload = () => {
+            const title = iframe.contentDocument?.title || getTabTitleFromUrl(iframe.src);
+            tabElement.childNodes[0].textContent = title.substring(0, 30);
+            updateSearchBar(iframe);
+            updatePageTitle(iframe);
+        };
+    }
+
+    function getTabTitleFromUrl(url) {
+        if (url === "/static/index.html") return "New Tab";
+        if (url === "/static/prox/settings.html") return "Settings";
+        if (url.includes("data:text/html,bookmarks")) return "Bookmarks";
+        if (url.includes("data:text/html,history")) return "History";
+        if (url.includes("data:text/html,extensions")) return "Extensions";
+        if (url.includes("data:text/html,inspect")) return "Inspect";
+        return "New Tab";
+    }
+
+    function updatePageTitle(iframe) {
+        const title = iframe.contentDocument?.title || getTabTitleFromUrl(iframe.src);
+        document.title = title;
+    }
+
+    function getUnproxifiedUrl(proxifiedUrl) {
+        if (proxifiedUrl.startsWith(proxyPrefix)) {
+            return proxifiedUrl.replace(proxyPrefix, "");
+        }
+        switch (proxifiedUrl) {
+            case "/static/index.html":
+                return "petezah://newtab";
+            case "/static/prox/settings.html":
+                return "petezah://settings";
+            case "data:text/html,bookmarks":
+                return "petezah://bookmarks";
+            case "data:text/html,history":
+                return "petezah://history";
+            case "data:text/html,extensions":
+                return "petezah://extensions";
+            case "data:text/html,inspect":
+                return "petezah://inspect";
+            default:
+                return proxifiedUrl;
+        }
+    }
+
+    function search() {
+        const input = document.getElementById('search-input').value.trim();
+        if (!input) return;
+        const iframe = document.querySelector('.tab-iframe.active');
+        let url;
+        if (input.startsWith('petezah://')) {
+            switch (input) {
+                case 'petezah://newtab':
+                    url = '/static/index.html';
+                    break;
+                case 'petezah://settings':
+                    url = '/static/prox/settings.html';
+                    break;
+                case 'petezah://bookmarks':
+                    showBookmarks();
+                    return;
+                case 'petezah://history':
+                    showHistory();
+                    return;
+                case 'petezah://extensions':
+                    showExtensions();
+                    return;
+                case 'petezah://inspect':
+                    openInspect();
+                    return;
+                default:
+                    url = input;
+            }
+        } else {
+            url = input.startsWith('http') ? input : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
+            url = `${proxyPrefix}${url}`;
+        }
+        iframe.src = url;
+        document.getElementById('search-input').value = getUnproxifiedUrl(url);
+        const activeTab = document.querySelector('.tab.active');
+        updateTabName(iframe, activeTab);
+        updateHistory(url);
+    }
+
+    function goHome() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.src = "/static/index.html";
+        document.getElementById('search-input').value = "petezah://newtab";
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.childNodes[0].textContent = "New Tab";
+        updateHistory("/static/index.html");
+    }
+
+    function goBack() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.contentWindow.history.back();
+        updateSearchBar(iframe);
+    }
+
+    function goForward() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.contentWindow.history.forward();
+        updateSearchBar(iframe);
+    }
+
+    function refresh() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.contentWindow.location.reload();
+        updateSearchBar(iframe);
+    }
+
+    function settings() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.src = "/static/prox/settings.html";
+        document.getElementById('search-input').value = "petezah://settings";
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.childNodes[0].textContent = "Settings";
+        updateHistory("/static/prox/settings.html");
+        toggleMenu();
+    }
+
+    function toggleFullscreen() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        if (!document.fullscreenElement) {
+            iframe.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    function updateSearchBar(iframe) {
+        const unproxifiedUrl = getUnproxifiedUrl(iframe.src);
+        document.getElementById('search-input').value = unproxifiedUrl;
+        const activeTab = document.querySelector('.tab.active');
+        updateTabName(iframe, activeTab);
+    }
+
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('active');
+    }
+
+    function addBookmark() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        const url = getUnproxifiedUrl(iframe.src);
+        if (url.startsWith('petezah://')) return; // Don't bookmark internal pages
+        const title = iframe.contentDocument?.title || "New Bookmark";
+        bookmarks.push({ url, title });
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        toggleMenu();
+    }
+
+    function deleteBookmark(index) {
+        bookmarks.splice(index, 1);
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        showBookmarks();
+    }
+
+    function navigateToBookmark(url) {
+        const iframe = document.querySelector('.tab-iframe.active');
+        const activeTab = document.querySelector('.tab.active');
+        if (url.startsWith('petezah://')) {
+            iframe.src = mapPetezahUrlToSrc(url);
+        } else {
+            iframe.src = `${proxyPrefix}${url}`;
+        }
+        document.getElementById('search-input').value = url;
+        updateTabName(iframe, activeTab);
+        updateHistory(url);
+    }
+
+    function mapPetezahUrlToSrc(url) {
+        switch (url) {
+            case 'petezah://newtab':
+                return '/static/index.html';
+            case 'petezah://settings':
+                return '/static/prox/settings.html';
+            case 'petezah://bookmarks':
+                showBookmarks();
+                return 'data:text/html,bookmarks';
+            case 'petezah://history':
+                showHistory();
+                return 'data:text/html,history';
+            case 'petezah://extensions':
+                showExtensions();
+                return 'data:text/html,extensions';
+            case 'petezah://inspect':
+                openInspect();
+                return 'data:text/html,inspect';
+            default:
+                return url;
+        }
+    }
+
+    function showBookmarks() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.childNodes[0].textContent = "Bookmarks";
+        document.getElementById('search-input').value = "petezah://bookmarks";
+        const bookmarkList = bookmarks.map((b, index) => `
+            <li>
+                <a href="#" onclick="parent.navigateToBookmark('${b.url.replace(/'/g, "\\'")}')">${b.title}</a>
+                <button class="danger" onclick="parent.deleteBookmark(${index})">Delete</button>
+            </li>
+        `).join('');
+        iframe.src = `data:text/html,<!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body { margin: 0; font-family: Arial, sans-serif; background-color: #121929; color: #d0d0d0; }
+                    .internal-page { padding: 30px; height: 100vh; overflow-y: auto; font-size: 16px; }
+                    h2 { margin-bottom: 25px; color: #ffffff; font-size: 24px; font-weight: 600; }
+                    .action-bar { margin-bottom: 20px; display: flex; gap: 10px; }
+                    button { background-color: #2d3b5e; border: none; padding: 8px 16px; color: #ffffff; border-radius: 6px; cursor: pointer; font-size: 14px; transition: background-color 0.2s; }
+                    button:hover { background-color: #3b4b7e; }
+                    button.danger { background-color: #ff4444; }
+                    button.danger:hover { background-color: #cc3333; }
+                    ul { list-style: none; padding: 0; }
+                    li { padding: 12px; background-color: #1e2a44; margin-bottom: 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.2s; }
+                    li:hover { background-color: #252f4a; }
+                    a { color: #66b3ff; text-decoration: none; font-size: 16px; }
+                    a:hover { text-decoration: underline; }
+                </style>
+            </head>
+            <body>
+                <div class="internal-page">
+                    <h2>Bookmarks</h2>
+                    <div class="action-bar">
+                        <button onclick="parent.addBookmark()">Add Current Page</button>
+                    </div>
+                    <ul>${bookmarkList || '<li>No bookmarks yet.</li>'}</ul>
+                </div>
+            </body>
+            </html>`;
+        iframe.src = "data:text/html,bookmarks";
+        updateHistory("data:text/html,bookmarks");
+        toggleMenu();
+    }
+
+    function clearHistory() {
+        history = [];
+        localStorage.setItem('history', JSON.stringify(history));
+        showHistory();
+    }
+
+    function showHistory() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.childNodes[0].textContent = "History";
+        document.getElementById('search-input').value = "petezah://history";
+        const historyList = history.map(h => `
+            <li>
+                <a href="#" onclick="parent.navigateToBookmark('${h.url.replace(/'/g, "\\'")}')">${h.title}</a>
+                <span class="meta">${new Date(h.timestamp).toLocaleString()}</span>
+            </li>
+        `).join('');
+        iframe.src = `data:text/html,<!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body { margin: 0; font-family: Arial, sans-serif; background-color: #121929; color: #d0d0d0; }
+                    .internal-page { padding: 30px; height: 100vh; overflow-y: auto; font-size: 16px; }
+                    h2 { margin-bottom: 25px; color: #ffffff; font-size: 24px; font-weight: 600; }
+                    .action-bar { margin-bottom: 20px; display: flex; gap: 10px; }
+                    button { background-color: #2d3b5e; border: none; padding: 8px 16px; color: #ffffff; border-radius: 6px; cursor: pointer; font-size: 14px; transition: background-color 0.2s; }
+                    button:hover { background-color: #3b4b7e; }
+                    button.danger { background-color: #ff4444; }
+                    button.danger:hover { background-color: #cc3333; }
+                    ul { list-style: none; padding: 0; }
+                    li { padding: 12px; background-color: #1e2a44; margin-bottom: 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.2s; }
+                    li:hover { background-color: #252f4a; }
+                    a { color: #66b3ff; text-decoration: none; font-size: 16px; }
+                    a:hover { text-decoration: underline; }
+                    .meta { color: #a0b0cc; font-size: 12px; }
+                </style>
+            </head>
+            <body>
+                <div class="internal-page">
+                    <h2>History</h2>
+                    <div class="action-bar">
+                        <button class="danger" onclick="parent.clearHistory()">Clear History</button>
+                    </div>
+                    <ul>${historyList || '<li>No history yet.</li>'}</ul>
+                </div>
+            </body>
+            </html>`;
+        iframe.src = "data:text/html,history";
+        updateHistory("data:text/html,history");
+        toggleMenu();
+    }
+
+    function installExtension() {
+        const url = prompt("Enter extension URL:");
+        if (url) {
+            extensions.push({
+                id: Date.now(),
+                name: `Extension ${extensions.length + 1}`,
+                url: url,
+                enabled: true,
+                icon: "https://via.placeholder.com/64"
+            });
+            localStorage.setItem('extensions', JSON.stringify(extensions));
+            showExtensions();
+        }
+    }
+
+    function toggleExtension(id) {
+        extensions = extensions.map(ext => 
+            ext.id === id ? { ...ext, enabled: !ext.enabled } : ext
+        );
+        localStorage.setItem('extensions', JSON.stringify(extensions));
+        showExtensions();
+    }
+
+    function removeExtension(id) {
+        extensions = extensions.filter(ext => ext.id !== id);
+        localStorage.setItem('extensions', JSON.stringify(extensions));
+        showExtensions();
+    }
+
+    function showExtensions() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.childNodes[0].textContent = "Extensions";
+        document.getElementById('search-input').value = "petezah://extensions";
+        const extensionsList = extensions.map(ext => `
+            <div class="extension-card">
+                <img src="${ext.icon}" alt="${ext.name}">
+                <h3>${ext.name}</h3>
+                <p>Status: ${ext.enabled ? 'Enabled' : 'Disabled'}</p>
+                <div class="button-group">
+                    <button onclick="parent.toggleExtension(${ext.id})">
+                        ${ext.enabled ? 'Disable' : 'Enable'}
+                    </button>
+                    <button class="danger" onclick="parent.removeExtension(${ext.id})">Remove</button>
+                </div>
+            </div>
+        `).join('');
+        iframe.src = `data:text/html,<!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body { margin: 0; font-family: Arial, sans-serif; background-color: #121929; color: #d0d0d0; }
+                    .internal-page { padding: 30px; height: 100vh; overflow-y: auto; font-size: 16px; }
+                    h2 { margin-bottom: 25px; color: #ffffff; font-size: 24px; font-weight: 600; }
+                    .action-bar { margin-bottom: 20px; display: flex; gap: 10px; }
+                    button { background-color: #2d3b5e; border: none; padding: 8px 16px; color: #ffffff; border-radius: 6px; cursor: pointer; font-size: 14px; transition: background-color 0.2s; }
+                    button:hover { background-color: #3b4b7e; }
+                    button.danger { background-color: #ff4444; }
+                    button.danger:hover { background-color: #cc3333; }
+                    .extensions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+                    .extension-card { background-color: #1e2a44; padding: 20px; border-radius: 8px; text-align: center; transition: transform 0.2s; }
+                    .extension-card:hover { transform: translateY(-2px); }
+                    .extension-card img { max-width: 64px; margin-bottom: 12px; border-radius: 8px; }
+                    .extension-card h3 { font-size: 18px; margin-bottom: 10px; color: #ffffff; font-weight: 500; }
+                    .extension-card p { font-size: 14px; color: #a0b0cc; margin-bottom: 12px; }
+                    .button-group { display: flex; gap: 8px; justify-content: center; }
+                </style>
+            </head>
+            <body>
+                <div class="internal-page">
+                    <h2>Extensions</h2>
+                    <div class="action-bar">
+                        <button onclick="parent.installExtension()">Install Extension</button>
+                    </div>
+                    <div class="extensions-grid">${extensionsList || '<p>No extensions installed.</p>'}</div>
+                </div>
+            </body>
+            </html>`;
+        iframe.src = "data:text/html,extensions";
+        updateHistory("data:text/html,extensions");
+        toggleMenu();
+    }
+
+    function openInspect() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.childNodes[0].textContent = "Inspect";
+        document.getElementById('search-input').value = "petezah://inspect";
+        // Simulate a basic DOM inspector
+        const sampleDomTree = `
+            <ul>
+                <li>&lt;html&gt;
+                    <ul>
+                        <li>&lt;head&gt;
+                            <ul>
+                                <li>&lt;title&gt;Page Title&lt;/title&gt;</li>
+                            </ul>
+                        </li>
+                        <li>&lt;body&gt;
+                            <ul>
+                                <li>&lt;div class="content"&gt;...&lt;/div&gt;</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        `;
+        iframe.src = `data:text/html,<!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body { margin: 0; font-family: Arial, sans-serif; background-color: #121929; color: #d0d0d0; }
+                    .internal-page { padding: 30px; height: 100vh; overflow-y: auto; font-size: 16px; }
+                    h2 { margin-bottom: 25px; color: #ffffff; font-size: 24px; font-weight: 600; }
+                    .inspect-container { display: flex; height: calc(100% - 80px); }
+                    .inspect-tree { width: 40%; padding: 20px; background-color: #1e2a44; overflow-y: auto; border-right: 1px solid #2d3b5e; }
+                    .inspect-details { width: 60%; padding: 20px; overflow-y: auto; }
+                    .inspect-tree ul { list-style: none; padding-left: 20px; }
+                    .inspect-tree li { padding: 8px; cursor: pointer; border-radius: 4px; }
+                    .inspect-tree li:hover { background-color: #2d3b5e; }
+                    .inspect-details pre { background-color: #1e2a44; padding: 15px; border-radius: 6px; color: #d0d0d0; font-size: 14px; overflow-x: auto; }
+                </style>
+            </head>
+            <body>
+                <div class="internal-page">
+                    <h2>Inspect</h2>
+                    <div class="inspect-container">
+                        <div class="inspect-tree">${sampleDomTree}</div>
+                        <div class="inspect-details">
+                            <pre>Select an element to view details</pre>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>`;
+        iframe.src = "data:text/html,inspect";
+        updateHistory("data:text/html,inspect");
+        toggleMenu();
+    }
+
+    function openInNewTab() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        const url = getUnproxifiedUrl(iframe.src);
+        window.open(url, '_blank');
+        toggleMenu();
+    }
+
+    function openInAboutBlank() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        const url = getUnproxifiedUrl(iframe.src);
+        window.open(`about:blank#${url}`, '_blank');
+        toggleMenu();
+    }
+
+    function zoomIn() {
+        zoomLevel += 0.1;
+        updateZoom();
+    }
+
+    function zoomOut() {
+        zoomLevel = Math.max(0.1, zoomLevel - 0.1);
+        updateZoom();
+    }
+
+    function updateZoom() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.style.transform = `scale(${zoomLevel})`;
+        iframe.style.transformOrigin = '0 0';
+        document.getElementById('zoom-level').textContent = `${Math.round(zoomLevel * 100)}%`;
+    }
+
+    function updateHistory(url) {
+        const iframe = document.querySelector('.tab-iframe.active');
+        const title = iframe.contentDocument?.title || getTabTitleFromUrl(url);
+        history.push({ url, title, timestamp: new Date().toISOString() });
+        localStorage.setItem('history', JSON.stringify(history));
+    }
+
+    // Initialize
+    const initialIframe = document.querySelector('.tab-iframe.active');
+    const initialTab = document.querySelector('.tab.active');
+    document.getElementById('search-input').value = "petezah://newtab";
+    updateTabName(initialIframe, initialTab);
+
+    document.addEventListener('click', (e) => {
+        const menu = document.getElementById('menu');
+        const menuButton = document.querySelector('.menu-button');
+        if (!menu.contains(e.target) && !menuButton.contains(e.target)) {
+            menu.classList.remove('active');
+        }
+    });
+    </script>
+</body>
+</html>

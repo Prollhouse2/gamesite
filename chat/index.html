@@ -1,35 +1,572 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proll Services: Discord</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Proll's School V4.7 - Chat</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Particles.js CDN -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #25253a;
+            --accent-pink: #ff6b9d;
+            --accent-blue: #6b9dff;
+            --accent-purple: #9d6bff;
+            --text-primary: #ffffff;
+            --text-secondary: #c0c0d0;
+            --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+            --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        body {
+            font-family: "Press Start 2P", cursive;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Snow Effect Fullscreen */
+        #snow {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* Header and Navigation */
+        .site-header {
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-family: "Press Start 2P", cursive;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+            letter-spacing: 1px;
+            margin: 1rem 0;
+            padding: 0.5rem 0;
+            position: relative;
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Button Container - Matching home page style */
+        .button-container1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+
+        /* Button styling to match home page */
+        .button {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(37, 37, 58, 0.9));
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            border-radius: 8px;
+            color: var(--text-primary);
+            padding: 10px 15px;
+            font-family: "Press Start 2P", cursive;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(157, 107, 255, 0.4);
+            border-color: var(--accent-pink);
+        }
+
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--accent-pink),
+                var(--accent-blue),
+                var(--accent-purple),
+                transparent
+            );
+            margin: 1.5rem auto;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        /* Chat Container */
+        .chat-container {
+            background-color: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(157, 107, 255, 0.4);
+            margin: 1rem auto;
+            position: relative;
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            animation: glow-pulse 4s infinite;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(to right, rgba(26, 26, 46, 0.9), rgba(37, 37, 58, 0.9));
+        }
+
+        .chat-header h2 {
+            font-family: "Press Start 2P", monospace;
+            font-size: 1.2rem;
+            margin: 0;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .chat-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .control-btn:hover {
+            color: var(--accent-pink);
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+        }
+
+        .chat-frame {
+            width: 100%;
+            height: 550px;
+            border: none;
+            background-color: var(--bg-tertiary);
+        }
+
+        /* Online Users */
+        .online-users {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1.5rem auto;
+            max-width: 600px;
+            border: 1px solid rgba(107, 157, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .online-users h3 {
+            font-size: 1rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+            text-shadow: 0 0 5px rgba(107, 157, 255, 0.5);
+        }
+
+        .user-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .user-badge {
+            background: rgba(37, 37, 58, 0.7);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(107, 157, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .user-badge:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(107, 157, 255, 0.4);
+        }
+
+        .user-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #43b581;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-pink);
+            transform: scale(1.2);
+        }
+
+        .github {
+            color: #ffffff;
+        }
+
+        /* Animations */
+        @keyframes glow-pulse {
+            0% { box-shadow: 0 0 20px rgba(157, 107, 255, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 107, 157, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(157, 107, 255, 0.3); }
+        }
+
+        /* Fullscreen mode */
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            border-radius: 0;
+        }
+
+        .fullscreen .chat-frame {
+            height: calc(100% - 60px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .chat-frame {
+                height: 450px;
+            }
+            
+            .button {
+                font-size: 0.6rem;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .chat-frame {
+                height: 400px;
+            }
+            
+            .button {
+                font-size: 0.5rem;
+                padding: 6px 10px;
+            }
+            
+            .chat-header h2 {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div id="snow"></div> <!-- Snow effect container -->
+
     <div class="container">
-        <h1 class="logo">Proll Services</h1>
+        <header class="site-header">
+            <h1 class="logo">Proll's School V4.7</h1>
+            
+            <div class="button-container1">
+                <a href="/" class="button">Home</a>
+                <a href="https://tinyurl.com/45j4r62u" class="button">Games Request</a>
+                <a href="settings" class="button">Website Settings</a>
+                <a href="https://github.com/Prollhouse2/gamesite" class="button">Source / Updates</a>
+                <a href="bookmarks" class="button">Gms Cheats</a>
+                <a href="leaderboard" class="button">Leaderboard</a>
+                <a href="https://discord.gg/proll" class="button">Discord!</a>
+            </div>
+        </header>
         
         <div class="section-divider"></div>
         
-        <div class="discord-container">
-            <div class="discord-header">
-                <h2>Discord Chat</h2>
-                <button id="fullscreen-btn" class="fullscreen-btn">
-                    <i class="fas fa-expand"></i>
-                </button>
+        <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                <h2><i class="fas fa-gamepad"></i> Game Chat</h2>
+                <div class="chat-controls">
+                    <button class="control-btn" id="refresh-btn" title="Refresh Chat">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="control-btn" id="fullscreen-btn" title="Fullscreen Mode">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
             </div>
             
             <!-- Discord widget embedded directly -->
             <iframe 
                 src="https://e.widgetbot.io/channels/1225803415116972242/1341867678352146474" 
-                class="discord-frame"
+                class="chat-frame"
+                id="chat-frame"
                 allow="clipboard-write; clipboard-read">
             </iframe>
         </div>
+        
+        <div class="online-users">
+            <h3>Online Gamers</h3>
+            <div class="user-list" id="user-list">
+                <!-- Users will be dynamically added here -->
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <footer>
+            <div class="social-icons">
+                <a href="https://discord.com/invite/proll" target="_blank" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://github.com/prollhouse2" class="github" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <p>© <span id="current-year"></span> Proll Services V4.7. All rights reserved.</p>
+        </footer>
     </div>
 
-    <script src="index.js"></script>
+    <script>
+        // Initialize snow effect when the page is fully loaded
+        window.onload = function() {
+            // Make sure particles.js is loaded
+            if (typeof particlesJS !== "undefined") {
+                particlesJS("snow", {
+                    particles: {
+                        number: {
+                            value: 150,
+                            density: { enable: true, value_area: 800 },
+                        },
+                        color: { value: "#ffffff" },
+                        shape: {
+                            type: "circle",
+                            stroke: { width: 0, color: "#000000" },
+                        },
+                        opacity: {
+                            value: 0.5,
+                            random: false,
+                            anim: { enable: false },
+                        },
+                        size: {
+                            value: 3,
+                            random: true,
+                            anim: { enable: false },
+                        },
+                        line_linked: { enable: false },
+                        move: {
+                            enable: true,
+                            speed: 2,
+                            direction: "bottom",
+                            random: false,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false,
+                        },
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: { enable: true },
+                            onclick: { enable: false },
+                            resize: true,
+                        },
+                    },
+                    retina_detect: true,
+                });
+            } else {
+                console.error("particles.js is not loaded");
+                // Fallback to load particles.js if it wasn't loaded
+                var script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+                script.onload = function() {
+                    particlesJS("snow", {
+                        particles: {
+                            number: {
+                                value: 150,
+                                density: { enable: true, value_area: 800 },
+                            },
+                            color: { value: "#ffffff" },
+                            shape: {
+                                type: "circle",
+                                stroke: { width: 0, color: "#000000" },
+                            },
+                            opacity: {
+                                value: 0.5,
+                                random: false,
+                                anim: { enable: false },
+                            },
+                            size: {
+                                value: 3,
+                                random: true,
+                                anim: { enable: false },
+                            },
+                            line_linked: { enable: false },
+                            move: {
+                                enable: true,
+                                speed: 2,
+                                direction: "bottom",
+                                random: false,
+                                straight: false,
+                                out_mode: "out",
+                                bounce: false,
+                            },
+                        },
+                        interactivity: {
+                            detect_on: "canvas",
+                            events: {
+                                onhover: { enable: true },
+                                onclick: { enable: false },
+                                resize: true,
+                            },
+                        },
+                        retina_detect: true,
+                    });
+                };
+                document.head.appendChild(script);
+            }
+            
+            // Set current year
+            document.getElementById("current-year").textContent = new Date().getFullYear();
+            
+            // Fullscreen functionality - Fixed
+            const fullscreenBtn = document.getElementById("fullscreen-btn");
+            const chatContainer = document.getElementById("chat-container");
+            const chatFrame = document.getElementById("chat-frame");
+            
+            fullscreenBtn.addEventListener("click", function() {
+                // Try to make the iframe fullscreen first
+                try {
+                    if (chatFrame.requestFullscreen) {
+                        chatFrame.requestFullscreen();
+                    } else if (chatFrame.mozRequestFullScreen) {
+                        chatFrame.mozRequestFullScreen();
+                    } else if (chatFrame.webkitRequestFullscreen) {
+                        chatFrame.webkitRequestFullscreen();
+                    } else if (chatFrame.msRequestFullscreen) {
+                        chatFrame.msRequestFullscreen();
+                    } else {
+                        // Fallback to opening in new tab
+                        window.open(chatFrame.src, '_blank');
+                    }
+                } catch (e) {
+                    console.error("Fullscreen failed:", e);
+                    // Fallback to opening in new tab
+                    window.open(chatFrame.src, '_blank');
+                }
+            });
+            
+            // Refresh button functionality - Fixed
+            const refreshBtn = document.getElementById("refresh-btn");
+            
+            refreshBtn.addEventListener("click", function() {
+                // Store the current src
+                const currentSrc = chatFrame.src;
+                
+                // Add spinning animation to refresh icon
+                this.querySelector("i").classList.add("fa-spin");
+                
+                // Actually reload the iframe
+                chatFrame.src = "about:blank";
+                
+                setTimeout(() => {
+                    chatFrame.src = currentSrc;
+                    
+                    // Remove spinning animation after a delay
+                    setTimeout(() => {
+                        this.querySelector("i").classList.remove("fa-spin");
+                    }, 500);
+                }, 100);
+            });
+            
+            // Simulate online users (replace with actual data if available)
+            const userList = document.getElementById("user-list");
+            const sampleUsers = [
+                "GamerPro123", "EpicPlayer", "NinjaWarrior", "PixelMaster", 
+                "GameWizard", "LevelBoss", "QuestHunter", "ProGamer99"
+            ];
+            
+            sampleUsers.forEach(user => {
+                const userBadge = document.createElement("div");
+                userBadge.className = "user-badge";
+                
+                const userStatus = document.createElement("span");
+                userStatus.className = "user-status";
+                
+                const userName = document.createElement("span");
+                userName.textContent = user;
+                
+                userBadge.appendChild(userStatus);
+                userBadge.appendChild(userName);
+                userList.appendChild(userBadge);
+            });
+        };
+    </script>
 </body>
 </html>

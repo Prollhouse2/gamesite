@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Press Start 2P', cursive;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      background-color: #0a0a1a;
+      position: relative;
+    }
+
+    /* Grid background from main site */
+    .grid-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+          linear-gradient(rgba(26, 26, 46, 0.3) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26, 26, 46, 0.3) 1px, transparent 1px);
+      background-size: 30px 30px;
+      z-index: -3;
+      animation: gridMove 20s linear infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes gridMove {
+      0% {
+          background-position: 0 0;
+      }
+      100% {
+          background-position: 30px 30px;
+      }
+    }
+
+    /* Glow effect from main site */
+    .glow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -4;
+      overflow: hidden;
+    }
+
+    .glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(
+          circle,
+          rgba(157, 107, 255, 0.15) 0%,
+          rgba(255, 107, 157, 0.1) 30%,
+          rgba(0, 0, 0, 0) 70%
+      );
+      filter: blur(40px);
+      animation: glow-move 15s infinite alternate ease-in-out;
+    }
+
+    .glow:nth-child(2) {
+      background: radial-gradient(
+          circle,
+          rgba(255, 107, 157, 0.15) 0%,
+          rgba(107, 157, 255, 0.1) 30%,
+          rgba(0, 0, 0, 0) 70%
+      );
+      animation-delay: -5s;
+    }
+
+    @keyframes glow-move {
+      0% {
+          top: 10%;
+          left: 10%;
+      }
+      100% {
+          top: 60%;
+          left: 60%;
+      }
+    }
+
+    #main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .spinner {
+      width: 140px;
+      height: 140px;
+      position: relative;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 12px rgba(255, 107, 157, 0.8));
+    }
+
+    .spinner-circle {
+      position: absolute;
+      border: 8px solid transparent;
+      border-radius: 50%;
+      animation: spin 1.8s linear infinite;
+    }
+
+    .spinner-circle:nth-child(1) {
+      width: 100%;
+      height: 100%;
+      border-top-color: #ff6b9d; /* Pink */
+      border-left-color: #9d6bff; /* Purple */
+    }
+
+    .spinner-circle:nth-child(2) {
+      width: 72%;
+      height: 72%;
+      top: 14%;
+      left: 14%;
+      border-top-color: #6b9dff; /* Blue */
+      border-left-color: #ff6b9d; /* Pink */
+      animation-duration: 2.5s;
+      animation-direction: reverse;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    #glitch-text {
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-top: 30px;
+      text-shadow:
+        0 0 10px rgba(255, 107, 157, 0.8),
+        0 0 20px rgba(157, 107, 255, 0.6),
+        0 0 30px rgba(107, 157, 255, 0.4);
+      animation: 
+        glowPulse 2s ease-in-out infinite, 
+        bounce 3s ease-in-out infinite,
+        scanlineFlicker 0.1s linear infinite;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        text-shadow:
+          0 0 6px rgba(255, 107, 157, 0.8),
+          0 0 12px rgba(157, 107, 255, 0.6),
+          0 0 18px rgba(107, 157, 255, 0.4);
+      }
+      50% {
+        text-shadow:
+          0 0 20px rgba(255, 107, 157, 1),
+          0 0 30px rgba(157, 107, 255, 0.8),
+          0 0 40px rgba(107, 157, 255, 0.6);
+      }
+      100% {
+        text-shadow:
+          0 0 6px rgba(255, 107, 157, 0.8),
+          0 0 12px rgba(157, 107, 255, 0.6),
+          0 0 18px rgba(107, 157, 255, 0.4);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Scanline effect from main site */
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0) 50%,
+          rgba(0, 0, 0, 0.02) 50%
+      );
+      background-size: 100% 4px;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    /* CRT flicker effect */
+    @keyframes scanlineFlicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.95; }
+    }
+
+    /* Pixelated dots overlay */
+    .pixel-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background elements from main site -->
+  <div class="grid-background"></div>
+  <div class="glow-container">
+    <div class="glow"></div>
+    <div class="glow"></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="pixel-overlay"></div>
+
+  <div id="main">
+    <div class="spinner">
+      <div class="spinner-circle"></div>
+      <div class="spinner-circle"></div>
+    </div>
+    <p id="glitch-text">LOADING</p>
+  </div>
+
+  <script>
+    const target = document.getElementById('glitch-text');
+    const original = target.textContent;
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let iterations = 0;
+
+    const glitchInterval = setInterval(() => {
+      let displayed = '';
+      for (let i = 0; i < original.length; i++) {
+        if (i < iterations) {
+          displayed += original[i];
+        } else if (original[i] === ' ') {
+          displayed += ' ';
+        } else {
+          displayed += chars[Math.floor(Math.random() * chars.length)];
+        }
+      }
+      target.textContent = displayed.toUpperCase();
+      iterations += 0.5;
+      if (iterations >= original.length) {
+        clearInterval(glitchInterval);
+        target.textContent = original.toUpperCase();
+      }
+    }, 50);
+  </script>
+  <script src="uv/uv.bundle.js"></script>
+  <script src="uv/uv.config.js"></script>
+  <script src="register-sw.js"></script>
+  <script src="embed.js"></script>
+</body>
+</html>

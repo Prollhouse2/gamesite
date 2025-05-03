@@ -1,0 +1,3169 @@
+(() => {
+	var e = {
+			5831: (e, t, r) => {
+				var o = {
+					"./": "6707",
+					"./client": "2712",
+					"./client.ts": "2712",
+					"./document": "5974",
+					"./document.ts": "5974",
+					"./dom/attr": "8959",
+					"./dom/attr.ts": "8959",
+					"./dom/beacon": "2863",
+					"./dom/beacon.ts": "2863",
+					"./dom/cookie": "1197",
+					"./dom/cookie.ts": "1197",
+					"./dom/css": "7339",
+					"./dom/css.ts": "7339",
+					"./dom/document": "1938",
+					"./dom/document.ts": "1938",
+					"./dom/element": "2439",
+					"./dom/element.ts": "2439",
+					"./dom/fontface": "6643",
+					"./dom/fontface.ts": "6643",
+					"./dom/history": "461",
+					"./dom/history.ts": "461",
+					"./dom/navigation": "2410",
+					"./dom/navigation.ts": "2410",
+					"./dom/open": "8805",
+					"./dom/open.ts": "8805",
+					"./dom/origin": "3261",
+					"./dom/origin.ts": "3261",
+					"./dom/performance": "4475",
+					"./dom/performance.ts": "4475",
+					"./dom/serviceworker": "5707",
+					"./dom/serviceworker.ts": "5707",
+					"./dom/storage": "9227",
+					"./dom/storage.ts": "9227",
+					"./events": "5008",
+					"./events.ts": "5008",
+					"./global": "2237",
+					"./global.ts": "2237",
+					"./helpers": "7932",
+					"./helpers.ts": "7932",
+					"./index": "6707",
+					"./index.ts": "6707",
+					"./location": "8971",
+					"./location.ts": "8971",
+					"./natives": "3498",
+					"./natives.ts": "3498",
+					"./shared/antiantidebugger": "8278",
+					"./shared/antiantidebugger.ts": "8278",
+					"./shared/blob": "9447",
+					"./shared/blob.ts": "9447",
+					"./shared/caches": "4169",
+					"./shared/caches.ts": "4169",
+					"./shared/err": "5146",
+					"./shared/err.ts": "5146",
+					"./shared/error": "7651",
+					"./shared/error.ts": "7651",
+					"./shared/eval": "4423",
+					"./shared/eval.ts": "4423",
+					"./shared/event": "8231",
+					"./shared/event.ts": "8231",
+					"./shared/function": "7636",
+					"./shared/function.ts": "7636",
+					"./shared/import": "4306",
+					"./shared/import.ts": "4306",
+					"./shared/indexeddb": "2930",
+					"./shared/indexeddb.ts": "2930",
+					"./shared/postmessage": "2625",
+					"./shared/postmessage.ts": "2625",
+					"./shared/realm": "6594",
+					"./shared/realm.ts": "6594",
+					"./shared/requests/eventsource": "2738",
+					"./shared/requests/eventsource.ts": "2738",
+					"./shared/requests/fetch": "106",
+					"./shared/requests/fetch.ts": "106",
+					"./shared/requests/websocket": "7219",
+					"./shared/requests/websocket.ts": "7219",
+					"./shared/requests/xmlhttprequest": "7481",
+					"./shared/requests/xmlhttprequest.ts": "7481",
+					"./shared/sourcemaps": "6321",
+					"./shared/sourcemaps.ts": "6321",
+					"./shared/trustedTypes": "1587",
+					"./shared/trustedTypes.ts": "1587",
+					"./shared/unproxy": "2370",
+					"./shared/unproxy.ts": "2370",
+					"./shared/worker": "8475",
+					"./shared/worker.ts": "8475",
+					"./shared/wrap": "7706",
+					"./shared/wrap.ts": "7706",
+					"./swruntime": "633",
+					"./swruntime.ts": "633",
+					"./worker/importScripts": "5425",
+					"./worker/importScripts.ts": "5425",
+				};
+				function n(e) {
+					return r(a(e));
+				}
+				function a(e) {
+					if (!r.o(o, e)) {
+						var t = Error("Cannot find module '" + e + "'");
+						throw ((t.code = "MODULE_NOT_FOUND"), t);
+					}
+					return o[e];
+				}
+				(n.keys = () => Object.keys(o)),
+					(n.resolve = a),
+					(e.exports = n),
+					(n.id = 5831);
+			},
+			2712: (e, t, r) => {
+				r.r(t), r.d(t, { ScramjetClient: () => g });
+				var o = r(6707),
+					n = r(9777),
+					a = r(5974),
+					s = r(2237),
+					i = r(7932),
+					l = r(8971),
+					c = r(3498),
+					u = r(4471),
+					p = r(7706),
+					f = r(5008);
+				class g {
+					global;
+					documentProxy;
+					globalProxy;
+					locationProxy;
+					serviceWorker;
+					bare;
+					natives;
+					descriptors;
+					wrapfn;
+					cookieStore;
+					eventcallbacks;
+					meta;
+					constructor(e) {
+						if (
+							((this.global = e),
+							(this.cookieStore = new u.hc()),
+							(this.eventcallbacks = new Map()),
+							n.a in e)
+						)
+							throw (
+								(console.error(
+									"attempted to initialize a scramjet client, but one is already loaded - this is very bad",
+								),
+								Error())
+							);
+						(this.serviceWorker = this.global.navigator.serviceWorker),
+							o.iswindow &&
+								((this.documentProxy = (0, a.createDocumentProxy)(this, e)),
+								(e.document[n.a] = this)),
+							(this.locationProxy = (0, l.createLocationProxy)(this, e)),
+							(this.globalProxy = (0, s.createGlobalProxy)(this, e)),
+							(this.wrapfn = (0, p.createWrapFn)(this, e)),
+							o.iswindow
+								? (this.bare = new u.dg())
+								: (this.bare = new u.dg(
+										new Promise((e) => {
+											addEventListener("message", ({ data: t }) => {
+												"object" == typeof t &&
+													"$scramjet$type" in t &&
+													"baremuxinit" === t.$scramjet$type &&
+													e(t.port);
+											});
+										}),
+									)),
+							(this.natives = {
+								store: new Proxy(
+									{},
+									{
+										get: (e, t) => {
+											if (t in e) return e[t];
+											const r = t.split("."),
+												o = r.pop(),
+												n = r.reduce((e, t) => e?.[t], this.global);
+											if (!n) return;
+											const a = Reflect.get(n, o);
+											return (e[t] = a), e[t];
+										},
+									},
+								),
+								construct(e, ...t) {
+									const r = this.store[e];
+									return r ? new r(...t) : null;
+								},
+								call(e, t, ...r) {
+									const o = this.store[e];
+									return o ? o.call(t, ...r) : null;
+								},
+							}),
+							(this.descriptors = {
+								store: new Proxy(
+									{},
+									{
+										get: (e, t) => {
+											if (t in e) return e[t];
+											const r = t.split("."),
+												o = r.pop(),
+												n = r.reduce((e, t) => e?.[t], this.global);
+											if (!n) return;
+											const a = (0, c.nativeGetOwnPropertyDescriptor)(n, o);
+											return (e[t] = a), e[t];
+										},
+									},
+								),
+								get(e, t) {
+									const r = this.store[e];
+									return r ? r.get.call(t) : null;
+								},
+								set(e, t, r) {
+									const o = this.store[e];
+									if (!o) return null;
+									o.set.call(t, r);
+								},
+							});
+						const t = this;
+						(this.meta = {
+							get origin() {
+								return t.url;
+							},
+							get base() {
+								if (o.iswindow) {
+									const e = t.natives.call(
+										"Document.prototype.querySelector",
+										t.global.document,
+										"base",
+									);
+									if (e) {
+										let r = e.getAttribute("href"),
+											o = r.indexOf("#");
+										if (!(r = r.substring(0, -1 === o ? void 0 : o)))
+											return t.url;
+										return new URL(r, t.url.origin);
+									}
+								}
+								return t.url;
+							},
+						}),
+							(e[n.a] = this);
+					}
+					get frame() {
+						if (!o.iswindow) return null;
+						const e = this.descriptors.get("window.frameElement", this.global);
+						if (!e) return null;
+						const t = e[n.D];
+						if (!t) {
+							let e = this.global.window;
+							while (e.parent !== e) {
+								if (!e.frameElement) return null;
+								if (e.frameElement && e.frameElement[n.D])
+									return e.frameElement[n.D];
+								e = e.parent.window;
+							}
+						}
+						return t;
+					}
+					loadcookies(e) {
+						this.cookieStore.load(e);
+					}
+					hook() {
+						const e = r(5831),
+							t = [];
+						for (const r of e.keys()) {
+							const o = e(r);
+							r.endsWith(".ts") &&
+								((r.startsWith("./dom/") && "window" in this.global) ||
+									(r.startsWith("./worker/") &&
+										"WorkerGlobalScope" in this.global) ||
+									r.startsWith("./shared/")) &&
+								t.push(o);
+						}
+						for (const e of (t.sort((e, t) => (e.order || 0) - (t.order || 0)),
+						t))
+							!e.enabled || e.enabled(this)
+								? e.default(this, this.global)
+								: e.disabled && e.disabled(this, this.global);
+					}
+					get url() {
+						return new URL((0, u.Sd)(this.global.location.href));
+					}
+					set url(e) {
+						e instanceof URL && (e = e.toString());
+						const t = new f.NavigateEvent(e);
+						this.frame && this.frame.dispatchEvent(t),
+							t.defaultPrevented ||
+								(this.global.location.href = (0, u.dm)(t.url, this.meta));
+					}
+					Proxy(e, t) {
+						if (Array.isArray(e)) {
+							for (const r of e) this.Proxy(r, t);
+							return;
+						}
+						const r = e.split("."),
+							o = r.pop(),
+							n = r.reduce((e, t) => e?.[t], this.global);
+						if (!n) return;
+						const a = Reflect.get(n, o);
+						(this.natives.store[e] = a), this.RawProxy(n, o, t);
+					}
+					RawProxy(e, t, r) {
+						if (!e || !t || !Reflect.has(e, t)) return;
+						const o = Reflect.get(e, t);
+						delete e[t];
+						const n = {};
+						r.construct &&
+							(n.construct = (e, t, o) => {
+								let n;
+								let a = !1,
+									s = {
+										fn: e,
+										this: null,
+										args: t,
+										newTarget: o,
+										return: (e) => {
+											(a = !0), (n = e);
+										},
+										call: () => (
+											(a = !0),
+											(n = Reflect.construct(s.fn, s.args, s.newTarget))
+										),
+									};
+								return (r.construct(s), a)
+									? n
+									: Reflect.construct(s.fn, s.args, s.newTarget);
+							}),
+							r.apply &&
+								(n.apply = (e, t, o) => {
+									let n;
+									let a = !1,
+										s = {
+											fn: e,
+											this: t,
+											args: o,
+											newTarget: null,
+											return: (e) => {
+												(a = !0), (n = e);
+											},
+											call: () => (
+												(a = !0), (n = Reflect.apply(s.fn, s.this, s.args))
+											),
+										},
+										i = Error.prepareStackTrace;
+									Error.prepareStackTrace = (e, t) => {
+										if (
+											t[0].getFileName() &&
+											!t[0]
+												.getFileName()
+												.startsWith(location.origin + u.vc.prefix)
+										)
+											return { stack: e.stack };
+									};
+									try {
+										r.apply(s);
+									} catch (e) {
+										if (e instanceof Error) {
+											if (e.stack instanceof Object)
+												(e.stack = e.stack.stack),
+													console.error("ERROR FROM SCRAMJET INTERNALS", e);
+											else throw e;
+										} else throw e;
+									}
+									return ((Error.prepareStackTrace = i), a)
+										? n
+										: Reflect.apply(s.fn, s.this, s.args);
+								}),
+							(n.getOwnPropertyDescriptor = i.getOwnPropertyDescriptorHandler),
+							(e[t] = new Proxy(o, n));
+					}
+					Trap(e, t) {
+						if (Array.isArray(e)) {
+							for (const r of e) this.Trap(r, t);
+							return;
+						}
+						const r = e.split("."),
+							o = r.pop(),
+							n = r.reduce((e, t) => e?.[t], this.global);
+						if (!n) return;
+						const a = (0, c.nativeGetOwnPropertyDescriptor)(n, o);
+						return (this.descriptors.store[e] = a), this.RawTrap(n, o, t);
+					}
+					RawTrap(e, t, r) {
+						if (!e || !t || !Reflect.has(e, t)) return;
+						const o = (0, c.nativeGetOwnPropertyDescriptor)(e, t),
+							n = {
+								this: null,
+								get: function () {
+									return o && o.get.call(this.this);
+								},
+								set: function (e) {
+									o && o.set.call(this.this, e);
+								},
+							};
+						delete e[t];
+						const a = {};
+						return (
+							r.get
+								? (a.get = function () {
+										return (n.this = this), r.get(n);
+									})
+								: o?.get && (a.get = o.get),
+							r.set
+								? (a.set = function (e) {
+										(n.this = this), r.set(n, e);
+									})
+								: o?.set && (a.set = o.set),
+							r.enumerable
+								? (a.enumerable = r.enumerable)
+								: o?.enumerable && (a.enumerable = o.enumerable),
+							r.configurable
+								? (a.configurable = r.configurable)
+								: o?.configurable && (a.configurable = o.configurable),
+							Object.defineProperty(e, t, a),
+							o
+						);
+					}
+				}
+			},
+			5974: (e, t, r) => {
+				r.r(t), r.d(t, { createDocumentProxy: () => a });
+				var o = r(4471),
+					n = r(7932);
+				function a(e, t) {
+					return new Proxy(t.document, {
+						get: (t, r) =>
+							"location" === r
+								? e.locationProxy
+								: "defaultView" === r
+									? e.globalProxy
+									: Reflect.get(t, r),
+						set(t, r, n) {
+							if ("location" === r) {
+								location.href = (0, o.dm)(n, e.meta);
+								return;
+							}
+							return Reflect.set(t, r, n);
+						},
+						getOwnPropertyDescriptor: n.getOwnPropertyDescriptorHandler,
+					});
+				}
+			},
+			8959: (e, t, r) => {
+				function o(e, t) {
+					e.Trap("Element.prototype.attributes", {
+						get(e) {
+							const t = e.get(),
+								r = new Proxy(t, {
+									get(e, o, n) {
+										const a = Reflect.get(e, o);
+										return "length" === o
+											? Object.keys(r).length
+											: "getNamedItem" === o
+												? (e) => r[e]
+												: "getNamedItemNS" === o
+													? (e, t) => r[`${e}:${t}`]
+													: o in NamedNodeMap.prototype &&
+															"function" == typeof a
+														? new Proxy(a, {
+																apply: (e, o, n) =>
+																	o === r
+																		? Reflect.apply(e, t, n)
+																		: Reflect.apply(e, o, n),
+															})
+														: ("string" != typeof o && "number" != typeof o) ||
+																isNaN(Number(o))
+															? this.has(e, o)
+																? a
+																: void 0
+															: t[Object.keys(r)[o]];
+									},
+									ownKeys(e) {
+										return Reflect.ownKeys(e).filter((t) => this.has(e, t));
+									},
+									has: (e, r) =>
+										"symbol" == typeof r
+											? Reflect.has(e, r)
+											: !(
+													r.startsWith("scramjet-attr-") ||
+													t[r]?.name?.startsWith("scramjet-attr-")
+												) && Reflect.has(e, r),
+								});
+							return r;
+						},
+					}),
+						e.Trap("Attr.prototype.value", {
+							get: (e) =>
+								e.this?.ownerElement
+									? e.this.ownerElement.getAttribute(e.this.name)
+									: e.get(),
+							set: (e, t) =>
+								e.this?.ownerElement
+									? e.this.ownerElement.setAttribute(e.this.name, t)
+									: e.set(t),
+						});
+				}
+				r.r(t), r.d(t, { default: () => o });
+			},
+			2863: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e, t) {
+					e.Proxy("Navigator.prototype.sendBeacon", {
+						apply(t) {
+							t.args[0] = (0, o.dm)(t.args[0], e.meta);
+						},
+					});
+				}
+			},
+			1197: (e, t, r) => {
+				function o(e, t) {
+					e.serviceWorker.addEventListener("message", ({ data: t }) => {
+						"scramjet$type" in t &&
+							"cookie" === t.scramjet$type &&
+							e.cookieStore.setCookies([t.cookie], new URL(t.url));
+					}),
+						e.Trap("Document.prototype.cookie", {
+							get: () => e.cookieStore.getCookies(e.url, !0),
+							set(t, r) {
+								e.cookieStore.setCookies([r], e.url);
+								const o = e.descriptors.get(
+									"ServiceWorkerContainer.prototype.controller",
+									e.serviceWorker,
+								);
+								o &&
+									e.natives.call("ServiceWorker.prototype.postMessage", o, {
+										scramjet$type: "cookie",
+										cookie: r,
+										url: e.url.href,
+									});
+							},
+						}),
+						delete t.cookieStore;
+				}
+				r.r(t), r.d(t, { default: () => o });
+			},
+			7339: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e) {
+					e.Proxy("CSSStyleDeclaration.prototype.setProperty", {
+						apply(t) {
+							t.args[1] && (t.args[1] = (0, o.U5)(t.args[1], e.meta));
+						},
+					}),
+						e.Proxy("CSSStyleDeclaration.prototype.getPropertyValue", {
+							apply(e) {
+								const t = e.call();
+								if (!t) return t;
+								e.return((0, o.Od)(t));
+							},
+						}),
+						e.Trap("CSSStyleDeclaration.prototype.cssText", {
+							set(t, r) {
+								t.set((0, o.U5)(r, e.meta));
+							},
+							get: (e) => (0, o.Od)(e.get()),
+						}),
+						e.Trap("HTMLElement.prototype.style", {
+							get(t) {
+								const r = t.get();
+								return new Proxy(r, {
+									get(e, t) {
+										const n = Reflect.get(e, t);
+										return "function" == typeof n
+											? new Proxy(n, {
+													apply: (e, t, o) => Reflect.apply(e, r, o),
+												})
+											: t in CSSStyleDeclaration.prototype || !n
+												? n
+												: (0, o.Od)(n);
+									},
+									set: (t, r, n) =>
+										"cssText" == r || "" == n || "string" != typeof n
+											? Reflect.set(t, r, n)
+											: Reflect.set(t, r, (0, o.U5)(n, e.meta)),
+								});
+							},
+							set(e, t) {
+								e.set(t);
+							},
+						});
+				}
+			},
+			1938: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e, t) {
+					e.Proxy("Document.prototype.write", {
+						apply(t) {
+							if (t.args[0])
+								try {
+									t.args[0] = (0, o.r4)(t.args[0], e.cookieStore, e.meta, !1);
+								} catch {}
+						},
+					}),
+						e.Proxy("Document.prototype.writeln", {
+							apply(t) {
+								if (t.args[0])
+									try {
+										t.args[0] = (0, o.r4)(t.args[0], e.cookieStore, e.meta, !1);
+									} catch {}
+							},
+						}),
+						e.Proxy("Document.prototype.parseHTMLUnsafe", {
+							apply(t) {
+								if (t.args[0])
+									try {
+										t.args[0] = (0, o.r4)(t.args[0], e.cookieStore, e.meta, !1);
+									} catch {}
+							},
+						});
+				}
+			},
+			2439: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => l });
+				var o = r(9777),
+					n = r(2712),
+					a = r(3498),
+					s = r(4471);
+				const i = new TextEncoder();
+				function l(e, t) {
+					const r = {
+							nonce: [t.HTMLElement],
+							integrity: [t.HTMLScriptElement, t.HTMLLinkElement],
+							csp: [t.HTMLIFrameElement],
+							credentialless: [t.HTMLIFrameElement],
+							src: [
+								t.HTMLImageElement,
+								t.HTMLMediaElement,
+								t.HTMLIFrameElement,
+								t.HTMLFrameElement,
+								t.HTMLEmbedElement,
+								t.HTMLScriptElement,
+								t.HTMLSourceElement,
+							],
+							href: [
+								t.HTMLAnchorElement,
+								t.HTMLLinkElement,
+								t.SVGUseElement,
+								t.SVGImageElement,
+							],
+							data: [t.HTMLObjectElement],
+							action: [t.HTMLFormElement],
+							formaction: [t.HTMLButtonElement, t.HTMLInputElement],
+							srcdoc: [t.HTMLIFrameElement],
+							srcset: [t.HTMLImageElement, t.HTMLSourceElement],
+							poster: [t.HTMLVideoElement],
+							imagesrcset: [t.HTMLLinkElement],
+						},
+						l = [t.HTMLAnchorElement.prototype, t.HTMLAreaElement.prototype],
+						c = [
+							(0, a.nativeGetOwnPropertyDescriptor)(
+								t.HTMLAnchorElement.prototype,
+								"href",
+							),
+							(0, a.nativeGetOwnPropertyDescriptor)(
+								t.HTMLAreaElement.prototype,
+								"href",
+							),
+						];
+					for (const e of Object.keys(r))
+						for (const t of r[e]) {
+							const r = (0, a.nativeGetOwnPropertyDescriptor)(t.prototype, e);
+							Object.defineProperty(t.prototype, e, {
+								get() {
+									return [
+										"src",
+										"data",
+										"href",
+										"action",
+										"formaction",
+									].includes(e)
+										? (0, s.Sd)(r.get.call(this))
+										: r.get.call(this);
+								},
+								set(t) {
+									return this.setAttribute(e, t);
+								},
+							});
+						}
+					for (const t of [
+						"protocol",
+						"hash",
+						"host",
+						"hostname",
+						"origin",
+						"pathname",
+						"port",
+						"search",
+					])
+						for (const r in l) {
+							const o = l[r],
+								n = c[r];
+							e.RawTrap(o, t, {
+								get(e) {
+									const r = n.get.call(e.this);
+									return r ? new URL((0, s.Sd)(r))[t] : r;
+								},
+							});
+						}
+					e.Trap("Node.prototype.baseURI", {
+						get(t) {
+							let r = t.this,
+								o = r.ownerDocument?.querySelector("base");
+							return (r instanceof Document && (o = r.querySelector("base")), o)
+								? new URL(o.href, e.url.origin).href
+								: e.url.origin;
+						},
+						set: (e, t) => !1,
+					}),
+						e.Proxy("Element.prototype.getAttribute", {
+							apply(t) {
+								const [r] = t.args;
+								if (r.startsWith("scramjet-attr")) return t.return(null);
+								if (
+									e.natives.call(
+										"Element.prototype.hasAttribute",
+										t.this,
+										`scramjet-attr-${r}`,
+									)
+								) {
+									const e = t.fn.call(t.this, `scramjet-attr-${r}`);
+									return null === e ? t.return("") : t.return(e);
+								}
+							},
+						}),
+						e.Proxy("Element.prototype.getAttributeNames", {
+							apply(e) {
+								const t = e
+									.call()
+									.filter((e) => !e.startsWith("scramjet-attr"));
+								e.return(t);
+							},
+						}),
+						e.Proxy("Element.prototype.getAttributeNode", {
+							apply(e) {
+								if (e.args[0].startsWith("scramjet-attr"))
+									return e.return(null);
+							},
+						}),
+						e.Proxy("Element.prototype.hasAttribute", {
+							apply(e) {
+								if (e.args[0].startsWith("scramjet-attr")) return e.return(!1);
+							},
+						}),
+						e.Proxy("Element.prototype.setAttribute", {
+							apply(t) {
+								const [r, o] = t.args,
+									n = s.Gq.find((e) => {
+										const o = e[r.toLowerCase()];
+										return (
+											!!o &&
+											("*" === o ||
+												("function" != typeof o &&
+													o.includes(t.this.tagName.toLowerCase())))
+										);
+									});
+								n &&
+									((t.args[1] = n.fn(o, e.meta, e.cookieStore)),
+									t.fn.call(t.this, `scramjet-attr-${t.args[0]}`, o));
+							},
+						}),
+						e.Proxy("Element.prototype.setAttributeNode", { apply(e) {} }),
+						e.Proxy("Element.prototype.setAttributeNS", {
+							apply(t) {
+								const [r, o, n] = t.args,
+									a = s.Gq.find((e) => {
+										const r = e[o.toLowerCase()];
+										return (
+											!!r &&
+											("*" === r ||
+												("function" != typeof r &&
+													r.includes(t.this.tagName.toLowerCase())))
+										);
+									});
+								a &&
+									((t.args[2] = a.fn(n, e.meta, e.cookieStore)),
+									e.natives.call(
+										"Element.prototype.setAttribute",
+										t.this,
+										`scramjet-attr-${t.args[1]}`,
+										n,
+									));
+							},
+						}),
+						e.Proxy("Element.prototype.removeAttribute", {
+							apply(t) {
+								if (t.args[0].startsWith("scramjet-attr"))
+									return t.return(void 0);
+								e.natives.call(
+									"Element.prototype.hasAttribute",
+									t.this,
+									t.args[0],
+								) && t.fn.call(t.this, `scramjet-attr-${t.args[0]}`);
+							},
+						}),
+						e.Proxy("Element.prototype.toggleAttribute", {
+							apply(t) {
+								if (t.args[0].startsWith("scramjet-attr")) return t.return(!1);
+								e.natives.call(
+									"Element.prototype.hasAttribute",
+									t.this,
+									t.args[0],
+								) && t.fn.call(t.this, `scramjet-attr-${t.args[0]}`);
+							},
+						}),
+						e.Trap("Element.prototype.innerHTML", {
+							set(r, o) {
+								let n;
+								if (r.this instanceof t.HTMLScriptElement)
+									(n = (0, s.Zs)(o, "(anonymous script element)", e.meta)),
+										e.natives.call(
+											"Element.prototype.setAttribute",
+											r.this,
+											"scramjet-attr-script-source-src",
+											btoa(
+												Array.from(i.encode(n), (e) =>
+													String.fromCodePoint(e),
+												).join(""),
+											),
+										);
+								else if (r.this instanceof t.HTMLStyleElement)
+									n = (0, s.U5)(o, e.meta);
+								else
+									try {
+										n = (0, s.r4)(o, e.cookieStore, e.meta);
+									} catch {
+										n = o;
+									}
+								r.set(n);
+							},
+							get(r) {
+								if (r.this instanceof t.HTMLScriptElement) {
+									const t = e.natives.call(
+										"Element.prototype.getAttribute",
+										r.this,
+										"scramjet-attr-script-source-src",
+									);
+									return t ? atob(t) : r.get();
+								}
+								return r.this instanceof t.HTMLStyleElement
+									? r.get()
+									: (0, s.WT)(r.get());
+							},
+						}),
+						e.Trap("Element.prototype.outerHTML", {
+							set(t, r) {
+								t.set((0, s.r4)(r, e.cookieStore, e.meta));
+							},
+							get: (e) => (0, s.WT)(e.get()),
+						}),
+						e.Proxy("Element.prototype.setHTMLUnsafe", {
+							apply(t) {
+								try {
+									t.args[0] = (0, s.r4)(t.args[0], e.cookieStore, e.meta, !1);
+								} catch {}
+							},
+						}),
+						e.Proxy("Element.prototype.getHTML", {
+							apply(e) {
+								e.return((0, s.WT)(e.call()));
+							},
+						}),
+						e.Proxy("Element.prototype.insertAdjacentHTML", {
+							apply(t) {
+								if (t.args[1])
+									try {
+										t.args[1] = (0, s.r4)(t.args[1], e.cookieStore, e.meta, !1);
+									} catch {}
+							},
+						}),
+						e.Trap(
+							[
+								"HTMLIFrameElement.prototype.contentWindow",
+								"HTMLFrameElement.prototype.contentWindow",
+								"HTMLObjectElement.prototype.contentWindow",
+								"HTMLEmbedElement.prototype.contentWindow",
+							],
+							{
+								get(e) {
+									const t = e.get();
+									if (!t) return t;
+									if (o.a in t) return t[o.a].globalProxy;
+									{
+										const e = new n.ScramjetClient(t);
+										return e.hook(), e.globalProxy;
+									}
+								},
+							},
+						),
+						e.Trap(
+							[
+								"HTMLIFrameElement.prototype.contentDocument",
+								"HTMLFrameElement.prototype.contentDocument",
+								"HTMLObjectElement.prototype.contentDocument",
+								"HTMLEmbedElement.prototype.contentDocument",
+							],
+							{
+								get(t) {
+									const r = e.descriptors.get(
+										`${t.this.constructor.name}.prototype.contentWindow`,
+										t.this,
+									);
+									if (!r) return r;
+									if (o.a in r) return r[o.a].documentProxy;
+									{
+										const e = new n.ScramjetClient(r);
+										return e.hook(), e.documentProxy;
+									}
+								},
+							},
+						),
+						e.Proxy(
+							[
+								"HTMLIFrameElement.prototype.getSVGDocument",
+								"HTMLObjectElement.prototype.getSVGDocument",
+								"HTMLEmbedElement.prototype.getSVGDocument",
+							],
+							{
+								apply(e) {
+									if (e.call()) return e.return(e.this.contentDocument);
+								},
+							},
+						),
+						e.Trap("TreeWalker.prototype.currentNode", {
+							get: (e) => e.get(),
+							set: (r, o) =>
+								o === e.documentProxy ? r.set(t.document) : r.set(o),
+						}),
+						e.Proxy("Document.prototype.open", {
+							apply(e) {
+								const t = e.call(),
+									r = t[o.a];
+								return r ? e.return(r.documentProxy) : e.return(t);
+							},
+						}),
+						e.Trap("Node.prototype.ownerDocument", {
+							get(e) {
+								const t = e.get();
+								if (!t) return null;
+								const r = t[o.a];
+								return r ? r.documentProxy : t;
+							},
+						}),
+						e.Trap(
+							[
+								"Node.prototype.parentNode",
+								"Node.prototype.parentElement",
+								"Node.prototype.previousSibling",
+								"Node.prototype.nextSibling",
+								"Range.prototype.commonAncestorContainer",
+								"AbstractRange.prototype.endContainer",
+								"AbstractRange.prototype.startContainer",
+							],
+							{
+								get(e) {
+									const t = e.get();
+									if (!(t instanceof Document)) return t;
+									const r = t[o.a];
+									return r ? r.documentProxy : t;
+								},
+							},
+						),
+						e.Proxy("Node.prototype.getRootNode", {
+							apply(e) {
+								const t = e.call();
+								if (!(t instanceof Document)) return e.return(t);
+								const r = t[o.a];
+								return r ? e.return(r.documentProxy) : e.return(t);
+							},
+						}),
+						e.Proxy("DOMParser.prototype.parseFromString", {
+							apply(t) {
+								if ("text/html" === t.args[1])
+									try {
+										t.args[0] = (0, s.r4)(t.args[0], e.cookieStore, e.meta, !1);
+									} catch {}
+							},
+						});
+				}
+			},
+			6643: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e, t) {
+					e.Proxy("FontFace", {
+						construct(t) {
+							t.args[1] = (0, o.U5)(t.args[1], e.meta);
+						},
+					});
+				}
+			},
+			461: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => a });
+				var o = r(4471),
+					n = r(5008);
+				function a(e, t) {
+					e.Proxy("History.prototype.pushState", {
+						apply(t) {
+							(t.args[2] || "" === t.args[2]) &&
+								(t.args[2] = (0, o.dm)(t.args[2], e.meta)),
+								t.call();
+							const r = new n.UrlChangeEvent(e.url.href);
+							e.frame && e.frame.dispatchEvent(r);
+						},
+					}),
+						e.Proxy("History.prototype.replaceState", {
+							apply(t) {
+								(t.args[2] || "" === t.args[2]) &&
+									(t.args[2] = (0, o.dm)(t.args[2], e.meta)),
+									t.call();
+								const r = new n.UrlChangeEvent(e.url.href);
+								e.frame && e.frame.dispatchEvent(r);
+							},
+						});
+				}
+			},
+			2410: (e, t, r) => {
+				function o(e, t) {
+					delete t.navigation;
+				}
+				r.r(t), r.d(t, { default: () => o });
+			},
+			8805: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => s });
+				var o = r(4471),
+					n = r(2712),
+					a = r(9777);
+				function s(e) {
+					e.Proxy("window.open", {
+						apply(t) {
+							t.args[0] && (t.args[0] = (0, o.dm)(t.args[0], e.meta)),
+								["_parent", "_top", "_unfencedTop"].includes(t.args[1]) &&
+									(t.args[1] = "_self");
+							const r = t.call();
+							if (!r) return t.return(r);
+							if (a.a in r) return t.return(r[a.a].globalProxy);
+							{
+								const e = new n.ScramjetClient(r);
+								return e.hook(), t.return(e.globalProxy);
+							}
+						},
+					}),
+						e.Trap("opener", {
+							get(e) {
+								const t = e.get();
+								return t && a.a in t ? t[a.a].globalProxy : void 0;
+							},
+						}),
+						e.Trap("window.frameElement", {
+							get(e) {
+								const t = e.get();
+								return t ? (t.ownerDocument.defaultView[a.a] ? t : null) : t;
+							},
+						});
+				}
+			},
+			3261: (e, t, r) => {
+				function o(e, t) {
+					e.Trap("origin", { get: () => e.url.origin, set: () => !1 }),
+						e.Trap("Document.prototype.URL", {
+							get: () => e.url.href,
+							set: () => !1,
+						}),
+						e.Trap("Document.prototype.documentURI", {
+							get: () => e.url.href,
+							set: () => !1,
+						}),
+						e.Trap("Document.prototype.domain", {
+							get: () => e.url.hostname,
+							set: () => !1,
+						});
+				}
+				r.r(t), r.d(t, { default: () => o });
+			},
+			4475: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e, t) {
+					e.Trap("PerformanceEntry.prototype.name", {
+						get: (e) => (0, o.Sd)(e.get()),
+					});
+				}
+			},
+			5707: (e, t, r) => {
+				r.r(t),
+					r.d(t, {
+						default: () => l,
+						disabled: () => i,
+						enabled: () => s,
+						order: () => a,
+					});
+				var o = r(4471),
+					n = r(8810);
+				const a = 2,
+					s = (e) => (0, n.Sp)("serviceworkers", e.url);
+				function i(e, t) {
+					Reflect.deleteProperty(Navigator.prototype, "serviceWorker");
+				}
+				function l(e, t) {
+					const r = new WeakMap();
+					e.Proxy("EventTarget.prototype.addEventListener", {
+						apply(e) {
+							r.get(e.this) && e.return(void 0);
+						},
+					}),
+						e.Proxy("EventTarget.prototype.removeEventListener", {
+							apply(e) {
+								r.get(e.this) && e.return(void 0);
+							},
+						}),
+						e.Proxy("ServiceWorkerContainer.prototype.getRegistration", {
+							apply(e) {
+								e.return(new Promise((e) => e(registration)));
+							},
+						}),
+						e.Proxy("ServiceWorkerContainer.prototype.getRegistrations", {
+							apply(e) {
+								e.return(new Promise((e) => e([registration])));
+							},
+						}),
+						e.Trap("ServiceWorkerContainer.prototype.ready", {
+							get: (e) => new Promise((e) => e(registration)),
+						}),
+						e.Trap("ServiceWorkerContainer.prototype.controller", {
+							get: (e) => registration?.active,
+						}),
+						e.Proxy("ServiceWorkerContainer.prototype.register", {
+							apply(t) {
+								const n = new EventTarget();
+								Object.setPrototypeOf(
+									n,
+									self.ServiceWorkerRegistration.prototype,
+								),
+									(n.constructor = t.fn);
+								let a = (0, o.dm)(t.args[0], e.meta) + "?dest=serviceworker";
+								t.args[1] &&
+									"module" === t.args[1].type &&
+									(a += "&type=module");
+								const s = e.natives.construct("SharedWorker", a).port,
+									i = { scope: t.args[0], active: s },
+									l = e.descriptors.get(
+										"ServiceWorkerContainer.prototype.controller",
+										e.serviceWorker,
+									);
+								e.natives.call(
+									"ServiceWorker.prototype.postMessage",
+									l,
+									{
+										scramjet$type: "registerServiceWorker",
+										port: s,
+										origin: e.url.origin,
+									},
+									[s],
+								),
+									r.set(n, i),
+									t.return(new Promise((e) => e(n)));
+							},
+						});
+				}
+			},
+			9227: (e, t, r) => {
+				function o(e, t) {
+					const r = {
+							get(t, r) {
+								switch (r) {
+									case "getItem":
+										return (r) => t.getItem(e.url.host + "@" + r);
+									case "setItem":
+										return (r, o) => t.setItem(e.url.host + "@" + r, o);
+									case "removeItem":
+										return (r) => t.removeItem(e.url.host + "@" + r);
+									case "clear":
+										return () => {
+											for (const r in Object.keys(t))
+												r.startsWith(e.url.host) && t.removeItem(r);
+										};
+									case "key":
+										return (r) => {
+											const o = Object.keys(t).filter((t) =>
+												t.startsWith(e.url.host),
+											);
+											return t.getItem(o[r]);
+										};
+									case "length":
+										return Object.keys(t).filter((t) =>
+											t.startsWith(e.url.host),
+										).length;
+									default:
+										if (r in Object.prototype || "symbol" == typeof r)
+											return Reflect.get(t, r);
+										return (
+											console.log("GET", r, t == o),
+											t.getItem(e.url.host + "@" + r)
+										);
+								}
+							},
+							set: (t, r, n) => (
+								t == o && console.log("SET", r, n, t === o),
+								t.setItem(e.url.host + "@" + r, n),
+								!0
+							),
+							ownKeys: (t) =>
+								Reflect.ownKeys(t)
+									.filter(
+										(t) => "string" == typeof t && t.startsWith(e.url.host),
+									)
+									.map((t) =>
+										"string" == typeof t
+											? t.substring(e.url.host.length + 1)
+											: t,
+									),
+							getOwnPropertyDescriptor: (t, r) => ({
+								value: t.getItem(e.url.host + "@" + r),
+								enumerable: !0,
+								configurable: !0,
+								writable: !0,
+							}),
+							defineProperty: (t, r, o) => (
+								t.setItem(e.url.host + "@" + r, o.value), !0
+							),
+						},
+						o = t.localStorage,
+						n = new Proxy(t.localStorage, r),
+						a = new Proxy(t.sessionStorage, r);
+					delete t.localStorage,
+						delete t.sessionStorage,
+						(t.localStorage = n),
+						(t.sessionStorage = a);
+				}
+				r.r(t), r.d(t, { default: () => o });
+			},
+			5008: (e, t, r) => {
+				r.r(t),
+					r.d(t, {
+						NavigateEvent: () => o,
+						ScramjetContextInit: () => a,
+						UrlChangeEvent: () => n,
+					});
+				class o extends Event {
+					url;
+					constructor(e) {
+						super("navigate"), (this.url = e);
+					}
+				}
+				class n extends Event {
+					url;
+					constructor(e) {
+						super("urlchange"), (this.url = e);
+					}
+				}
+				class a extends Event {
+					window;
+					constructor(e) {
+						super("contextInit"), (this.window = e);
+					}
+				}
+			},
+			2237: (e, t, r) => {
+				r.r(t), r.d(t, { UNSAFE_GLOBALS: () => i, createGlobalProxy: () => l });
+				var o = r(6707),
+					n = r(9777),
+					a = r(2712),
+					s = r(7932);
+				const i = [
+					"window",
+					"self",
+					"globalThis",
+					"this",
+					"parent",
+					"top",
+					"location",
+					"document",
+					"eval",
+					"frames",
+				];
+				function l(e, t) {
+					return new Proxy(t, {
+						get(t, r) {
+							const s = Reflect.get(t, r);
+							if (
+								o.iswindow &&
+								("string" == typeof r || "number" == typeof r) &&
+								!isNaN(Number(r)) &&
+								s
+							) {
+								const e = s.self;
+								if (e) {
+									if (n.a in e) return e[n.a].globalProxy;
+									{
+										const t = new a.ScramjetClient(e);
+										return t.hook(), t.globalProxy;
+									}
+								}
+							}
+							if ("$scramjet" !== r)
+								return "string" == typeof r && i.includes(r) ? e.wrapfn(s) : s;
+						},
+						set(t, r, o) {
+							if ("location" === r) {
+								e.url = o;
+								return;
+							}
+							return Reflect.set(t, r, o);
+						},
+						has: (e, t) => "$scramjet" !== t && Reflect.has(e, t),
+						ownKeys: (e) => Reflect.ownKeys(e).filter((e) => "$scramjet" !== e),
+						defineProperty: (e, t, r) => (
+							r.get || r.set || (r.writable = !0),
+							(r.configurable = !0),
+							Reflect.defineProperty(e, t, r)
+						),
+						getOwnPropertyDescriptor: s.getOwnPropertyDescriptorHandler,
+					});
+				}
+			},
+			7932: (e, t, r) => {
+				function o(e, t) {
+					return Reflect.getOwnPropertyDescriptor(e, t);
+				}
+				r.r(t), r.d(t, { getOwnPropertyDescriptorHandler: () => o });
+			},
+			6707: (e, t, r) => {
+				r.r(t),
+					r.d(t, {
+						isdedicated: () => f,
+						isemulatedsw: () => d,
+						isshared: () => g,
+						issw: () => p,
+						iswindow: () => c,
+						isworker: () => u,
+					});
+				var o = r(8810),
+					n = r(9777),
+					a = r(2712),
+					s = r(5008),
+					i = r(633),
+					l = r(1762).Z;
+				const c = "window" in self && window instanceof Window,
+					u = "WorkerGlobalScope" in self,
+					p = "ServiceWorkerGlobalScope" in self,
+					f = "DedicatedWorkerGlobalScope" in self,
+					g = "SharedWorkerGlobalScope" in self,
+					d =
+						"serviceworker" ===
+						new URL(self.location.href).searchParams.get("dest");
+				if ((l.log("initializing scramjet client"), !(n.a in self))) {
+					(0, o.t8)();
+					const e = new a.ScramjetClient(self);
+					self.COOKIE && e.loadcookies(self.COOKIE),
+						e.hook(),
+						d && new i.ScramjetServiceWorkerRuntime(e).hook();
+					const t = new s.ScramjetContextInit(e.global.window);
+					e.frame?.dispatchEvent(t);
+				}
+				Reflect.deleteProperty(self, "WASM"),
+					Reflect.deleteProperty(self, "COOKIE"),
+					"document" in self &&
+						document?.currentScript &&
+						document.currentScript.remove();
+			},
+			8971: (e, t, r) => {
+				r.r(t), r.d(t, { createLocationProxy: () => i });
+				var o = r(3498),
+					n = r(4471),
+					a = r(5008),
+					s = r(6707);
+				function i(e, t) {
+					const r = s.iswindow ? t.Location : t.WorkerLocation,
+						i = {};
+					Object.setPrototypeOf(i, r.prototype), (i.constructor = r);
+					const l = s.iswindow ? t.location : r.prototype;
+					for (const r of [
+						"protocol",
+						"hash",
+						"host",
+						"hostname",
+						"href",
+						"origin",
+						"pathname",
+						"port",
+						"search",
+					]) {
+						const n = (0, o.nativeGetOwnPropertyDescriptor)(l, r);
+						if (!n) continue;
+						const s = { configurable: !0, enumerable: !0 };
+						n.get && (s.get = new Proxy(n.get, { apply: () => e.url[r] })),
+							n.set &&
+								(s.set = new Proxy(n.set, {
+									apply(o, n, s) {
+										if ("href" === r) {
+											e.url = s[0];
+											return;
+										}
+										if ("hash" === r) {
+											t.location.hash = s[0];
+											const r = new a.UrlChangeEvent(e.url.href);
+											e.frame && e.frame.dispatchEvent(r);
+											return;
+										}
+										const i = new URL(e.url.href);
+										(i[r] = s[0]), (e.url = i);
+									},
+								})),
+							Object.defineProperty(i, r, s);
+					}
+					return (
+						(i.toString = new Proxy(t.location.toString, {
+							apply: () => e.url.href,
+						})),
+						t.location.valueOf &&
+							(i.valueOf = new Proxy(t.location.valueOf, {
+								apply: () => e.url.href,
+							})),
+						t.location.assign &&
+							(i.assign = new Proxy(t.location.assign, {
+								apply(r, o, a) {
+									(a[0] = (0, n.dm)(a[0], e.meta)),
+										Reflect.apply(r, t.location, a);
+								},
+							})),
+						t.location.reload &&
+							(i.reload = new Proxy(t.location.reload, {
+								apply(e, r, o) {
+									Reflect.apply(e, t.location, o);
+								},
+							})),
+						t.location.replace &&
+							(i.replace = new Proxy(t.location.replace, {
+								apply(r, o, a) {
+									(a[0] = (0, n.dm)(a[0], e.meta)),
+										Reflect.apply(r, t.location, a);
+								},
+							})),
+						i
+					);
+				}
+			},
+			3498: (e, t, r) => {
+				r.r(t),
+					r.d(t, {
+						nativeFunction: () => o,
+						nativeGetOwnPropertyDescriptor: () => n,
+					});
+				const o = self.Function,
+					n = self.Object.getOwnPropertyDescriptor;
+			},
+			8278: (e, t, r) => {
+				function o(e) {
+					e.Proxy("console.clear", {
+						apply(e) {
+							e.return(void 0);
+						},
+					});
+					const t = console.log;
+					e.Trap("console.log", { set(e, t) {}, get: (e) => t });
+				}
+				r.r(t), r.d(t, { default: () => o });
+			},
+			9447: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e) {
+					e.Proxy("URL.createObjectURL", {
+						apply(t) {
+							const r = t.call();
+							r.startsWith("blob:")
+								? t.return((0, o.ls)(r, e.meta))
+								: t.return(r);
+						},
+					}),
+						e.Proxy("URL.revokeObjectURL", {
+							apply(e) {
+								e.args[0] = (0, o.Ag)(e.args[0]);
+							},
+						});
+				}
+			},
+			4169: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e, t) {
+					e.Proxy("CacheStorage.prototype.open", {
+						apply(t) {
+							t.args[0] = `${e.url.origin}@${t.args[0]}`;
+						},
+					}),
+						e.Proxy("CacheStorage.prototype.has", {
+							apply(t) {
+								t.args[0] = `${e.url.origin}@${t.args[0]}`;
+							},
+						}),
+						e.Proxy("CacheStorage.prototype.match", {
+							apply(t) {
+								("string" == typeof t.args[0] || t.args[0] instanceof URL) &&
+									(t.args[0] = (0, o.dm)(t.args[0], e.meta));
+							},
+						}),
+						e.Proxy("CacheStorage.prototype.delete", {
+							apply(t) {
+								t.args[0] = `${e.url.origin}@${t.args[0]}`;
+							},
+						}),
+						e.Proxy("Cache.prototype.add", {
+							apply(t) {
+								("string" == typeof t.args[0] || t.args[0] instanceof URL) &&
+									(t.args[0] = (0, o.dm)(t.args[0], e.meta));
+							},
+						}),
+						e.Proxy("Cache.prototype.addAll", {
+							apply(t) {
+								for (let r = 0; r < t.args[0].length; r++)
+									("string" == typeof t.args[0][r] ||
+										t.args[0][r] instanceof URL) &&
+										(t.args[0][r] = (0, o.dm)(t.args[0][r], e.meta));
+							},
+						}),
+						e.Proxy("Cache.prototype.put", {
+							apply(t) {
+								("string" == typeof t.args[0] || t.args[0] instanceof URL) &&
+									(t.args[0] = (0, o.dm)(t.args[0], e.meta));
+							},
+						}),
+						e.Proxy("Cache.prototype.match", {
+							apply(t) {
+								("string" == typeof t.args[0] || t.args[0] instanceof URL) &&
+									(t.args[0] = (0, o.dm)(t.args[0], e.meta));
+							},
+						}),
+						e.Proxy("Cache.prototype.matchAll", {
+							apply(t) {
+								((t.args[0] && "string" == typeof t.args[0]) ||
+									(t.args[0] && t.args[0] instanceof URL)) &&
+									(t.args[0] = (0, o.dm)(t.args[0], e.meta));
+							},
+						}),
+						e.Proxy("Cache.prototype.keys", {
+							apply(t) {
+								((t.args[0] && "string" == typeof t.args[0]) ||
+									(t.args[0] && t.args[0] instanceof URL)) &&
+									(t.args[0] = (0, o.dm)(t.args[0], e.meta));
+							},
+						}),
+						e.Proxy("Cache.prototype.delete", {
+							apply(t) {
+								("string" == typeof t.args[0] || t.args[0] instanceof URL) &&
+									(t.args[0] = (0, o.dm)(t.args[0], e.meta));
+							},
+						});
+				}
+			},
+			5146: (e, t, r) => {
+				r.r(t), r.d(t, { argdbg: () => a, default: () => s, enabled: () => n });
+				var o = r(8810);
+				const n = (e) => (0, o.Sp)("captureErrors", e.url);
+				function a(e, t = []) {
+					switch (typeof e) {
+						case "string":
+							break;
+						case "object":
+							if (
+								e &&
+								e[Symbol.iterator] &&
+								"function" == typeof e[Symbol.iterator]
+							)
+								for (const r in e) {
+									const o = Object.getOwnPropertyDescriptor(e, r);
+									if (o && o.get) continue;
+									const n = e[r];
+									t.includes(n) || (t.push(n), a(n, t));
+								}
+					}
+				}
+				function s(e, t) {
+					(t.$scramerr = (e) => {
+						console.warn("CAUGHT ERROR", e);
+					}),
+						(t.$scramdbg = (e, t) => (
+							e && "object" == typeof e && e.length > 0 && a(e), a(t), t
+						)),
+						e.Proxy("Promise.prototype.catch", {
+							apply(e) {
+								e.args[0] &&
+									(e.args[0] = new Proxy(e.args[0], {
+										apply(e, t, r) {
+											Reflect.apply(e, t, r);
+										},
+									}));
+							},
+						});
+				}
+			},
+			7651: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => s, enabled: () => a });
+				var o = r(8810),
+					n = r(4471);
+				const a = (e) => (0, o.Sp)("cleanErrors", e.url);
+				function s(e, t) {
+					const r = (e, t) => {
+						let r = e.stack;
+						for (let e = 0; e < t.length; e++) {
+							const o = t[e].getFileName();
+							if (o.endsWith(n.vc.files.client)) {
+								const e = r.split("\n"),
+									t = e.find((e) => e.includes(o));
+								e.splice(t, 1), (r = e.join("\n"));
+								continue;
+							}
+							try {
+								r = r.replaceAll(o, (0, n.Sd)(o));
+							} catch {}
+						}
+						return r;
+					};
+					e.Trap("Error.prepareStackTrace", { get: (e) => r, set(e) {} });
+				}
+			},
+			4423: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n, indirectEval: () => a });
+				var o = r(4471);
+				function n(e, t) {
+					Object.defineProperty(t, o.vc.globals.rewritefn, {
+						value: (t) =>
+							"string" != typeof t
+								? t
+								: (0, o.Zs)(t, "(direct eval proxy)", e.meta),
+						writable: !1,
+						configurable: !1,
+					});
+				}
+				function a(e) {
+					return "string" != typeof e
+						? e
+						: (0, this.global.eval)(
+								(0, o.Zs)(e, "(indirect eval proxy)", this.meta),
+							);
+				}
+			},
+			8231: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => c });
+				var o = r(6707),
+					n = r(9777),
+					a = r(7932),
+					s = r(3498),
+					i = r(2370);
+				const l = Symbol.for("scramjet original onevent function");
+				function c(e, t) {
+					const r = {
+						message: {
+							_init() {
+								return (
+									"object" != typeof this.data ||
+									!("$scramjet$type" in this.data)
+								);
+							},
+							ports() {
+								return this.ports;
+							},
+							source() {
+								if (null === this.source) return null;
+								const e = this.source[n.a];
+								return e ? e.globalProxy : this.source;
+							},
+							origin() {
+								return "object" == typeof this.data &&
+									"$scramjet$origin" in this.data
+									? this.data.$scramjet$origin
+									: e.url.origin;
+							},
+							data() {
+								return "object" == typeof this.data &&
+									"$scramjet$data" in this.data
+									? this.data.$scramjet$data
+									: this.data;
+							},
+						},
+					};
+					function c(e) {
+						return new Proxy(e, {
+							apply(e, o, n) {
+								const s = n[0];
+								if (s.isTrusted) {
+									const t = s.type;
+									if (t in r) {
+										const o = r[t];
+										if (o._init && !1 === o._init.call(s)) return;
+										n[0] = new Proxy(s, {
+											get: (t, r, n) =>
+												r in o ? o[r].call(t) : Reflect.get(e, r, n),
+											getOwnPropertyDescriptor:
+												a.getOwnPropertyDescriptorHandler,
+										});
+									}
+								}
+								return (
+									t.event ||
+										Object.defineProperty(t, "event", {
+											get: () => n[0],
+											configurable: !0,
+										}),
+									Reflect.apply(e, o, n)
+								);
+							},
+							getOwnPropertyDescriptor: a.getOwnPropertyDescriptorHandler,
+						});
+					}
+					e.Proxy("EventTarget.prototype.addEventListener", {
+						apply(t) {
+							if (((0, i.unproxy)(t, e), "function" != typeof t.args[1]))
+								return;
+							const r = t.args[1],
+								o = c(r);
+							t.args[1] = o;
+							let n = e.eventcallbacks.get(t.this);
+							(n ||= []).push({
+								event: t.args[0],
+								originalCallback: r,
+								proxiedCallback: o,
+							}),
+								e.eventcallbacks.set(t.this, n);
+						},
+					}),
+						e.Proxy("EventTarget.prototype.removeEventListener", {
+							apply(t) {
+								if (((0, i.unproxy)(t, e), "function" != typeof t.args[1]))
+									return;
+								const r = e.eventcallbacks.get(t.this);
+								if (!r) return;
+								const o = r.findIndex(
+									(e) =>
+										e.event === t.args[0] && e.originalCallback === t.args[1],
+								);
+								if (-1 === o) return;
+								const n = r.splice(o, 1);
+								e.eventcallbacks.set(t.this, r),
+									(t.args[1] = n[0].proxiedCallback);
+							},
+						}),
+						e.Proxy("EventTarget.prototype.dispatchEvent", {
+							apply(t) {
+								(0, i.unproxy)(t, e);
+							},
+						});
+					const u = [t.self, t.MessagePort.prototype];
+					for (const n of (o.iswindow && u.push(t.HTMLElement.prototype),
+					t.Worker && u.push(t.Worker.prototype),
+					u))
+						for (const t of Reflect.ownKeys(n))
+							if ("string" == typeof t && t.startsWith("on") && r[t.slice(2)]) {
+								const r = (0, s.nativeGetOwnPropertyDescriptor)(n, t);
+								if (!r.get || !r.set || !r.configurable) continue;
+								e.RawTrap(n, t, {
+									get(e) {
+										return this[l] ? this[l] : e.get();
+									},
+									set(e, t) {
+										if (((this[l] = t), "function" != typeof t))
+											return e.set(t);
+										e.set(c(t));
+									},
+								});
+							}
+				}
+			},
+			7636: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => a });
+				var o = r(4471);
+				function n(e, t) {
+					const r = e.call().toString(),
+						n = (0, o.Zs)(`return ${r}`, "(function proxy)", t.meta);
+					e.return(e.fn(n)());
+				}
+				function a(e, t) {
+					e.Proxy("Function", {
+						apply(t) {
+							n(t, e);
+						},
+						construct(t) {
+							n(t, e);
+						},
+					});
+				}
+			},
+			4306: (e, t, r) => {
+				let o;
+				r.r(t), r.d(t, { default: () => k });
+				var n = r(4471),
+					a = r(8810);
+				function s(e) {
+					const t = o.__externref_table_alloc();
+					return o.__wbindgen_export_2.set(t, e), t;
+				}
+				function i(e, t) {
+					try {
+						return e.apply(this, t);
+					} catch (t) {
+						const e = s(t);
+						o.__wbindgen_exn_store(e);
+					}
+				}
+				const l =
+					"undefined" != typeof TextDecoder
+						? new TextDecoder("utf-8", { ignoreBOM: !0, fatal: !0 })
+						: {
+								decode: () => {
+									throw Error("TextDecoder not available");
+								},
+							};
+				"undefined" != typeof TextDecoder && l.decode();
+				let c = null;
+				function u() {
+					return (
+						(null === c || c.buffer !== o.memory.buffer) &&
+							(c = new Uint8Array(o.memory.buffer)),
+						c
+					);
+				}
+				function p(e, t) {
+					return (e >>>= 0), l.decode(u().slice(e, e + t));
+				}
+				let f = 0,
+					g =
+						"undefined" != typeof TextEncoder
+							? new TextEncoder("utf-8")
+							: {
+									encode: () => {
+										throw Error("TextEncoder not available");
+									},
+								},
+					d = (e, t) => {
+						const r = g.encode(e);
+						return t.set(r), { read: e.length, written: r.length };
+					};
+				function y(e, t, r) {
+					if (void 0 === r) {
+						const r = g.encode(e),
+							o = t(r.length, 1) >>> 0;
+						return (
+							u()
+								.subarray(o, o + r.length)
+								.set(r),
+							(f = r.length),
+							o
+						);
+					}
+					let o = e.length,
+						n = t(o, 1) >>> 0,
+						a = u(),
+						s = 0;
+					for (; s < o; s++) {
+						const t = e.charCodeAt(s);
+						if (t > 127) break;
+						a[n + s] = t;
+					}
+					if (s !== o) {
+						0 !== s && (e = e.slice(s)),
+							(n = r(n, o, (o = s + 3 * e.length), 1) >>> 0);
+						const t = d(e, u().subarray(n + s, n + o));
+						(s += t.written), (n = r(n, o, s, 1) >>> 0);
+					}
+					return (f = s), n;
+				}
+				let m = null;
+				function h() {
+					return (
+						(null === m || m.buffer !== o.memory.buffer) &&
+							(m = new DataView(o.memory.buffer)),
+						m
+					);
+				}
+				function b(e) {
+					return null == e;
+				}
+				function w(e) {
+					const t = o.__wbindgen_export_2.get(e);
+					return o.__externref_table_dealloc(e), t;
+				}
+				async function v(e, t) {
+					if ("function" == typeof Response && e instanceof Response) {
+						if ("function" == typeof WebAssembly.instantiateStreaming)
+							try {
+								return await WebAssembly.instantiateStreaming(e, t);
+							} catch (t) {
+								if ("application/wasm" != e.headers.get("Content-Type"))
+									console.warn(
+										"`WebAssembly.instantiateStreaming` failed because your server does not serve Wasm with `application/wasm` MIME type. Falling back to `WebAssembly.instantiate` which is slower. Original error:\n",
+										t,
+									);
+								else throw t;
+							}
+						const r = await e.arrayBuffer();
+						return await WebAssembly.instantiate(r, t);
+					}
+					{
+						const r = await WebAssembly.instantiate(e, t);
+						return r instanceof WebAssembly.Instance
+							? { instance: r, module: e }
+							: r;
+					}
+				}
+				function x() {
+					const e = {};
+					return (
+						(e.wbg = {}),
+						(e.wbg.__wbg_call_672a4d21634d4a24 = () =>
+							i((e, t) => e.call(t), arguments)),
+						(e.wbg.__wbg_call_7cccdd69e0791ae2 = () =>
+							i((e, t, r) => e.call(t, r), arguments)),
+						(e.wbg.__wbg_call_833bed5770ea2041 = () =>
+							i((e, t, r, o) => e.call(t, r, o), arguments)),
+						(e.wbg.__wbg_get_67b2ba62fc30de12 = () =>
+							i((e, t) => Reflect.get(e, t), arguments)),
+						(e.wbg.__wbg_new_405e22f390576ce2 = () => ({})),
+						(e.wbg.__wbg_new_78feb108b6472713 = () => []),
+						(e.wbg.__wbg_new_9ffbe0a71eff35e3 = () =>
+							i((e, t) => new URL(p(e, t)), arguments)),
+						(e.wbg.__wbg_newnoargs_105ed471475aaf50 = (e, t) =>
+							Function(p(e, t))),
+						(e.wbg.__wbg_newwithbase_161c299e7a34e2eb = () =>
+							i((e, t, r, o) => new URL(p(e, t), p(r, o)), arguments)),
+						(e.wbg.__wbg_now_d18023d54d4e5500 = (e) => e.now()),
+						(e.wbg.__wbg_scramtag_bd98edaa0eaec45e = (e) => {
+							const t = y(
+									"10000000000".replace(/[018]/g, (e) =>
+										(
+											e ^
+											(crypto.getRandomValues(new Uint8Array(1))[0] &
+												(15 >> (e / 4)))
+										).toString(16),
+									),
+									o.__wbindgen_malloc,
+									o.__wbindgen_realloc,
+								),
+								r = f;
+							h().setInt32(e + 4, r, !0), h().setInt32(e + 0, t, !0);
+						}),
+						(e.wbg.__wbg_set_bb8cecf6a62b9f46 = () =>
+							i((e, t, r) => Reflect.set(e, t, r), arguments)),
+						(e.wbg.__wbg_static_accessor_GLOBAL_88a902d13a557d07 = () => {
+							const e = "undefined" == typeof global ? null : global;
+							return b(e) ? 0 : s(e);
+						}),
+						(e.wbg.__wbg_static_accessor_GLOBAL_THIS_56578be7e9f832b0 = () => {
+							const e = "undefined" == typeof globalThis ? null : globalThis;
+							return b(e) ? 0 : s(e);
+						}),
+						(e.wbg.__wbg_static_accessor_SELF_37c5d418e4bf5819 = () => {
+							const e = "undefined" == typeof self ? null : self;
+							return b(e) ? 0 : s(e);
+						}),
+						(e.wbg.__wbg_static_accessor_WINDOW_5de37043a91a9c40 = () => {
+							const e = "undefined" == typeof window ? null : window;
+							return b(e) ? 0 : s(e);
+						}),
+						(e.wbg.__wbg_toString_5285597960676b7b = (e) => e.toString()),
+						(e.wbg.__wbg_toString_c813bbd34d063839 = (e) => e.toString()),
+						(e.wbg.__wbindgen_boolean_get = (e) =>
+							"boolean" == typeof e ? (e ? 1 : 0) : 2),
+						(e.wbg.__wbindgen_error_new = (e, t) => Error(p(e, t))),
+						(e.wbg.__wbindgen_init_externref_table = () => {
+							const e = o.__wbindgen_export_2,
+								t = e.grow(4);
+							e.set(0, void 0),
+								e.set(t + 0, void 0),
+								e.set(t + 1, null),
+								e.set(t + 2, !0),
+								e.set(t + 3, !1);
+						}),
+						(e.wbg.__wbindgen_is_function = (e) => "function" == typeof e),
+						(e.wbg.__wbindgen_is_undefined = (e) => void 0 === e),
+						(e.wbg.__wbindgen_number_new = (e) => e),
+						(e.wbg.__wbindgen_string_get = (e, t) => {
+							const r = "string" == typeof t ? t : void 0;
+							var n = b(r)
+									? 0
+									: y(r, o.__wbindgen_malloc, o.__wbindgen_realloc),
+								a = f;
+							h().setInt32(e + 4, a, !0), h().setInt32(e + 0, n, !0);
+						}),
+						(e.wbg.__wbindgen_string_new = (e, t) => p(e, t)),
+						(e.wbg.__wbindgen_throw = (e, t) => {
+							throw Error(p(e, t));
+						}),
+						(e.wbg.__wbindgen_uint8_array_new = (e, t) => {
+							var r,
+								n = ((r = e >>> 0), u().subarray(r / 1, r / 1 + t)).slice();
+							return o.__wbindgen_free(e, 1 * t, 1), n;
+						}),
+						e
+					);
+				}
+				function P(e, t) {
+					e.wbg.memory =
+						t ||
+						new WebAssembly.Memory({ initial: 18, maximum: 16384, shared: !0 });
+				}
+				function _(e, t, r) {
+					if (
+						((o = e.exports),
+						(S.__wbindgen_wasm_module = t),
+						(m = null),
+						(c = null),
+						void 0 !== r && ("number" != typeof r || 0 === r || r % 65536 != 0))
+					)
+						throw "invalid stack size";
+					return o.__wbindgen_start(r), o;
+				}
+				async function S(e, t) {
+					let r;
+					if (void 0 !== o) return o;
+					void 0 !== e &&
+						(Object.getPrototypeOf(e) === Object.prototype
+							? ({ module_or_path: e, memory: t, thread_stack_size: r } = e)
+							: console.warn(
+									"using deprecated parameters for the initialization function; pass a single object instead",
+								)),
+						void 0 === e && (e = new URL("wasm_bg.wasm", ""));
+					const n = x();
+					("string" == typeof e ||
+						("function" == typeof Request && e instanceof Request) ||
+						("function" == typeof URL && e instanceof URL)) &&
+						(e = fetch(e)),
+						P(n, t);
+					const { instance: a, module: s } = await v(await e, n);
+					return _(a, s, r);
+				}
+				!((e, t) => {
+					let r;
+					if (void 0 !== o) return;
+					void 0 !== e &&
+						(Object.getPrototypeOf(e) === Object.prototype
+							? ({ module: e, memory: t, thread_stack_size: r } = e)
+							: console.warn(
+									"using deprecated parameters for `initSync()`; pass a single object instead",
+								));
+					const n = x();
+					P(n, t),
+						e instanceof WebAssembly.Module || (e = new WebAssembly.Module(e)),
+						_(new WebAssembly.Instance(e, n), e, r);
+				})({
+					module: new WebAssembly.Module(
+						Uint8Array.from(atob(self.WASM), (e) => e.charCodeAt(0)),
+					),
+				}),
+					(Error.stackTraceLimit = 50);
+				const T = new TextDecoder();
+				function E(e, t) {
+					try {
+						return new URL(e, t);
+					} catch {
+						return null;
+					}
+				}
+				function k(e, t) {
+					const r = e.natives.store.Function;
+					(t[n.vc.globals.importfn] = (t, n) => {
+						const s = new URL(n, t).href;
+						return r(
+							`return import("${((e, t) => {
+								if (
+									(e instanceof URL && (e = e.toString()),
+									e.startsWith("javascript:"))
+								)
+									return (
+										"javascript:" +
+										((e, t, r, n = !1) => {
+											var s;
+											return (0, a.Sp)("naiiveRewriter", r.origin)
+												? ("string" !=
+														typeof (s =
+															"string" == typeof e
+																? e
+																: new TextDecoder().decode(e)) &&
+														(s = new TextDecoder().decode(s)),
+													`
+		with (${a.h3.config.globals.wrapfn}(globalThis)) {
+
+			${s}
+
+		}
+	`)
+												: ((e, t, r, n) => {
+														let s;
+														const i = performance.now();
+														try {
+															s =
+																"string" == typeof e
+																	? ((e, t, r, n, a) => {
+																			const s = y(
+																					e,
+																					o.__wbindgen_malloc,
+																					o.__wbindgen_realloc,
+																				),
+																				i = f,
+																				l = y(
+																					t,
+																					o.__wbindgen_malloc,
+																					o.__wbindgen_realloc,
+																				),
+																				c = f,
+																				u = y(
+																					n,
+																					o.__wbindgen_malloc,
+																					o.__wbindgen_realloc,
+																				),
+																				p = f,
+																				g = o.rewrite_js(
+																					s,
+																					i,
+																					l,
+																					c,
+																					r,
+																					u,
+																					p,
+																					a,
+																				);
+																			if (g[2]) throw w(g[1]);
+																			return w(g[0]);
+																		})(
+																			e,
+																			r.base.href,
+																			n,
+																			t || "(unknown)",
+																			a.h3,
+																		)
+																	: ((e, t, r, n, a) => {
+																			const s = ((e, t) => {
+																					const r = t(1 * e.length, 1) >>> 0;
+																					return (
+																						u().set(e, r / 1), (f = e.length), r
+																					);
+																				})(e, o.__wbindgen_malloc),
+																				i = f,
+																				l = y(
+																					t,
+																					o.__wbindgen_malloc,
+																					o.__wbindgen_realloc,
+																				),
+																				c = f,
+																				p = y(
+																					n,
+																					o.__wbindgen_malloc,
+																					o.__wbindgen_realloc,
+																				),
+																				g = f,
+																				d = o.rewrite_js_from_arraybuffer(
+																					s,
+																					i,
+																					l,
+																					c,
+																					r,
+																					p,
+																					g,
+																					a,
+																				);
+																			if (d[2]) throw w(d[1]);
+																			return w(d[0]);
+																		})(
+																			new Uint8Array(e),
+																			r.base.href,
+																			n,
+																			t || "(unknown)",
+																			a.h3,
+																		);
+														} catch (r) {
+															return (
+																console.warn(
+																	"failed rewriting js for",
+																	t,
+																	r,
+																	e,
+																),
+																(r.message = `failed rewriting js for "${t}": ${r.message}`),
+																e
+															);
+														}
+														const l = performance.now(),
+															{ js: c, errors: p, duration: g } = s;
+														if ((0, a.Sp)("rewriterLogs", r.base))
+															for (const e of p)
+																console.error("oxc parse error", e);
+														if ((0, a.Sp)("rewriterLogs", r.base)) {
+															let e;
+															e =
+																g < 1n
+																	? "BLAZINGLY FAST"
+																	: g < 500n
+																		? "decent speed"
+																		: "really slow";
+															const r = (l - i - Number(g)).toFixed(2);
+															console.log(
+																`oxc rewrite for "${t || "(unknown)"}" was ${e} (${g}ms; ${r}ms overhead)`,
+															);
+														}
+														return "string" == typeof e ? T.decode(c) : c;
+													})(e, t, r, n);
+										})(e.slice(11), "(javascript: url)", t)
+									);
+								if (e.startsWith("blob:"))
+									return location.origin + a.h3.config.prefix + e;
+								if (e.startsWith("data:"))
+									return location.origin + a.h3.config.prefix + e;
+								{
+									if (e.startsWith("mailto:") || e.startsWith("about:"))
+										return e;
+									let r = t.base.href;
+									r.startsWith("about:") &&
+										(r = ((e) => {
+											e instanceof URL && (e = e.toString());
+											const t = location.origin + a.h3.config.prefix;
+											if (e.startsWith("javascript:") || e.startsWith("blob:"))
+												return e;
+											if (e.startsWith(t + "blob:"))
+												return e.substring(t.length);
+											if (e.startsWith(t + "data:"))
+												return e.substring(t.length);
+											if (e.startsWith("mailto:") || e.startsWith("about:"))
+												return e;
+											else if (E(e))
+												return a.h3.codec.decode(
+													e.slice(
+														(location.origin + a.h3.config.prefix).length,
+													),
+												);
+											else return e;
+										})(self.location.href));
+									const o = E(e, r);
+									return o
+										? location.origin +
+												a.h3.config.prefix +
+												a.h3.codec.encode(o.href)
+										: e;
+								}
+							})(s, e.meta)}")`,
+						)();
+					}),
+						(t[n.vc.globals.metafn] = (e) => ({
+							url: e,
+							resolve: (t) => new URL(t, e).href,
+						}));
+				}
+			},
+			2930: (e, t, r) => {
+				function o(e) {
+					e.Proxy("IDBFactory.prototype.open", {
+						apply(t) {
+							t.args[0] = `${e.url.origin}@${t.args[0]}`;
+						},
+					}),
+						e.Trap("IDBDatabase.prototype.name", {
+							get(e) {
+								const t = e.get();
+								return t.substring(t.indexOf("@") + 1);
+							},
+						});
+				}
+				r.r(t), r.d(t, { default: () => o });
+			},
+			2625: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => s });
+				var o = r(6707),
+					n = r(9777),
+					a = r(6594);
+				function s(e) {
+					o.iswindow &&
+						e.Proxy("window.postMessage", {
+							apply(e) {
+								let t;
+								const {
+										constructor: { constructor: r },
+									} =
+										"object" == typeof e.args[0] && null !== e.args[0]
+											? e.args[0]
+											: "object" == typeof e.args[2] && null !== e.args[2]
+												? e.args[2]
+												: e.this &&
+														a.POLLUTANT in e.this &&
+														"object" == typeof e.this[a.POLLUTANT] &&
+														null !== e.this[a.POLLUTANT]
+													? e.this[a.POLLUTANT]
+													: {},
+									o = r("return globalThis")()[n.a],
+									s = r("...args", "this(...args)");
+								(e.args[0] = {
+									$scramjet$messagetype: "window",
+									$scramjet$origin: o.url.origin,
+									$scramjet$data: e.args[0],
+								}),
+									"string" == typeof e.args[1] && (e.args[1] = "*"),
+									"object" == typeof e.args[1] &&
+										(e.args[1].targetOrigin = "*"),
+									e.return(s.call(e.fn, ...e.args));
+							},
+						});
+					const t = ["MessagePort.prototype.postMessage"];
+					self.Worker && t.push("Worker.prototype.postMessage"),
+						o.iswindow || t.push("self.postMessage"),
+						e.Proxy(t, {
+							apply(e) {
+								e.args[0] = {
+									$scramjet$messagetype: "worker",
+									$scramjet$data: e.args[0],
+								};
+							},
+						});
+				}
+			},
+			6594: (e, t, r) => {
+				r.r(t), r.d(t, { POLLUTANT: () => n, default: () => a });
+				var o = r(4471);
+				const n = Symbol.for("scramjet realm pollutant");
+				function a(e, t) {
+					Object.defineProperty(t.Object.prototype, o.vc.globals.setrealmfn, {
+						value(e) {
+							return (
+								Object.defineProperty(this, n, {
+									value: e,
+									writable: !1,
+									configurable: !0,
+									enumerable: !1,
+								}),
+								this
+							);
+						},
+						writable: !0,
+						configurable: !0,
+						enumerable: !1,
+					});
+				}
+			},
+			2738: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e) {
+					e.Proxy("EventSource", {
+						construct(t) {
+							t.args[0] = (0, o.dm)(t.args[0], e.meta);
+						},
+					}),
+						e.Trap("EventSource.prototype.url", {
+							get(e) {
+								(0, o.Sd)(e.get());
+							},
+						});
+				}
+			},
+			106: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => a });
+				var o = r(6707),
+					n = r(4471);
+				function a(e, t) {
+					e.Proxy("fetch", {
+						apply(t) {
+							("string" == typeof t.args[0] || t.args[0] instanceof URL) &&
+								((t.args[0] = (0, n.dm)(t.args[0], e.meta)),
+								o.isemulatedsw && (t.args[0] += "?from=swruntime"));
+						},
+					}),
+						e.Proxy("Request", {
+							construct(t) {
+								("string" == typeof t.args[0] || t.args[0] instanceof URL) &&
+									((t.args[0] = (0, n.dm)(t.args[0], e.meta)),
+									o.isemulatedsw && (t.args[0] += "?from=swruntime"));
+							},
+						}),
+						e.Trap("Response.prototype.url", {
+							get: (e) => (0, n.Sd)(e.get()),
+						}),
+						e.Trap("Request.prototype.url", { get: (e) => (0, n.Sd)(e.get()) });
+				}
+			},
+			7219: (e, t, r) => {
+				function o(e, t) {
+					const r = new WeakMap(),
+						o = new WeakMap();
+					e.Proxy("WebSocket", {
+						construct(o) {
+							const n = new EventTarget();
+							Object.setPrototypeOf(n, o.fn.prototype), (n.constructor = o.fn);
+							const a = (e) =>
+									new Proxy(e, {
+										get: (e, t) => "isTrusted" === t || Reflect.get(e, t),
+									}),
+								s = e.bare.createWebSocket(o.args[0], o.args[1], null, {
+									"User-Agent": t.navigator.userAgent,
+									Origin: e.url.origin,
+								}),
+								i = {
+									extensions: "",
+									protocol: "",
+									url: o.args[0],
+									binaryType: "blob",
+									barews: s,
+									onclose: null,
+									onerror: null,
+									onmessage: null,
+									onopen: null,
+								};
+							function l(e) {
+								i["on" + e.type]?.(a(e)), n.dispatchEvent(e);
+							}
+							s.addEventListener("open", () => {
+								l(new Event("open"));
+							}),
+								s.addEventListener("close", (e) => {
+									l(new CloseEvent("close", e));
+								}),
+								s.addEventListener("message", async (e) => {
+									let t = e.data;
+									"string" == typeof t ||
+										("byteLength" in t
+											? "blob" === i.binaryType
+												? (t = new Blob([t]))
+												: Object.setPrototypeOf(t, ArrayBuffer.prototype)
+											: "arrayBuffer" in t &&
+												"arraybuffer" === i.binaryType &&
+												Object.setPrototypeOf(
+													(t = await t.arrayBuffer()),
+													ArrayBuffer.prototype,
+												)),
+										l(
+											new MessageEvent("message", {
+												data: t,
+												origin: e.origin,
+												lastEventId: e.lastEventId,
+												source: e.source,
+												ports: e.ports,
+											}),
+										);
+								}),
+								s.addEventListener("error", () => {
+									l(new Event("error"));
+								}),
+								r.set(n, i),
+								o.return(n);
+						},
+					}),
+						e.Trap("WebSocket.prototype.binaryType", {
+							get: (e) => r.get(e.this).binaryType,
+							set(e, t) {
+								const o = r.get(e.this);
+								("blob" === t || "arraybuffer" === t) && (o.binaryType = t);
+							},
+						}),
+						e.Trap("WebSocket.prototype.bufferedAmount", { get: () => 0 }),
+						e.Trap("WebSocket.prototype.extensions", {
+							get: (e) => r.get(e.this).extensions,
+						}),
+						e.Trap("WebSocket.prototype.onclose", {
+							get: (e) => r.get(e.this).onclose,
+							set(e, t) {
+								r.get(e.this).onclose = t;
+							},
+						}),
+						e.Trap("WebSocket.prototype.onerror", {
+							get: (e) => r.get(e.this).onerror,
+							set(e, t) {
+								r.get(e.this).onerror = t;
+							},
+						}),
+						e.Trap("WebSocket.prototype.onmessage", {
+							get: (e) => r.get(e.this).onmessage,
+							set(e, t) {
+								r.get(e.this).onmessage = t;
+							},
+						}),
+						e.Trap("WebSocket.prototype.onopen", {
+							get: (e) => r.get(e.this).onopen,
+							set(e, t) {
+								r.get(e.this).onopen = t;
+							},
+						}),
+						e.Trap("WebSocket.prototype.url", {
+							get: (e) => r.get(e.this).url,
+						}),
+						e.Trap("WebSocket.prototype.protocol", {
+							get: (e) => r.get(e.this).protocol,
+						}),
+						e.Trap("WebSocket.prototype.readyState", {
+							get: (e) => r.get(e.this).barews.readyState,
+						}),
+						e.Proxy("WebSocket.prototype.send", {
+							apply(e) {
+								const t = r.get(e.this);
+								e.return(t.barews.send(e.args[0]));
+							},
+						}),
+						e.Proxy("WebSocket.prototype.close", {
+							apply(e) {
+								const t = r.get(e.this);
+								void 0 === e.args[0] && (e.args[0] = 1e3),
+									void 0 === e.args[1] && (e.args[1] = ""),
+									e.return(t.barews.close(e.args[0], e.args[1]));
+							},
+						}),
+						e.Proxy("WebSocketStream", {
+							construct(r) {
+								let n, a;
+								const s = {};
+								Object.setPrototypeOf(s, r.fn.prototype),
+									(s.constructor = r.fn);
+								const i = e.bare.createWebSocket(r.args[0], r.args[1], null, {
+									"User-Agent": t.navigator.userAgent,
+									Origin: e.url.origin,
+								});
+								r.args[1]?.signal.addEventListener("abort", () => {
+									i.close(1e3, "");
+								});
+								const l = {
+									extensions: "",
+									protocol: "",
+									url: r.args[0],
+									barews: i,
+									opened: new Promise((e) => {
+										n = e;
+									}),
+									closed: new Promise((e) => {
+										a = e;
+									}),
+									readable: new ReadableStream({
+										start(e) {
+											i.addEventListener("message", (t) => {
+												const r = t.data;
+												"string" == typeof r ||
+													("byteLength" in r &&
+														Object.setPrototypeOf(r, ArrayBuffer.prototype)),
+													e.enqueue(r);
+											});
+										},
+									}),
+									writable: new WritableStream({
+										write(e) {
+											i.send(e);
+										},
+									}),
+								};
+								i.addEventListener("open", () => {
+									n({
+										readable: l.readable,
+										writable: l.writable,
+										extensions: l.extensions,
+										protocol: l.protocol,
+									});
+								}),
+									i.addEventListener("close", (e) => {
+										a({ code: e.code, reason: e.reason });
+									}),
+									o.set(s, l),
+									r.return(s);
+							},
+						}),
+						e.Trap("WebSocketStream.prototype.closed", {
+							get: (e) => o.get(e.this).closed,
+						}),
+						e.Trap("WebSocketStream.prototype.opened", {
+							get: (e) => o.get(e.this).opened,
+						}),
+						e.Trap("WebSocketStream.prototype.url", {
+							get: (e) => o.get(e.this).url,
+						}),
+						e.Proxy("WebSocketStream.prototype.close", {
+							apply(e) {
+								const t = o.get(e.this);
+								return e.args[0]
+									? (void 0 === e.args[0].closeCode &&
+											(e.args[0].closeCode = 1e3),
+										void 0 === e.args[0].reason && (e.args[0].reason = ""),
+										e.return(
+											t.barews.close(e.args[0].closeCode, e.args[0].reason),
+										))
+									: e.return(t.barews.close(1e3, ""));
+							},
+						});
+				}
+				r.r(t), r.d(t, { default: () => o });
+			},
+			7481: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => a });
+				var o = r(8810),
+					n = r(4471);
+				function a(e, t) {
+					let r;
+					t.Worker &&
+						(0, o.Sp)("syncxhr", e.url) &&
+						(r = e.natives.construct("Worker", n.vc.files.sync));
+					const a = Symbol("xhr original args"),
+						s = Symbol("xhr headers");
+					e.Proxy("XMLHttpRequest.prototype.open", {
+						apply(t) {
+							t.args[1] && (t.args[1] = (0, n.dm)(t.args[1], e.meta)),
+								void 0 === t.args[2] && (t.args[2] = !0),
+								(t.this[a] = t.args);
+						},
+					}),
+						e.Proxy("XMLHttpRequest.prototype.setRequestHeader", {
+							apply(e) {
+								(e.this[s] || (e.this[s] = {}))[e.args[0]] = e.args[1];
+							},
+						}),
+						e.Proxy("XMLHttpRequest.prototype.send", {
+							apply(t) {
+								const n = t.this[a];
+								if (!n || n[2]) return;
+								if (!(0, o.Sp)("syncxhr", e.url))
+									return (
+										console.warn(
+											"ignoring request - sync xhr disabled in flags",
+										),
+										t.return(void 0)
+									);
+								const i = new SharedArrayBuffer(1024, {
+										maxByteLength: 0x7fffffff,
+									}),
+									l = new DataView(i);
+								e.natives.call("Worker.prototype.postMessage", r, {
+									sab: i,
+									args: n,
+									headers: t.this[s],
+									body: t.args[0],
+								});
+								const c = performance.now();
+								while (0 === l.getUint8(0))
+									if (performance.now() - c > 1e3) throw Error("xhr timeout");
+								const u = l.getUint16(1),
+									p = l.getUint32(3),
+									f = new Uint8Array(p);
+								f.set(new Uint8Array(i.slice(7, 7 + p)));
+								const g = new TextDecoder().decode(f),
+									d = l.getUint32(7 + p),
+									y = new Uint8Array(d);
+								y.set(new Uint8Array(i.slice(11 + p, 11 + p + d)));
+								const m = new TextDecoder().decode(y);
+								e.RawTrap(t.this, "status", { get: () => u }),
+									e.RawTrap(t.this, "responseText", { get: () => m }),
+									e.RawTrap(t.this, "response", {
+										get: () =>
+											"arraybuffer" === t.this.responseType ? y.buffer : m,
+									}),
+									e.RawTrap(t.this, "responseXML", {
+										get: () => new DOMParser().parseFromString(m, "text/xml"),
+									}),
+									e.RawTrap(t.this, "getAllResponseHeaders", {
+										get: () => () => g,
+									}),
+									e.RawTrap(t.this, "getResponseHeader", {
+										get: () => (e) => {
+											const t = RegExp(`^${e}: (.*)$`, "m").exec(g);
+											return t ? t[1] : null;
+										},
+									}),
+									t.return(void 0);
+							},
+						}),
+						e.Trap("XMLHttpRequest.prototype.responseURL", {
+							get: (e) => (0, n.Sd)(e.get()),
+						});
+				}
+			},
+			6321: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => s, enabled: () => a });
+				var o = r(8810);
+				const n = {},
+					a = (e) => (0, o.Sp)("sourcemaps", e.url);
+				function s(e, t) {
+					Object.defineProperty(t, o.h3.config.globals.pushsourcemapfn, {
+						value: (e, t) => {
+							let r = Uint8Array.from(e),
+								o = new DataView(r.buffer),
+								a = new TextDecoder("utf-8"),
+								s = [],
+								i = o.getUint32(0, !0),
+								l = 0;
+							for (let e = 0; e < i; e++) {
+								const e = o.getUint8(l);
+								if (((l += 1), 0 == e)) {
+									const t = o.getUint32(l, !0);
+									l += 4;
+									const r = o.getUint32(l, !0);
+									l += 4;
+									const n = o.getUint32(l, !0);
+									(l += 4), s.push({ type: e, offset: t, start: r, size: n });
+								} else if (1 == e) {
+									const t = o.getUint32(l, !0);
+									l += 4;
+									const n = o.getUint32(l, !0);
+									l += 4;
+									const i = o.getUint32(l, !0);
+									l += 4;
+									const c = a.decode(r.subarray(n, i));
+									s.push({ type: e, offset: t, start: n, end: i, str: c });
+								}
+							}
+							n[t] = s;
+						},
+						enumerable: !1,
+						writable: !1,
+						configurable: !1,
+					});
+					const r = "/*scramtag ";
+					e.Proxy("Function.prototype.toString", {
+						apply(e) {
+							let t = e.fn.call(e.this),
+								o = "",
+								a = t.indexOf("/*s");
+							if (-1 === a) return e.return(t);
+							const s = t.indexOf(" ", a + r.length);
+							Number.parseInt(t.substring(a + r.length, s));
+							const i = t.indexOf("*/", a),
+								l = t.substring(s + 1, i);
+							t = t.replace(/\/\*scramtag.*?\*\//g, "");
+							const c = n[l];
+							while (0 < c.length);
+							return (o += t.slice(0)), e.return(o);
+						},
+					});
+				}
+			},
+			1587: (e, t, r) => {
+				function o(e, t) {
+					delete t.TrustedHTML,
+						delete t.TrustedScript,
+						delete t.TrustedScriptURL,
+						delete t.TrustedTypePolicy,
+						delete t.TrustedTypePolicyFactory,
+						t.__defineGetter__("trustedTypes", () => void 0);
+				}
+				r.r(t), r.d(t, { default: () => o });
+			},
+			2370: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => a, order: () => n, unproxy: () => s });
+				var o = r(6707);
+				const n = 3;
+				function a(e, t) {
+					for (const r of [t])
+						for (const t in r)
+							try {
+								"function" == typeof r[t] &&
+									e.RawProxy(r, t, {
+										apply(t) {
+											s(t, e);
+										},
+									});
+							} catch {}
+					if (o.iswindow) {
+						for (const r of [
+							t.Node.prototype,
+							t.MutationObserver.prototype,
+							t.document,
+							t.MouseEvent.prototype,
+							t.Range.prototype,
+						])
+							for (const t in r)
+								try {
+									"function" == typeof r[t] &&
+										e.RawProxy(r, t, {
+											apply(t) {
+												s(t, e);
+											},
+										});
+								} catch {}
+						e.Proxy("IntersectionObserver", {
+							construct(e) {
+								e.args[1] && e.args[1].root && (e.args[1].root = t.document);
+							},
+						}),
+							e.Proxy("Object.defineProperty", {
+								apply(t) {
+									s(t, e);
+								},
+							}),
+							e.Proxy("Object.getOwnPropertyDescriptor", {
+								apply(t) {
+									const r = t.call();
+									r &&
+										(r.get &&
+											e.RawProxy(r, "get", {
+												apply(t) {
+													s(t, e);
+												},
+											}),
+										r.set &&
+											e.RawProxy(r, "set", {
+												apply(t) {
+													s(t, e);
+												},
+											}),
+										t.return(r));
+								},
+							});
+					}
+				}
+				function s(e, t) {
+					const r = t.global;
+					for (const o in (e.this === t.globalProxy && (e.this = r),
+					e.this === t.documentProxy && (e.this = r.document),
+					e.args))
+						e.args[o] === t.documentProxy && (e.args[o] = r.document),
+							e.args[o] === t.globalProxy && (e.args[o] = r);
+				}
+			},
+			8475: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e, t) {
+					e.Proxy("Worker", {
+						construct({ args: t, call: r }) {
+							(t[0] = (0, o.dm)(t[0], e.meta) + "?dest=worker"),
+								t[1] && "module" === t[1].type && (t[0] += "&type=module");
+							const n = r(),
+								a = new o.ut();
+							(async () => {
+								const t = await a.getInnerPort();
+								e.natives.call(
+									"Worker.prototype.postMessage",
+									n,
+									{ $scramjet$type: "baremuxinit", port: t },
+									[t],
+								);
+							})();
+						},
+					}),
+						e.Proxy("SharedWorker", {
+							construct({ args: t, call: r }) {
+								(t[0] = (0, o.dm)(t[0], e.meta) + "?dest=sharedworker"),
+									t[1] &&
+										"string" == typeof t[1] &&
+										(t[1] = `${e.url.origin}@${t[1]}`),
+									t[1] &&
+										"object" == typeof t[1] &&
+										("module" === t[1].type && (t[0] += "&type=module"),
+										t[1].name && (t[1].name = `${e.url.origin}@${t[1].name}`));
+								const n = r(),
+									a = new o.ut();
+								(async () => {
+									const t = await a.getInnerPort();
+									e.natives.call(
+										"MessagePort.prototype.postMessage",
+										n.port,
+										{ $scramjet$type: "baremuxinit", port: t },
+										[t],
+									);
+								})();
+							},
+						}),
+						e.Proxy("Worklet.prototype.addModule", {
+							apply(t) {
+								t.args[0] &&
+									(t.args[0] = (0, o.dm)(t.args[0], e.meta) + "?dest=worklet");
+							},
+						});
+				}
+			},
+			7706: (e, t, r) => {
+				r.r(t),
+					r.d(t, { createWrapFn: () => i, default: () => c, order: () => l });
+				var o = r(6707),
+					n = r(9777),
+					a = r(4471),
+					s = r(4423);
+				function i(e, t) {
+					return (r) => {
+						if (r === t) return e.globalProxy;
+						if (r === t.location) return e.locationProxy;
+						if (r === eval) return s.indirectEval.bind(e);
+						if (o.iswindow) {
+							if (r === t.parent)
+								return n.a in t.parent
+									? t.parent[n.a].globalProxy
+									: e.globalProxy;
+							if (r === t.document) return e.documentProxy;
+							if (r === t.top) {
+								let e = t;
+								for (;;) {
+									const t = e.parent.self;
+									if (t === e || !(n.a in t)) break;
+									e = t;
+								}
+								return e[n.a].globalProxy;
+							}
+						}
+						return r;
+					};
+				}
+				const l = 4;
+				function c(e, t) {
+					Object.defineProperty(t, a.vc.globals.wrapfn, {
+						value: e.wrapfn,
+						writable: !1,
+						configurable: !1,
+					}),
+						Object.defineProperty(t, a.vc.globals.wrapthisfn, {
+							value: (r) => (r === t ? e.globalProxy : r),
+							writable: !1,
+							configurable: !1,
+						}),
+						(t.$scramitize = (e) => (
+							location,
+							o.iswindow && (t.parent, t.document, t.top),
+							"string" == typeof e && e.includes("scramjet"),
+							"string" == typeof e && e.includes(location.origin),
+							e
+						)),
+						Object.defineProperty(t, a.vc.globals.trysetfn, {
+							value: (e, t, r) => {
+								if (e instanceof Location) return (locationProxy.href = r), !0;
+							},
+							writable: !1,
+							configurable: !1,
+						});
+				}
+			},
+			633: (e, t, r) => {
+				r.r(t), r.d(t, { ScramjetServiceWorkerRuntime: () => a });
+				var o = r(4471),
+					n = r(1762).Z;
+				class a {
+					client;
+					recvport;
+					constructor(e) {
+						(this.client = e),
+							(self.onconnect = (t) => {
+								const r = t.ports[0];
+								n.log("sw", "connected"),
+									r.addEventListener("message", (t) => {
+										console.log("sw", t.data),
+											"scramjet$type" in t.data &&
+												("init" === t.data.scramjet$type
+													? ((this.recvport = t.data.scramjet$port),
+														this.recvport.postMessage({
+															scramjet$type: "init",
+														}))
+													: s.call(this, e, t.data));
+									}),
+									r.start();
+							});
+					}
+					hook() {
+						(this.client.global.registration = {
+							scope: this.client.url.href,
+							active: {
+								scriptURL: this.client.url.href,
+								state: "activated",
+								onstatechange: null,
+								onerror: null,
+								postMessage: () => {},
+								addEventListener: () => {},
+								removeEventListener: () => {},
+								dispatchEvent: (e) => {},
+							},
+							showNotification: async () => {},
+							unregister: async () => !0,
+							update: async () => {},
+							installing: null,
+							waiting: null,
+						}),
+							(this.client.global.ServiceWorkerGlobalScope =
+								this.client.global);
+					}
+				}
+				function s(e, t) {
+					const r = this.recvport,
+						a = t.scramjet$type,
+						s = t.scramjet$token,
+						i = e.eventcallbacks.get(self);
+					if ("fetch" === a) {
+						n.log("ee", t);
+						const a = i.filter((e) => "fetch" === e.event);
+						if (!a) return;
+						for (const i of a) {
+							const a = t.scramjet$request,
+								l = new e.natives.Request((0, o.Sd)(a.url), {
+									body: a.body,
+									headers: new Headers(a.headers),
+									method: a.method,
+									mode: "same-origin",
+								});
+							Object.defineProperty(l, "destination", {
+								value: a.destinitation,
+							});
+							const c = new Event("fetch");
+							c.request = l;
+							let u = !1;
+							(c.respondWith = (e) => {
+								(u = !0),
+									(async () => {
+										const t = {
+											scramjet$type: "fetch",
+											scramjet$token: s,
+											scramjet$response: {
+												body: (e = await e).body,
+												headers: Array.from(e.headers.entries()),
+												status: e.status,
+												statusText: e.statusText,
+											},
+										};
+										n.log("sw", "responding", t), r.postMessage(t, [e.body]);
+									})();
+							}),
+								n.log("to fn", c),
+								i.proxiedCallback(
+									new Proxy(c, {
+										get: (e, t, r) => "isTrusted" === t || Reflect.get(e, t),
+									}),
+								),
+								u ||
+									(console.log("sw", "no response"),
+									r.postMessage({
+										scramjet$type: "fetch",
+										scramjet$token: s,
+										scramjet$response: !1,
+									}));
+						}
+					}
+				}
+			},
+			5425: (e, t, r) => {
+				r.r(t), r.d(t, { default: () => n });
+				var o = r(4471);
+				function n(e, t) {
+					e.Proxy("importScripts", {
+						apply(t) {
+							for (const r in t.args) t.args[r] = (0, o.dm)(t.args[r], e.meta);
+						},
+					});
+				}
+			},
+			1762: (e, t, r) => {
+				r.d(t, { Z: () => o });
+				const o = {
+					fmt: (e, t, ...r) => {
+						const o = Error.prepareStackTrace;
+						Error.prepareStackTrace = (e, t) => {
+							t.shift(), t.shift(), t.shift();
+							let r = "";
+							for (let e = 1; e < Math.min(2, t.length); e++)
+								t[e].getFunctionName() &&
+									(r += `${t[e].getFunctionName()} -> ` + r);
+							return r + (t[0].getFunctionName() || "Anonymous");
+						};
+						const n = (() => {
+							try {
+								throw Error();
+							} catch (e) {
+								return e.stack;
+							}
+						})();
+						(Error.prepareStackTrace = o),
+							(console[e] || console.log)(
+								`%c${n}%c ${t}`,
+								`
+		background-color: ${{ log: "#000", warn: "#f80", error: "#f00", debug: "transparent" }[e]};
+		color: ${{ log: "#fff", warn: "#fff", error: "#fff", debug: "gray" }[e]};
+		padding: ${{ log: 2, warn: 4, error: 4, debug: 0 }[e]}px;
+		font-weight: bold;
+		font-family: monospace;
+		font-size: 0.9em;
+	`,
+								`${"debug" === e ? "color: gray" : ""}`,
+								...r,
+							);
+					},
+					log: function (e, ...t) {
+						this.fmt("log", e, ...t);
+					},
+					warn: function (e, ...t) {
+						this.fmt("warn", e, ...t);
+					},
+					error: function (e, ...t) {
+						this.fmt("error", e, ...t);
+					},
+					debug: function (e, ...t) {
+						this.fmt("debug", e, ...t);
+					},
+				};
+			},
+			8810: (e, t, r) => {
+				r.d(t, { Sp: () => s, h3: () => o, t8: () => a }),
+					"$scramjet" in self ||
+						(self.$scramjet = {
+							version: { build: "07937b7", version: "1.0.2-dev" },
+							codec: {},
+							flagEnabled: s,
+						});
+				const o = self.$scramjet,
+					n = Function;
+				function a() {
+					(o.codec.encode = n("url", o.config.codec.encode)),
+						(o.codec.decode = n("url", o.config.codec.decode));
+				}
+				function s(e, t) {
+					const r = o.config.flags[e];
+					for (const r in o.config.siteFlags) {
+						const n = o.config.siteFlags[r];
+						if (new RegExp(r).test(t.href) && e in n) return n[e];
+					}
+					return r;
+				}
+			},
+			4471: (e, t, r) => {
+				r.d(t, {
+					Ag: () => u,
+					Gq: () => w,
+					Od: () => f,
+					Sd: () => l,
+					U5: () => p,
+					WT: () => d,
+					Zs: () => m,
+					dg: () => n,
+					dm: () => i,
+					hc: () => v,
+					ls: () => c,
+					r4: () => g,
+					ut: () => s,
+					vc: () => x,
+				});
+				var o = r(8810);
+				const {
+						util: { BareClient: n, ScramjetHeaders: a, BareMuxConnection: s },
+						url: {
+							rewriteUrl: i,
+							unrewriteUrl: l,
+							rewriteBlob: c,
+							unrewriteBlob: u,
+						},
+						rewrite: {
+							rewriteCss: p,
+							unrewriteCss: f,
+							rewriteHtml: g,
+							unrewriteHtml: d,
+							rewriteSrcset: y,
+							rewriteJs: m,
+							rewriteHeaders: h,
+							rewriteWorkers: b,
+							htmlRules: w,
+						},
+						CookieStore: v,
+					} = o.h3.shared,
+					x = o.h3.config;
+			},
+			9777: (e, t, r) => {
+				r.d(t, { D: () => n, a: () => o });
+				const o = Symbol.for("scramjet client global"),
+					n = Symbol.for("scramjet frame handle");
+			},
+		},
+		t = {};
+	function r(o) {
+		var n = t[o];
+		if (void 0 !== n) return n.exports;
+		var a = (t[o] = { exports: {} });
+		return e[o](a, a.exports, r), a.exports;
+	}
+	(r.d = (e, t) => {
+		for (var o in t)
+			r.o(t, o) &&
+				!r.o(e, o) &&
+				Object.defineProperty(e, o, { enumerable: !0, get: t[o] });
+	}),
+		(r.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
+		(r.r = (e) => {
+			"undefined" != typeof Symbol &&
+				Symbol.toStringTag &&
+				Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+				Object.defineProperty(e, "__esModule", { value: !0 });
+		}),
+		r(6707);
+})();
+//# sourceMappingURL=scramjet.client.js.map
