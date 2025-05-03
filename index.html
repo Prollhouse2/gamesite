@@ -799,6 +799,35 @@
             .game-card-title {
                 font-size: 0.7rem;
             }
+        
+        .content-area {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .content-area.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Loading spinner */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            font-size: 2rem;
+            color: var(--accent-pink);
+        }
+        
+        .loader.active {
+            display: block;
         }
     </style>
 </head>
@@ -815,41 +844,41 @@
             <i class="fas fa-chevron-right"></i>
         </div>
         <div class="sidebar-nav">
-            <a href="index.html" class="nav-item active">
+            <a href="#home" class="nav-item active" data-page="home">
                 <div class="nav-icon"><i class="fas fa-home"></i></div>
                 <div class="nav-text">Home</div>
             </a>
-            <a href="static" class="nav-item">
+            <a href="#browser" class="nav-item" data-page="browser">
                 <div class="nav-icon"><i class="fas fa-globe"></i></div>
                 <div class="nav-text">Web Browser</div>
             </a>
-            <a href="https://tinyurl.com/45j4r62u" class="nav-item">
+            <a href="#request" class="nav-item" data-page="request" target="_blank">
                 <div class="nav-icon"><i class="fas fa-plus"></i></div>
                 <div class="nav-text">Request Games</div>
             </a>
         </div>
         <div class="sidebar-divider"></div>
         <div class="sidebar-nav">
-            <a href="settings" class="nav-item">
+            <a href="#settings" class="nav-item" data-page="settings">
                 <div class="nav-icon"><i class="fas fa-cog"></i></div>
                 <div class="nav-text">Settings</div>
             </a>
-            <a href="leaderboard" class="nav-item">
+            <a href="#leaderboard" class="nav-item" data-page="leaderboard">
                 <div class="nav-icon"><i class="fas fa-trophy"></i></div>
                 <div class="nav-text">Leaderboard</div>
             </a>
-            <a href="https://discord.gg/proll" class="nav-item">
+            <a href="#discord" class="nav-item" data-page="discord" target="_blank">
                 <div class="nav-icon"><i class="fab fa-discord"></i></div>
                 <div class="nav-text">Discord</div>
             </a>
-            <a href="chat" class="nav-item">
+            <a href="#chat" class="nav-item" data-page="chat">
                 <div class="nav-icon"><i class="fas fa-comments"></i></div>
                 <div class="nav-text">Chatroom</div>
             </a>
         </div>
         <div class="sidebar-divider"></div>
         <div class="sidebar-nav">
-            <a href="https://github.com/Prollhouse2/gamesite" class="nav-item">
+            <a href="#github" class="nav-item" data-page="github" target="_blank">
                 <div class="nav-icon"><i class="fab fa-github"></i></div>
                 <div class="nav-text">Source Code</div>
             </a>
@@ -863,6 +892,11 @@
 
     <!-- Sidebar Overlay (for mobile) -->
     <div class="sidebar-overlay"></div>
+
+    <!-- Loading Spinner -->
+    <div class="loader" id="pageLoader">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
 
     <!-- Main Content -->
     <div class="main-container">
@@ -880,53 +914,82 @@
             </div>
         </header>
 
-
+        <!-- Content Areas -->
+        <div id="home-content" class="content-area active">
             <div class="container">
-          <!-- Welcome Message -->
-            <div class="welcome-message">
-                <p>We Have a New Discord. Please join to stay up to date, request games, and find the newest website links. (discord.gg/proll)</p>
-            </div>
-            
-            <!-- Time Spent -->
-            <div class="time-spent">
-                <span>Time Spent: </span><span id="timeSpent">Loading...</span>
-            </div>
-           
-            <!-- Featured Game Banner -->
-            <div class="featured-game">
-                <div class="featured-game-info">
-                    <h2 class="featured-game-title">RETRO BOWL</h2>
-                    <p class="featured-game-description">Lead your football team to glory in this nostalgic sports management simulator.</p>
-                    <a href="g/retro-bowl" target="_blank" class="play-button">
-                        <i class="fas fa-play"></i> PLAY NOW
-                    </a>
+                <!-- Welcome Message -->
+                <div class="welcome-message">
+                    <p>We Have a New Discord. Please join to stay up to date, request games, and find the newest website links. (discord.gg/proll)</p>
                 </div>
-                <div class="featured-game-image" style="background-image: url('images/rblarge.png')"></div>
-            </div>
+                
+                <!-- Time Spent -->
+                <div class="time-spent">
+                    <span>Time Spent: </span><span id="timeSpent">Loading...</span>
+                </div>
+               
+                <!-- Featured Game Banner -->
+                <div class="featured-game">
+                    <div class="featured-game-info">
+                        <h2 class="featured-game-title">RETRO BOWL</h2>
+                        <p class="featured-game-description">Lead your football team to glory in this nostalgic sports management simulator.</p>
+                        <a href="g/retro-bowl" target="_blank" class="play-button">
+                            <i class="fas fa-play"></i> PLAY NOW
+                        </a>
+                    </div>
+                    <div class="featured-game-image" style="background-image: url('images/rblarge.png')"></div>
+                </div>
 
-            <!-- Favorites Section -->
-            <h2 id="favorites-heading">FAVORITE GAMES</h2>
-            <div id="favorites-section">
-                <div id="favorites-container">
-                    <!-- Favorite games will be dynamically added here -->
-                    <div class="no-favorites-message">Star your favorite games to see them here!</div>
+                <!-- Favorites Section -->
+                <h2 id="favorites-heading">FAVORITE GAMES</h2>
+                <div id="favorites-section">
+                    <div id="favorites-container">
+                        <!-- Favorite games will be dynamically added here -->
+                        <div class="no-favorites-message">Star your favorite games to see them here!</div>
+                    </div>
+                </div>
+
+                <!-- Popular Games Section -->
+                <h2 class="section-title">POPULAR TITLES</h2>
+                
+                <div class="games-grid" id="popular-games-grid">
+                    <!-- Popular games will be dynamically loaded here -->
+                </div> 
+
+                <!-- All Games Section -->
+                <h2 class="section-title">ALL TITLES</h2>
+                
+                <div class="games-grid" id="all-games-grid">
+                    <!-- All games will be dynamically loaded here -->
                 </div>
             </div>
+        </div>
 
-     <!-- Popular Games Section -->
-            <h2 class="section-title">POPULAR TITLES</h2>
-            
-            <div class="games-grid" id="popular-games-grid">
-                <!-- Popular games will be dynamically loaded here -->
-            </div> 
+        <!-- Other Content Areas -->
+        <div id="browser-content" class="content-area">
+            <div class="container">
+                <h2 class="section-title">WEB BROWSER</h2>
+                <iframe src="/static" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+            </div>
+        </div>
 
-           
+        <div id="settings-content" class="content-area">
+            <div class="container">
+                <h2 class="section-title">SETTINGS</h2>
+                <iframe src="/settings" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+            </div>
+        </div>
 
-            <!-- All Games Section -->
-            <h2 class="section-title">ALL TITLES</h2>
-            
-            <div class="games-grid" id="all-games-grid">
-                <!-- All games will be dynamically loaded here -->
+        <div id="leaderboard-content" class="content-area">
+            <div class="container">
+                <h2 class="section-title">LEADERBOARD</h2>
+                <iframe src="/leaderboard" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+            </div>
+        </div>
+
+        <div id="chat-content" class="content-area">
+            <div class="container">
+                <h2 class="section-title">CHATROOM</h2>
+                <iframe src="/chat" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
             </div>
         </div>
 
@@ -949,8 +1012,65 @@
         </footer>
     </div>
 
-   <script src="/js/global-loader.js"></script>
+    <script src="/js/global-loader.js"></script>
     <script>
+        // ===== SPA ROUTING FUNCTIONALITY =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle navigation between pages
+            function navigateToPage(pageId) {
+                // Show loading spinner
+                document.getElementById('pageLoader').classList.add('active');
+                
+                // Hide all content areas
+                document.querySelectorAll('.content-area').forEach(area => {
+                    area.classList.remove('active');
+                });
+                
+                // Show the selected content area after a small delay
+                setTimeout(() => {
+                    document.getElementById(pageId + '-content').classList.add('active');
+                    document.getElementById('pageLoader').classList.remove('active');
+                    
+                    // Update URL hash
+                    window.location.hash = pageId;
+                    
+                    // Update active nav item
+                    document.querySelectorAll('.nav-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    document.querySelector(`.nav-item[data-page="${pageId}"]`).classList.add('active');
+                }, 300);
+            }
+            
+            // Handle initial page load based on hash
+            function handleInitialLoad() {
+                const hash = window.location.hash.substring(1) || 'home';
+                navigateToPage(hash);
+            }
+            
+            // Handle hash changes
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.substring(1) || 'home';
+                navigateToPage(hash);
+            });
+            
+            // Set up nav item click handlers
+            document.querySelectorAll('.nav-item').forEach(item => {
+                const pageId = item.getAttribute('data-page');
+                
+                // Skip items that open in new tab
+                if (!item.hasAttribute('target')) {
+                    item.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        navigateToPage(pageId);
+                    });
+                }
+            });
+            
+            // Initialize
+            handleInitialLoad();
+        });
+
         // ===== SIDEBAR FUNCTIONALITY =====
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.querySelector('.sidebar');
@@ -976,19 +1096,6 @@
                     sidebar.classList.remove('expanded');
                 });
             }
-            
-            // Highlight active nav item
-            const navItems = document.querySelectorAll('.nav-item');
-            const currentPath = window.location.pathname;
-            
-            navItems.forEach(item => {
-                const itemPath = item.getAttribute('href');
-                if (currentPath.includes(itemPath) && itemPath !== 'index.html') {
-                    item.classList.add('active');
-                } else if (currentPath === '/' && itemPath === 'index.html') {
-                    item.classList.add('active');
-                }
-            });
         });
 
         // ===== LOAD GAMES FROM JSON =====
