@@ -6,7 +6,7 @@
     <title>Proll's School V5.0 - Chat</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Particles.js CDN -->
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
@@ -34,7 +34,6 @@
             min-height: 100vh;
         }
 
-        /* Snow Effect Fullscreen */
         #snow {
             position: fixed;
             width: 100%;
@@ -52,7 +51,6 @@
             text-align: center;
         }
 
-        /* Header and Navigation */
         .site-header {
             padding: 1rem 0;
             margin-bottom: 2rem;
@@ -76,7 +74,6 @@
             width: 100%;
         }
 
-        /* Button Container - Matching home page style */
         .button-container1 {
             display: flex;
             flex-wrap: wrap;
@@ -85,7 +82,6 @@
             margin: 1.5rem 0;
         }
 
-        /* Button styling to match home page */
         .button {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(37, 37, 58, 0.9));
             border: 1px solid rgba(255, 107, 157, 0.3);
@@ -124,7 +120,6 @@
             position: relative;
         }
 
-        /* Chat Container */
         .chat-container {
             background-color: var(--bg-secondary);
             border-radius: 16px;
@@ -189,7 +184,6 @@
             background-color: var(--bg-tertiary);
         }
 
-        /* Online Users */
         .online-users {
             background-color: var(--bg-secondary);
             border-radius: 12px;
@@ -240,7 +234,6 @@
             background-color: #43b581;
         }
 
-        /* Footer */
         footer {
             margin-top: 2rem;
             padding: 1rem;
@@ -271,14 +264,12 @@
             color: #ffffff;
         }
 
-        /* Animations */
         @keyframes glow-pulse {
             0% { box-shadow: 0 0 20px rgba(157, 107, 255, 0.3); }
             50% { box-shadow: 0 0 30px rgba(255, 107, 157, 0.5); }
             100% { box-shadow: 0 0 20px rgba(157, 107, 255, 0.3); }
         }
 
-        /* Fullscreen mode */
         .fullscreen {
             position: fixed;
             top: 0;
@@ -293,7 +284,6 @@
             height: calc(100% - 60px);
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .logo {
                 font-size: 1.5rem;
@@ -302,7 +292,7 @@
             .chat-frame {
                 height: 450px;
             }
-            
+
             .button {
                 font-size: 0.6rem;
                 padding: 8px 12px;
@@ -317,16 +307,16 @@
             .chat-frame {
                 height: 400px;
             }
-            
+
             .button {
                 font-size: 0.5rem;
                 padding: 6px 10px;
             }
-            
+
             .chat-header h2 {
                 font-size: 0.9rem;
             }
-        /* Sidebar Styles */
+
 :root {
     --bg-primary: #0a0a1a;
     --bg-secondary: #1a1a2e;
@@ -351,7 +341,6 @@ body {
     font-family: "Press Start 2P", cursive, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Sidebar Navigation */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -482,7 +471,6 @@ body {
     opacity: 1;
 }
 
-/* Main Container */
 .main-container {
     margin-left: var(--sidebar-width);
     width: calc(100% - var(--sidebar-width));
@@ -495,7 +483,6 @@ body {
     width: calc(100% - var(--sidebar-expanded-width));
 }
 
-/* Mobile Sidebar Toggle */
 .sidebar-mobile-toggle {
     display: none;
     position: fixed;
@@ -514,7 +501,6 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Sidebar Overlay */
 .sidebar-overlay {
     display: none;
     position: fixed;
@@ -526,32 +512,31 @@ body {
     z-index: 999;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
     .sidebar {
         width: 0;
         border: none;
     }
-    
+
     .sidebar.expanded {
         width: var(--sidebar-expanded-width);
         border-right: 1px solid rgba(255, 107, 157, 0.2);
     }
-    
+
     .main-container {
         margin-left: 0;
         width: 100%;
     }
-    
+
     .sidebar.expanded ~ .main-container {
         margin-left: 0;
         width: 100%;
     }
-    
+
     .sidebar-mobile-toggle {
         display: flex;
     }
-    
+
     .sidebar.expanded ~ .sidebar-overlay {
         display: block;
     }
@@ -559,18 +544,15 @@ body {
     </style>
 </head>
 <body>
-    <div id="snow"></div> <!-- Snow effect container -->
-
- 
-
+    <div id="snow"></div> 
 
     <div class="container">
         <header class="site-header">
             <h1 class="logo">Proll's School V5.0</h1>
         </header>
-        
+
         <div class="section-divider"></div>
-        
+
         <div class="chat-container" id="chat-container">
             <div class="chat-header">
                 <h2><i class="fas fa-gamepad"></i> Game Chat</h2>
@@ -583,8 +565,7 @@ body {
                     </button>
                 </div>
             </div>
-            
-            <!-- Discord widget embedded directly -->
+
             <iframe 
                 src="https://e.widgetbot.io/channels/1225803415116972242/1341867678352146474" 
                 class="chat-frame"
@@ -592,14 +573,11 @@ body {
                 allow="clipboard-write; clipboard-read">
             </iframe>
         </div>
-        
-       
-        
 
     <script>
-        // Initialize snow effect when the page is fully loaded
+
         window.onload = function() {
-            // Make sure particles.js is loaded
+
             if (typeof particlesJS !== "undefined") {
                 particlesJS("snow", {
                     particles: {
@@ -645,7 +623,7 @@ body {
                 });
             } else {
                 console.error("particles.js is not loaded");
-                // Fallback to load particles.js if it wasn't loaded
+
                 var script = document.createElement('script');
                 script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
                 script.onload = function() {
@@ -694,17 +672,15 @@ body {
                 };
                 document.head.appendChild(script);
             }
-            
-            // Set current year
+
             document.getElementById("current-year").textContent = new Date().getFullYear();
-            
-            // Fullscreen functionality - Fixed
+
             const fullscreenBtn = document.getElementById("fullscreen-btn");
             const chatContainer = document.getElementById("chat-container");
             const chatFrame = document.getElementById("chat-frame");
-            
+
             fullscreenBtn.addEventListener("click", function() {
-                // Try to make the iframe fullscreen first
+
                 try {
                     if (chatFrame.requestFullscreen) {
                         chatFrame.requestFullscreen();
@@ -715,91 +691,81 @@ body {
                     } else if (chatFrame.msRequestFullscreen) {
                         chatFrame.msRequestFullscreen();
                     } else {
-                        // Fallback to opening in new tab
+
                         window.open(chatFrame.src, '_blank');
                     }
                 } catch (e) {
                     console.error("Fullscreen failed:", e);
-                    // Fallback to opening in new tab
+
                     window.open(chatFrame.src, '_blank');
                 }
             });
-            
-            // Refresh button functionality - Fixed
+
             const refreshBtn = document.getElementById("refresh-btn");
-            
+
             refreshBtn.addEventListener("click", function() {
-                // Store the current src
+
                 const currentSrc = chatFrame.src;
-                
-                // Add spinning animation to refresh icon
+
                 this.querySelector("i").classList.add("fa-spin");
-                
-                // Actually reload the iframe
+
                 chatFrame.src = "about:blank";
-                
+
                 setTimeout(() => {
                     chatFrame.src = currentSrc;
-                    
-                    // Remove spinning animation after a delay
+
                     setTimeout(() => {
                         this.querySelector("i").classList.remove("fa-spin");
                     }, 500);
                 }, 100);
             });
-            
-            // Simulate online users (replace with actual data if available)
+
             const userList = document.getElementById("user-list");
             const sampleUsers = [
                 "GamerPro123", "EpicPlayer", "NinjaWarrior", "PixelMaster", 
                 "GameWizard", "LevelBoss", "QuestHunter", "ProGamer99"
             ];
-            
+
             sampleUsers.forEach(user => {
                 const userBadge = document.createElement("div");
                 userBadge.className = "user-badge";
-                
+
                 const userStatus = document.createElement("span");
                 userStatus.className = "user-status";
-                
+
                 const userName = document.createElement("span");
                 userName.textContent = user;
-                
+
                 userBadge.appendChild(userStatus);
                 userBadge.appendChild(userName);
                 userList.appendChild(userBadge);
             });
-       
-        // ===== SIDEBAR FUNCTIONALITY =====
+
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.querySelector('.sidebar');
             const sidebarToggle = document.querySelector('.sidebar-toggle');
             const sidebarMobileToggle = document.querySelector('.sidebar-mobile-toggle');
             const sidebarOverlay = document.querySelector('.sidebar-overlay');
-            
-            // Toggle sidebar on button click
+
             sidebarToggle.addEventListener('click', function() {
                 sidebar.classList.toggle('expanded');
             });
-            
-            // Mobile toggle
+
             if (sidebarMobileToggle) {
                 sidebarMobileToggle.addEventListener('click', function() {
                     sidebar.classList.toggle('expanded');
                 });
             }
-            
-            // Close sidebar when clicking overlay (mobile)
+
             if (sidebarOverlay) {
                 sidebarOverlay.addEventListener('click', function() {
                     sidebar.classList.remove('expanded');
                 });
             }
-            
-            // Highlight active nav item
+
             const navItems = document.querySelectorAll('.nav-item');
             const currentPath = window.location.pathname;
-            
+
             navItems.forEach(item => {
                 const itemPath = item.getAttribute('href');
                 if (currentPath.includes(itemPath) && itemPath !== 'index.html') {
