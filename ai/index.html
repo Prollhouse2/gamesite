@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Prolls AI</title>
+      
+      <meta property="og:title" content="Pete AI">
+      <meta property="og:description" content="PeteZah, Game on.">
+      <meta property="og:image" content="/assets/images/icons/favicon.ico">
+      <meta name="theme-color" content="#b6b6b6">
+      <meta name="msapplication-TileColor" content="#b6b6b6">
+      
+      <link rel="icon" type="image/x-icon" href="/storage/images/logo-png-removebg-preview.png">
+      
+      <link rel="stylesheet" href="assets/css/index.css">
+      <link rel="stylesheet" href="assets/css/toast.css">
+
+      <!-- ============================ -->
+      <!-- DO 𝗡𝗢𝗧 REMOVE THESE LIBRARIES!! -->
+      <!-- ☆ These libraries are required for syntax highlighting, icons, loading animations, and analytics ☆ -->
+      <!-- Removing them WILL, without a doubt, cause issues ˙◠˙ -->
+      <!-- ============================ -->
+
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGJ2192JZY"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-WGJ2192JZY');
+      </script>
+   </head>
+   <body>
+      <script src="assets/js/index.js" defer></script>
+      <script src="assets/js/load.js" defer></script>
+      
+      <div class="chat-container">
+         <div class="chat-header">
+            Prolls AI <span class="version"><i class="fas fa-flask"></i> credits to <a href="https://usewaves.site" target="_blank">Waves</a></span>
+         </div>
+         
+         <div class="branding">
+            <img src="/storage/images/logo-png-removebg-preview.png" alt="Waves AI Logo">
+            <div>Prolls AI</div>
+         </div>
+         
+         <div class="chat-options">
+            <div class="option">
+               <label for="modelSelector"></label>
+               <div class="selector" id="modelSelector">
+                  <div class="selector-selected">Llama 3.1 8B Instant</div>
+                  <div class="selector-options">
+                     <div data-value="llama-3.1-8b-instant">Llama 3.1 8B Instant</div>
+                     <div data-value="llama-3.3-70b-specdec">Llama 3.3 70B SpecDec</div>
+                     <div data-value="llama-3.3-70b-versatile">Llama 3.3 70B Versatile</div>
+                     <div data-value="qwen-2.5-32b">Qwen 2.5 32B</div>
+                     <div data-value="deepseek-r1-distill-llama-70b">Deepseek R1 Distill Llama 70B</div>
+                     <div data-value="gemma2-9b-it">Gemma2 9B IT</div>
+                     <div data-value="mixtral-8x7b-32768">Mixtral 8x7B 32768</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+         <div class="chat-body" id="chatBody"></div>
+         <div class="suggestions-container" id="suggestionsContainer"></div>
+         
+         <div class="chat-input">
+            <input type="text" id="aiInput" placeholder="What would you like to talk about?" autocomplete="off">
+            <input type="file" id="imageUpload" accept="image/*" style="display:none;">
+            <button id="sendMsg"><i class="fas fa-arrow-up"></i></button>
+         </div>
+      </div>
+      
+      <div class="social-icons">
+         <a href="https://discord.gg/cYjHFDguxS" target="_blank"><i class="fab fa-discord"></i></a>
+      </div>
+   </body>
+</html>
+
+<!-- credits to Waves for the inspiration -->
