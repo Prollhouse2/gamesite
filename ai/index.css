@@ -664,4 +664,11 @@ body::before {
     50% {
         text-shadow: 0 0 12px var(--color-accent), 0 0 20px var(--color-accent);
     }
+.content-area {
+    display: none;
 }
+
+.content-area.active {
+    display: block;
+}
+
