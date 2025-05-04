@@ -3,275 +3,937 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Silkscreen&family=Pixelify+Sans&family=Orbitron&family=Chakra+Petch:wght@400;700&display=swap");
 
-:root {
-  --bg-primary: #0a0a1a;
-  --bg-secondary: #1a1a2e;
-  --bg-tertiary: #25253a;
-  --accent-pink: #ff6b9d;
-  --accent-blue: #6b9dff;
-  --accent-purple: #9d6bff;
-  --text-primary: #ffffff;
-  --text-secondary: #c0c0d0;
-  --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
-  --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #25253a;
+            --accent-pink: #ff6b9d;
+            --accent-blue: #6b9dff;
+            --accent-purple: #9d6bff;
+            --accent-cyan: #6bffd9;
+            --text-primary: #ffffff;
+            --text-secondary: #c0c0d0;
+            --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.3);
+            --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
 
-body {
-  font-family: "Press Start 2P", cursive;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  margin: 0;
-  padding: 50px;
-  text-align: center;
-  line-height: 1.6;
-  min-height: 100vh;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-h1, h2, h3 {
-  font-family: "Press Start 2P", cursive;
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
+        body {
+            font-family: "Pixelify Sans", sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(157, 107, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 157, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(107, 157, 255, 0.05) 0%, transparent 50%);
+        }
 
-h1 { font-size: 1.8rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.2rem; }
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem;
+        }
 
-button {
-  background-color: var(--bg-secondary);
-  border-radius: 16px;
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
-  padding: 15px 20px;
-  font-size: 18px;
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  border: none;
-  color: #ffffff;
-  margin: 0.5rem;
-  font-family: "Press Start 2P", cursive;
-  font-size: 0.9rem;
-}
+        h1 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
 
-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.05), rgba(107, 157, 255, 0.05));
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  z-index: -1;
-  border-radius: 16px;
-}
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+            border-radius: 2px;
+        }
 
-button:hover {
-  transform: translateY(-5px);
-  background-color: var(--bg-tertiary);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-}
+        h1 a {
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            display: inline-block;
+            transition: all var(--transition-bounce);
+        }
 
-button:hover::before {
-  opacity: 1;
-}
+        h1 a:hover {
+            transform: scale(1.2) rotate(-5deg);
+            text-shadow: 0 5px 15px rgba(255, 107, 157, 0.6);
+        }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.8);
-}
+        h2 {
+            font-family: "Chakra Petch", sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
 
-.modal-content {
-  margin: 15% auto;
-  padding: 20px;
-  border: 2px solid var(--accent-blue);
-  width: 80%;
-  max-width: 600px;
-  background-color: var(--bg-secondary);
-  border-radius: 16px;
-  box-shadow: var(--shadow-md);
-}
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-blue));
+            border-radius: 1px;
+            transform: scaleX(0.7);
+            transform-origin: left;
+            transition: transform var(--transition-normal);
+        }
 
-.close {
-  color: var(--text-primary);
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color var(--transition-normal);
-}
+        .setting-card:hover h2::after {
+            transform: scaleX(1);
+        }
 
-.close:hover {
-  color: var(--accent-pink);
-}
+        .settings-container {
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            border: 1px solid rgba(107, 157, 255, 0.2);
+            animation: container-glow 5s infinite alternate;
+        }
 
-#faviconSelection img {
-  width: 100px;
-  height: 100px;
-  display: inline-block;
-  margin: 10px;
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  border-radius: 12px;
-  border: 3px solid transparent;
-}
+        @keyframes container-glow {
+            0% {
+                box-shadow: var(--shadow-lg), 
+                            0 0 20px rgba(107, 157, 255, 0.2);
+            }
+            100% {
+                box-shadow: var(--shadow-lg), 
+                            0 0 30px rgba(255, 107, 157, 0.3);
+            }
+        }
 
-#faviconSelection img:hover {
-  transform: scale(1.05);
-  border: 3px solid var(--accent-pink);
-  box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
-}
+        .settings-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: linear-gradient(to right, 
+                rgba(37, 37, 58, 0.9), 
+                rgba(37, 37, 58, 0.7), 
+                rgba(37, 37, 58, 0.9));
+            border-bottom: 2px solid rgba(157, 107, 255, 0.3);
+            padding: 0 1rem;
+        }
 
-input[type="text"],
-input[type="number"] {
-  background-color: #ffffff;
-  color: #000000;
-  border: 2px solid var(--accent-blue);
-  border-radius: 9999px;
-  padding: 8px 16px;
-  margin: 10px;
-  font-family: "Press Start 2P", cursive;
-  font-size: 0.8rem;
-  box-shadow: 0 2px 8px rgba(107, 157, 255, 0.3);
-}
+        .tab-link {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: none;
+            padding: 1.2rem 2rem;
+            cursor: pointer;
+            font-family: "Chakra Petch", sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
 
-input[type="text"] {
-  width: 50px;
-  text-align: center;
-}
+        .tab-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(157, 107, 255, 0.1), 
+                rgba(107, 157, 255, 0.1));
+            z-index: -1;
+            transform: translateY(100%);
+            transition: transform var(--transition-normal);
+        }
 
-input[type="number"] {
-  width: 100px;
-  text-align: center;
-}
+        .tab-link:hover::before {
+            transform: translateY(0);
+        }
 
-label {
-  font-family: "VT323", monospace;
-  font-size: 1.2rem;
-  color: var(--text-primary);
-  margin: 10px 0;
-  display: inline-block;
-}
+        .tab-link i {
+            font-size: 1.2rem;
+            transition: transform var(--transition-normal);
+        }
 
-#saveKeybind,
-#saveAutoClickerSettings {
-  background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-  color: #ffffff;
-  border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  margin: 1rem 0;
-  font-weight: 600;
-  transition: all var(--transition-normal);
-  cursor: pointer;
-  display: inline-block;
-  width: auto;
-}
+        .tab-link:hover i {
+            transform: translateY(-3px);
+            color: var(--accent-pink);
+        }
 
-#saveKeybind:hover,
-#saveAutoClickerSettings:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
-}
+        .tab-link.active {
+            background-color: var(--bg-secondary);
+            color: var(--accent-pink);
+            border-bottom: 3px solid var(--accent-pink);
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
 
-#autoClickerStatusMessage {
-  color: var(--accent-pink);
-  font-family: "VT323", monospace;
-  font-size: 1.2rem;
-  margin-top: 10px;
-}
+        .tab-link.active i {
+            color: var(--accent-pink);
+        }
 
-.section-divider {
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), var(--accent-purple), transparent);
-  margin: 2.5rem auto;
-  width: 80%;
-  max-width: 600px;
-  border-radius: 3px;
-  position: relative;
-}
+        .tab-content {
+            display: none;
+            padding: 2.5rem;
+            animation: fadeIn 0.5s ease;
+        }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  body {
-    padding: 30px;
-  }
-  
-  .modal-content {
-    width: 90%;
-    padding: 15px;
-  }
-  
-  button {
-    width: 180px;
-    font-size: 0.8rem;
-  }
-  
-  #faviconSelection img {
-    width: 80px;
-    height: 80px;
-  }
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-@media (max-width: 480px) {
-  body {
-    padding: 20px;
-  }
-  
-  h1 {
-    font-size: 1.5rem;
-  }
-  
-  h2 {
-    font-size: 1.2rem;
-  }
-  
-  button {
-    width: 160px;
-    padding: 12px 15px;
-    font-size: 0.7rem;
-  }
-  
-  #faviconSelection img {
-    width: 60px;
-    height: 60px;
-    margin: 5px;
-  }
-  
-  .modal-content {
-    margin-top: 20%;
-  }
-}
+        .tab-content.active {
+            display: block;
+        }
+
+        .setting-card {
+            background: linear-gradient(135deg, 
+                rgba(37, 37, 58, 0.9), 
+                rgba(26, 26, 46, 0.9));
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(107, 157, 255, 0.1);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .setting-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, 
+                rgba(107, 157, 255, 0.1), 
+                transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .setting-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(107, 157, 255, 0.3);
+        }
+
+        .setting-card:hover::before {
+            opacity: 1;
+        }
+
+        .setting-card p {
+            color: var(--text-secondary);
+            font-family: "VT323", monospace;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            background: linear-gradient(135deg, 
+                rgba(37, 37, 58, 0.9), 
+                rgba(26, 26, 46, 0.9));
+            border-radius: 12px;
+            box-shadow: var(--shadow-md),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+            padding: 0.9rem 1.5rem;
+            font-size: 0.9rem;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(107, 157, 255, 0.2);
+            color: var(--text-primary);
+            font-family: "Chakra Petch", sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            z-index: 1;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 157, 0.2), 
+                rgba(107, 157, 255, 0.2));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 107, 157, 0.3);
+        }
+
+        button:hover::before {
+            opacity: 1;
+        }
+
+        button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #enableAboutBlank {
+            background: linear-gradient(135deg, 
+                rgba(107, 157, 255, 0.2), 
+                rgba(37, 37, 58, 0.9));
+            border-color: rgba(107, 157, 255, 0.3);
+        }
+
+        #disableAboutBlank {
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 157, 0.2), 
+                rgba(37, 37, 58, 0.9));
+            border-color: rgba(255, 107, 157, 0.3);
+        }
+
+        /* Switch styling */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 70px;
+            height: 34px;
+            align-self: flex-end;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(26, 26, 46, 0.9);
+            transition: .4s;
+            border: 1px solid rgba(107, 157, 255, 0.2);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 3px;
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
+            transition: .4s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        input:checked + .slider {
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 157, 0.8), 
+                rgba(157, 107, 255, 0.8));
+            border-color: rgba(255, 107, 157, 0.5);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(36px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        /* Dropdown styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .dropdown-button {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, 
+                rgba(37, 37, 58, 0.9), 
+                rgba(26, 26, 46, 0.9));
+            border: 2px solid rgba(107, 157, 255, 0.3);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-family: "VT323", monospace;
+            font-size: 1.3rem;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-button:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 5px 15px rgba(107, 157, 255, 0.2);
+        }
+
+        .dropdown-button i {
+            transition: transform var(--transition-normal);
+        }
+
+        .dropdown.active .dropdown-button i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: linear-gradient(135deg, 
+                rgba(37, 37, 58, 0.95), 
+                rgba(26, 26, 46, 0.95));
+            min-width: 100%;
+            box-shadow: var(--shadow-lg);
+            z-index: 10;
+            border-radius: 12px;
+            margin-top: 0.7rem;
+            padding: 0.7rem 0;
+            list-style: none;
+            border: 1px solid rgba(107, 157, 255, 0.2);
+            backdrop-filter: blur(10px);
+            animation: dropdown-fade 0.3s ease;
+        }
+
+        @keyframes dropdown-fade {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-menu li {
+            padding: 0.9rem 1.2rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-family: "VT323", monospace;
+            font-size: 1.3rem;
+            position: relative;
+        }
+
+        .dropdown-menu li::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(107, 157, 255, 0.2), 
+                transparent);
+        }
+
+        .dropdown-menu li:last-child::after {
+            display: none;
+        }
+
+        .dropdown-menu li:hover {
+            background-color: rgba(107, 157, 255, 0.1);
+            padding-left: 1.5rem;
+        }
+
+        .dropdown.active .dropdown-menu {
+            display: block;
+        }
+
+        /* Credits section */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .credit-card {
+            background: linear-gradient(135deg, 
+                rgba(37, 37, 58, 0.8), 
+                rgba(26, 26, 46, 0.8));
+            border-radius: 16px;
+            padding: 2rem;
+            width: 220px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-bounce);
+            border: 1px solid rgba(107, 157, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .credit-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+            pointer-events: none;
+        }
+
+        .credit-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 107, 157, 0.3);
+        }
+
+        .credit-card:hover::before {
+            opacity: 1;
+        }
+
+        .credit-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 4px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--accent-pink), var(--accent-blue)) border-box;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all var(--transition-bounce);
+        }
+
+        .credit-card:hover .credit-img {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        }
+
+        .credit-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            color: var(--accent-blue);
+            font-family: "Orbitron", sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .credit-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--accent-blue), 
+                transparent);
+        }
+
+        .credit-role {
+            font-family: "VT323", monospace;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            animation: modal-fade 0.3s ease;
+        }
+
+        @keyframes modal-fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            margin: 10% auto;
+            padding: 2.5rem;
+            border: 2px solid rgba(107, 157, 255, 0.3);
+            width: 80%;
+            max-width: 600px;
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 46, 0.95), 
+                rgba(37, 37, 58, 0.95));
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: modal-slide 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modal-slide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: var(--text-primary);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 107, 157, 0.1);
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .close:hover {
+            color: var(--accent-pink);
+            background-color: rgba(255, 107, 157, 0.2);
+            transform: rotate(90deg);
+        }
+
+        #faviconSelection {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        #faviconSelection img {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            cursor: pointer;
+            transition: all var(--transition-bounce);
+            border-radius: 16px;
+            border: 3px solid transparent;
+            box-shadow: var(--shadow-md);
+            background-color: white;
+            padding: 5px;
+        }
+
+        #faviconSelection img:hover {
+            transform: scale(1.1) rotate(5deg);
+            border: 3px solid var(--accent-pink);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.4);
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            background-color: rgba(37, 37, 58, 0.8);
+            color: var(--text-primary);
+            border: 2px solid rgba(107, 157, 255, 0.3);
+            border-radius: 12px;
+            padding: 12px 20px;
+            margin: 10px;
+            font-family: "VT323", monospace;
+            font-size: 1.3rem;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2),
+                        0 2px 8px rgba(107, 157, 255, 0.2);
+            transition: all var(--transition-normal);
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2),
+                        0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        input[type="text"] {
+            width: 60px;
+            text-align: center;
+        }
+
+        input[type="number"] {
+            width: 120px;
+            text-align: center;
+        }
+
+        label {
+            font-family: "Chakra Petch", sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        #saveKeybind,
+        #saveAutoClickerSettings {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: #ffffff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            font-weight: 700;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+            display: inline-block;
+            width: auto;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        #saveKeybind:hover,
+        #saveAutoClickerSettings:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
+        }
+
+        #autoClickerStatusMessage {
+            color: var(--accent-pink);
+            font-family: "VT323", monospace;
+            font-size: 1.3rem;
+            margin-top: 15px;
+            animation: status-pulse 2s infinite;
+        }
+
+        @keyframes status-pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .page {
+                padding: 1.5rem;
+            }
+            
+            .settings-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-link {
+                width: 100%;
+                justify-content: center;
+                padding: 1rem;
+            }
+            
+            .credit-card {
+                width: 100%;
+            }
+
+            .modal-content {
+                width: 90%;
+                margin: 20% auto;
+                padding: 1.5rem;
+            }
+
+            #faviconSelection img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Glowing effect for active elements */
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--accent-pink), 
+                var(--accent-blue), 
+                var(--accent-purple), 
+                var(--accent-cyan));
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .glow-effect:hover::after {
+            opacity: 0.7;
+            animation: glow-rotate 3s linear infinite;
+        }
+
+        @keyframes glow-rotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
     </style>
 </head>
-    <h1>Settings</h1>
-<br></br>
 <body>
-    <button id="openFaviconUI">Change Favicon</button>
-    <button id="setKeybindButton">Panic Keybind</button>
-    <button id="openAutoClickerModalButton">Auto Clicker</button>
+    <div class="page" id="settings-page">
+        <h1><a href="javascript:alert('Little easter egg hidden by Taz 🥚')">S</a>ettings</h1>
+        <div class="settings-container">
+            <div class="settings-tabs">
+                <button class="tab-link active" onclick="openTab(event, 'appearance')">
+                    <i class="fas fa-palette"></i>
+                    Appearance
+                </button>
+                <button class="tab-link" onclick="openTab(event, 'cloaking')">
+                    <i class="fas fa-eye-slash"></i>
+                    Cloaking
+                </button>
+                <button class="tab-link" onclick="openTab(event, 'misc')">
+                    <i class="fas fa-info"></i>
+                    Misc
+                </button>
+            </div>
 
+            <div id="appearance" class="tab-content active">
+                <div class="setting-card glow-effect">
+                    <h2>Particles</h2>
+                    <p>Disabling particles will improve performance for low-end devices. The snow effect will be turned off.</p>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-particles" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="setting-card glow-effect">
+                    <h2>Change Favicon</h2>
+                    <p>Change the icon that appears in your browser tab. Choose from various options to disguise your browsing.</p>
+                    <button id="openFaviconUI" class="glow-effect">Change Favicon</button>
+                </div>
+            </div>
+
+            <div id="cloaking" class="tab-content">
+                <div class="setting-card glow-effect">
+                    <h2>about:blank Cloaking</h2>
+                    <p>about:blank cloaking allows you to hide this site from your tab history. Please enable popups for this to work.</p>
+                    <div class="buttons">
+                        <button id="enableAboutBlank" class="glow-effect">Enable</button>
+                        <button id="disableAboutBlank" class="glow-effect">Disable</button>
+                    </div>
+                </div>
+                <div class="setting-card glow-effect">
+                    <h2>Tab Cloaking</h2>
+                    <p>Disguise your tabs as something educational! Change both the title and favicon to avoid detection.</p>
+                    <div class="dropdown" id="tab-cloak">
+                        <button class="dropdown-button">
+                            <span class="dropdown-selected">Default</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li data-value="default">Default</li>
+                            <li data-value="google">Google</li>
+                            <li data-value="classroom">Google Classroom</li>
+                            <li data-value="docs">Google Docs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="misc" class="tab-content">
+                <div class="setting-card glow-effect">
+                    <h2>Credits</h2>
+                    <div class="cards-container" id="credits-container">
+                        <div class="credit-card">
+                            <img src="assets/taz.png" alt="Taz" class="credit-img">
+                            <div class="credit-name">Taz</div>
+                            <div class="credit-role">Worked on UI, developed proxy</div>
+                        </div>
+                        <div class="credit-card">
+                            <img src="assets/proll.png" alt="Proll" class="credit-img">
+                            <div class="credit-name">Proll</div>
+                            <div class="credit-role">Owner, added the games, and more</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-card glow-effect">
+                    <h2>Panic Keybind</h2>
+                    <p>Set a key to quickly hide this page. Press this key to instantly redirect to Google Classroom.</p>
+                    <button id="setKeybindButton" class="glow-effect">Set Panic Keybind</button>
+                </div>
+                <div class="setting-card glow-effect">
+                    <h2>Auto Clicker</h2>
+                    <p>Configure the auto clicker settings. Useful for idle games or repetitive tasks.</p>
+                    <button id="openAutoClickerModalButton" class="glow-effect">Auto Clicker Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
     <div id="faviconModal" class="modal">
         <div class="modal-content">
             <span id="closeFaviconModal" class="close">&times;</span>
@@ -295,7 +957,6 @@ label {
         </div>
     </div>
 
-    <!-- Auto Clicker Modal -->
     <div id="autoClickerModal" class="modal">
         <div class="modal-content">
             <span id="closeAutoClickerModal" class="close">&times;</span>
@@ -309,12 +970,12 @@ label {
             <br><br>
 
             <button id="saveAutoClickerSettings">Save Settings</button>
-            <p id="autoClickerStatusMessage" style="color: green;"></p>
+            <p id="autoClickerStatusMessage"></p>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
             const faviconModal = document.getElementById('faviconModal');
             const keybindModal = document.getElementById('keybindModal');
             const autoClickerModal = document.getElementById('autoClickerModal');
@@ -331,16 +992,28 @@ label {
             const autoClickSpeedInput = document.getElementById('autoClickSpeed');
             const saveAutoClickerSettingsButton = document.getElementById('saveAutoClickerSettings');
             const autoClickerStatusMessage = document.getElementById('autoClickerStatusMessage');
+            const particlesToggle = document.getElementById('toggle-particles');
+            const dropdown = document.getElementById('tab-cloak');
+            const dropdownButton = dropdown.querySelector('.dropdown-button');
+            const dropdownSelected = dropdown.querySelector('.dropdown-selected');
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            const dropdownItems = dropdown.querySelectorAll('.dropdown-menu li');
 
             let panicKeybind = localStorage.getItem('panicKeybind') || '\\';
             let autoClickerKeybind = localStorage.getItem('autoClickerKeybind') || 'a';
             let autoClickerSpeed = localStorage.getItem('autoClickerSpeed') || 1000;
+            
+            keybindInput.value = panicKeybind;
+            autoKeybindInput.value = autoClickerKeybind;
+            autoClickSpeedInput.value = autoClickerSpeed;
 
-            // Load saved settings
-            const selectedFavicon = localStorage.getItem('selectedFavicon') || '';
-            const selectedTitle = localStorage.getItem('selectedTitle') || '';
+            const particlesSetting = localStorage.getItem('particlesEnabled');
+            if (particlesSetting !== null) {
+                particlesToggle.checked = particlesSetting === 'true';
+            }
 
-            // Set favicon and title on load
+            const selectedFavicon = localStorage.getItem('selectedFavicon');
+            const selectedTitle = localStorage.getItem('selectedTitle');
             if (selectedFavicon) {
                 const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
                 link.rel = 'icon';
@@ -349,40 +1022,49 @@ label {
                 document.title = selectedTitle || document.title;
             }
 
-            // Open Modals
-            openFaviconButton.addEventListener('click', () => {
+            openFaviconButton.addEventListener('click', function() {
                 faviconModal.style.display = 'block';
             });
 
-            setKeybindButton.addEventListener('click', () => {
-                keybindInput.value = panicKeybind;
+            setKeybindButton.addEventListener('click', function() {
                 keybindModal.style.display = 'block';
             });
 
-            openAutoClickerModalButton.addEventListener('click', () => {
-                autoKeybindInput.value = autoClickerKeybind;
-                autoClickSpeedInput.value = autoClickerSpeed;
+            openAutoClickerModalButton.addEventListener('click', function() {
                 autoClickerModal.style.display = 'block';
             });
 
-            // Close Modals
-            closeFaviconModal.addEventListener('click', () => {
+            closeFaviconModal.addEventListener('click', function() {
                 faviconModal.style.display = 'none';
             });
 
-            closeKeybindModal.addEventListener('click', () => {
+            closeKeybindModal.addEventListener('click', function() {
                 keybindModal.style.display = 'none';
             });
 
-            closeAutoClickerModal.addEventListener('click', () => {
+            closeAutoClickerModal.addEventListener('click', function() {
                 autoClickerModal.style.display = 'none';
             });
 
-            // Handle Favicon Selection
+            window.addEventListener('click', function(event) {
+                if (event.target === faviconModal) {
+                    faviconModal.style.display = 'none';
+                }
+                if (event.target === keybindModal) {
+                    keybindModal.style.display = 'none';
+                }
+                if (event.target === autoClickerModal) {
+                    autoClickerModal.style.display = 'none';
+                }
+                if (!dropdown.contains(event.target)) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+
             faviconImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    const selectedFavicon = img.dataset.favicon;
-                    const selectedTitle = img.dataset.title;
+                img.addEventListener('click', function() {
+                    const selectedFavicon = this.dataset.favicon;
+                    const selectedTitle = this.dataset.title;
 
                     localStorage.setItem('selectedFavicon', selectedFavicon);
                     localStorage.setItem('selectedTitle', selectedTitle);
@@ -398,8 +1080,7 @@ label {
                 });
             });
 
-            // Save Panic Keybind
-            saveKeybindButton.addEventListener('click', () => {
+            saveKeybindButton.addEventListener('click', function() {
                 const keybind = keybindInput.value.trim();
                 if (keybind.length === 1) {
                     panicKeybind = keybind;
@@ -411,8 +1092,7 @@ label {
                 }
             });
 
-            // Save Auto Clicker Settings
-            saveAutoClickerSettingsButton.addEventListener('click', () => {
+            saveAutoClickerSettingsButton.addEventListener('click', function() {
                 const keybind = autoKeybindInput.value.trim();
                 const clickSpeed = parseInt(autoClickSpeedInput.value, 10);
 
@@ -425,27 +1105,188 @@ label {
 
                     alert(`Auto Clicker Keybind set to: ${autoClickerKeybind}\nClick Speed set to: ${autoClickerSpeed}ms`);
                     autoClickerStatusMessage.textContent = 'Auto Clicker settings saved.';
+                    autoClickerStatusMessage.style.color = 'var(--accent-cyan)';
                     autoClickerModal.style.display = 'none';
                 } else {
                     alert('Please enter valid settings for Auto Clicker.');
                 }
             });
 
-            // Auto-clicker function
+            particlesToggle.addEventListener('change', function() {
+                localStorage.setItem('particlesEnabled', this.checked);
+                
+                if (window.parent && window.parent.toggleParticles) {
+                    window.parent.toggleParticles(this.checked);
+                }
+                
+                if (this.checked) {
+                    if (window.parent && window.parent.document.getElementById('snow')) {
+                        window.parent.document.getElementById('snow').style.display = 'block';
+                    }
+                } else {
+                    if (window.parent && window.parent.document.getElementById('snow')) {
+                        window.parent.document.getElementById('snow').style.display = 'none';
+                    }
+                }
+            });
+
+            document.getElementById('enableAboutBlank').addEventListener('click', function() {
+                enableAboutBlank();
+            });
+
+            document.getElementById('disableAboutBlank').addEventListener('click', function() {
+                disableAboutBlank();
+            });
+
+            dropdownButton.addEventListener('click', function() {
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                } else {
+                    dropdownMenu.style.display = 'block';
+                }
+            });
+
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    dropdownSelected.textContent = this.textContent;
+                    dropdownMenu.style.display = 'none';
+                    setTabCloak(value);
+                });
+            });
+
             let autoClickerInterval;
-            document.addEventListener('keydown', (event) => {
+            document.addEventListener('keydown', function(event) {
                 if (event.key === autoClickerKeybind) {
                     if (autoClickerInterval) {
                         clearInterval(autoClickerInterval);
                         autoClickerInterval = null;
+                        autoClickerStatusMessage.textContent = 'Auto Clicker stopped.';
                     } else {
-                        autoClickerInterval = setInterval(() => {
-                            document.querySelector('button').click();
+                        autoClickerInterval = setInterval(function() {
+                            const activeElement = document.activeElement;
+                            if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+                                return;
+                            }
+                            
+                            const event = new MouseEvent('click', {
+                                view: window,
+                                bubbles: true,
+                                cancelable: true
+                            });
+                            
+                            document.elementFromPoint(
+                                window.innerWidth / 2,
+                                window.innerHeight / 2
+                            ).dispatchEvent(event);
                         }, autoClickerSpeed);
+                        autoClickerStatusMessage.textContent = 'Auto Clicker running...';
                     }
                 }
+                
+                if (event.key === panicKeybind) {
+                    window.location.href = 'https://classroom.google.com';
+                }
             });
+
+            const loadedTabCloak = localStorage.getItem('tabCloak');
+            if (loadedTabCloak) {
+                const cloakOption = document.querySelector(`li[data-value="${loadedTabCloak}"]`);
+                if (cloakOption) {
+                    dropdownSelected.textContent = cloakOption.textContent;
+                    setTabCloak(loadedTabCloak);
+                }
+            }
         });
+
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            const tabLinks = document.getElementsByClassName("tab-link");
+            for (let i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function enableAboutBlank() {
+            const newWindow = window.open('about:blank', '_blank');
+            if (newWindow) {
+                newWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>${document.title}</title>
+                        <link rel="icon" href="${document.querySelector('link[rel="icon"]')?.getAttribute("href") || "/favicon.ico"}">
+                    </head>
+                    <body>
+                        <iframe src="${window.location.href}" frameborder="0" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
+                    </body>
+                    </html>
+                `);
+                newWindow.document.close();
+            } else {
+                alert("Please enable popups for this feature to work.");
+            }
+        }
+
+        function disableAboutBlank() {
+            if (window !== window.top) {
+                window.top.location.href = window.location.href;
+            } else {
+                alert("Not currently in about:blank mode.");
+            }
+        }
+
+        function setTabCloak(type) {
+            let favicon = '';
+            let title = '';
+
+            switch(type) {
+                case 'google':
+                    favicon = 'https://www.google.com/favicon.ico';
+                    title = 'Google';
+                    break;
+                case 'classroom':
+                    favicon = 'https://ssl.gstatic.com/classroom/favicon.png';
+                    title = 'Google Classroom';
+                    break;
+                case 'docs':
+                    favicon = '/favicon/googledocs.png';
+                    title = 'Google Docs';
+                    break;
+                default:
+                    favicon = '/images/favicon.png';
+                    title = 'Grades & Attendance';
+            }
+
+            localStorage.setItem('tabCloak', type);
+            
+            const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+            link.rel = 'icon';
+            link.href = favicon;
+            document.head.appendChild(link);
+            
+            document.title = title;
+            
+            if (window.parent) {
+                try {
+                    window.parent.document.title = title;
+                    
+                    const parentFavicon = window.parent.document.querySelector("link[rel*='icon']") || window.parent.document.createElement('link');
+                    parentFavicon.rel = 'icon';
+                    parentFavicon.href = favicon;
+                    window.parent.document.head.appendChild(parentFavicon);
+                } catch (e) {
+                    console.log("Cannot access parent frame");
+                }
+            }
+        }
     </script>
 </body>
 </html>
