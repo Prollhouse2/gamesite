@@ -571,11 +571,58 @@ body {
             </iframe>
         </div>
 
-    <script>
-
-        window.onload = function() {
-
-            if (typeof particlesJS !== "undefined") {
+  <script>
+  
+      window.onload = function() {
+        // Particles.js initialization
+        if (typeof particlesJS !== "undefined") {
+            particlesJS("snow", {
+                particles: {
+                    number: {
+                        value: 150,
+                        density: { enable: true, value_area: 800 },
+                    },
+                    color: { value: "#ffffff" },
+                    shape: {
+                        type: "circle",
+                        stroke: { width: 0, color: "#000000" },
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: false,
+                        anim: { enable: false },
+                    },
+                    size: {
+                        value: 3,
+                        random: true,
+                        anim: { enable: false },
+                    },
+                    line_linked: { enable: false },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "bottom",
+                        random: false,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false,
+                    },
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true },
+                        onclick: { enable: false },
+                        resize: true,
+                    },
+                },
+                retina_detect: true,
+            });
+        } else {
+            console.error("particles.js is not loaded");
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+            script.onload = function() {
                 particlesJS("snow", {
                     particles: {
                         number: {
@@ -618,242 +665,162 @@ body {
                     },
                     retina_detect: true,
                 });
-            } else {
-                console.error("particles.js is not loaded");
+            };
+            document.head.appendChild(script);
+        }
 
-                var script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
-                script.onload = function() {
-                    particlesJS("snow", {
-                        particles: {
-                            number: {
-                                value: 150,
-                                density: { enable: true, value_area: 800 },
-                            },
-                            color: { value: "#ffffff" },
-                            shape: {
-                                type: "circle",
-                                stroke: { width: 0, color: "#000000" },
-                            },
-                            opacity: {
-                                value: 0.5,
-                                random: false,
-                                anim: { enable: false },
-                            },
-                            size: {
-                                value: 3,
-                                random: true,
-                                anim: { enable: false },
-                            },
-                            line_linked: { enable: false },
-                            move: {
-                                enable: true,
-                                speed: 2,
-                                direction: "bottom",
-                                random: false,
-                                straight: false,
-                                out_mode: "out",
-                                bounce: false,
-                            },
-                        },
-                        interactivity: {
-                            detect_on: "canvas",
-                            events: {
-                                onhover: { enable: true },
-                                onclick: { enable: false },
-                                resize: true,
-                            },
-                        },
-                        retina_detect: true,
-                    });
-                };
-                document.head.appendChild(script);
-            }
+        // Current year in footer
+        document.getElementById("current-year").textContent = new Date().getFullYear();
 
-            document.getElementById("current-year").textContent = new Date().getFullYear();
+        // Sample users list
+        const userList = document.getElementById("user-list");
+        const sampleUsers = [
+            "GamerPro123", "EpicPlayer", "NinjaWarrior", "PixelMaster", 
+            "GameWizard", "LevelBoss", "QuestHunter", "ProGamer99"
+        ];
 
-            const fullscreenBtn = document.getElementById("fullscreen-btn");
-            const chatContainer = document.getElementById("chat-container");
-            const chatFrame = document.getElementById("chat-frame");
+        sampleUsers.forEach(user => {
+            const userBadge = document.createElement("div");
+            userBadge.className = "user-badge";
 
-            fullscreenBtn.addEventListener("click", function() {
+            const userStatus = document.createElement("span");
+            userStatus.className = "user-status";
 
-                try {
-                    if (chatFrame.requestFullscreen) {
-                        chatFrame.requestFullscreen();
-                    } else if (chatFrame.mozRequestFullScreen) {
-                        chatFrame.mozRequestFullScreen();
-                    } else if (chatFrame.webkitRequestFullscreen) {
-                        chatFrame.webkitRequestFullscreen();
-                    } else if (chatFrame.msRequestFullscreen) {
-                        chatFrame.msRequestFullscreen();
-                    } else {
+            const userName = document.createElement("span");
+            userName.textContent = user;
 
-                        window.open(chatFrame.src, '_blank');
-                    }
-                } catch (e) {
-                    console.error("Fullscreen failed:", e);
+            userBadge.appendChild(userStatus);
+            userBadge.appendChild(userName);
+            userList.appendChild(userBadge);
+        });
 
-                    window.open(chatFrame.src, '_blank');
-                }
+        // Sidebar functionality
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebarMobileToggle = document.querySelector('.sidebar-mobile-toggle');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
+
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('expanded');
             });
+        }
 
-            const refreshBtn = document.getElementById("refresh-btn");
+        if (sidebarMobileToggle) {
+            sidebarMobileToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('expanded');
+            });
+        }
 
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', function() {
+                sidebar.classList.remove('expanded');
+            });
+        }
+
+        // Fullscreen functionality
+        const fullscreenBtn = document.getElementById("fullscreen-btn");
+        const chatContainer = document.getElementById("chat-container");
+        const chatFrame = document.getElementById("chat-frame");
+        let isFullscreen = false;
+
+        function toggleFullscreen() {
+            if (!isFullscreen) {
+                // Enter fullscreen
+                if (chatContainer.requestFullscreen) {
+                    chatContainer.requestFullscreen().catch(err => {
+                        console.error("Error attempting to enable fullscreen:", err);
+                        manualFullscreen();
+                    });
+                } else if (chatContainer.webkitRequestFullscreen) { /* Safari */
+                    chatContainer.webkitRequestFullscreen().catch(err => {
+                        console.error("Error attempting to enable fullscreen:", err);
+                        manualFullscreen();
+                    });
+                } else if (chatContainer.msRequestFullscreen) { /* IE11 */
+                    chatContainer.msRequestFullscreen().catch(err => {
+                        console.error("Error attempting to enable fullscreen:", err);
+                        manualFullscreen();
+                    });
+                } else {
+                    manualFullscreen();
+                }
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE11 */
+                    document.msExitFullscreen();
+                } else {
+                    exitManualFullscreen();
+                }
+            }
+        }
+
+        function manualFullscreen() {
+            chatContainer.classList.add("fullscreen");
+            document.body.style.overflow = "hidden";
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+            isFullscreen = true;
+            console.log("Using manual fullscreen fallback");
+        }
+
+        function exitManualFullscreen() {
+            chatContainer.classList.remove("fullscreen");
+            document.body.style.overflow = "";
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            isFullscreen = false;
+        }
+
+        // Event listener for fullscreen button
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener("click", toggleFullscreen);
+        }
+
+        // Listen for fullscreen change events
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
+        document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+        document.addEventListener("msfullscreenchange", handleFullscreenChange);
+
+        function handleFullscreenChange() {
+            const fullscreenElement = document.fullscreenElement || 
+                                    document.webkitFullscreenElement || 
+                                    document.msFullscreenElement;
+            
+            if (fullscreenElement) {
+                // Entered fullscreen
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                isFullscreen = true;
+            } else {
+                // Exited fullscreen
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                isFullscreen = false;
+                // Also exit manual fullscreen if it was active
+                if (chatContainer.classList.contains("fullscreen")) {
+                    exitManualFullscreen();
+                }
+            }
+        }
+
+        // Refresh functionality
+        const refreshBtn = document.getElementById("refresh-btn");
+        if (refreshBtn) {
             refreshBtn.addEventListener("click", function() {
-
                 const currentSrc = chatFrame.src;
-
                 this.querySelector("i").classList.add("fa-spin");
-
                 chatFrame.src = "about:blank";
-
+                
                 setTimeout(() => {
                     chatFrame.src = currentSrc;
-
                     setTimeout(() => {
                         this.querySelector("i").classList.remove("fa-spin");
                     }, 500);
                 }, 100);
             });
-
-            const userList = document.getElementById("user-list");
-            const sampleUsers = [
-                "GamerPro123", "EpicPlayer", "NinjaWarrior", "PixelMaster", 
-                "GameWizard", "LevelBoss", "QuestHunter", "ProGamer99"
-            ];
-
-            sampleUsers.forEach(user => {
-                const userBadge = document.createElement("div");
-                userBadge.className = "user-badge";
-
-                const userStatus = document.createElement("span");
-                userStatus.className = "user-status";
-
-                const userName = document.createElement("span");
-                userName.textContent = user;
-
-                userBadge.appendChild(userStatus);
-                userBadge.appendChild(userName);
-                userList.appendChild(userBadge);
-            });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.querySelector('.sidebar');
-            const sidebarToggle = document.querySelector('.sidebar-toggle');
-            const sidebarMobileToggle = document.querySelector('.sidebar-mobile-toggle');
-            const sidebarOverlay = document.querySelector('.sidebar-overlay');
-
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('expanded');
-            });
-
-            if (sidebarMobileToggle) {
-                sidebarMobileToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('expanded');
-                });
-            }
-
-            if (sidebarOverlay) {
-                sidebarOverlay.addEventListener('click', function() {
-                    sidebar.classList.remove('expanded');
-                });
-            }
-
-            const navItems = document.querySelectorAll('.nav-item');
-            const currentPath = window.location.pathname;
-
-            navItems.forEach(item => {
-                const itemPath = item.getAttribute('href');
-                if (currentPath.includes(itemPath) && itemPath !== 'index.html') {
-                    item.classList.add('active');
-                } else if (currentPath === '/' && itemPath === 'index.html') {
-                    item.classList.add('active');
-                }
-            // Fullscreen functionality
-const fullscreenBtn = document.getElementById("fullscreen-btn");
-const chatContainer = document.getElementById("chat-container");
-const chatFrame = document.getElementById("chat-frame");
-
-let isFullscreen = false;
-
-function toggleFullscreen() {
-    if (!isFullscreen) {
-        // Enter fullscreen
-        if (chatContainer.requestFullscreen) {
-            chatContainer.requestFullscreen().catch(err => {
-                console.error("Error attempting to enable fullscreen:", err);
-                manualFullscreen();
-            });
-        } else if (chatContainer.webkitRequestFullscreen) { /* Safari */
-            chatContainer.webkitRequestFullscreen().catch(err => {
-                console.error("Error attempting to enable fullscreen:", err);
-                manualFullscreen();
-            });
-        } else if (chatContainer.msRequestFullscreen) { /* IE11 */
-            chatContainer.msRequestFullscreen().catch(err => {
-                console.error("Error attempting to enable fullscreen:", err);
-                manualFullscreen();
-            });
-        } else {
-            manualFullscreen();
         }
-    } else {
-        // Exit fullscreen
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) { /* Safari */
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { /* IE11 */
-            document.msExitFullscreen();
-        } else {
-            exitManualFullscreen();
-        }
-    }
-}
-
-function manualFullscreen() {
-    chatContainer.classList.add("fullscreen");
-    document.body.style.overflow = "hidden";
-    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-    isFullscreen = true;
-    console.log("Using manual fullscreen fallback");
-}
-
-function exitManualFullscreen() {
-    chatContainer.classList.remove("fullscreen");
-    document.body.style.overflow = "";
-    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-    isFullscreen = false;
-}
-
-// Event listener for fullscreen button
-fullscreenBtn.addEventListener("click", toggleFullscreen);
-
-// Listen for fullscreen change events
-document.addEventListener("fullscreenchange", handleFullscreenChange);
-document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-document.addEventListener("msfullscreenchange", handleFullscreenChange);
-
-function handleFullscreenChange() {
-    const fullscreenElement = document.fullscreenElement || 
-                             document.webkitFullscreenElement || 
-                             document.msFullscreenElement;
-    
-    if (fullscreenElement) {
-        // Entered fullscreen
-        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-        isFullscreen = true;
-    } else {
-        // Exited fullscreen
-        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-        isFullscreen = false;
-        // Also exit manual fullscreen if it was active
-        if (chatContainer.classList.contains("fullscreen")) {
-            exitManualFullscreen();
-        }
-    }
-}
-    </script>
-</body>
+    };
+</script>
+ </body>
 </html>
