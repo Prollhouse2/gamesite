@@ -861,300 +861,311 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const faviconModal = document.getElementById('faviconModal');
-            const keybindModal = document.getElementById('keybindModal');
-            const autoClickerModal = document.getElementById('autoClickerModal');
-            const openFaviconButton = document.getElementById('openFaviconUI');
-            const setKeybindButton = document.getElementById('setKeybindButton');
-            const openAutoClickerModalButton = document.getElementById('openAutoClickerModalButton');
-            const closeFaviconModal = document.getElementById('closeFaviconModal');
-            const closeKeybindModal = document.getElementById('closeKeybindModal');
-            const closeAutoClickerModal = document.getElementById('closeAutoClickerModal');
-            const faviconImages = document.querySelectorAll('#faviconSelection img');
-            const keybindInput = document.getElementById('keybind');
-            const saveKeybindButton = document.getElementById('saveKeybind');
-            const autoKeybindInput = document.getElementById('autoKeybind');
-            const autoClickSpeedInput = document.getElementById('autoClickSpeed');
-            const saveAutoClickerSettingsButton = document.getElementById('saveAutoClickerSettings');
-            const autoClickerStatusMessage = document.getElementById('autoClickerStatusMessage');
-            const particlesToggle = document.getElementById('toggle-particles');
-            const dropdown = document.getElementById('tab-cloak');
-            const dropdownButton = dropdown.querySelector('.dropdown-button');
-            const dropdownSelected = dropdown.querySelector('.dropdown-selected');
-            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-            const dropdownItems = dropdown.querySelectorAll('.dropdown-menu li');
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const faviconModal = document.getElementById('faviconModal');
+        const keybindModal = document.getElementById('keybindModal');
+        const autoClickerModal = document.getElementById('autoClickerModal');
+        const openFaviconButton = document.getElementById('openFaviconUI');
+        const setKeybindButton = document.getElementById('setKeybindButton');
+        const openAutoClickerModalButton = document.getElementById('openAutoClickerModalButton');
+        const closeFaviconModal = document.getElementById('closeFaviconModal');
+        const closeKeybindModal = document.getElementById('closeKeybindModal');
+        const closeAutoClickerModal = document.getElementById('closeAutoClickerModal');
+        const faviconImages = document.querySelectorAll('#faviconSelection img');
+        const keybindInput = document.getElementById('keybind');
+        const saveKeybindButton = document.getElementById('saveKeybind');
+        const autoKeybindInput = document.getElementById('autoKeybind');
+        const autoClickSpeedInput = document.getElementById('autoClickSpeed');
+        const saveAutoClickerSettingsButton = document.getElementById('saveAutoClickerSettings');
+        const autoClickerStatusMessage = document.getElementById('autoClickerStatusMessage');
+        const particlesToggle = document.getElementById('toggle-particles');
+        const dropdown = document.getElementById('tab-cloak');
+        const dropdownButton = dropdown.querySelector('.dropdown-button');
+        const dropdownSelected = dropdown.querySelector('.dropdown-selected');
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+        const dropdownItems = dropdown.querySelectorAll('.dropdown-menu li');
 
-            let panicKeybind = localStorage.getItem('panicKeybind') || '\\';
-            let autoClickerKeybind = localStorage.getItem('autoClickerKeybind') || 'a';
-            let autoClickerSpeed = localStorage.getItem('autoClickerSpeed') || 1000;
-            
-            keybindInput.value = panicKeybind;
-            autoKeybindInput.value = autoClickerKeybind;
-            autoClickSpeedInput.value = autoClickerSpeed;
+        let panicKeybind = localStorage.getItem('panicKeybind') || '\\';
+        let autoClickerKeybind = localStorage.getItem('autoClickerKeybind') || 'a';
+        let autoClickerSpeed = localStorage.getItem('autoClickerSpeed') || 1000;
+        
+        keybindInput.value = panicKeybind;
+        autoKeybindInput.value = autoClickerKeybind;
+        autoClickSpeedInput.value = autoClickerSpeed;
 
-            const particlesSetting = localStorage.getItem('particlesEnabled');
-            if (particlesSetting !== null) {
-                particlesToggle.checked = particlesSetting === 'true';
+        const particlesSetting = localStorage.getItem('particlesEnabled');
+        if (particlesSetting !== null) {
+            particlesToggle.checked = particlesSetting === 'true';
+        }
+
+        const selectedFavicon = localStorage.getItem('selectedFavicon');
+        const selectedTitle = localStorage.getItem('selectedTitle');
+        if (selectedFavicon) {
+            const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+            link.rel = 'icon';
+            link.href = selectedFavicon;
+            document.head.appendChild(link);
+            document.title = selectedTitle || document.title;
+        }
+
+        openFaviconButton.addEventListener('click', function() {
+            faviconModal.style.display = 'block';
+        });
+
+        setKeybindButton.addEventListener('click', function() {
+            keybindModal.style.display = 'block';
+        });
+
+        openAutoClickerModalButton.addEventListener('click', function() {
+            autoClickerModal.style.display = 'block';
+        });
+
+        closeFaviconModal.addEventListener('click', function() {
+            faviconModal.style.display = 'none';
+        });
+
+        closeKeybindModal.addEventListener('click', function() {
+            keybindModal.style.display = 'none';
+        });
+
+        closeAutoClickerModal.addEventListener('click', function() {
+            autoClickerModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === faviconModal) {
+                faviconModal.style.display = 'none';
             }
+            if (event.target === keybindModal) {
+                keybindModal.style.display = 'none';
+            }
+            if (event.target === autoClickerModal) {
+                autoClickerModal.style.display = 'none';
+            }
+        });
 
-            const selectedFavicon = localStorage.getItem('selectedFavicon');
-            const selectedTitle = localStorage.getItem('selectedTitle');
-            if (selectedFavicon) {
+        // Fix for dropdown visibility
+        dropdownButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            dropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!dropdown.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+                dropdown.classList.remove('active');
+            }
+        });
+
+        faviconImages.forEach(img => {
+            img.addEventListener('click', function() {
+                const selectedFavicon = this.dataset.favicon;
+                const selectedTitle = this.dataset.title;
+
+                localStorage.setItem('selectedFavicon', selectedFavicon);
+                localStorage.setItem('selectedTitle', selectedTitle);
+
                 const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
                 link.rel = 'icon';
                 link.href = selectedFavicon;
                 document.head.appendChild(link);
-                document.title = selectedTitle || document.title;
-            }
+                document.title = selectedTitle;
 
-            openFaviconButton.addEventListener('click', function() {
-                faviconModal.style.display = 'block';
-            });
-
-            setKeybindButton.addEventListener('click', function() {
-                keybindModal.style.display = 'block';
-            });
-
-            openAutoClickerModalButton.addEventListener('click', function() {
-                autoClickerModal.style.display = 'block';
-            });
-
-            closeFaviconModal.addEventListener('click', function() {
+                alert(`Favicon changed to: ${selectedTitle}`);
                 faviconModal.style.display = 'none';
             });
+        });
 
-            closeKeybindModal.addEventListener('click', function() {
+        saveKeybindButton.addEventListener('click', function() {
+            const keybind = keybindInput.value.trim();
+            if (keybind.length === 1) {
+                panicKeybind = keybind;
+                localStorage.setItem('panicKeybind', panicKeybind);
+                alert(`Panic Keybind set to: ${panicKeybind}`);
                 keybindModal.style.display = 'none';
-            });
+            } else {
+                alert('Please enter a single character.');
+            }
+        });
 
-            closeAutoClickerModal.addEventListener('click', function() {
+        saveAutoClickerSettingsButton.addEventListener('click', function() {
+            const keybind = autoKeybindInput.value.trim();
+            const clickSpeed = parseInt(autoClickSpeedInput.value, 10);
+
+            if (keybind.length === 1 && clickSpeed > 0) {
+                autoClickerKeybind = keybind;
+                autoClickerSpeed = clickSpeed;
+
+                localStorage.setItem('autoClickerKeybind', autoClickerKeybind);
+                localStorage.setItem('autoClickerSpeed', autoClickerSpeed);
+
+                alert(`Auto Clicker Keybind set to: ${autoClickerKeybind}\nClick Speed set to: ${autoClickerSpeed}ms`);
+                autoClickerStatusMessage.textContent = 'Auto Clicker settings saved.';
+                autoClickerStatusMessage.style.color = 'var(--accent-cyan)';
                 autoClickerModal.style.display = 'none';
-            });
+            } else {
+                alert('Please enter valid settings for Auto Clicker.');
+            }
+        });
 
-            window.addEventListener('click', function(event) {
-                if (event.target === faviconModal) {
-                    faviconModal.style.display = 'none';
+        particlesToggle.addEventListener('change', function() {
+            localStorage.setItem('particlesEnabled', this.checked);
+            
+            if (window.parent && window.parent.toggleParticles) {
+                window.parent.toggleParticles(this.checked);
+            }
+            
+            if (this.checked) {
+                if (window.parent && window.parent.document.getElementById('snow')) {
+                    window.parent.document.getElementById('snow').style.display = 'block';
                 }
-                if (event.target === keybindModal) {
-                    keybindModal.style.display = 'none';
-                }
-                if (event.target === autoClickerModal) {
-                    autoClickerModal.style.display = 'none';
-                }
-            });
-
-            // Fix for dropdown visibility
-            dropdownButton.addEventListener('click', function(event) {
-                event.stopPropagation();
-                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-                dropdown.classList.toggle('active');
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!dropdown.contains(event.target)) {
-                    dropdownMenu.style.display = 'none';
-                    dropdown.classList.remove('active');
-                }
-            });
-
-            faviconImages.forEach(img => {
-                img.addEventListener('click', function() {
-                    const selectedFavicon = this.dataset.favicon;
-                    const selectedTitle = this.dataset.title;
-
-                    localStorage.setItem('selectedFavicon', selectedFavicon);
-                    localStorage.setItem('selectedTitle', selectedTitle);
-
-                    const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-                    link.rel = 'icon';
-                    link.href = selectedFavicon;
-                    document.head.appendChild(link);
-                    document.title = selectedTitle;
-
-                    alert(`Favicon changed to: ${selectedTitle}`);
-                    faviconModal.style.display = 'none';
-                });
-            });
-
-            saveKeybindButton.addEventListener('click', function() {
-                const keybind = keybindInput.value.trim();
-                if (keybind.length === 1) {
-                    panicKeybind = keybind;
-                    localStorage.setItem('panicKeybind', panicKeybind);
-                    alert(`Panic Keybind set to: ${panicKeybind}`);
-                    keybindModal.style.display = 'none';
-                } else {
-                    alert('Please enter a single character.');
-                }
-            });
-
-            saveAutoClickerSettingsButton.addEventListener('click', function() {
-                const keybind = autoKeybindInput.value.trim();
-                const clickSpeed = parseInt(autoClickSpeedInput.value, 10);
-
-                if (keybind.length === 1 && clickSpeed > 0) {
-                    autoClickerKeybind = keybind;
-                    autoClickerSpeed = clickSpeed;
-
-                    localStorage.setItem('autoClickerKeybind', autoClickerKeybind);
-                    localStorage.setItem('autoClickerSpeed', autoClickerSpeed);
-
-                    alert(`Auto Clicker Keybind set to: ${autoClickerKeybind}\nClick Speed set to: ${autoClickerSpeed}ms`);
-                    autoClickerStatusMessage.textContent = 'Auto Clicker settings saved.';
-                    autoClickerStatusMessage.style.color = 'var(--accent-cyan)';
-                    autoClickerModal.style.display = 'none';
-                } else {
-                    alert('Please enter valid settings for Auto Clicker.');
-                }
-            });
-
-            particlesToggle.addEventListener('change', function() {
-                localStorage.setItem('particlesEnabled', this.checked);
-                
-                if (window.parent && window.parent.toggleParticles) {
-                    window.parent.toggleParticles(this.checked);
-                }
-                
-                if (this.checked) {
-                    if (window.parent && window.parent.document.getElementById('snow')) {
-                        window.parent.document.getElementById('snow').style.display = 'block';
-                    }
-                } else {
-                    if (window.parent && window.parent.document.getElementById('snow')) {
-                        window.parent.document.getElementById('snow').style.display = 'none';
-                    }
-                }
-            });
-
-            document.getElementById('enableAboutBlank').addEventListener('click', function() {
-                enableAboutBlank();
-            });
-
-            document.getElementById('disableAboutBlank').addEventListener('click', function() {
-                disableAboutBlank();
-            });
-
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const value = this.getAttribute('data-value');
-                    dropdownSelected.textContent = this.textContent;
-                    dropdownMenu.style.display = 'none';
-                    dropdown.classList.remove('active');
-                    setTabCloak(value);
-                });
-            });
-
-            let autoClickerInterval;
-            document.addEventListener('keydown', function(event) {
-                if (event.key === autoClickerKeybind) {
-                    if (autoClickerInterval) {
-                        clearInterval(autoClickerInterval);
-                        autoClickerInterval = null;
-                        autoClickerStatusMessage.textContent = 'Auto Clicker stopped.';
-                    } else {
-                        autoClickerInterval = setInterval(function() {
-                            const activeElement = document.activeElement;
-                            if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
-                                return;
-                            }
-                            
-                            const event = new MouseEvent('click', {
-                                view: window,
-                                bubbles: true,
-                                cancelable: true
-                            });
-                            
-                            document.elementFromPoint(
-                                window.innerWidth / 2,
-                                window.innerHeight / 2
-                            ).dispatchEvent(event);
-                        }, autoClickerSpeed);
-                        autoClickerStatusMessage.textContent = 'Auto Clicker running...';
-                    }
-                }
-                
-                if (event.key === panicKeybind) {
-                    window.location.href = 'https://classroom.google.com';
-                }
-            });
-
-            const loadedTabCloak = localStorage.getItem('tabCloak');
-            if (loadedTabCloak) {
-                const cloakOption = document.querySelector(`li[data-value="${loadedTabCloak}"]`);
-                if (cloakOption) {
-                    dropdownSelected.textContent = cloakOption.textContent;
-                    setTabCloak(loadedTabCloak);
+            } else {
+                if (window.parent && window.parent.document.getElementById('snow')) {
+                    window.parent.document.getElementById('snow').style.display = 'none';
                 }
             }
         });
 
-        function openTab(evt, tabName) {
-            const tabContents = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < tabContents.length; i++) {
-                tabContents[i].classList.remove("active");
+        document.getElementById('enableAboutBlank').addEventListener('click', function() {
+            enableAboutBlank();
+        });
+
+        document.getElementById('disableAboutBlank').addEventListener('click', function() {
+            disableAboutBlank();
+        });
+
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                dropdownSelected.textContent = this.textContent;
+                dropdownMenu.style.display = 'none';
+                dropdown.classList.remove('active');
+                setTabCloak(value);
+            });
+        });
+
+        let autoClickerInterval;
+        document.addEventListener('keydown', function(event) {
+            if (event.key === autoClickerKeybind) {
+                if (autoClickerInterval) {
+                    clearInterval(autoClickerInterval);
+                    autoClickerInterval = null;
+                    autoClickerStatusMessage.textContent = 'Auto Clicker stopped.';
+                } else {
+                    autoClickerInterval = setInterval(function() {
+                        const activeElement = document.activeElement;
+                        if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+                            return;
+                        }
+                        
+                        const event = new MouseEvent('click', {
+                            view: window,
+                            bubbles: true,
+                            cancelable: true
+                        });
+                        
+                        document.elementFromPoint(
+                            window.innerWidth / 2,
+                            window.innerHeight / 2
+                        ).dispatchEvent(event);
+                    }, autoClickerSpeed);
+                    autoClickerStatusMessage.textContent = 'Auto Clicker running...';
+                }
             }
-
-            const tabLinks = document.getElementsByClassName("tab-link");
-            for (let i = 0; i < tabLinks.length; i++) {
-                tabLinks[i].classList.remove("active");
-            }
-
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-
-        function enableAboutBlank() {
-            // Get the root URL of the site (not just the settings page)
-            const rootUrl = window.location.href.split('/').slice(0, 3).join('/');
             
-            const newWindow = window.open('about:blank', '_blank');
-            if (newWindow) {
-                newWindow.document.write(`
-                    <!DOCTYPE html>
-                    <html>
-                    <head>
-                        <title>${document.title}</title>
-                        <link rel="icon" href="${document.querySelector('link[rel="icon"]')?.getAttribute("href") || "/favicon.ico"}">
-                    </head>
-                    <body>
-                        <iframe src="${rootUrl}" frameborder="0" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
-                    </body>
-                    </html>
-                `);
-                newWindow.document.close();
-            } else {
-                alert("Please enable popups for this feature to work.");
+            if (event.key === panicKeybind) {
+                window.location.href = 'https://classroom.google.com';
+            }
+        });
+
+        const loadedTabCloak = localStorage.getItem('tabCloak');
+        if (loadedTabCloak) {
+            const cloakOption = document.querySelector(`li[data-value="${loadedTabCloak}"]`);
+            if (cloakOption) {
+                dropdownSelected.textContent = cloakOption.textContent;
+                setTabCloak(loadedTabCloak);
             }
         }
+    });
 
-        function disableAboutBlank() {
-            if (window !== window.top) {
-                window.top.location.href = window.location.href.split('/').slice(0, 3).join('/');
-            } else {
-                alert("Not currently in about:blank mode.");
-            }
+    function openTab(evt, tabName) {
+        const tabContents = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabContents.length; i++) {
+            tabContents[i].classList.remove("active");
         }
 
-        function setTabCloak(type) {
-            let favicon = '';
-            let title = '';
+        const tabLinks = document.getElementsByClassName("tab-link");
+        for (let i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].classList.remove("active");
+        }
 
-            switch(type) {
-                case 'google':
-                    favicon = 'https://www.google.com/favicon.ico';
-                    title = 'Google';
-                    break;
-                case 'classroom':
-                    favicon = 'https://ssl.gstatic.com/classroom/favicon.png';
-                    title = 'Google Classroom';
-                    break;
-                case 'docs':
-                    favicon = '/favicon/googledocs.png';
-                    title = 'Google Docs';
-                    break;
-                default:
-                    favicon = '/images/favicon.png';
-                    title = 
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    function enableAboutBlank() {
+        // Get the root URL of the site (not just the settings page)
+        const rootUrl = window.location.href.split('/').slice(0, 3).join('/');
+        
+        const newWindow = window.open('about:blank', '_blank');
+        if (newWindow) {
+            newWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>${document.title}</title>
+                    <link rel="icon" href="${document.querySelector('link[rel="icon"]')?.getAttribute("href") || "/favicon.ico"}">
+                </head>
+                <body>
+                    <iframe src="${rootUrl}" frameborder="0" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
+                </body>
+                </html>
+            `);
+            newWindow.document.close();
+        } else {
+            alert("Please enable popups for this feature to work.");
+        }
+    }
+
+    function disableAboutBlank() {
+        if (window !== window.top) {
+            window.top.location.href = window.location.href.split('/').slice(0, 3).join('/');
+        } else {
+            alert("Not currently in about:blank mode.");
+        }
+    }
+
+    function setTabCloak(type) {
+        let favicon = '';
+        let title = '';
+
+        switch(type) {
+            case 'google':
+                favicon = 'https://www.google.com/favicon.ico';
+                title = 'Google';
+                break;
+            case 'classroom':
+                favicon = 'https://ssl.gstatic.com/classroom/favicon.png';
+                title = 'Google Classroom';
+                break;
+            case 'docs':
+                favicon = '/favicon/googledocs.png';
+                title = 'Google Docs';
+                break;
+            default:
+                favicon = '/images/favicon.png';
+                title = 'Grades & Attendance';
+        }
+
+        localStorage.setItem('tabCloak', type);
+        
+        const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+        link.rel = 'icon';
+        link.href = favicon;
+        document.head.appendChild(link);
+        document.title = title;
+    }
+</script>
