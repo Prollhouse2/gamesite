@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proll's School V4.7 - Chat</title>
+    <title>Chat</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Particles.js CDN -->
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
@@ -34,7 +34,6 @@
             min-height: 100vh;
         }
 
-        /* Snow Effect Fullscreen */
         #snow {
             position: fixed;
             width: 100%;
@@ -52,7 +51,6 @@
             text-align: center;
         }
 
-        /* Header and Navigation */
         .site-header {
             padding: 1rem 0;
             margin-bottom: 2rem;
@@ -76,7 +74,6 @@
             width: 100%;
         }
 
-        /* Button Container - Matching home page style */
         .button-container1 {
             display: flex;
             flex-wrap: wrap;
@@ -85,7 +82,6 @@
             margin: 1.5rem 0;
         }
 
-        /* Button styling to match home page */
         .button {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(37, 37, 58, 0.9));
             border: 1px solid rgba(255, 107, 157, 0.3);
@@ -124,7 +120,6 @@
             position: relative;
         }
 
-        /* Chat Container */
         .chat-container {
             background-color: var(--bg-secondary);
             border-radius: 16px;
@@ -189,7 +184,6 @@
             background-color: var(--bg-tertiary);
         }
 
-        /* Online Users */
         .online-users {
             background-color: var(--bg-secondary);
             border-radius: 12px;
@@ -240,7 +234,6 @@
             background-color: #43b581;
         }
 
-        /* Footer */
         footer {
             margin-top: 2rem;
             padding: 1rem;
@@ -271,14 +264,12 @@
             color: #ffffff;
         }
 
-        /* Animations */
         @keyframes glow-pulse {
             0% { box-shadow: 0 0 20px rgba(157, 107, 255, 0.3); }
             50% { box-shadow: 0 0 30px rgba(255, 107, 157, 0.5); }
             100% { box-shadow: 0 0 20px rgba(157, 107, 255, 0.3); }
         }
 
-        /* Fullscreen mode */
         .fullscreen {
             position: fixed;
             top: 0;
@@ -293,7 +284,6 @@
             height: calc(100% - 60px);
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .logo {
                 font-size: 1.5rem;
@@ -302,7 +292,7 @@
             .chat-frame {
                 height: 450px;
             }
-            
+
             .button {
                 font-size: 0.6rem;
                 padding: 8px 12px;
@@ -317,38 +307,248 @@
             .chat-frame {
                 height: 400px;
             }
-            
+
             .button {
                 font-size: 0.5rem;
                 padding: 6px 10px;
             }
-            
+
             .chat-header h2 {
                 font-size: 0.9rem;
             }
-        }
+
+:root {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #1a1a2e;
+    --bg-tertiary: #25253a;
+    --accent-pink: #ff6b9d;
+    --accent-blue: #6b9dff;
+    --accent-purple: #9d6bff;
+    --text-primary: #ffffff;
+    --text-secondary: #c0c0d0;
+    --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+    --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --border-radius: 8px;
+    --sidebar-width: 70px;
+    --sidebar-expanded-width: 200px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    font-family: "Press Start 2P", cursive, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--bg-secondary);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    transition: width var(--transition-normal);
+    overflow: hidden;
+    z-index: 1000;
+    border-right: 1px solid rgba(255, 107, 157, 0.2);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.expanded {
+    width: var(--sidebar-expanded-width);
+}
+
+.sidebar-logo {
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+}
+
+.sidebar-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    transition: all var(--transition-normal);
+}
+
+.sidebar-toggle:hover {
+    background-color: rgba(255, 107, 157, 0.2);
+    transform: scale(1.05);
+}
+
+.sidebar-toggle i {
+    color: var(--text-primary);
+    transition: transform var(--transition-normal);
+}
+
+.sidebar.expanded .sidebar-toggle i {
+    transform: rotate(180deg);
+}
+
+.sidebar-divider {
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), var(--accent-purple), transparent);
+    margin: 15px 0;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 107, 157, 0.1);
+}
+
+.nav-item.active {
+    background-color: rgba(255, 107, 157, 0.2);
+}
+
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--accent-pink), var(--accent-purple));
+}
+
+.nav-icon {
+    min-width: var(--sidebar-width);
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-normal);
+}
+
+.nav-item:hover .nav-icon,
+.nav-item.active .nav-icon {
+    color: var(--accent-pink);
+}
+
+.nav-text {
+    white-space: nowrap;
+    color: var(--text-secondary);
+    font-family: "VT323", monospace;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.sidebar.expanded .nav-text {
+    opacity: 1;
+}
+
+.main-container {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    transition: margin-left var(--transition-normal), width var(--transition-normal);
+    overflow-x: hidden;
+}
+
+.sidebar.expanded ~ .main-container {
+    margin-left: var(--sidebar-expanded-width);
+    width: calc(100% - var(--sidebar-expanded-width));
+}
+
+.sidebar-mobile-toggle {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 0;
+        border: none;
+    }
+
+    .sidebar.expanded {
+        width: var(--sidebar-expanded-width);
+        border-right: 1px solid rgba(255, 107, 157, 0.2);
+    }
+
+    .main-container {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .sidebar.expanded ~ .main-container {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .sidebar-mobile-toggle {
+        display: flex;
+    }
+
+    .sidebar.expanded ~ .sidebar-overlay {
+        display: block;
+    }
+}
     </style>
 </head>
 <body>
-    <div id="snow"></div> <!-- Snow effect container -->
+    <div id="snow"></div> 
 
-    <div class="container">
-        <header class="site-header">
-            <h1 class="logo">Proll's School V4.7</h1>
-            
-            <div class="button-container1">
-                <a href="/" class="button">Home</a>
-                <a href="https://tinyurl.com/45j4r62u" class="button">Games Request</a>
-                <a href="settings" class="button">Website Settings</a>
-                <a href="https://github.com/Prollhouse2/gamesite" class="button">Source / Updates</a>
-                <a href="bookmarks" class="button">Gms Cheats</a>
-                <a href="leaderboard" class="button">Leaderboard</a>
-                <a href="https://discord.gg/proll" class="button">Discord!</a>
-            </div>
-        </header>
-        
+
         <div class="section-divider"></div>
-        
+
         <div class="chat-container" id="chat-container">
             <div class="chat-header">
                 <h2><i class="fas fa-gamepad"></i> Game Chat</h2>
@@ -361,8 +561,7 @@
                     </button>
                 </div>
             </div>
-            
-            <!-- Discord widget embedded directly -->
+
             <iframe 
                 src="https://e.widgetbot.io/channels/1225803415116972242/1341867678352146474" 
                 class="chat-frame"
@@ -370,203 +569,36 @@
                 allow="clipboard-write; clipboard-read">
             </iframe>
         </div>
-        
-        <div class="online-users">
-            <h3>Online Gamers</h3>
-            <div class="user-list" id="user-list">
-                <!-- Users will be dynamically added here -->
-            </div>
-        </div>
-        
-        <div class="section-divider"></div>
-        
-        <footer>
-            <div class="social-icons">
-                <a href="https://discord.com/invite/proll" target="_blank" title="Discord">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://github.com/prollhouse2" class="github" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-            <p>© <span id="current-year"></span> Proll Services V4.7. All rights reserved.</p>
-        </footer>
-    </div>
+  
 
-    <script>
-        // Initialize snow effect when the page is fully loaded
-        window.onload = function() {
-            // Make sure particles.js is loaded
-            if (typeof particlesJS !== "undefined") {
-                particlesJS("snow", {
-                    particles: {
-                        number: {
-                            value: 150,
-                            density: { enable: true, value_area: 800 },
-                        },
-                        color: { value: "#ffffff" },
-                        shape: {
-                            type: "circle",
-                            stroke: { width: 0, color: "#000000" },
-                        },
-                        opacity: {
-                            value: 0.5,
-                            random: false,
-                            anim: { enable: false },
-                        },
-                        size: {
-                            value: 3,
-                            random: true,
-                            anim: { enable: false },
-                        },
-                        line_linked: { enable: false },
-                        move: {
-                            enable: true,
-                            speed: 2,
-                            direction: "bottom",
-                            random: false,
-                            straight: false,
-                            out_mode: "out",
-                            bounce: false,
-                        },
-                    },
-                    interactivity: {
-                        detect_on: "canvas",
-                        events: {
-                            onhover: { enable: true },
-                            onclick: { enable: false },
-                            resize: true,
-                        },
-                    },
-                    retina_detect: true,
-                });
-            } else {
-                console.error("particles.js is not loaded");
-                // Fallback to load particles.js if it wasn't loaded
-                var script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
-                script.onload = function() {
-                    particlesJS("snow", {
-                        particles: {
-                            number: {
-                                value: 150,
-                                density: { enable: true, value_area: 800 },
-                            },
-                            color: { value: "#ffffff" },
-                            shape: {
-                                type: "circle",
-                                stroke: { width: 0, color: "#000000" },
-                            },
-                            opacity: {
-                                value: 0.5,
-                                random: false,
-                                anim: { enable: false },
-                            },
-                            size: {
-                                value: 3,
-                                random: true,
-                                anim: { enable: false },
-                            },
-                            line_linked: { enable: false },
-                            move: {
-                                enable: true,
-                                speed: 2,
-                                direction: "bottom",
-                                random: false,
-                                straight: false,
-                                out_mode: "out",
-                                bounce: false,
-                            },
-                        },
-                        interactivity: {
-                            detect_on: "canvas",
-                            events: {
-                                onhover: { enable: true },
-                                onclick: { enable: false },
-                                resize: true,
-                            },
-                        },
-                        retina_detect: true,
-                    });
-                };
-                document.head.appendChild(script);
-            }
-            
-            // Set current year
-            document.getElementById("current-year").textContent = new Date().getFullYear();
-            
-            // Fullscreen functionality - Fixed
-            const fullscreenBtn = document.getElementById("fullscreen-btn");
-            const chatContainer = document.getElementById("chat-container");
-            const chatFrame = document.getElementById("chat-frame");
-            
-            fullscreenBtn.addEventListener("click", function() {
-                // Try to make the iframe fullscreen first
-                try {
-                    if (chatFrame.requestFullscreen) {
-                        chatFrame.requestFullscreen();
-                    } else if (chatFrame.mozRequestFullScreen) {
-                        chatFrame.mozRequestFullScreen();
-                    } else if (chatFrame.webkitRequestFullscreen) {
-                        chatFrame.webkitRequestFullscreen();
-                    } else if (chatFrame.msRequestFullscreen) {
-                        chatFrame.msRequestFullscreen();
-                    } else {
-                        // Fallback to opening in new tab
-                        window.open(chatFrame.src, '_blank');
-                    }
-                } catch (e) {
-                    console.error("Fullscreen failed:", e);
-                    // Fallback to opening in new tab
-                    window.open(chatFrame.src, '_blank');
-                }
-            });
-            
-            // Refresh button functionality - Fixed
-            const refreshBtn = document.getElementById("refresh-btn");
-            
-            refreshBtn.addEventListener("click", function() {
-                // Store the current src
-                const currentSrc = chatFrame.src;
-                
-                // Add spinning animation to refresh icon
-                this.querySelector("i").classList.add("fa-spin");
-                
-                // Actually reload the iframe
-                chatFrame.src = "about:blank";
-                
-                setTimeout(() => {
-                    chatFrame.src = currentSrc;
-                    
-                    // Remove spinning animation after a delay
-                    setTimeout(() => {
-                        this.querySelector("i").classList.remove("fa-spin");
-                    }, 500);
-                }, 100);
-            });
-            
-            // Simulate online users (replace with actual data if available)
-            const userList = document.getElementById("user-list");
-            const sampleUsers = [
-                "GamerPro123", "EpicPlayer", "NinjaWarrior", "PixelMaster", 
-                "GameWizard", "LevelBoss", "QuestHunter", "ProGamer99"
-            ];
-            
-            sampleUsers.forEach(user => {
-                const userBadge = document.createElement("div");
-                userBadge.className = "user-badge";
-                
-                const userStatus = document.createElement("span");
-                userStatus.className = "user-status";
-                
-                const userName = document.createElement("span");
-                userName.textContent = user;
-                
-                userBadge.appendChild(userStatus);
-                userBadge.appendChild(userName);
-                userList.appendChild(userBadge);
-            });
-        };
-    </script>
-</body>
+<script>
+
+document.getElementById('fullscreen-btn').addEventListener('click', function() {
+    const iframe = document.getElementById('chat-frame');
+    if (iframe.requestFullscreen) {
+        iframe.requestFullscreen().catch(err => {
+            window.open(iframe.src, '_blank');
+        });
+    } 
+    else if (iframe.webkitRequestFullscreen) { 
+        iframe.webkitRequestFullscreen();
+    } 
+    else if (iframe.msRequestFullscreen) { 
+        iframe.msRequestFullscreen();
+    }
+    else {
+        window.open(iframe.src, '_blank');
+    }
+});
+document.getElementById('refresh-btn').addEventListener('click', function() {
+    const iframe = document.getElementById('chat-frame');
+    iframe.src = iframe.src; 
+    this.querySelector('i').classList.add('fa-spin');
+    setTimeout(() => {
+        this.querySelector('i').classList.remove('fa-spin');
+    }, 1000);
+});
+</script>
+</script>
+ </body>
 </html>
