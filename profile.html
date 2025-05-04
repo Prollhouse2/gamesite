@@ -237,6 +237,50 @@
     <input type="file" id="pfpUpload" class="file-input" accept="image/*">
     
     <script>
+      
+     // Check if we're viewing another user's profile
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get('user');
+
+if (userId) {
+    // Viewing another user's profile
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const viewedUser = users.find(user => user.id === userId);
+    
+    if (viewedUser) {
+        document.getElementById('username').textContent = viewedUser.username;
+        document.getElementById('userEmail').textContent = viewedUser.email;
+        document.getElementById('aboutMeText').textContent = viewedUser.about;
+        document.getElementById('profilePicture').src = viewedUser.pfp;
+        document.getElementById('editProfileBtn').style.display = 'none';
+        
+        // Display recently played games
+        const recentGamesContainer = document.getElementById('recentGames');
+        if (viewedUser.recentlyPlayed && viewedUser.recentlyPlayed.length > 0) {
+            viewedUser.recentlyPlayed.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}">
+                    <h3>${game.title}</h3>
+                `;
+                recentGamesContainer.appendChild(gameCard);
+            });
+        } else {
+            recentGamesContainer.innerHTML = '<p>No recently played games</p>';
+        }
+        
+        // Hide edit functionality
+        document.getElementById('pfpUpload').style.display = 'none';
+        document.querySelector('.profile-picture').style.cursor = 'default';
+    } else {
+        window.location.href = 'profile.html';
+    }
+} else {
+    // Viewing own profile
+    // ... rest of your existing code ...
+}
+
         document.addEventListener('DOMContentLoaded', function() {
             // Get current user from localStorage
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
