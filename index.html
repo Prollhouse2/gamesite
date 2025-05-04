@@ -7,7 +7,6 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/global-loader.js"></script>
 
@@ -28,6 +27,8 @@
             --border-radius: 8px;
             --sidebar-width: 70px;
             --sidebar-expanded-width: 200px;
+            --tab-height: 40px;
+            --browser-bar-height: 50px;
         }
 
         * {
@@ -799,62 +800,238 @@
                 font-size: 0.7rem;
             }
         }
+
+        /* Browser Tab System Styles */
+        .browser-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: calc(100vh - 20px);
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+        }
+
+        .browser-tabs {
+            display: flex;
+            background-color: var(--bg-tertiary);
+            height: var(--tab-height);
+            border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .browser-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .browser-tab {
+            display: flex;
+            align-items: center;
+            min-width: 180px;
+            max-width: 200px;
+            height: 100%;
+            padding: 0 15px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid rgba(255, 107, 157, 0.2);
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .browser-tab.active {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .browser-tab:hover {
+            background-color: var(--bg-primary);
+        }
+
+        .browser-tab .tab-title {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: "VT323", monospace;
+            font-size: 1rem;
+        }
+
+        .browser-tab .tab-close {
+            margin-left: 10px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .browser-tab .tab-close:hover {
+            opacity: 1;
+            color: var(--accent-pink);
+        }
+
+        .new-tab-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 100%;
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-right: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .new-tab-button:hover {
+            background-color: var(--bg-primary);
+            color: var(--accent-pink);
+        }
+
+        .browser-navbar {
+            display: flex;
+            align-items: center;
+            height: var(--browser-bar-height);
+            background-color: var(--bg-tertiary);
+            padding: 0 10px;
+            border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .browser-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-right: 15px;
+        }
+
+        .browser-control-button {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .browser-control-button:hover {
+            background-color: rgba(255, 107, 157, 0.1);
+            color: var(--accent-pink);
+        }
+
+        .browser-control-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .browser-address-bar {
+            flex: 1;
+            height: 35px;
+            background-color: var(--bg-primary);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            color: var(--text-primary);
+            font-family: "VT323", monospace;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .browser-address-bar:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+        }
+
+        .browser-content {
+            flex: 1;
+            background-color: var(--bg-primary);
+            position: relative;
+        }
+
+        .browser-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .tab-content {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <!-- Snow Effect -->
     <div id="snow"></div>
 
-  <!-- Sidebar Navigation -->
+    <!-- Sidebar Navigation -->
     <nav class="sidebar">
-    <div class="sidebar-logo">
-        <i class="fas fa-gamepad"></i>
-    </div>
-    <div class="sidebar-toggle">
-        <i class="fas fa-chevron-right"></i>
-    </div>
-    <div class="sidebar-nav">
-        <a href="#home" class="nav-item active" data-page="home">
-            <div class="nav-icon"><i class="fas fa-home"></i></div>
-            <div class="nav-text">Home</div>
-        </a>
-        <a href="#browser" class="nav-item" data-page="browser">
-            <div class="nav-icon"><i class="fas fa-globe"></i></div>
-            <div class="nav-text">Web Browser</div>
-        </a>
-    </div>
-    <div class="sidebar-divider"></div>
-    <div class="sidebar-nav">
-        <a href="#settings" class="nav-item" data-page="settings">
-            <div class="nav-icon"><i class="fas fa-cog"></i></div>
-            <div class="nav-text">Settings</div>
-        </a>
-        <a href="#leaderboard" class="nav-item" data-page="leaderboard">
-            <div class="nav-icon"><i class="fas fa-trophy"></i></div>
-            <div class="nav-text">Leaderboard</div>
-        </a>
-       <a href="#chat" class="nav-item" data-page="chat">
-            <div class="nav-icon"><i class="fas fa-comments"></i></div>
-            <div class="nav-text">Chatroom</div>
-        </a>
-         <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
-            <div class="nav-icon"><i class="fab fa-discord"></i></div>
-            <div class="nav-text">Discord</div>
-        </a>
-    </div>
- </a>
- <a href="https://tinyurl.com/45j4r62u" class="nav-item" data-page="request" target="_blank">
+        <div class="sidebar-logo">
+            <i class="fas fa-gamepad"></i>
+        </div>
+        <div class="sidebar-toggle">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="sidebar-nav">
+            <a href="#home" class="nav-item active" data-page="home">
+                <div class="nav-icon"><i class="fas fa-home"></i></div>
+                <div class="nav-text">Home</div>
+            </a>
+            <a href="#browser" class="nav-item" data-page="browser">
+                <div class="nav-icon"><i class="fas fa-globe"></i></div>
+                <div class="nav-text">Web Browser</div>
+            </a>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-nav">
+            <a href="#settings" class="nav-item" data-page="settings">
+                <div class="nav-icon"><i class="fas fa-cog"></i></div>
+                <div class="nav-text">Settings</div>
+            </a>
+            <a href="#leaderboard" class="nav-item" data-page="leaderboard">
+                <div class="nav-icon"><i class="fas fa-trophy"></i></div>
+                <div class="nav-text">Leaderboard</div>
+            </a>
+            <a href="#chat" class="nav-item" data-page="chat">
+                <div class="nav-icon"><i class="fas fa-comments"></i></div>
+                <div class="nav-text">Chatroom</div>
+            </a>
+            <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
+                <div class="nav-icon"><i class="fab fa-discord"></i></div>
+                <div class="nav-text">Discord</div>
+            </a>
+        </div>
+        <a href="https://tinyurl.com/45j4r62u" class="nav-item" data-page="request" target="_blank">
             <div class="nav-icon"><i class="fas fa-plus"></i></div>
             <div class="nav-text">Request Games</div>
         </a>
-    <div class="sidebar-divider"></div>
-    <div class="sidebar-nav">
-        <a href="https://github.com/Prollhouse2/gamesite" class="nav-item" data-page="github" target="_blank">
-            <div class="nav-icon"><i class="fab fa-github"></i></div>
-            <div class="nav-text">Source Code</div>
-        </a>
-    </div>
-</nav>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-nav">
+            <a href="https://github.com/Prollhouse2/gamesite" class="nav-item" data-page="github" target="_blank">
+                <div class="nav-icon"><i class="fab fa-github"></i></div>
+                <div class="nav-text">Source Code</div>
+            </a>
+        </div>
+    </nav>
 
     <!-- Mobile Sidebar Toggle -->
     <div class="sidebar-mobile-toggle">
@@ -925,11 +1102,45 @@
 
         <!-- Web Browser Content -->
         <div id="browser-content" class="content-area">
-            <div class="container">
-                <iframe src="/static" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+            <div class="browser-container">
+                <div class="browser-tabs">
+                    <div class="browser-tab active" data-tab="tab1">
+                        <span class="tab-title">New Tab</span>
+                        <span class="tab-close"><i class="fas fa-times"></i></span>
+                    </div>
+                    <div class="new-tab-button">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+                <div class="browser-navbar">
+                    <div class="browser-controls">
+                        <button class="browser-control-button" id="home-button">
+                            <i class="fas fa-home"></i>
+                        </button>
+                        <button class="browser-control-button disabled" id="back-button">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <button class="browser-control-button disabled" id="forward-button">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="browser-control-button" id="refresh-button">
+                            <i class="fas fa-redo-alt"></i>
+                        </button>
+                    </div>
+                    <input type="text" class="browser-address-bar" id="address-bar" placeholder="proll://new" value="proll://new">
+                    <div class="browser-controls">
+                        <button class="browser-control-button" id="fullscreen-button">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="browser-content">
+                    <div class="tab-content active" id="tab1-content">
+                        <iframe src="/static" class="browser-frame" id="tab1-frame"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
-
 
         <!-- Settings Content -->
         <div id="settings-content" class="content-area">
@@ -1230,6 +1441,234 @@
             }, 1000);
         }
 
+        // ===== BROWSER TAB SYSTEM FUNCTIONALITY =====
+        document.addEventListener('DOMContentLoaded', function() {
+            let tabCounter = 1;
+            const tabs = document.querySelector('.browser-tabs');
+            const newTabButton = document.querySelector('.new-tab-button');
+            const browserContent = document.querySelector('.browser-content');
+            const addressBar = document.getElementById('address-bar');
+            const refreshButton = document.getElementById('refresh-button');
+            const backButton = document.getElementById('back-button');
+            const forwardButton = document.getElementById('forward-button');
+            const homeButton = document.getElementById('home-button');
+            const fullscreenButton = document.getElementById('fullscreen-button');
+            
+            // Create a new tab
+            function createNewTab() {
+                tabCounter++;
+                
+                // Create tab element
+                const tabElement = document.createElement('div');
+                tabElement.className = 'browser-tab';
+                tabElement.setAttribute('data-tab', `tab${tabCounter}`);
+                tabElement.innerHTML = `
+                    <span class="tab-title">New Tab</span>
+                    <span class="tab-close"><i class="fas fa-times"></i></span>
+                `;
+                
+                // Create tab content
+                const tabContent = document.createElement('div');
+                tabContent.className = 'tab-content';
+                tabContent.id = `tab${tabCounter}-content`;
+                tabContent.innerHTML = `
+                    <iframe src="/static" class="browser-frame" id="tab${tabCounter}-frame"></iframe>
+                `;
+                
+                // Insert tab before the new tab button
+                tabs.insertBefore(tabElement, newTabButton);
+                
+                // Add tab content to browser content
+                browserContent.appendChild(tabContent);
+                
+                // Activate the new tab
+                activateTab(tabElement);
+                
+                // Add event listeners
+                setupTabEventListeners(tabElement);
+            }
+            
+            // Activate a tab
+            function activateTab(tabElement) {
+                // Deactivate all tabs
+                document.querySelectorAll('.browser-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                // Deactivate all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Activate the selected tab
+                tabElement.classList.add('active');
+                
+                // Get tab ID
+                const tabId = tabElement.getAttribute('data-tab');
+                
+                // Activate the corresponding tab content
+                const tabContent = document.getElementById(`${tabId}-content`);
+                if (tabContent) {
+                    tabContent.classList.add('active');
+                }
+                
+                // Update address bar with the current iframe's URL
+                const iframe = document.getElementById(`${tabId}-frame`);
+                if (iframe) {
+                    try {
+                        const iframeUrl = iframe.contentWindow.location.href;
+                        if (iframeUrl !== 'about:blank') {
+                            addressBar.value = iframeUrl;
+                        } else {
+                            addressBar.value = 'proll://new';
+                        }
+                    } catch (e) {
+                        // If we can't access the iframe URL due to CORS, just show the src
+                        addressBar.value = iframe.src;
+                    }
+                }
+            }
+            
+            // Set up event listeners for a tab
+            function setupTabEventListeners(tabElement) {
+                // Tab click event
+                tabElement.addEventListener('click', function(e) {
+                    if (!e.target.closest('.tab-close')) {
+                        activateTab(this);
+                    }
+                });
+                
+                // Close tab event
+                const closeButton = tabElement.querySelector('.tab-close');
+                if (closeButton) {
+                    closeButton.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        closeTab(tabElement);
+                    });
+                }
+            }
+            
+            // Close a tab
+            function closeTab(tabElement) {
+                // Get tab ID
+                const tabId = tabElement.getAttribute('data-tab');
+                
+                // Get tab content
+                const tabContent = document.getElementById(`${tabId}-content`);
+                
+                // Check if this is the active tab
+                const isActive = tabElement.classList.contains('active');
+                
+                // Remove tab and content
+                tabElement.remove();
+                if (tabContent) {
+                    tabContent.remove();
+                }
+                
+                // If this was the active tab, activate another tab
+                if (isActive) {
+                    const remainingTabs = document.querySelectorAll('.browser-tab');
+                    if (remainingTabs.length > 0) {
+                        activateTab(remainingTabs[0]);
+                    } else {
+                        // If no tabs left, create a new one
+                        createNewTab();
+                    }
+                }
+                
+                // If this was the last tab, create a new one
+                if (document.querySelectorAll('.browser-tab').length === 0) {
+                    createNewTab();
+                }
+            }
+            
+            // Navigate to URL
+            function navigateToUrl(url) {
+                // Get active tab
+                const activeTab = document.querySelector('.browser-tab.active');
+                if (!activeTab) return;
+                
+                // Get tab ID
+                const tabId = activeTab.getAttribute('data-tab');
+                
+                // Get iframe
+                const iframe = document.getElementById(`${tabId}-frame`);
+                if (!iframe) return;
+                
+                // Update tab title
+                const tabTitle = activeTab.querySelector('.tab-title');
+                if (tabTitle) {
+                    tabTitle.textContent = url;
+                }
+                
+                // If URL doesn't start with http or https, assume it's a search query
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    if (url === 'proll://new') {
+                        iframe.src = '/static';
+                        return;
+                    }
+                    url = 'https://' + url;
+                }
+                
+                // Navigate iframe to URL
+                iframe.src = `/static/embed.html#${url}`;
+            }
+            
+            // Set up event listeners
+            
+            // New tab button
+            newTabButton.addEventListener('click', createNewTab);
+            
+            // Address bar
+            addressBar.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    navigateToUrl(this.value);
+                }
+            });
+            
+            // Refresh button
+            refreshButton.addEventListener('click', function() {
+                const activeTab = document.querySelector('.browser-tab.active');
+                if (!activeTab) return;
+                
+                const tabId = activeTab.getAttribute('data-tab');
+                const iframe = document.getElementById(`${tabId}-frame`);
+                
+                if (iframe) {
+                    iframe.src = iframe.src;
+                }
+            });
+            
+            // Home button
+            homeButton.addEventListener('click', function() {
+                addressBar.value = '/static';
+                navigateToUrl('/static');
+            });
+            
+            // Fullscreen button
+            fullscreenButton.addEventListener('click', function() {
+                const activeTab = document.querySelector('.browser-tab.active');
+                if (!activeTab) return;
+                
+                const tabId = activeTab.getAttribute('data-tab');
+                const iframe = document.getElementById(`${tabId}-frame`);
+                
+                if (iframe) {
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    } else {
+                        iframe.requestFullscreen();
+                    }
+                }
+            });
+            
+            // Set up event listeners for initial tab
+            const initialTab = document.querySelector('.browser-tab');
+            if (initialTab) {
+                setupTabEventListeners(initialTab);
+            }
+        });
+
         // ===== INITIALIZE EVERYTHING WHEN PAGE LOADS =====
         document.addEventListener("DOMContentLoaded", async () => {
             // Initialize time tracking
@@ -1301,14 +1740,18 @@
             // Update time display
             function updateTime() {
                 const timeElement = document.getElementById("time");
-                const now = new Date();
-                const hours = now.getHours().toString().padStart(2, '0');
-                const minutes = now.getMinutes().toString().padStart(2, '0');
-                const seconds = now.getSeconds().toString().padStart(2, '0');
-                timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+                if (timeElement) {
+                    const now = new Date();
+                    const hours = now.getHours().toString().padStart(2, '0');
+                    const minutes = now.getMinutes().toString().padStart(2, '0');
+                    const seconds = now.getSeconds().toString().padStart(2, '0');
+                    timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+                }
             }
             
             updateTime();
             setInterval(updateTime, 1000);
         });
- </script>
+    </script>
+</body>
+</html>
