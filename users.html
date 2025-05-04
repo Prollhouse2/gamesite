@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Proll's School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --accent-pink: #ff6b9d;
+            --accent-blue: #6b9dff;
+            --text-primary: #ffffff;
+            --text-secondary: #c0c0d0;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: "VT323", monospace;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        .users-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .user-card {
+            background-color: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .user-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent-pink);
+        }
+
+        .user-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-pink);
+            margin-bottom: 1rem;
+        }
+
+        .user-card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .user-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .view-profile {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-profile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .users-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recent Users</h1>
+        <div class="users-grid" id="usersGrid">
+            <!-- Users will be added here dynamically -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const usersGrid = document.getElementById('usersGrid');
+            
+            if (users.length === 0) {
+                usersGrid.innerHTML = '<p>No users found</p>';
+                return;
+            }
+            
+            // Sort users by most recent (assuming id is timestamp)
+            users.sort((a, b) => parseInt(b.id) - parseInt(a.id));
+            
+            // Display first 20 users
+            const recentUsers = users.slice(0, 20);
+            
+            recentUsers.forEach(user => {
+                const userCard = document.createElement('div');
+                userCard.className = 'user-card';
+                userCard.innerHTML = `
+                    <img src="${user.pfp}" alt="${user.username}">
+                    <h2>${user.username}</h2>
+                    <p>${user.email}</p>
+                    <a href="profile.html?user=${user.id}" class="view-profile">View Profile</a>
+                `;
+                usersGrid.appendChild(userCard);
+            });
+        });
+    </script>
+</body>
+</html>
