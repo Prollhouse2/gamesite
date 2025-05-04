@@ -298,41 +298,45 @@
         /* Category Filters */
         .category-filters-container {
             overflow-x: auto;
-            margin-bottom: 20px;
-            padding: 10px 0;
+            margin: 25px 0;
+            padding: 15px 0;
         }
 
         .category-filters {
             display: flex;
-            gap: 10px;
-            padding: 5px;
+            gap: 15px;
+            padding: 10px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .category-button {
-            padding: 8px 16px;
+            padding: 12px 24px;
             border-radius: 20px;
             background-color: var(--bg-tertiary);
             color: var(--text-secondary);
-            font-size: 12px;
+            font-size: 16px;
             border: 1px solid rgba(255, 107, 157, 0.2);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: "VT323", monospace;
+            font-family: 'Arial', sans-serif;
+            font-weight: 500;
+            margin: 5px;
         }
 
         .category-button:hover {
             color: var(--text-primary);
             border-color: var(--accent-pink);
             background-color: rgba(255, 107, 157, 0.1);
+            transform: translateY(-2px);
         }
 
         .category-button.active {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(107, 157, 255, 0.2));
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(107, 157, 255, 0.3));
             color: var(--text-primary);
             border-color: var(--accent-pink);
-            box-shadow: 0 0 10px rgba(255, 107, 157, 0.2);
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
+            font-weight: bold;
         }
 
         /* Featured Game Banner */
@@ -1082,7 +1086,8 @@
                     </div>
                 </div>
 
-            <div class="category-filters-container">
+                <h2 class="section-title">CATEGORIES</h2>
+                <div class="category-filters-container">
                     <div id="category-filters" class="category-filters">
                         <button class="category-button active" data-category="ALL">ALL</button>
                         <!-- Categories will be dynamically added here -->
@@ -1095,8 +1100,6 @@
                 </div>
             </div>
         </div>
-
-       
 
         <div id="browser-content" class="content-area">
             <div class="browser-container">
