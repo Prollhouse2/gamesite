@@ -49,6 +49,7 @@
             display: flex;
         }
 
+        /* Snow Effect */
         #snow {
             position: fixed;
             width: 100%;
@@ -59,6 +60,7 @@
             pointer-events: none;
         }
 
+        /* Sidebar Navigation */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -133,15 +135,6 @@
             align-items: center;
         }
 
-        .sidebar-games {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            align-items: center;
-            overflow-y: auto;
-            max-height: 200px;
-        }
-
         .nav-item {
             display: flex;
             align-items: center;
@@ -198,6 +191,7 @@
             opacity: 1;
         }
 
+        /* Main Container */
         .main-container {
             margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
@@ -216,6 +210,7 @@
             padding: 0 20px;
         }
 
+        /* Header Styling */
         .app-header {
             background-color: var(--bg-secondary);
             padding: 15px 0;
@@ -257,6 +252,7 @@
             font-size: 1.1rem;
         }
         
+        /* Search Bar Styling */
         .search-container {
             flex: 1;
             max-width: 600px;
@@ -299,6 +295,7 @@
             pointer-events: none;
         }
 
+        /* Category Filters */
         .category-filters {
             display: none;
             gap: 10px;
@@ -330,6 +327,7 @@
             box-shadow: 0 0 10px rgba(255, 107, 157, 0.2);
         }
 
+        /* Featured Game Banner */
         .featured-game {
             display: flex;
             background-color: var(--bg-secondary);
@@ -409,6 +407,7 @@
             background-position: center;
         }
 
+        /* Section Headers */
         .section-title {
             font-size: 1.2rem;
             font-weight: 700;
@@ -425,6 +424,7 @@
             text-align: center;
         }
 
+        /* Favorites Section */
         #favorites-heading {
             position: relative;
             padding: 0.5rem 0;
@@ -460,6 +460,7 @@
             font-style: italic;
         }
 
+        /* Game Cards Grid */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -539,6 +540,7 @@
             color: #FFD700;
         }
 
+        /* Animation for adding to favorites */
         @keyframes star-pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.5); }
@@ -549,6 +551,7 @@
             animation: star-pulse 0.5s ease;
         }
 
+        /* Quick Links */
         .quick-links {
             display: none;
             flex-wrap: wrap;
@@ -622,6 +625,7 @@
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         }
 
+        /* Content Areas */
         .content-area {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -636,6 +640,7 @@
             to { opacity: 1; }
         }
 
+        /* Footer */
         footer {
             padding: 30px 0;
             margin-top: 50px;
@@ -667,6 +672,7 @@
             color: var(--accent-pink);
         }
 
+        /* Responsive Adjustments */
         @media (max-width: 1024px) {
             .featured-game {
                 height: auto;
@@ -795,6 +801,7 @@
             }
         }
 
+        /* Browser Tab System Styles */
         .browser-container {
             display: flex;
             flex-direction: column;
@@ -970,151 +977,6 @@
         .tab-content.active {
             display: block;
         }
-
-        #game-content {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 1500;
-            background-color: var(--bg-primary);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .game-frame-container {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .game-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .game-footer {
-            height: 50px;
-            background-color: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            border-top: 1px solid rgba(255, 107, 157, 0.2);
-            z-index: 10;
-        }
-
-        .game-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
-        }
-
-        .game-controls {
-            display: flex;
-            gap: 15px;
-        }
-
-        .game-control-button {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: var(--bg-tertiary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 1px solid rgba(255, 107, 157, 0.3);
-            transition: all var(--transition-normal);
-            color: var(--text-primary);
-        }
-
-        .game-control-button:hover {
-            background-color: rgba(255, 107, 157, 0.2);
-            transform: scale(1.05);
-        }
-
-        .game-logo {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--accent-pink);
-            transition: all var(--transition-normal);
-        }
-
-        .sidebar-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: var(--bg-tertiary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 1px solid rgba(255, 107, 157, 0.3);
-            transition: all var(--transition-normal);
-            color: var(--text-primary);
-            z-index: 1010;
-        }
-
-        .sidebar-close:hover {
-            background-color: rgba(255, 107, 157, 0.2);
-            transform: scale(1.05);
-        }
-
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            max-height: 300px;
-            overflow-y: auto;
-            background-color: var(--bg-secondary);
-            border: 1px solid rgba(255, 107, 157, 0.3);
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-            z-index: 1000;
-            display: none;
-        }
-
-        .search-results.active {
-            display: block;
-        }
-
-        .search-result-item {
-            padding: 10px 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .search-result-item:hover {
-            background-color: var(--bg-tertiary);
-        }
-
-        .search-result-image {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .search-result-title {
-            font-family: "VT323", monospace;
-            font-size: 1.1rem;
-            color: var(--text-primary);
-        }
     </style>
 </head>
 <body>
@@ -1127,10 +989,7 @@
         <div class="sidebar-toggle">
             <i class="fas fa-chevron-right"></i>
         </div>
-        <div class="sidebar-close">
-            <i class="fas fa-times"></i>
-        </div>
-        <div class="sidebar-nav" id="game-nav">
+        <div class="sidebar-nav">
             <a href="#home" class="nav-item active" data-page="home">
                 <div class="nav-icon"><i class="fas fa-home"></i></div>
                 <div class="nav-text">Home</div>
@@ -1170,8 +1029,6 @@
                 <div class="nav-text">Source Code</div>
             </a>
         </div>
-        <div class="sidebar-divider"></div>
-        <div class="sidebar-games" id="sidebar-games"></div>
     </nav>
 
     <div class="sidebar-mobile-toggle">
@@ -1190,9 +1047,8 @@
                 
                 <div class="search-container">
                     <div class="search-wrapper">
-                        <input type="text" id="searchInput" placeholder="Search for titles...">
+                        <input type="text" id="searchInput" onkeyup="searchGames()" placeholder="Search for titles...">
                         <i class="fas fa-search search-icon"></i>
-                        <div class="search-results" id="searchResults"></div>
                     </div>
                 </div>
             </div>
@@ -1204,7 +1060,7 @@
                     <div class="featured-game-info">
                         <h2 class="featured-game-title">RETRO BOWL</h2>
                         <p class="featured-game-description">Lead your football team to glory in this nostalgic sports management simulator.</p>
-                        <a href="javascript:void(0)" onclick="loadGame('retro-bowl', 'RETRO BOWL', 'images/rblarge.png', 'g/retro-bowl')" class="play-button">
+                        <a href="g/retro-bowl" target="_blank" class="play-button">
                             <i class="fas fa-play"></i> PLAY NOW
                         </a>
                     </div>
@@ -1218,26 +1074,9 @@
                     </div>
                 </div>
 
-                <h2 class="section-title">ALL GAMES</h2>
+                <h2 class="section-title">ALL TITLES</h2>
                 
                 <div class="games-grid" id="all-games-grid">
-                </div>
-            </div>
-        </div>
-
-        <div id="game-content" class="content-area">
-            <div class="game-frame-container">
-                <iframe id="game-frame" class="game-frame" allowfullscreen></iframe>
-            </div>
-            <div class="game-footer">
-                <div class="game-title" id="current-game-title"></div>
-                <div class="game-controls">
-                    <div class="game-control-button" id="fullscreen-button">
-                        <i class="fas fa-expand"></i>
-                    </div>
-                    <div class="game-control-button" id="close-button">
-                        <i class="fas fa-times"></i>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1365,19 +1204,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.querySelector('.sidebar');
             const sidebarToggle = document.querySelector('.sidebar-toggle');
-            const sidebarClose = document.querySelector('.sidebar-close');
             const sidebarMobileToggle = document.querySelector('.sidebar-mobile-toggle');
             const sidebarOverlay = document.querySelector('.sidebar-overlay');
             
             if (sidebarToggle) {
                 sidebarToggle.addEventListener('click', function() {
                     sidebar.classList.toggle('expanded');
-                });
-            }
-            
-            if (sidebarClose) {
-                sidebarClose.addEventListener('click', function() {
-                    sidebar.classList.remove('expanded');
                 });
             }
             
@@ -1393,62 +1225,6 @@
                 });
             }
         });
-
-        function loadGame(gameId, gameTitle, gameImage, gameUrl) {
-            const gameFrame = document.getElementById('game-frame');
-            gameFrame.src = gameUrl;
-            
-            document.getElementById('current-game-title').textContent = gameTitle;
-            
-            if (!document.querySelector(`.sidebar-game-item[data-game-id="${gameId}"]`)) {
-                const sidebarGames = document.getElementById('sidebar-games');
-                
-                const gameNavItem = document.createElement('a');
-                gameNavItem.className = 'nav-item sidebar-game-item';
-                gameNavItem.setAttribute('data-game-id', gameId);
-                gameNavItem.setAttribute('href', '#game');
-                
-                gameNavItem.innerHTML = `
-                    <div class="nav-icon">
-                        <img src="${gameImage}" alt="${gameTitle}" class="game-logo">
-                    </div>
-                    <div class="nav-text">${gameTitle}</div>
-                `;
-                
-                gameNavItem.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    loadGame(gameId, gameTitle, gameImage, gameUrl);
-                });
-                
-                sidebarGames.appendChild(gameNavItem);
-            }
-            
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('data-game-id') === gameId) {
-                    item.classList.add('active');
-                }
-            });
-            
-            document.querySelectorAll('.content-area').forEach(area => {
-                area.classList.remove('active');
-            });
-            document.getElementById('game-content').classList.add('active');
-            
-            document.getElementById('fullscreen-button').addEventListener('click', () => {
-                if (gameFrame.requestFullscreen) {
-                    gameFrame.requestFullscreen();
-                } else if (gameFrame.webkitRequestFullscreen) {
-                    gameFrame.webkitRequestFullscreen();
-                } else if (gameFrame.msRequestFullscreen) {
-                    gameFrame.msRequestFullscreen();
-                }
-            });
-            
-            document.getElementById('close-button').addEventListener('click', () => {
-                navigateToPage('home');
-            });
-        }
 
         async function loadGames() {
             try {
@@ -1476,10 +1252,9 @@
 
             const gameCard = event.target.closest(".game-card");
             const gameLink = gameCard.querySelector("a");
-            const gamePath = gameLink.getAttribute("onclick").split("'")[5];
+            const gamePath = gameLink.getAttribute("href");
             const gameTitle = gameLink.querySelector(".game-card-title").textContent;
             const gameImage = gameLink.querySelector(".game-card-image").getAttribute("src");
-            const gameId = gameLink.getAttribute("onclick").split("'")[1];
 
             const favorites = getFavorites();
 
@@ -1487,7 +1262,6 @@
 
             if (index === -1) {
                 favorites.push({
-                    id: gameId,
                     path: gamePath,
                     title: gameTitle,
                     image: gameImage
@@ -1512,6 +1286,8 @@
         function updateFavoritesSection() {
             const favorites = getFavorites();
             const favoritesContainer = document.getElementById("favorites-container");
+            const favoritesSection = document.getElementById("favorites-section");
+            const favoritesHeading = document.getElementById("favorites-heading");
 
             favoritesContainer.innerHTML = "";
 
@@ -1526,7 +1302,7 @@
                     gameCard.className = "game-card";
                     
                     gameCard.innerHTML = `
-                        <a href="javascript:void(0)" onclick="loadGame('${game.id}', '${game.title}', '${game.image}', '${game.path}')" style="text-decoration: none; color: inherit;">
+                        <a href="${game.path}" target="_blank" style="text-decoration: none; color: inherit;">
                             <img src="${game.image}" alt="${game.title}" class="game-card-image">
                             <div class="game-card-title">${game.title}</div>
                         </a>
@@ -1543,46 +1319,18 @@
 
         async function searchGames() {
             const query = document.getElementById("searchInput").value.toLowerCase();
-            const searchResults = document.getElementById("searchResults");
+            const allGamesGrid = document.getElementById("all-games-grid");
             
-            if (query.length < 2) {
-                searchResults.classList.remove("active");
-                return;
-            }
+            allGamesGrid.innerHTML = "";
             
             const allGames = await loadGames();
             
             const filteredGames = allGames.filter(game => 
                 game.title.toLowerCase().includes(query) || 
-                game.category?.toLowerCase().includes(query)
+                game.category.toLowerCase().includes(query)
             );
             
-            searchResults.innerHTML = "";
-            
-            if (filteredGames.length > 0) {
-                filteredGames.forEach(game => {
-                    const gameId = game.path.split('/').pop();
-                    
-                    const resultItem = document.createElement("div");
-                    resultItem.className = "search-result-item";
-                    resultItem.innerHTML = `
-                        <img src="${game.image}" alt="${game.title}" class="search-result-image">
-                        <div class="search-result-title">${game.title}</div>
-                    `;
-                    
-                    resultItem.addEventListener("click", () => {
-                        loadGame(gameId, game.title, game.image, game.path);
-                        searchResults.classList.remove("active");
-                        document.getElementById("searchInput").value = "";
-                    });
-                    
-                    searchResults.appendChild(resultItem);
-                });
-                
-                searchResults.classList.add("active");
-            } else {
-                searchResults.classList.remove("active");
-            }
+            renderGames(filteredGames, allGamesGrid);
         }
 
         function renderGames(games, container) {
@@ -1590,13 +1338,12 @@
             
             games.forEach(game => {
                 const isFavorite = favorites.some(fav => fav.path === game.path);
-                const gameId = game.path.split('/').pop();
                 
                 const gameCard = document.createElement("div");
                 gameCard.className = "game-card";
                 
                 gameCard.innerHTML = `
-                    <a href="javascript:void(0)" onclick="loadGame('${gameId}', '${game.title}', '${game.image}', '${game.path}')" style="text-decoration: none; color: inherit;">
+                    <a href="${game.path}" target="_blank" style="text-decoration: none; color: inherit;">
                         <img src="${game.image}" alt="${game.title}" class="game-card-image">
                         <div class="game-card-title">${game.title}</div>
                     </a>
@@ -1766,10 +1513,13 @@
                     return;
                 }
                 
+                // Check if the input is a URL or a search query
                 if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    // If it contains a dot and no spaces, treat as URL
                     if (url.includes('.') && !url.includes(' ')) {
                         url = 'https://' + url;
                     } else {
+                        // Otherwise, treat as a search query
                         url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
                     }
                 }
@@ -1894,35 +1644,7 @@
             
             updateTime();
             setInterval(updateTime, 1000);
-            
-            const searchInput = document.getElementById("searchInput");
-            searchInput.addEventListener("input", searchGames);
-            searchInput.addEventListener("blur", function() {
-                setTimeout(() => {
-                    document.getElementById("searchResults").classList.remove("active");
-                }, 200);
-            });
         });
-
-        function navigateToPage(pageId) {
-            document.querySelectorAll('.content-area').forEach(area => {
-                area.classList.remove('active');
-            });
-            
-            const contentArea = document.getElementById(pageId + '-content');
-            if (contentArea) {
-                contentArea.classList.add('active');
-            }
-            
-            window.location.hash = pageId;
-            
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('data-page') === pageId) {
-                    item.classList.add('active');
-                }
-            });
-        }
     </script>
 </body>
 </html>
