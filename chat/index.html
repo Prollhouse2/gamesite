@@ -7,7 +7,6 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
@@ -571,104 +570,50 @@ body {
             </iframe>
         </div>
   
-     <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    const fullscreenBtn = document.getElementById('fullscreen-btn');
-    const chatFrame = document.getElementById('chat-frame');
-    fullscreenBtn.addEventListener('click', function() {
-        if (!document.fullscreenElement) {
-            if (chatFrame.requestFullscreen) {
-                chatFrame.requestFullscreen().catch(err => {
-                    console.log("Fullscreen error:", err);
-                });
-            } else {
-                window.open(chatFrame.src, '_blank');
-            }
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            }
-        }
-    });
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS("snow", {
-            particles: {
-                number: { value: 150, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle", stroke: { width: 0, color: "#000000" } },
-                opacity: { value: 0.5, random: false, anim: { enable: false } },
-                size: { value: 3, random: true, anim: { enable: false } },
-                line_linked: { enable: false },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "bottom",
-                    random: false,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true },
-                    onclick: { enable: false },
-                    resize: true
-                }
-            },
-            retina_detect: true
+<script>
+
+document.getElementById('fullscreen-btn').addEventListener('click', function() {
+    const iframe = document.getElementById('chat-frame');
+    if (iframe.requestFullscreen) {
+        iframe.requestFullscreen().catch(err => {
+            window.open(iframe.src, '_blank');
         });
-    } else {
-        console.log("Loading particles.js...");
-        const script = document.createElement('script');
-        script.src = 'https:
-        script.onload = function() {
-            particlesJS("snow", {
-                particles: {
-                    number: { value: 150, density: { enable: true, value_area: 800 } },
-                    color: { value: "#ffffff" },
-                    shape: { type: "circle", stroke: { width: 0, color: "#000000" } },
-                    opacity: { value: 0.5, random: false, anim: { enable: false } },
-                    size: { value: 3, random: true, anim: { enable: false } },
-                    line_linked: { enable: false },
-                    move: {
-                        enable: true,
-                        speed: 2,
-                        direction: "bottom",
-                        random: false,
-                        straight: false,
-                        out_mode: "out",
-                        bounce: false
-                    }
-                },
-                interactivity: {
-                    detect_on: "canvas",
-                    events: {
-                        onhover: { enable: true },
-                        onclick: { enable: false },
-                        resize: true
-                    }
-                },
-                retina_detect: true
-            });
-        };
-        document.head.appendChild(script);
+    } 
+    else if (iframe.webkitRequestFullscreen) { 
+        iframe.webkitRequestFullscreen();
+    } 
+    else if (iframe.msRequestFullscreen) { 
+        iframe.msRequestFullscreen();
     }
-    const refreshBtn = document.getElementById('refresh-btn');
-    refreshBtn.addEventListener('click', function() {
-        const currentSrc = chatFrame.src;
-        this.querySelector("i").classList.add("fa-spin");
-        chatFrame.src = "about:blank";
-        setTimeout(() => {
-            chatFrame.src = currentSrc;
-            setTimeout(() => {
-                this.querySelector("i").classList.remove("fa-spin");
-            }, 500);
-        }, 100);
-    });
+    else {
+        window.open(iframe.src, '_blank');
+    }
 });
+document.getElementById('refresh-btn').addEventListener('click', function() {
+    const iframe = document.getElementById('chat-frame');
+    iframe.src = iframe.src; 
+    this.querySelector('i').classList.add('fa-spin');
+    setTimeout(() => {
+        this.querySelector('i').classList.remove('fa-spin');
+    }, 1000);
+});
+particlesJS("snow", {
+    particles: {
+        number: { value: 150, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3, random: true },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: "bottom",
+            out_mode: "out"
+        }
+    }
+});
+</script>
 </script>
  </body>
 </html>
