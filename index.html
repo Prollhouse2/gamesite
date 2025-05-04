@@ -977,6 +977,88 @@
         .tab-content.active {
             display: block;
         }
+
+        /* Fullscreen Game Styles - NEW */
+        #game-content {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-header {
+            height: 50px;
+            background-color: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+            z-index: 10;
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .game-control-button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            transition: all var(--transition-normal);
+            color: var(--text-primary);
+        }
+
+        .game-control-button:hover {
+            background-color: rgba(255, 107, 157, 0.2);
+            transform: scale(1.05);
+        }
+
+        .game-frame-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Game Logo in Sidebar - NEW */
+        .game-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 2px solid var(--accent-pink);
+            transition: all var(--transition-normal);
+        }
+
+        .sidebar.expanded .game-logo {
+            width: 80px;
+            height: 80px;
+        }
     </style>
 </head>
 <body>
@@ -989,7 +1071,7 @@
         <div class="sidebar-toggle">
             <i class="fas fa-chevron-right"></i>
         </div>
-        <div class="sidebar-nav">
+        <div class="sidebar-nav" id="game-nav">
             <a href="#home" class="nav-item active" data-page="home">
                 <div class="nav-icon"><i class="fas fa-home"></i></div>
                 <div class="nav-text">Home</div>
@@ -1060,7 +1142,7 @@
                     <div class="featured-game-info">
                         <h2 class="featured-game-title">RETRO BOWL</h2>
                         <p class="featured-game-description">Lead your football team to glory in this nostalgic sports management simulator.</p>
-                        <a href="g/retro-bowl" target="_blank" class="play-button">
+                        <a href="javascript:void(0)" onclick="loadGame('retro-bowl', 'RETRO BOWL', 'images/rblarge.png', 'g/retro-bowl')" class="play-button">
                             <i class="fas fa-play"></i> PLAY NOW
                         </a>
                     </div>
@@ -1079,6 +1161,10 @@
                 <div class="games-grid" id="all-games-grid">
                 </div>
             </div>
+        </div>
+
+        <div id="game-content" class="content-area">
+            <!-- Game content will be loaded here dynamically -->
         </div>
 
         <div id="browser-content" class="content-area">
@@ -1226,6 +1312,82 @@
             }
         });
 
+        // Game Loading Function - NEW
+        function loadGame(gameId, gameTitle, gameImage, gameUrl) {
+            // Create game content
+            const gameContent = document.getElementById('game-content');
+            gameContent.innerHTML = `
+                <div class="game-header">
+                    <div class="game-title">${gameTitle}</div>
+                    <div class="game-controls">
+                        <div class="game-control-button" id="fullscreen-button">
+                            <i class="fas fa-expand"></i>
+                        </div>
+                        <div class="game-control-button" id="close-button">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-frame-container">
+                    <iframe src="${gameUrl}" class="game-frame" id="game-frame" allowfullscreen></iframe>
+                </div>
+            `;
+            
+            // Add game to sidebar if not already there
+            if (!document.querySelector(`.nav-item[data-game-id="${gameId}"]`)) {
+                const gameNavItem = document.createElement('a');
+                gameNavItem.className = 'nav-item';
+                gameNavItem.setAttribute('data-game-id', gameId);
+                gameNavItem.setAttribute('href', '#game');
+                
+                gameNavItem.innerHTML = `
+                    <div class="nav-icon">
+                        <img src="${gameImage}" alt="${gameTitle}" class="game-logo">
+                    </div>
+                    <div class="nav-text">${gameTitle}</div>
+                `;
+                
+                gameNavItem.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    loadGame(gameId, gameTitle, gameImage, gameUrl);
+                });
+                
+                const gameNav = document.getElementById('game-nav');
+                gameNav.appendChild(gameNavItem);
+            }
+            
+            // Set active nav item
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-game-id') === gameId) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Show game content
+            document.querySelectorAll('.content-area').forEach(area => {
+                area.classList.remove('active');
+            });
+            gameContent.classList.add('active');
+            
+            // Setup fullscreen button
+            document.getElementById('fullscreen-button').addEventListener('click', () => {
+                const gameFrame = document.getElementById('game-frame');
+                if (gameFrame.requestFullscreen) {
+                    gameFrame.requestFullscreen();
+                } else if (gameFrame.webkitRequestFullscreen) {
+                    gameFrame.webkitRequestFullscreen();
+                } else if (gameFrame.msRequestFullscreen) {
+                    gameFrame.msRequestFullscreen();
+                }
+            });
+            
+            // Setup close button
+            document.getElementById('close-button').addEventListener('click', () => {
+                navigateToPage('home');
+            });
+        }
+
         async function loadGames() {
             try {
                 const response = await fetch('games.json');
@@ -1301,8 +1463,11 @@
                     const gameCard = document.createElement("div");
                     gameCard.className = "game-card";
                     
+                    // Extract game ID from path
+                    const gameId = game.path.split('/').pop();
+                    
                     gameCard.innerHTML = `
-                        <a href="${game.path}" target="_blank" style="text-decoration: none; color: inherit;">
+                        <a href="javascript:void(0)" onclick="loadGame('${gameId}', '${game.title}', '${game.image}', '${game.path}')" style="text-decoration: none; color: inherit;">
                             <img src="${game.image}" alt="${game.title}" class="game-card-image">
                             <div class="game-card-title">${game.title}</div>
                         </a>
@@ -1338,12 +1503,13 @@
             
             games.forEach(game => {
                 const isFavorite = favorites.some(fav => fav.path === game.path);
+                const gameId = game.path.split('/').pop();
                 
                 const gameCard = document.createElement("div");
                 gameCard.className = "game-card";
                 
                 gameCard.innerHTML = `
-                    <a href="${game.path}" target="_blank" style="text-decoration: none; color: inherit;">
+                    <a href="javascript:void(0)" onclick="loadGame('${gameId}', '${game.title}', '${game.image}', '${game.path}')" style="text-decoration: none; color: inherit;">
                         <img src="${game.image}" alt="${game.title}" class="game-card-image">
                         <div class="game-card-title">${game.title}</div>
                     </a>
@@ -1599,7 +1765,8 @@
                         size: {
                             value: 3,
                             random: true,
-                            anim: { enable: false },
+                            anim: {
+                                enable: false },
                         },
                         line_linked: { enable: false },
                         move: {
@@ -1645,6 +1812,27 @@
             updateTime();
             setInterval(updateTime, 1000);
         });
+
+        // Helper function to navigate to a page
+        function navigateToPage(pageId) {
+            document.querySelectorAll('.content-area').forEach(area => {
+                area.classList.remove('active');
+            });
+            
+            const contentArea = document.getElementById(pageId + '-content');
+            if (contentArea) {
+                contentArea.classList.add('active');
+            }
+            
+            window.location.hash = pageId;
+            
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-page') === pageId) {
+                    item.classList.add('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>
