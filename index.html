@@ -982,73 +982,54 @@
 <body>
     <div id="snow"></div>
 
- <nav class="sidebar">
-    <div class="sidebar-logo">
-        <i class="fas fa-gamepad"></i>
-    </div>
-    <div class="sidebar-toggle">
-        <i class="fas fa-chevron-right"></i>
-    </div>
-    
-    <div class="sidebar-nav">
-        <a href="#home" class="nav-item active" data-page="home">
-            <div class="nav-icon"><i class="fas fa-home"></i></div>
-            <div class="nav-text">Home</div>
+    <nav class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fas fa-gamepad"></i>
+        </div>
+        <div class="sidebar-toggle">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="sidebar-nav">
+            <a href="#home" class="nav-item active" data-page="home">
+                <div class="nav-icon"><i class="fas fa-home"></i></div>
+                <div class="nav-text">Home</div>
+            </a>
+            <a href="#browser" class="nav-item" data-page="browser">
+                <div class="nav-icon"><i class="fas fa-globe"></i></div>
+                <div class="nav-text">Web Browser</div>
+            </a>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-nav">
+            <a href="#settings" class="nav-item" data-page="settings">
+                <div class="nav-icon"><i class="fas fa-cog"></i></div>
+                <div class="nav-text">Settings</div>
+            </a>
+            <a href="#leaderboard" class="nav-item" data-page="leaderboard">
+                <div class="nav-icon"><i class="fas fa-trophy"></i></div>
+                <div class="nav-text">Leaderboard</div>
+            </a>
+            <a href="#chat" class="nav-item" data-page="chat">
+                <div class="nav-icon"><i class="fas fa-comments"></i></div>
+                <div class="nav-text">Chatroom</div>
+            </a>
+            <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
+                <div class="nav-icon"><i class="fab fa-discord"></i></div>
+                <div class="nav-text">Discord</div>
+            </a>
+        </div>
+        <a href="https://tinyurl.com/45j4r62u" class="nav-item" data-page="request" target="_blank">
+            <div class="nav-icon"><i class="fas fa-plus"></i></div>
+            <div class="nav-text">Request Games</div>
         </a>
-        <a href="#browser" class="nav-item" data-page="browser">
-            <div class="nav-icon"><i class="fas fa-globe"></i></div>
-            <div class="nav-text">Web Browser</div>
-        </a>
-    </div>
-    
-    <div class="sidebar-divider"></div>
-    
-    <div class="sidebar-nav">
-        <a href="#profile" class="nav-item" data-page="profile" id="profileLink">
-            <div class="nav-icon" id="sidebarPfp"><i class="fas fa-user"></i></div>
-            <div class="nav-text" id="sidebarUsername">Profile</div>
-        </a>
-        <a href="#users" class="nav-item" data-page="users">
-            <div class="nav-icon"><i class="fas fa-users"></i></div>
-            <div class="nav-text">Users</div>
-        </a>
-    </div>
-    
-    <div class="sidebar-divider"></div>
-    
-    <div class="sidebar-nav">
-        <a href="#settings" class="nav-item" data-page="settings">
-            <div class="nav-icon"><i class="fas fa-cog"></i></div>
-            <div class="nav-text">Settings</div>
-        </a>
-        <a href="#leaderboard" class="nav-item" data-page="leaderboard">
-            <div class="nav-icon"><i class="fas fa-trophy"></i></div>
-            <div class="nav-text">Leaderboard</div>
-        </a>
-        <a href="#chat" class="nav-item" data-page="chat">
-            <div class="nav-icon"><i class="fas fa-comments"></i></div>
-            <div class="nav-text">Chatroom</div>
-        </a>
-        <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
-            <div class="nav-icon"><i class="fab fa-discord"></i></div>
-            <div class="nav-text">Discord</div>
-        </a>
-    </div>
-    
-    <a href="https://tinyurl.com/45j4r62u" class="nav-item" data-page="request" target="_blank">
-        <div class="nav-icon"><i class="fas fa-plus"></i></div>
-        <div class="nav-text">Request Games</div>
-    </a>
-    
-    <div class="sidebar-divider"></div>
-    
-    <div class="sidebar-nav">
-        <a href="https://github.com/Prollhouse2/gamesite" class="nav-item" data-page="github" target="_blank">
-            <div class="nav-icon"><i class="fab fa-github"></i></div>
-            <div class="nav-text">Source Code</div>
-        </a>
-    </div>
-</nav>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-nav">
+            <a href="https://github.com/Prollhouse2/gamesite" class="nav-item" data-page="github" target="_blank">
+                <div class="nav-icon"><i class="fab fa-github"></i></div>
+                <div class="nav-text">Source Code</div>
+            </a>
+        </div>
+    </nav>
 
     <div class="sidebar-mobile-toggle">
         <i class="fas fa-bars"></i>
@@ -1158,18 +1139,6 @@
                 <iframe src="/chat" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
             </div>
         </div>
-
-<div id="profile-content" class="content-area">
-    <div class="container">
-        <iframe src="/profile" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-    </div>
-</div>
-
-<div id="users-content" class="content-area">
-    <div class="container">
-        <iframe src="/users" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-    </div>
-</div>
 
         <footer>
             <div class="footer-content">
