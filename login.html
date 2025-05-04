@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Proll's School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --accent-pink: #ff6b9d;
+            --accent-blue: #6b9dff;
+            --text-primary: #ffffff;
+            --text-secondary: #c0c0d0;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: "VT323", monospace;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 50%, rgba(107, 157, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .login-container {
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-blue));
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-family: "VT323", monospace;
+            font-size: 1.2rem;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 2px rgba(255, 107, 157, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: "VT323", monospace;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .login-footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .login-footer a:hover {
+            color: var(--accent-pink);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            display: none;
+        }
+
+        .success-message {
+            color: #6bff9d;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>PROLL'S SCHOOL</h1>
+            <p>Sign in to your account</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="error-message" id="loginError"></div>
+            
+            <button type="submit" class="btn">Login</button>
+        </form>
+        
+        <div class="login-footer">
+            Don't have an account? <a href="#" id="showRegister">Sign up</a>
+        </div>
+    </div>
+    
+    <div class="login-container" id="registerContainer" style="display: none;">
+        <div class="login-header">
+            <h1>Create Account</h1>
+            <p>Join our community</p>
+        </div>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="regUsername">Username</label>
+                <input type="text" id="regUsername" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="regEmail">Email</label>
+                <input type="email" id="regEmail" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="regPassword">Password</label>
+                <input type="password" id="regPassword" name="password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="regConfirmPassword">Confirm Password</label>
+                <input type="password" id="regConfirmPassword" name="confirmPassword" required>
+            </div>
+            
+            <div class="error-message" id="registerError"></div>
+            <div class="success-message" id="registerSuccess"></div>
+            
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        
+        <div class="login-footer">
+            Already have an account? <a href="#" id="showLogin">Sign in</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle between login and register forms
+            const showRegister = document.getElementById('showRegister');
+            const showLogin = document.getElementById('showLogin');
+            const loginContainer = document.querySelector('.login-container');
+            const registerContainer = document.getElementById('registerContainer');
+            
+            showRegister.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginContainer.style.display = 'none';
+                registerContainer.style.display = 'block';
+            });
+            
+            showLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                registerContainer.style.display = 'none';
+                loginContainer.style.display = 'block';
+            });
+            
+            // Handle registration
+            const registerForm = document.getElementById('registerForm');
+            const registerError = document.getElementById('registerError');
+            const registerSuccess = document.getElementById('registerSuccess');
+            
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('regUsername').value;
+                const email = document.getElementById('regEmail').value;
+                const password = document.getElementById('regPassword').value;
+                const confirmPassword = document.getElementById('regConfirmPassword').value;
+                
+                // Simple validation
+                if (password !== confirmPassword) {
+                    registerError.textContent = "Passwords don't match!";
+                    registerError.style.display = 'block';
+                    registerSuccess.style.display = 'none';
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    registerError.textContent = "Password must be at least 6 characters!";
+                    registerError.style.display = 'block';
+                    registerSuccess.style.display = 'none';
+                    return;
+                }
+                
+                // Check if user already exists
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const userExists = users.some(user => user.email === email);
+                
+                if (userExists) {
+                    registerError.textContent = "Email already registered!";
+                    registerError.style.display = 'block';
+                    registerSuccess.style.display = 'none';
+                    return;
+                }
+                
+                // Create new user
+                const newUser = {
+                    id: Date.now().toString(),
+                    username,
+                    email,
+                    password, // Note: In a real app, you would hash the password
+                    pfp: 'images/default-pfp.png', // Default profile picture
+                    about: 'Hello! I love playing games on Proll\'s School!',
+                    recentlyPlayed: []
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                
+                registerError.style.display = 'none';
+                registerSuccess.textContent = "Account created successfully! Redirecting...";
+                registerSuccess.style.display = 'block';
+                
+                // Redirect to profile after registration
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 1500);
+            });
+            
+            // Handle login
+            const loginForm = document.getElementById('loginForm');
+            const loginError = document.getElementById('loginError');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(user => user.email === email && user.password === password);
+                
+                if (user) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    window.location.href = 'index.html';
+                } else {
+                    loginError.textContent = "Invalid email or password!";
+                    loginError.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

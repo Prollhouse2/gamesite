@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partners</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Silkscreen&family=Pixelify+Sans&family=Orbitron&family=Chakra+Petch:wght@400;700&display=swap");
+
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #25253a;
+            --accent-pink: #ff6b9d;
+            --accent-blue: #6b9dff;
+            --accent-purple: #9d6bff;
+            --accent-cyan: #6bffd9;
+            --text-primary: #ffffff;
+            --text-secondary: #c0c0d0;
+            --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.3);
+            --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Pixelify Sans", sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(157, 107, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 157, 0.05) 0%, transparent 20%);
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem;
+        }
+
+        h1 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+            border-radius: 2px;
+        }
+
+        .partners-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .partner-card {
+            background: linear-gradient(135deg, 
+                rgba(37, 37, 58, 0.9), 
+                rgba(26, 26, 46, 0.9));
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-bounce);
+            border: 1px solid rgba(107, 157, 255, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 107, 157, 0.3);
+        }
+
+        .partner-logo {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            margin: 0 auto 1.5rem;
+            transition: all var(--transition-bounce);
+        }
+
+        .partner-card:hover .partner-logo {
+            transform: scale(1.1);
+            filter: drop-shadow(0 5px 15px rgba(107, 157, 255, 0.5));
+        }
+
+        .partner-name {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .partner-desc {
+            font-family: "VT323", monospace;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .partner-link {
+            display: inline-block;
+            background: linear-gradient(135deg, 
+                rgba(107, 157, 255, 0.2), 
+                rgba(37, 37, 58, 0.9));
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-primary);
+            font-family: "Chakra Petch", sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(107, 157, 255, 0.3);
+            box-shadow: var(--shadow-md);
+        }
+
+        .partner-link:hover {
+            background: linear-gradient(135deg, 
+                rgba(107, 157, 255, 0.3), 
+                rgba(37, 37, 58, 0.8));
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(107, 157, 255, 0.3);
+        }
+
+        .partner-link i {
+            margin-left: 8px;
+            transition: transform var(--transition-normal);
+        }
+
+        .partner-link:hover i {
+            transform: translateX(3px);
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                padding: 1.5rem;
+            }
+            
+            .partners-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Our Partners</h1>
+        
+        <div class="partners-container">
+            <div class="partner-card">
+                <img src="/assets/ajhvault.png" alt="AJH Vault" class="partner-logo">
+                <h3 class="partner-name">AJH'S Vault</h3>
+                <p class="partner-desc">Premium proxy service with lightning fast speeds and reliable unblocking.</p>
+                <a href="https://ajh.college" target="_blank" class="partner-link">
+                    Visit Site <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            
+       <div class="partner-card">
+    <img src="/assets/waveslogo.png" alt="Den Waves" class="partner-logo">
+    <h3 class="partner-name">Waves</h3>
+    <p class="partner-desc">Cutting edge proxy network with advanced bypassing technology.</p>
+    <a href="https://usewaves.site" target="_blank" class="partner-link">
+        Visit Site <i class="fas fa-external-link-alt"></i>
+    </a>
+</div>
+
+<div class="partner-card">
+    <img src="/assets/redlogo.png" alt="Red" class="partner-logo">
+    <h3 class="partner-name">Red</h3>
+    <p class="partner-desc">20k+ games, 4 proxies, accounts, chat, movies, TV shows, code editor, link scraper, AI chatbot, cloaking, and more! - Coming 2025-2026 school year!</p>
+    <a href="https://lupine.red" target="_blank" class="partner-link">
+        Visit Site <i class="fas fa-external-link-alt"></i>
+    </a>
+</div>
+            
+          <div class="partner-card">
+    <div class="partner-logo" style="display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--accent-purple);">
+        <i class="fas fa-plus"></i>
+    </div>
+    <h3 class="partner-name">Your Proxy Here</h3>
+    <p class="partner-desc">Want to partner with us? Get in touch to join our network.</p>
+    <a href="https://discord.gg/proll" target="_blank" class="partner-link">
+        Contact Us <i class="fas fa-envelope"></i>
+    </a>
+</div>
+    </div>
+</body>
+</html>

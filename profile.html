@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Proll's School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #25253a;
+            --accent-pink: #ff6b9d;
+            --accent-blue: #6b9dff;
+            --accent-purple: #9d6bff;
+            --text-primary: #ffffff;
+            --text-secondary: #c0c0d0;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: "VT323", monospace;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-pink);
+            margin-right: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-picture:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .profile-info h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .profile-info p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .edit-button {
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: "VT323", monospace;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .profile-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .profile-section {
+            background-color: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+            border-bottom: 1px solid rgba(107, 157, 255, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .about-me {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .recent-games {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .game-card {
+            background-color: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+            border: 2px solid var(--accent-pink);
+        }
+
+        .game-card h3 {
+            font-size: 1rem;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .edit-form {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .edit-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-family: "VT323", monospace;
+            font-size: 1.2rem;
+            outline: none;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-picture {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .profile-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/250px-Default_pfp.svg.png" alt="Profile Picture" class="profile-picture" id="profilePicture">
+            <div class="profile-info">
+                <h1 id="username">Username</h1>
+               <p id="userEmail">user@example.com</p>
+                <button class="edit-button" id="editProfileBtn">Edit Profile</button>
+            </div>
+        </div>
+        
+        <div class="profile-sections">
+            <div class="profile-section">
+                <h2 class="section-title">About Me</h2>
+                <p class="about-me" id="aboutMeText">No about me</p>
+                
+                <div class="edit-form" id="aboutMeForm">
+                    <textarea id="aboutMeInput" placeholder="Tell us about yourself..."></textarea>
+                    <div class="form-actions">
+                        <button class="edit-button" id="saveAboutBtn">Save</button>
+                        <button class="edit-button" style="background: var(--bg-tertiary);" id="cancelAboutBtn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h2 class="section-title">Recently Played</h2>
+                <div class="recent-games" id="recentGames">
+                    <!-- Games will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="pfpUpload" class="file-input" accept="image/*">
+    
+    <script>
+      
+     // Check if we're viewing another user's profile
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get('user');
+
+if (userId) {
+    // Viewing another user's profile
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const viewedUser = users.find(user => user.id === userId);
+    
+    if (viewedUser) {
+        document.getElementById('username').textContent = viewedUser.username;
+        document.getElementById('userEmail').textContent = viewedUser.email;
+        document.getElementById('aboutMeText').textContent = viewedUser.about;
+        document.getElementById('profilePicture').src = viewedUser.pfp;
+        document.getElementById('editProfileBtn').style.display = 'none';
+        
+        // Display recently played games
+        const recentGamesContainer = document.getElementById('recentGames');
+        if (viewedUser.recentlyPlayed && viewedUser.recentlyPlayed.length > 0) {
+            viewedUser.recentlyPlayed.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}">
+                    <h3>${game.title}</h3>
+                `;
+                recentGamesContainer.appendChild(gameCard);
+            });
+        } else {
+            recentGamesContainer.innerHTML = '<p>No recently played games</p>';
+        }
+        
+        // Hide edit functionality
+        document.getElementById('pfpUpload').style.display = 'none';
+        document.querySelector('.profile-picture').style.cursor = 'default';
+    } else {
+        window.location.href = 'profile.html';
+    }
+} else {
+    // Viewing own profile
+    // ... rest of your existing code ...
+}
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get current user from localStorage
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Display user info
+            document.getElementById('username').textContent = currentUser.username;
+            document.getElementById('userEmail').textContent = currentUser.email;
+            document.getElementById('aboutMeText').textContent = currentUser.about;
+            document.getElementById('profilePicture').src = currentUser.pfp;
+            
+            // Display recently played games
+            const recentGamesContainer = document.getElementById('recentGames');
+            if (currentUser.recentlyPlayed && currentUser.recentlyPlayed.length > 0) {
+                currentUser.recentlyPlayed.forEach(game => {
+                    const gameCard = document.createElement('div');
+                    gameCard.className = 'game-card';
+                    gameCard.innerHTML = `
+                        <img src="${game.image}" alt="${game.title}">
+                        <h3>${game.title}</h3>
+                    `;
+                    recentGamesContainer.appendChild(gameCard);
+                });
+            } else {
+                recentGamesContainer.innerHTML = '<p>No recently played games</p>';
+            }
+            
+            // Edit about me
+            const editProfileBtn = document.getElementById('editProfileBtn');
+            const aboutMeText = document.getElementById('aboutMeText');
+            const aboutMeForm = document.getElementById('aboutMeForm');
+            const aboutMeInput = document.getElementById('aboutMeInput');
+            const saveAboutBtn = document.getElementById('saveAboutBtn');
+            const cancelAboutBtn = document.getElementById('cancelAboutBtn');
+            
+            editProfileBtn.addEventListener('click', function() {
+                aboutMeText.style.display = 'none';
+                aboutMeForm.style.display = 'block';
+                aboutMeInput.value = currentUser.about;
+            });
+            
+            saveAboutBtn.addEventListener('click', function() {
+                const newAbout = aboutMeInput.value;
+                currentUser.about = newAbout;
+                aboutMeText.textContent = newAbout;
+                
+                // Update in localStorage
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // Update in users array
+                const userIndex = users.findIndex(user => user.id === currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex] = currentUser;
+                    localStorage.setItem('users', JSON.stringify(users));
+                }
+                
+                aboutMeText.style.display = 'block';
+                aboutMeForm.style.display = 'none';
+            });
+            
+            cancelAboutBtn.addEventListener('click', function() {
+                aboutMeText.style.display = 'block';
+                aboutMeForm.style.display = 'none';
+            });
+            
+            // Change profile picture
+            const profilePicture = document.getElementById('profilePicture');
+            const pfpUpload = document.getElementById('pfpUpload');
+            
+            profilePicture.addEventListener('click', function() {
+                pfpUpload.click();
+            });
+            
+            pfpUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const newPfp = event.target.result;
+                        profilePicture.src = newPfp;
+                        currentUser.pfp = newPfp;
+                        
+                        // Update in localStorage
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        
+                        // Update in users array
+                        const userIndex = users.findIndex(user => user.id === currentUser.id);
+                        if (userIndex !== -1) {
+                            users[userIndex] = currentUser;
+                            localStorage.setItem('users', JSON.stringify(users));
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

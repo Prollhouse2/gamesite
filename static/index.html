@@ -1,1180 +1,643 @@
-v<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prolls Proxy</title>
-    <link rel="stylesheet" type="text/css" href="/storage/css/themes2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Particles.js CDN -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
-   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
-
-:root {
-    --bg-primary: #0a0a1a;
-    --bg-secondary: #1a1a2e;
-    --bg-tertiary: #25253a;
-    --accent-pink: #ff6b9d;
-    --accent-blue: #6b9dff;
-    --accent-purple: #9d6bff;
-    --text-primary: #ffffff;
-    --text-secondary: #c0c0d0;
-    --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
-    --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-body {
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    font-family: "Press Start 2P", cursive;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    overflow: hidden;
-}
-
-/* Snow Effect */
-#snow {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -2;
-}
-
-/* Animated Background Grid */
-.grid-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(26, 26, 46, 0.3) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(26, 26, 46, 0.3) 1px, transparent 1px);
-    background-size: 30px 30px;
-    z-index: -3;
-    animation: gridMove 20s linear infinite;
-    opacity: 0.4;
-}
-
-@keyframes gridMove {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 30px 30px;
-    }
-}
-
-.god-rays {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 550px;
-    --stripes: repeating-linear-gradient(100deg, rgba(26, 26, 46, 0.8) 0%, rgba(26, 26, 46, 0.8) 7%, transparent 10%, transparent 12%, rgba(26, 26, 46, 0.8) 16%);
-    --rays: repeating-linear-gradient(100deg, rgba(157, 107, 255, 0.2) 10%, rgba(255, 107, 157, 0.2) 15%, rgba(157, 107, 255, 0.2) 20%, rgba(255, 107, 157, 0.2) 25%, rgba(157, 107, 255, 0.2) 30%);
-    background-image: var(--stripes), var(--rays);
-    background-size: 300%, 200%;
-    background-position: 50% 50%, 50% 50%;
-    animation: fadeIn 2s ease;
-    mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
-}
-
-.god-rays::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: var(--stripes), var(--rays);
-    background-size: 200%, 100%;
-    animation: god-rays 40s linear infinite;
-    background-attachment: fixed;
-    mix-blend-mode: difference;
-}
-
-@keyframes god-rays {
-    0% {
-        background-position: 0% 0%, 0% 0%;
-    }
-    100% {
-        background-position: 200% 200%, 100% 100%;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Scanline effect */
-.scanlines {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 50%,
-        rgba(0, 0, 0, 0.02) 50%
-    );
-    background-size: 100% 4px;
-    z-index: 10;
-    pointer-events: none;
-    opacity: 0.3;
-}
-
-/* Glow effect around the page */
-.glow-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -4;
-    overflow: hidden;
-}
-
-.glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(157, 107, 255, 0.15) 0%,
-        rgba(255, 107, 157, 0.1) 30%,
-        rgba(0, 0, 0, 0) 70%
-    );
-    filter: blur(40px);
-    animation: glow-move 15s infinite alternate ease-in-out;
-}
-
-.glow:nth-child(2) {
-    background: radial-gradient(
-        circle,
-        rgba(255, 107, 157, 0.15) 0%,
-        rgba(107, 157, 255, 0.1) 30%,
-        rgba(0, 0, 0, 0) 70%
-    );
-    animation-delay: -5s;
-}
-
-@keyframes glow-move {
-    0% {
-        top: 10%;
-        left: 10%;
-    }
-    100% {
-        top: 60%;
-        left: 60%;
-    }
-}
-
-h1 {
-    font-size: 2.5rem;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
-    transition: transform 0.3s ease-in-out;
-    animation: title-glow 3s infinite alternate;
-}
-
-@keyframes title-glow {
-    0% {
-        text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
-    }
-    100% {
-        text-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 0 0 30px rgba(157, 107, 255, 0.4);
-    }
-}
-
-h1:hover {
-    transform: scale(1.05);
-}
-
-#dynamicParagraph {
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    margin-top: 5px;
-    font-weight: 300;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    transition: color 0.3s ease-in-out;
-    line-height: 1.5;
-}
-
-#dynamicParagraph:hover {
-    color: var(--accent-pink);
-}
-
-#search-container {
-    margin-top: 20px;
-    text-align: center;
-    position: relative;
-    animation: float 6s infinite ease-in-out;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.search-bar-container {
-    position: relative;
-    display: inline-block;
-}
-
-.search-bar-home {
-    padding: 12px 18px 12px 45px;
-    width: 350px;
-    border: 2px solid rgba(255, 107, 157, 0.6);
-    background-color: rgba(26, 26, 46, 0.9);
-    border-radius: 30px;
-    font-family: "VT323", monospace;
-    font-size: 18px;
-    outline: none;
-    margin: 0;
-    color: var(--text-primary);
-    box-shadow: 0 0 15px rgba(157, 107, 255, 0.3);
-    transition: all var(--transition-normal);
-    position: relative;
-}
-
-.search-bar-home::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 16px;
-}
-
-.search-bar-home:focus {
-    border-color: var(--accent-pink);
-    box-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 0 0 30px rgba(157, 107, 255, 0.4);
-}
-
-.search-button {
-    padding: 10px 20px;
-    background: linear-gradient(135deg, rgba(255, 107, 157, 0.8), rgba(157, 107, 255, 0.8));
-    color: white;
-    font-size: 14px;
-    font-family: "Press Start 2P", cursive;
-    border: none;
-    border-radius: 30px;
-    margin-top: 15px;
-    cursor: pointer;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    transition: all var(--transition-normal);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.search-button:hover {
-    background: linear-gradient(135deg, rgba(255, 107, 157, 1), rgba(157, 107, 255, 1));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(255, 107, 157, 0.4);
-}
-
-.search-button i {
-    margin-left: 8px;
-}
-
-/* Animation for search icon */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.search-icon {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgba(255, 107, 157, 0.8);
-    pointer-events: none;
-    transition: all var(--transition-normal);
-    animation: pulse 2s infinite;
-}
-
-#time {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 12px;
-    color: var(--text-primary);
-    font-family: "VT323", monospace;
-    background-color: rgba(26, 26, 46, 0.8);
-    padding: 8px 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 107, 157, 0.3);
-    box-shadow: 0 0 10px rgba(157, 107, 255, 0.3);
-}
-
-.popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--bg-secondary);
-    border: 1px solid rgba(255, 107, 157, 0.3);
-    padding: 35px;
-    border-radius: 15px;
-    z-index: 1000;
-    color: var(--text-primary);
-    box-shadow: 0 0 30px rgba(157, 107, 255, 0.4);
-    animation: popupFadeIn 0.3s ease-out;
-    min-width: 400px;
-    max-width: 450px;
-    backdrop-filter: blur(8px);
-}
-
-@keyframes popupFadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -40%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-}
-
-.popup h3 {
-    margin: 0 0 20px;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: 0.5px;
-    font-family: "Press Start 2P", cursive;
-    font-size: 16px;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.popup input[type="text"] {
-    margin: 10px 0;
-    width: 100%;
-    background: rgba(26, 26, 46, 0.9);
-    border: 1px solid rgba(255, 107, 157, 0.3);
-    color: var(--text-primary);
-    padding: 12px 15px;
-    border-radius: 10px;
-    transition: all var(--transition-normal);
-    font-family: "VT323", monospace;
-    font-size: 18px;
-}
-
-.popup input[type="text"]:focus {
-    border-color: var(--accent-pink);
-    background: rgba(37, 37, 58, 0.9);
-    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
-    outline: none;
-}
-
-.popup input[type="file"] {
-    margin: 15px 0;
-    color: var(--text-primary);
-    width: 100%;
-    font-family: "VT323", monospace;
-    font-size: 16px;
-}
-
-.popup input[type="file"]::-webkit-file-upload-button {
-    background: rgba(26, 26, 46, 0.9);
-    border: 1px solid rgba(255, 107, 157, 0.3);
-    padding: 8px 15px;
-    border-radius: 10px;
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    font-family: "Press Start 2P", cursive;
-    font-size: 10px;
-}
-
-.popup input[type="file"]::-webkit-file-upload-button:hover {
-    background: rgba(37, 37, 58, 0.9);
-    border-color: var(--accent-pink);
-    box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
-}
-
-.popup-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    margin-top: 20px;
-}
-
-.popup button {
-    padding: 10px 20px;
-    background: rgba(26, 26, 46, 0.9);
-    border: 1px solid rgba(255, 107, 157, 0.3);
-    border-radius: 10px;
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    font-family: "Press Start 2P", cursive;
-    font-size: 10px;
-}
-
-.popup button:hover {
-    background: rgba(37, 37, 58, 0.9);
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
-    border-color: var(--accent-pink);
-}
-
-.popup button#add-btn {
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-    color: var(--text-primary);
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.popup button#add-btn:hover {
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-    box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
-}
-
-.add-pin-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-    border: none;
-    border-radius: 50%;
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: all var(--transition-normal);
-    box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
-}
-
-.add-pin-btn:hover {
-    transform: scale(1.2);
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-    color: var(--text-primary);
-    box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
-}
-
-/* Enhanced pinned icons */
-.pinned-icons {
-    margin-top: 30px;
-    background: rgba(26, 26, 46, 0.6);
-    padding: 15px 25px;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 107, 157, 0.2);
-    animation: float 6s infinite ease-in-out;
-    animation-delay: 1s;
-}
-
-.pinned-icons a img {
-    box-shadow: 0 0 10px rgba(157, 107, 255, 0.4);
-}
-
-/* Version tag */
-.version-tag {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    font-size: 10px;
-    color: var(--text-secondary);
-    font-family: "VT323", monospace;
-    background-color: rgba(26, 26, 46, 0.8);
-    padding: 5px 10px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 107, 157, 0.3);
-}
-/* Quick Links Button Container */
-.button-container1 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.7rem;
-  padding: 0.8rem;
-  background: linear-gradient(to right, 
-    rgba(26, 26, 46, 0.4), 
-    rgba(37, 37, 58, 0.4), 
-    rgba(26, 26, 46, 0.4));
-  border-radius: 15px;
-  margin: 0.8rem auto;
-  max-width: 95%;
-  box-shadow: 
-    inset 0 0 10px rgba(107, 157, 255, 0.1),
-    0 0 15px rgba(157, 107, 255, 0.2);
-  border: 1px solid rgba(255, 107, 157, 0.3);
-}
-
-/* Quick Link Buttons */
-.button-container1 .button {
-  background: linear-gradient(135deg, 
-    rgba(37, 37, 58, 0.9), 
-    rgba(26, 26, 46, 0.9));
-  border-radius: 12px;
-  padding: 0.6rem 1rem;
-  min-width: 110px;
-  border: 1px solid rgba(107, 157, 255, 0.3);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  color: white;
-  text-decoration: none;
-  font-family: 'VT323', monospace;
-  font-size: 1.1rem;
-  text-align: center;
-  z-index: 1;
-}
-
-/* Button Hover Effect */
-.button-container1 .button:hover {
-  background: linear-gradient(135deg, 
-    rgba(255, 107, 157, 0.2), 
-    rgba(157, 107, 255, 0.2));
-  transform: translateY(-3px);
-  box-shadow: 
-    0 6px 15px rgba(255, 107, 157, 0.4),
-    0 0 20px rgba(157, 107, 255, 0.3);
-  border-color: var(--accent-pink);
-  color: white;
-}
-
-/* Button Active Effect */
-.button-container1 .button:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Top Accent Border */
-.button-container1 .button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, 
-    var(--accent-blue), 
-    var(--accent-purple), 
-    var(--accent-pink));
-  opacity: 0.7;
-  border-top-left-radius: 11px;
-  border-top-right-radius: 11px;
-  transition: all 0.3s ease;
-}
-
-.button-container1 .button:hover::before {
-  opacity: 1;
-  height: 100%;
-  background: linear-gradient(135deg, 
-    rgba(255, 107, 157, 0.1), 
-    rgba(157, 107, 255, 0.1));
-}
-
-/* Button Text Styling */
-.button-container1 .button span {
-  position: relative;
-  z-index: 2;
-  background: linear-gradient(135deg, 
-    var(--accent-pink), 
-    var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
-  transition: all 0.3s ease;
-}
-
-.button-container1 .button:hover span {
-  text-shadow: 0 0 15px rgba(255, 107, 157, 0.6);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .button-container1 {
-    gap: 0.5rem;
-    padding: 0.6rem;
-  }
-  
-  .button-container1 .button {
-    min-width: 90px;
-    padding: 0.5rem 0.8rem;
-    font-size: 0.9rem;
-  }
-/* Sidebar Styles */
-:root {
-    --bg-primary: #0a0a1a;
-    --bg-secondary: #1a1a2e;
-    --bg-tertiary: #25253a;
-    --accent-pink: #ff6b9d;
-    --accent-blue: #6b9dff;
-    --accent-purple: #9d6bff;
-    --text-primary: #ffffff;
-    --text-secondary: #c0c0d0;
-    --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
-    --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    --border-radius: 8px;
-    --sidebar-width: 70px;
-    --sidebar-expanded-width: 200px;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    min-height: 100vh;
-    font-family: "Press Start 2P", cursive, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-/* Sidebar Navigation */
-.sidebar {
-    width: var(--sidebar-width);
-    height: 100vh;
-    background-color: var(--bg-secondary);
-    position: fixed;
-    left: 0;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    transition: width var(--transition-normal);
-    overflow: hidden;
-    z-index: 1000;
-    border-right: 1px solid rgba(255, 107, 157, 0.2);
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
-}
-
-.sidebar.expanded {
-    width: var(--sidebar-expanded-width);
-}
-
-.sidebar-logo {
-    margin-bottom: 30px;
-    font-size: 1.8rem;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
-}
-
-.sidebar-toggle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--bg-tertiary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin-bottom: 20px;
-    border: 1px solid rgba(255, 107, 157, 0.3);
-    transition: all var(--transition-normal);
-}
-
-.sidebar-toggle:hover {
-    background-color: rgba(255, 107, 157, 0.2);
-    transform: scale(1.05);
-}
-
-.sidebar-toggle i {
-    color: var(--text-primary);
-    transition: transform var(--transition-normal);
-}
-
-.sidebar.expanded .sidebar-toggle i {
-    transform: rotate(180deg);
-}
-
-.sidebar-divider {
-    width: 80%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), var(--accent-purple), transparent);
-    margin: 15px 0;
-}
-
-.sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-}
-
-.nav-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 12px 0;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    position: relative;
-    text-decoration: none;
-}
-
-.nav-item:hover {
-    background-color: rgba(255, 107, 157, 0.1);
-}
-
-.nav-item.active {
-    background-color: rgba(255, 107, 157, 0.2);
-}
-
-.nav-item.active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 3px;
-    background: linear-gradient(to bottom, var(--accent-pink), var(--accent-purple));
-}
-
-.nav-icon {
-    min-width: var(--sidebar-width);
-    display: flex;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    transition: color var(--transition-normal);
-}
-
-.nav-item:hover .nav-icon,
-.nav-item.active .nav-icon {
-    color: var(--accent-pink);
-}
-
-.nav-text {
-    white-space: nowrap;
-    color: var(--text-secondary);
-    font-family: "VT323", monospace;
-    font-size: 1.2rem;
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-}
-
-.sidebar.expanded .nav-text {
-    opacity: 1;
-}
-
-/* Main Container */
-.main-container {
-    margin-left: var(--sidebar-width);
-    width: calc(100% - var(--sidebar-width));
-    transition: margin-left var(--transition-normal), width var(--transition-normal);
-    overflow-x: hidden;
-}
-
-.sidebar.expanded ~ .main-container {
-    margin-left: var(--sidebar-expanded-width);
-    width: calc(100% - var(--sidebar-expanded-width));
-}
-
-/* Mobile Sidebar Toggle */
-.sidebar-mobile-toggle {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-    color: white;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 1001;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Sidebar Overlay */
-.sidebar-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 0;
-        border: none;
-    }
-    
-    .sidebar.expanded {
-        width: var(--sidebar-expanded-width);
-        border-right: 1px solid rgba(255, 107, 157, 0.2);
-    }
-    
-    .main-container {
-        margin-left: 0;
-        width: 100%;
-    }
-    
-    .sidebar.expanded ~ .main-container {
-        margin-left: 0;
-        width: 100%;
-    }
-    
-    .sidebar-mobile-toggle {
-        display: flex;
-    }
-    
-    .sidebar.expanded ~ .sidebar-overlay {
-        display: block;
-    }
-}
-</style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap');
+
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #25253a;
+            --accent-pink: #ff6b9d;
+            --accent-blue: #6b9dff;
+            --accent-purple: #9d6bff;
+            --text-primary: #ffffff;
+            --text-secondary: #c0c0d0;
+            --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.2);
+            --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), transparent);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-family: 'Rajdhani', sans-serif;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .tagline:hover {
+            color: var(--accent-pink);
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 0;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .search-input-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 107, 157, 0.5);
+            background-color: rgba(26, 26, 46, 0.8);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: all var(--transition-normal);
+            box-shadow: 0 0 20px rgba(157, 107, 255, 0.2);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-pink);
+            font-size: 1.2rem;
+        }
+
+        .search-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+        }
+
+        .quick-links {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .quick-links-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .quick-links-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background: rgba(26, 26, 46, 0.4);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .quick-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 10px;
+            border-radius: 10px;
+            background: rgba(37, 37, 58, 0.6);
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            border: 1px solid rgba(107, 157, 255, 0.2);
+        }
+
+        .quick-link:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 107, 157, 0.1);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+            border-color: var(--accent-pink);
+        }
+
+        .quick-link-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: all var(--transition-normal);
+            box-shadow: 0 0 10px rgba(157, 107, 255, 0.4);
+        }
+
+        .quick-link:hover .quick-link-icon {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.6);
+        }
+
+        .quick-link-text {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .add-quick-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--accent-blue);
+            transition: all var(--transition-normal);
+        }
+
+        .add-quick-link:hover {
+            color: var(--accent-pink);
+            transform: scale(1.1);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .time-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            background: rgba(26, 26, 46, 0.6);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(107, 157, 255, 0.3);
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            box-shadow: 0 0 30px rgba(157, 107, 255, 0.3);
+        }
+
+        .popup-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--accent-pink);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .popup-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            background: rgba(26, 26, 46, 0.8);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .popup-input:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+        }
+
+        .popup-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .popup-btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .popup-btn-cancel {
+            background: rgba(26, 26, 46, 0.8);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+        }
+
+        .popup-btn-cancel:hover {
+            background: rgba(37, 37, 58, 0.8);
+            border-color: var(--accent-pink);
+        }
+
+        .popup-btn-add {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+        }
+
+        .popup-btn-add:hover {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .quick-links-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .search-input {
+                padding: 12px 15px 12px 40px;
+                font-size: 1rem;
+            }
+            
+            .search-icon {
+                left: 15px;
+            }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .corner-accent {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(157, 107, 255, 0.1) 0%, transparent 70%);
+            filter: blur(30px);
+            z-index: -1;
+        }
+
+        .corner-accent-1 {
+            top: -100px;
+            right: -100px;
+        }
+
+        .corner-accent-2 {
+            bottom: -100px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+        }
+    </style>
 </head>
 <body>
-    <!-- Background elements -->
-    <div id="snow"></div>
-    <div class="grid-background"></div>
-    <div class="god-rays"></div>
-    <div class="scanlines"></div>
-    <div class="glow-container">
-        <div class="glow"></div>
-        <div class="glow"></div>
-    </div>
-    
-    <br><br><br><br><br>
+    <div id="particles-js" class="particles"></div>
+    <div class="corner-accent corner-accent-1"></div>
+    <div class="corner-accent corner-accent-2"></div>
 
 
- 
+    <div class="container">
+        <header class="header">
+            <div class="logo">Goongle</div>
+            <div class="tagline" id="dynamicTagline">Initializing connection...</div>
+        </header>
 
-    <h1>Prolls Proxy</h1> 
-    <p id="dynamicParagraph">(loading...)</p> 
-
-    <div id="search-container">
-        <form id="uv-form">
-            <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden"/>
-            <div class="search-bar-container">
-                <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
+        <main class="main-content">
+            <div class="search-container">
+                <form id="uv-form" class="search-box">
+                    <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden"/>
+                    <div class="search-input-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input id="uv-address" type="text" class="search-input" placeholder="Enter URL or search term...">
+                    </div>
+                    <button type="submit" class="search-btn" onclick="submitSearch()">
+                        LAUNCH <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <div class="desc">
+                        <p id="uv-error"></p>
+                        <pre id="uv-error-code"></pre>
+                    </div>
+                </form>
             </div>
-            <button class="search-button" onclick="submitSearch()">SEARCH> </button>
-        </form> 
 
-      <script src="/js/global-loader.js"></script>
-        <div class="desc left-margin">
-            <p id="uv-error"></p>
-            <pre id="uv-error-code"></pre>
+            <div class="quick-links">
+                <h3 class="quick-links-title">QUICK LINKS</h3>
+                <div class="quick-links-grid" id="quickLinksGrid">
+                    <a href="/static/embed.html#https://tiktok.com" class="quick-link">
+                        <img src="/assets/tiktok.png" class="quick-link-icon">
+                        <span class="quick-link-text">TikTok</span>
+                    </a>
+                    <a href="/static/embed.html#https://twitch.tv" class="quick-link">
+                        <img src="/assets/twitch.png" class="quick-link-icon">
+                        <span class="quick-link-text">Twitch</span>
+                    </a>
+                    <a href="/static/embed.html#https://google.com" class="quick-link">
+                        <img src="/assets/google.webp" class="quick-link-icon">
+                        <span class="quick-link-text">Google</span>
+                    </a>
+                    <a href="/static/embed.html#https://now.gg" class="quick-link">
+                        <img src="/assets/nowgg.png" class="quick-link-icon">
+                        <span class="quick-link-text">Now.gg</span>
+                    </a>
+                    <div class="quick-link add-quick-link" id="addQuickLink">
+                        <i class="fas fa-plus-circle" style="font-size: 2rem;"></i>
+                        <span class="quick-link-text">Add Link</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+      
+
+    <div class="popup-overlay" id="addLinkPopup">
+        <div class="popup-content">
+            <h3 class="popup-title">ADD QUICK LINK</h3>
+            <input type="text" id="linkUrl" class="popup-input" placeholder="https://example.com">
+            <input type="file" id="linkIcon" class="popup-input" accept="image/*">
+            <div class="popup-buttons">
+                <button class="popup-btn popup-btn-cancel" id="cancelAddLink">CANCEL</button>
+                <button class="popup-btn popup-btn-add" id="confirmAddLink">ADD</button>
+            </div>
         </div>
-    </div>  
-
-    <div class="pinned-icons" style="display: flex; justify-content: center; align-items: center; gap: 15px;">
-        <a href="/static/embed.html#https://tiktok.com" style="display: inline-block;">
-            <img src="/assets/tiktok.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="/static/embed.html#https://twitch.tv" style="display: inline-block;">
-            <img src="/assets/twitch.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="/static/embed.html#https://google.com" style="display: inline-block;">
-            <img src="/assets/google.webp" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="/static/embed.html#https://now.gg" style="display: inline-block;">
-            <img src="/assets/nowgg.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s; " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="#" id="add-pin-btn" class="add-pin-btn">
-            <span class="material-icons" style="font-size: 20px;">add</span>
-        </a>
     </div>
-
-    <!-- Popup for adding new pin -->
-    <div id="add-pin-popup" class="popup">
-        <h3>Add New Pin</h3>
-        <input type="text" id="pin-url" placeholder="Enter URL (https:// required)">
-        <input type="file" id="pin-image" accept="image/*">
-        <div class="popup-buttons">
-            <button id="cancel-btn">Cancel</button>
-            <button id="add-btn">Add</button>
-        </div>
-    </div>
-
-    <!-- Time Display Element -->
-    <div id="time"></div>
-    
-    <!-- Version tag -->
-    <div class="version-tag">Prolls Proxy v5.0</div>
 
     <script src="/static/uv/uv.bundle.js" defer></script>
     <script src="/static/uv/uv.config.js" defer></script>
     <script src="/static/register-sw.js" defer></script>
     <script src="/static/search.js" defer></script>
-    <script src="/static/index.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <script>
-        // Initialize snow effect
-        document.addEventListener("DOMContentLoaded", function() {
-            // First try to load particles.js from CDN
-            if (typeof particlesJS !== "undefined") {
-                initSnow();
-            } else {
-                // If not loaded, load it dynamically
-                var script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
-                script.onload = initSnow;
-                document.head.appendChild(script);
+        document.addEventListener('DOMContentLoaded', function() {
+            const tagline = document.getElementById('dynamicTagline');
+            const timeDisplay = document.getElementById('time');
+            const addLinkBtn = document.getElementById('addQuickLink');
+            const addLinkPopup = document.getElementById('addLinkPopup');
+            const cancelAddLink = document.getElementById('cancelAddLink');
+            const confirmAddLink = document.getElementById('confirmAddLink');
+            const quickLinksGrid = document.getElementById('quickLinksGrid');
+
+            const taglines = [
+                "Secure web access portal",
+                "Bypass restrictions safely",
+                "Fast and reliable connection",
+                "Built for unrestricted access",
+                "Privacy-focused gateway",
+                "Your window to the open web"
+            ];
+
+            function updateTagline() {
+                const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
+                tagline.textContent = randomTagline;
             }
-            
-            function initSnow() {
-                particlesJS("snow", {
+
+            tagline.addEventListener('click', updateTagline);
+            updateTagline();
+
+            function updateTime() {
+                const now = new Date();
+                const hours = now.getHours().toString().padStart(2, '0');
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+                const seconds = now.getSeconds().toString().padStart(2, '0');
+                timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+
+            setInterval(updateTime, 1000);
+            updateTime();
+
+            function loadSavedLinks() {
+                const savedLinks = JSON.parse(localStorage.getItem('savedQuickLinks') || '[]');
+                savedLinks.forEach(link => {
+                    addQuickLinkElement(link.url, link.icon);
+                });
+            }
+
+            function addQuickLinkElement(url, iconData) {
+                const linkElement = document.createElement('a');
+                linkElement.href = `/static/embed.html#${url}`;
+                linkElement.className = 'quick-link';
+                
+                const iconElement = document.createElement('img');
+                iconElement.src = iconData;
+                iconElement.className = 'quick-link-icon';
+                
+                const textElement = document.createElement('span');
+                textElement.className = 'quick-link-text';
+                textElement.textContent = new URL(url).hostname.replace('www.', '');
+                
+                linkElement.appendChild(iconElement);
+                linkElement.appendChild(textElement);
+                
+                quickLinksGrid.insertBefore(linkElement, addLinkBtn);
+            }
+
+            function saveQuickLink(url, iconData) {
+                const savedLinks = JSON.parse(localStorage.getItem('savedQuickLinks') || '[]');
+                savedLinks.push({ url, icon: iconData });
+                localStorage.setItem('savedQuickLinks', JSON.stringify(savedLinks));
+            }
+
+            addLinkBtn.addEventListener('click', function() {
+                addLinkPopup.style.display = 'flex';
+            });
+
+            cancelAddLink.addEventListener('click', function() {
+                addLinkPopup.style.display = 'none';
+                document.getElementById('linkUrl').value = '';
+                document.getElementById('linkIcon').value = '';
+            });
+
+            confirmAddLink.addEventListener('click', function() {
+                const url = document.getElementById('linkUrl').value;
+                const iconFile = document.getElementById('linkIcon').files[0];
+                
+                if (!url || !url.startsWith('https://')) {
+                    alert('Please enter a valid HTTPS URL');
+                    return;
+                }
+                
+                if (!iconFile) {
+                    alert('Please select an icon image');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    addQuickLinkElement(url, e.target.result);
+                    saveQuickLink(url, e.target.result);
+                    addLinkPopup.style.display = 'none';
+                    document.getElementById('linkUrl').value = '';
+                    document.getElementById('linkIcon').value = '';
+                };
+                reader.readAsDataURL(iconFile);
+            });
+
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
                     particles: {
-                        number: {
-                            value: 150,
-                            density: { enable: true, value_area: 800 },
-                        },
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
                         color: { value: "#ffffff" },
-                        shape: {
-                            type: "circle",
-                            stroke: { width: 0, color: "#000000" },
-                        },
-                        opacity: {
-                            value: 0.5,
-                            random: false,
-                            anim: { enable: false },
-                        },
-                        size: {
-                            value: 3,
-                            random: true,
-                            anim: { enable: false },
-                        },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.5, random: true },
+                        size: { value: 3, random: true },
                         line_linked: { enable: false },
                         move: {
                             enable: true,
                             speed: 2,
-                            direction: "bottom",
-                            random: false,
+                            direction: "none",
+                            random: true,
                             straight: false,
-                            out_mode: "out",
-                            bounce: false,
-                        },
+                            out_mode: "out"
+                        }
                     },
                     interactivity: {
                         detect_on: "canvas",
                         events: {
-                            onhover: { enable: true },
-                            onclick: { enable: false },
-                            resize: true,
-                        },
-                    },
-                    retina_detect: true,
+                            onhover: { enable: true, mode: "repulse" },
+                            resize: true
+                        }
+                    }
                 });
             }
+
+            loadSavedLinks();
         });
 
-        const phrases = [
-            "prollschool best unblocked games site!",
-            "https://prollschool.com",
-            "Access your favorite games and sites from anywhere",
-            "Fast reliable and always up to date",
-            "Built for students by students",
-            "Stay low stay fast stay prollschool"
-        ];
-
-        const paragraph = document.getElementById('dynamicParagraph');
-
-        function changeText() {
-            const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-            paragraph.textContent = randomPhrase;
-        }
-
-        paragraph.addEventListener('click', changeText);
-        window.onload = function() {
-            changeText();
-            
-            // Add animated cursor effect to search input
+        function submitSearch() {
             const searchInput = document.getElementById('uv-address');
-            if (searchInput) {
-                searchInput.addEventListener('focus', function() {
-                    this.classList.add('focused');
-                });
-                searchInput.addEventListener('blur', function() {
-                    this.classList.remove('focused');
-                });
+            if (searchInput.value.trim() !== '') {
+                document.getElementById('uv-form').submit();
             }
-        };
-
-        function updateTime() {
-            const timeElement = document.getElementById("time");
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
         }
-
-        setInterval(updateTime, 1000);
-
-        // Updated add pin functionality
-        const addPinBtn = document.getElementById('add-pin-btn');
-        const popup = document.getElementById('add-pin-popup');
-        const addBtn = document.getElementById('add-btn');
-        const cancelBtn = document.getElementById('cancel-btn');
-        const pinnedIcons = document.querySelector('.pinned-icons');
-
-        // Load saved pins from localStorage on page load
-        function loadSavedPins() {
-            const savedPins = JSON.parse(localStorage.getItem('pinnedBookmarks') || '[]');
-            savedPins.forEach(pin => {
-                createPinElement(pin.url, pin.image);
-            });
-        }
-
-        // Create pin element
-        function createPinElement(url, imageData) {
-            const newPin = document.createElement('a');
-            newPin.href = `/static/embed.html#${url}`;
-            newPin.style.display = 'inline-block';
-
-            const img = document.createElement('img');
-            img.src = imageData;
-            img.style.width = '30px';
-            img.style.height = '30px';
-            img.style.borderRadius = '50%';
-            img.style.transition = 'transform 0.3s, box-shadow 0.3s';
-            img.style.boxShadow = '0 0 10px rgba(157, 107, 255, 0.4)';
-            img.onmouseover = function() { 
-                this.style.transform = 'scale(1.2)'; 
-                this.style.boxShadow = '0 0 15px rgba(255, 107, 157, 0.6)';
-            };
-            img.onmouseout = function() { 
-                this.style.transform = 'scale(1)';
-                this.style.boxShadow = '0 0 10px rgba(157, 107, 255, 0.4)';
-            };
-
-            newPin.appendChild(img);
-            pinnedIcons.insertBefore(newPin, addPinBtn);
-        }
-
-        // Save pin to localStorage
-        function savePin(url, imageData) {
-            const savedPins = JSON.parse(localStorage.getItem('pinnedBookmarks') || '[]');
-            savedPins.push({ url, image: imageData });
-            localStorage.setItem('pinnedBookmarks', JSON.stringify(savedPins));
-        }
-
-        addPinBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            popup.style.display = 'block';
-        });
-
-        addBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const urlInput = document.getElementById('pin-url').value;
-            const imageInput = document.getElementById('pin-image').files[0];
-
-            if (!urlInput.startsWith('https://')) {
-                alert('URL must start with https://');
-                return;
-            }
-
-            if (!imageInput) {
-                alert('Please select an image');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const imageData = e.target.result;
-                createPinElement(urlInput, imageData);
-                savePin(urlInput, imageData);
-                popup.style.display = 'none';
-                document.getElementById('pin-url').value = '';
-                document.getElementById('pin-image').value = '';
-            };
-            reader.readAsDataURL(imageInput);
-        });
-
-        cancelBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            popup.style.display = 'none';
-            document.getElementById('pin-url').value = '';
-            document.getElementById('pin-image').value = '';
-        });
-    // ===== SIDEBAR FUNCTIONALITY =====
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.querySelector('.sidebar');
-            const sidebarToggle = document.querySelector('.sidebar-toggle');
-            const sidebarMobileToggle = document.querySelector('.sidebar-mobile-toggle');
-            const sidebarOverlay = document.querySelector('.sidebar-overlay');
-            
-            // Toggle sidebar on button click
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('expanded');
-            });
-            
-            // Mobile toggle
-            if (sidebarMobileToggle) {
-                sidebarMobileToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('expanded');
-                });
-            }
-            
-            // Close sidebar when clicking overlay (mobile)
-            if (sidebarOverlay) {
-                sidebarOverlay.addEventListener('click', function() {
-                    sidebar.classList.remove('expanded');
-                });
-            }
-            
-            // Highlight active nav item
-            const navItems = document.querySelectorAll('.nav-item');
-            const currentPath = window.location.pathname;
-            
-            navItems.forEach(item => {
-                const itemPath = item.getAttribute('href');
-                if (currentPath.includes(itemPath) && itemPath !== 'index.html') {
-                    item.classList.add('active');
-                } else if (currentPath === '/' && itemPath === 'index.html') {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-        // Load pins when page loads
-        window.addEventListener('load', loadSavedPins);
     </script>
-    <script src="/storage/js/settings.js"></script>
 </body>
 </html>
