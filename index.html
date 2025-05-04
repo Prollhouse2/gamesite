@@ -296,47 +296,35 @@
         }
 
         /* Category Filters */
-        .category-filters-container {
-            overflow-x: auto;
-            margin: 25px 0;
-            padding: 15px 0;
-        }
-
         .category-filters {
-            display: flex;
-            gap: 15px;
-            padding: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: none;
+            gap: 10px;
+            margin-left: 20px;
         }
 
         .category-button {
-            padding: 12px 24px;
+            padding: 8px 16px;
             border-radius: 20px;
-            background-color: var(--bg-tertiary);
+            background-color: transparent;
             color: var(--text-secondary);
-            font-size: 16px;
+            font-size: 12px;
             border: 1px solid rgba(255, 107, 157, 0.2);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Arial', sans-serif;
-            font-weight: 500;
-            margin: 5px;
+            font-family: "VT323", monospace;
         }
 
         .category-button:hover {
             color: var(--text-primary);
             border-color: var(--accent-pink);
             background-color: rgba(255, 107, 157, 0.1);
-            transform: translateY(-2px);
         }
 
         .category-button.active {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(107, 157, 255, 0.3));
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(107, 157, 255, 0.2));
             color: var(--text-primary);
             border-color: var(--accent-pink);
-            box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
-            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.2);
         }
 
         /* Featured Game Banner */
@@ -1086,9 +1074,7 @@
                     </div>
                 </div>
 
-            
-
-                <h2 class="section-title">ALL TITLES</h2>
+                <h2 class="section-title">ALL GAMES</h2>
                 
                 <div class="games-grid" id="all-games-grid">
                 </div>
@@ -1244,65 +1230,11 @@
             try {
                 const response = await fetch('games.json');
                 const data = await response.json();
-                
-                // Extract unique categories and populate category filters
-                const categories = ['ALL'];
-                data.games.forEach(game => {
-                    if (!categories.includes(game.category)) {
-                        categories.push(game.category);
-                    }
-                });
-                
-                // Sort categories alphabetically (keeping ALL at the beginning)
-                const sortedCategories = ['ALL', ...categories.filter(cat => cat !== 'ALL').sort()];
-                
-                // Populate category filters
-                const categoryFilters = document.getElementById('category-filters');
-                categoryFilters.innerHTML = ''; // Clear existing buttons
-                
-                sortedCategories.forEach(category => {
-                    const button = document.createElement('button');
-                    button.className = 'category-button';
-                    button.textContent = category;
-                    button.setAttribute('data-category', category);
-                    
-                    if (category === 'ALL') {
-                        button.classList.add('active');
-                    }
-                    
-                    button.addEventListener('click', function() {
-                        // Remove active class from all buttons
-                        document.querySelectorAll('.category-button').forEach(btn => {
-                            btn.classList.remove('active');
-                        });
-                        
-                        // Add active class to clicked button
-                        this.classList.add('active');
-                        
-                        // Filter games by category
-                        const selectedCategory = this.getAttribute('data-category');
-                        filterGamesByCategory(selectedCategory, data.games);
-                    });
-                    
-                    categoryFilters.appendChild(button);
-                });
-                
                 return data.games;
             } catch (error) {
                 console.error('Error loading games:', error);
                 return [];
             }
-        }
-
-        function filterGamesByCategory(category, games) {
-            const allGamesGrid = document.getElementById("all-games-grid");
-            allGamesGrid.innerHTML = "";
-            
-            const filteredGames = category === 'ALL' 
-                ? games 
-                : games.filter(game => game.category === category);
-            
-            renderGames(filteredGames, allGamesGrid);
         }
 
         function getFavorites() {
@@ -1393,16 +1325,7 @@
             
             const allGames = await loadGames();
             
-            // Get the currently selected category
-            const activeCategory = document.querySelector('.category-button.active').getAttribute('data-category');
-            
-            // First filter by category if not ALL
-            let categoryFiltered = activeCategory === 'ALL' 
-                ? allGames 
-                : allGames.filter(game => game.category === activeCategory);
-            
-            // Then filter by search query
-            const filteredGames = categoryFiltered.filter(game => 
+            const filteredGames = allGames.filter(game => 
                 game.title.toLowerCase().includes(query) || 
                 game.category.toLowerCase().includes(query)
             );
