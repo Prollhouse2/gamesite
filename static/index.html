@@ -7,12 +7,10 @@
   <script src="/static/uv/uv.config.js" defer></script>
 </head>
 <body>
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const proxy = __uv$config.prefix;
-      const encoded = __uv$config.encodeUrl("https://goongle.vercel.app");
-      window.location.href = proxy + encoded;
-    });
-  </script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    window.location.href = "/static/embed.html#https://goongle.vercel.app";
+  });
+</script>
 </body>
 </html>
