@@ -1,0 +1,122 @@
+diff --git a/node_modules/howler/dist/howler.js b/node_modules/howler/dist/howler.js
+index 7dfa1c7..bf034a5
+--- a/node_modules/howler/dist/howler.js
++++ b/node_modules/howler/dist/howler.js
+@@ -928,6 +928,11 @@
+                   sound._node.bufferSource.stop(0);
+                 }
+ 
++                if (sound._panner) {
++                  sound._panner.disconnect();
++                  sound._panner = null;
++                }
++
+                 // Clean up the buffer source.
+                 self._cleanBuffer(sound._node);
+               }
+@@ -1089,7 +1094,7 @@
+      * @param  {Number} id   The sound id (omit to fade all sounds).
+      * @return {Howl}
+      */
+-    fade: function(from, to, len, id) {
++    fade: function(from, to, len, id, xxx) {
+       var self = this;
+ 
+       // If the sound hasn't loaded, add it to the load queue to fade when capable.
+@@ -1105,7 +1110,9 @@
+       }
+ 
+       // Set the volume to the start position.
+-      self.volume(from, id);
++      if (xxx == null) {
++        self.volume(from, id);
++      }
+ 
+       // Fade the volume of one or all sounds.
+       var ids = self._getSoundIds(id);
+@@ -1125,11 +1132,11 @@
+             var currentTime = Howler.ctx.currentTime;
+             var end = currentTime + (len / 1000);
+             sound._volume = from;
+-            sound._node.gain.setValueAtTime(from, currentTime);
++            if (xxx == null) {
++              sound._node.gain.setValueAtTime(from, currentTime);
++            }
+             sound._node.gain.linearRampToValueAtTime(to, end);
+           }
+-
+-          self._startFadeInterval(sound, from, to, len, ids[i]);
+         }
+       }
+ 
+@@ -2829,7 +2836,6 @@
+       sound._panner.refDistance = sound._pannerAttr.refDistance;
+       sound._panner.rolloffFactor = sound._pannerAttr.rolloffFactor;
+       sound._panner.panningModel = sound._pannerAttr.panningModel;
+-      sound._panner.setPosition(sound._pos[0], sound._pos[1], sound._pos[2]);
+       sound._panner.setOrientation(sound._orientation[0], sound._orientation[1], sound._orientation[2]);
+     } else {
+       sound._panner = Howler.ctx.createStereoPanner();
+diff --git a/node_modules/howler/src/howler.core.js b/node_modules/howler/src/howler.core.js
+index 463f3ad..7076a9a
+--- a/node_modules/howler/src/howler.core.js
++++ b/node_modules/howler/src/howler.core.js
+@@ -928,6 +928,11 @@
+                   sound._node.bufferSource.stop(0);
+                 }
+ 
++                if (sound._panner) {
++                  sound._panner.disconnect();
++                  sound._panner = null;
++                }
++
+                 // Clean up the buffer source.
+                 self._cleanBuffer(sound._node);
+               }
+@@ -1089,7 +1094,7 @@
+      * @param  {Number} id   The sound id (omit to fade all sounds).
+      * @return {Howl}
+      */
+-    fade: function(from, to, len, id) {
++    fade: function(from, to, len, id, xxx) {
+       var self = this;
+ 
+       // If the sound hasn't loaded, add it to the load queue to fade when capable.
+@@ -1105,7 +1110,9 @@
+       }
+ 
+       // Set the volume to the start position.
+-      self.volume(from, id);
++      if (xxx == null) {
++        self.volume(from, id);
++      }
+ 
+       // Fade the volume of one or all sounds.
+       var ids = self._getSoundIds(id);
+@@ -1125,11 +1132,11 @@
+             var currentTime = Howler.ctx.currentTime;
+             var end = currentTime + (len / 1000);
+             sound._volume = from;
+-            sound._node.gain.setValueAtTime(from, currentTime);
++            if (xxx == null) {
++              sound._node.gain.setValueAtTime(from, currentTime);
++            }
+             sound._node.gain.linearRampToValueAtTime(to, end);
+           }
+-
+-          self._startFadeInterval(sound, from, to, len, ids[i]);
+         }
+       }
+ 
+diff --git a/node_modules/howler/src/plugins/howler.spatial.js b/node_modules/howler/src/plugins/howler.spatial.js
+index 39723f2..677f75d
+--- a/node_modules/howler/src/plugins/howler.spatial.js
++++ b/node_modules/howler/src/plugins/howler.spatial.js
+@@ -578,7 +578,6 @@
+       sound._panner.refDistance = sound._pannerAttr.refDistance;
+       sound._panner.rolloffFactor = sound._pannerAttr.rolloffFactor;
+       sound._panner.panningModel = sound._pannerAttr.panningModel;
+-      sound._panner.setPosition(sound._pos[0], sound._pos[1], sound._pos[2]);
+       sound._panner.setOrientation(sound._orientation[0], sound._orientation[1], sound._orientation[2]);
+     } else {
+       sound._panner = Howler.ctx.createStereoPanner();

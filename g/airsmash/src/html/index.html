@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            ΛIRMΛSH
+        </title>
+        <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="assets/flags.css">
+        <link rel="shortcut icon" type="image/png" sizes="64x64" href=
+        "assets/favicon.png">
+        <meta name="description" content=
+        "Airmash is a multiplayer missile warfare browser game. Play now against other players around the world!">
+        <meta name="keywords" content=
+        "airmash, missile warfare, game, games, multiplayer game, web game, html5 game">
+        <meta property="og:title" content="ΛIRMΛSH">
+        <meta property="og:description" content=
+        "Multiplayer missile warfare browser game. Play now against other players around the world!">
+        <meta property="og:url" content="https://airmash.online/">
+        <meta property="og:image" content=
+        "https://airmash.online/assets/splash.png">
+        <meta property="og:image:width" content="960">
+        <meta property="og:image:height" content="540">
+        <style type="text/css">
+        a.c2 {position: absolute; display: inline-block; width: 200px; height: 50px; bottom: 80px; left: 50px; color: white;}
+        div.c1 {display: inline-block; vertical-align: middle; width: 50px; height: 30px; margin-left: 10px; background-repeat: no-repeat; background-size: 100% auto; background-image: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ibWNhOGFlYzA0M19sb2dvIG1jODUwMDM4MDZfbG9nbyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTc4Ljg4IDI3My4xNiIgZGF0YS1yZWFjdGlkPSI2Ij48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNNTQxLjEzIDg1Ljc3YzIwLjgxIDAgMzcuNzUtMTcuMzUgMzcuNzUtMzguNjcgMC0yMC40Ny0xNy4yOS0zNy43NS0zNy43NS0zNy43NXMtMzcuNzUgMTcuMjktMzcuNzUgMzcuNzVjMCAyMS4zMiAxNi45MyAzOC42NyAzNy43NSAzOC42N3oiIGRhdGEtcmVhY3RpZD0iNyI+PC9wYXRoPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik01MDQuMDYgOTkuMzR2MTEwLjQ1bC0zNC03My44NGMxNS4zNy0xOS4yMyAyMS42My00Ni4zNiAyMi4zMy02NS44N3YtMTZoLTYwLjIzdjE1LjRjLS44NCAxOS42NC03LjIyIDI4LjgtMjQuNzggMzQuNTF2LTEwNGwtNjEuMjcuMDZ2NDQuMzFjLTIyLjMzLTIyLjc4LTUzLjE0LTM0Ljc4LTg5LjU2LTM0Ljc4LTM5Ljg3IDAtNzIuOSAxMy44MS05NS41IDM5LjkxYTExOC4wNSAxMTguMDUgMCAwIDAtMTcuMTIgMjYuMzNjLTE0LjgxLTE1LjIxLTM1LjQyLTIxLjctNTkuODktMjEuN2gtODR2MjE5LjA0aDU2di01Mi4yOGgyOGMyNC4zOSAwIDQ1LTguMTQgNTkuODgtMjMuNTRhMTE2LjMgMTE2LjMgMCAwIDAgMTcuNzEgMjcuMWMyMi42MiAyNS42MyA1NS40NCAzOS4xNCA5NC45MiAzOS4xNCAzOC42NCAwIDcxLTEzLjUgOTMuNjEtMzkuMDYgMS41Ny0xLjc3IDMuMDYtMy42MiA0LjUxLTUuNDhoNTIuNzF2LTU0LjM1bDguMDgtMS44NiAyNiA1Ni4yNEg1NzguMlY5OS4zNGgtNzQuMTR6bS00MTggNjMuODFINTUuOTh2LTUyLjcyaDI5LjI1YzcuNTggMCAyMC4yMyA1LjExIDIwLjIzIDI1LjMyLjA1IDEzLjAxLTUuMzMgMjcuNC0xOS4zNiAyNy40em0xNjkuOTIgNjAuMTRjLTQ3LjIzIDAtODUuNjUtMzkuMzctODUuNjUtODcuNzUgMC00Ni40MiAzOS4yMS04NS42NSA4NS42NS04NS42NXM4NS42NSAzOS4yMyA4NS42NSA4NS42NWMwIDQ4LjM4LTM4LjQyIDg3Ljc1LTg1LjY1IDg3Ljc1eiIgZGF0YS1yZWFjdGlkPSI4Ij48L3BhdGg+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTI1NS45NyAxNDEuODhjLTM3Ljg4IDAtNTcgNi42NS02NC45MyA4LjY5IDYuNjIgMzAuNDkgMzMuMjEgNTMuMzYgNjQuOTMgNTMuMzZzNTguMzItMjIuODcgNjQuOTMtNTMuMzZjLTcuODktMi4wNC0yNy4wNS04LjY5LTY0LjkzLTguNjl6IiBkYXRhLXJlYWN0aWQ9IjkiPjwvcGF0aD48L3N2Zz4K");}
+        </style>
+    </head>
+    <body>
+        <noscript>
+        <div id="big-message">
+            <div class="msg">
+                Javascript required
+            </div>
+            <div class="small">
+                This game requires a Javascript enabled browser in order to run.<br>
+                Please allow Javascript for this domain to continue.
+            </div>
+        </div></noscript>
+        <div id="login-ui">
+            <div id="smallmenu">
+                <span class="greyedout">2017<span class="copyright">©</span></span>
+                <a href= "https://www.reddit.com/r/airmash/" target="_blank" rel="noopener">Discussion</a>
+                <a href="https://github.com/airmash-refugees/airmash-frontend/" target="_blank" rel="noopener">GitHub</a>
+                <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
+                <a href="/contact" target="_blank" rel="noopener">Contact</a>
+            </div>
+            <div id="logout">
+                &nbsp;
+            </div>
+            <div id="logon">
+                <div class="logo">
+                </div><input id="playername" type="text" autofocus=""
+                autocomplete="off" spellcheck="false" placeholder=
+                "Enter your name" maxlength="20">
+                <div class="playoptions">
+                    <div class="hoverable" id="playregion"></div>
+                    <div class="hoverable" id="playtype"></div>
+                </div>
+                <div class="buttons">
+                    <span id="playbutton">PLAY AS GUEST</span>
+                    <span id="loginbutton">SIGN IN</span>
+                </div>
+            </div>
+            <div id="loginselector">
+                <div class="desc">
+                    Use any of the following services to sign in<br>
+                    to save your account progress and<br>
+                    achievements.
+                </div>
+                <div class="signinwith">
+                    Sign in with
+                </div>
+                <div class="buttons">
+                    <span class="button microsoft" id="login-microsoft">
+                        Microsoft
+                        <div class="icon"></div>
+                        <div class="spacer"></div>
+                    </span>
+                    <span class="button google" id="login-google">
+                        Google
+                        <div class="icon"></div>
+                        <div class="spacer"></div>
+                    </span>
+                    <span class="button twitter" id="login-twitter">
+                        Twitter
+                        <div class="icon"></div>
+                        <div class="spacer"></div>
+                    </span>
+                    <span class="button reddit" id="login-reddit">
+                        Reddit
+                        <div class="icon"></div>
+                        <div class="spacer"></div>
+                    </span>
+                    <span class="button twitch" id="login-twitch">
+                        Twitch
+                        <div class="icon"></div>
+                        <div class="spacer"></div>
+                    </span>
+                </div>
+                <div class="disclaimer">
+                    We only require the absolute minimum<br>
+                    permission set that each platform provides.<br>
+                    See our <a href='/privacy' target='_blank' rel=
+                    'noopener'>Privacy Policy</a> for more.
+                </div>
+            </div>
+        </div><a id="logosmall" href="." target="_top"></a>
+        <div id="menu">
+            <div id="open-menu"></div>
+        </div>
+        <div id="gameinfo"></div>
+        <div id="gamespecific"></div>
+        <div id="gameselector"></div>
+        <div id="chatbox">
+            <div id="chatlines">
+                <div class="line" id="chat-0">
+                    <span class="text">Press Enter to chat</span>
+                </div>
+            </div>
+            <div id="minimizechatcontainer">
+                <div id="minimizechat"></div>
+                <div id="resizechat"></div>
+            </div>
+        </div>
+        <div id="maximizechat">
+            <div id="chatunreadlines">
+                &nbsp;
+            </div>
+        </div>
+        <input id="chatinput" type="text" autocomplete="off" spellcheck="false">
+        <div class="message alert" id="msg-alert"></div>
+        <div class="message information" id="msg-information"></div>
+        <div class="message default" id="msg-default"></div>
+        <div class="message destroyed" id="msg-destroyed"></div>
+        <div id="powerups"></div>
+        <div id="scorebig">
+            <div class="bounty">
+                BOUNTY
+            </div>
+            <div class="container-score">
+                <div id="score-score">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="upgrades">
+                UPG
+            </div>
+            <div class="container-upgrades">
+                <div id="score-upgrades">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="rank">
+                LVL
+            </div>
+            <div class="container-rank">
+                <div id="score-rank">
+                    -
+                </div>
+            </div>
+            <div class="detailedbounty">
+                <div class="arrow"></div>
+                <div class="header">
+                    Lifetime Stats
+                </div>
+                <div class="item">
+                    <div class="top">
+                        Kills
+                    </div>
+                    <div class="top">
+                        Deaths
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="bottom" id="lifetime-kills">
+                        &nbsp;
+                    </div>
+                    <div class="bottom" id="lifetime-deaths">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="top">
+                        K/D Ratio
+                    </div>
+                    <div class="top">
+                        Level
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="bottom" id="lifetime-kdratio">
+                        &nbsp;
+                    </div>
+                    <div class="bottom" id="lifetime-rank">
+                        -
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="top">
+                        XP
+                    </div>
+                    <div class="top">
+                        Next Level
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="bottom" id="lifetime-totalbounty">
+                        -
+                    </div>
+                    <div class="bottom" id="lifetime-nextbounty">
+                        -
+                    </div>
+                </div>
+                <div class="account" id="lifetime-account">
+                    <div class="notloggedin">
+                        Sign in to save your stats
+                    </div>
+                    <div class="button" id="lifetime-signin">
+                        SIGN IN
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="roomnamecontainer">
+            <div id="roomname">
+                &nbsp;
+            </div>
+            <div id="viewscore">
+                VIEW ALL
+            </div>
+        </div>
+        <div id="scoreboard"></div>
+        <div id="scoredetailed">
+            <div class="header">
+                <span id="scoreheader"></span><span id="scoreplayers"></span>
+            </div>
+            <div class="item head" id="scoretable"></div>
+            <div class="spacer"></div>
+            <div id="scorecontainer"></div>
+            <div id="scoremvp"></div>
+        </div>
+        <div id="sidebar">
+            <div class="aircraft topborder" id="selectaircraft-1"></div>
+            <div class="aircraft" id="selectaircraft-2"></div>
+            <div class="aircraft" id="selectaircraft-3"></div>
+            <div class="aircraft" id="selectaircraft-4"></div>
+            <div class="aircraft bottomborder" id="selectaircraft-5"></div>
+            <div class="spacer"></div>
+            <div class="upgrade topborder" id="selectupgrade-1">
+                <div class="level" id="selectupgrade-1-level">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="upgrade" id="selectupgrade-2">
+                <div class="level" id="selectupgrade-2-level">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="upgrade" id="selectupgrade-3">
+                <div class="level" id="selectupgrade-3-level">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="upgrade bottomborder" id="selectupgrade-4">
+                <div class="level" id="selectupgrade-4-level">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <div id="howtoplay">
+            <div class="header">
+                HOW TO PLAY<span class="keybind" id="keybind-help">(H)</span>
+            </div>
+            <div class="close">
+                press a button or click anywhere to hide
+            </div>
+            <div class="keybind">
+                <div class="keys">
+                    <div class="key small">
+                        &nbsp;
+                        <div class="arrow up"></div>
+                    </div>
+                    <div class="key small">
+                        &nbsp;
+                        <div class="arrow left"></div>
+                    </div>
+                    <div class="key small">
+                        &nbsp;
+                        <div class="arrow down"></div>
+                    </div>
+                    <div class="key small">
+                        &nbsp;
+                        <div class="arrow right"></div>
+                    </div>
+                </div>
+                <div class="keydesc">
+                    Movement
+                </div>
+            </div>
+            <div class="keybind">
+                <div class="keys">
+                    <div class="key">
+                        SPACE
+                    </div>
+                </div>
+                <div class="keydesc">
+                    Fire
+                </div>
+            </div>
+            <div class="keybind">
+                <div class="keys">
+                    <div class="key">
+                        CTRL
+                    </div><span class="keyor">OR</span>
+                    <div class="key">
+                        SHIFT
+                    </div>
+                </div>
+                <div class="keydesc">
+                    Special ability
+                </div>
+            </div>
+            <div class="keybind">
+                <div class="keys">
+                    <div class="key small">
+                        1
+                    </div>
+                    <div class="key small">
+                        2
+                    </div>
+                    <div class="key small">
+                        3
+                    </div>
+                    <div class="key small">
+                        4
+                    </div>
+                </div>
+                <div class="keydesc">
+                    Quick upgrade
+                </div>
+            </div>
+            <div class="gamepadenabled">
+                Gamepads are also supported
+            </div>
+            <div class="hiddenstuff">
+                <div class="commands">
+                    Shortcuts
+                    <div class="cmdlist">
+                        <div class="cmd">
+                            <span class="nowrap">ENTER</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Public chat</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">`</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">In-game say</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">T</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Team chat</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">R</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Reply</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">TAB</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Scoreboard</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">F1</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Main menu</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">F2</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Change game</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">H</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Help</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">I</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Invite</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">F</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Fullscreen</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">G</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Sound</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">M</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Mouse mode</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">V</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Spectate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="commands">
+                    Chat commands
+                    <div class="cmdlist">
+                        <div class="cmd">
+                            <span class="nowrap">/ignore</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Ignore player</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">/unignore</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Unignore player</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">/votemute</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Votemute player</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">/w</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Whisper player</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">/s</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">In-game say</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">/t</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Team chat</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">/emotes</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Emotes list</span>
+                        </div>
+                        <div class="cmd">
+                            <span class="nowrap">/flag</span>
+                        </div>
+                        <div class="desc">
+                            <span class="nowrap">Change flag</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tooltip"></div>
+        <div id="settings">
+            <div class="soundon" id="settings-sound"></div>
+            <div id="settings-mainmenu">
+                <div class="line one"></div>
+                <div class="line two"></div>
+                <div class="line three"></div>
+            </div>
+        </div>
+        <div id="invitefriends">
+            <div class="header">
+                Invite Friends
+            </div>
+            <div class="desc">
+                Copy the link below, give it to someone else and they will be
+                able to join the same game as you.
+            </div>
+            <div class="link">
+                <a id="invite-link" href="" target="_blank">&nbsp;</a>
+                <div class="copy" id="invite-copy">
+                    COPY
+                    <div class="copied" id="invite-copied">
+                        Copied!
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="keybinds">
+            <div class="header">
+                Keybinds<span class="keybind">(K)</span><span id=
+                "resetbinds">RESET</span>
+            </div>
+            <div id="keybinds-list"></div>
+        </div>
+        <div id="mainmenu">
+            <div class="header">
+                Main Menu<span class="keybind" id=
+                "keybind-mainmenu">(F1)</span>
+            </div>
+            <div class="links">
+                <a href= "https://www.reddit.com/r/airmash/" target="_blank" rel="noopener">Discussion</a>
+                <a href="https://github.com/airmash-refugees/airmash-frontend/" target="_blank" rel="noopener">GitHub</a>
+                <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
+                <a href="/contact" target="_blank" rel="noopener">Contact</a>
+            </div>
+            <div class="login" id="logout-mainmenu">
+            </div>
+            <div class="icons">
+                <div class="line">
+                    <div class="option" id="mainmenu-fullscreen">
+                        <div class="icon fullscreen"></div><br>
+                        Fullscreen<span class="keybind" id=
+                        "keybind-fullscreen">(F)</span>
+                    </div>
+                    <div class="option" id="mainmenu-keybinds">
+                        <div class="icon howtoplay"></div><span id=
+                        "mainmenu-keybinds-text"><br>
+                        Keybinds</span><span class="keybind">(K)</span>
+                    </div>
+                    <div class="option" id="mainmenu-invite">
+                        <div class="icon friends"></div><br>
+                        Invite Friends<span class="keybind" id=
+                        "keybind-invite">(I)</span>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="option" id="mainmenu-sound">
+                        <div class="icon" id="mainmenu-sound-icon"></div><br>
+                        <span id=
+                        "mainmenu-sound-text">&nbsp;</span><span class=
+                        "keybind" id="keybind-sound">(G)</span>
+                    </div>
+                    <div class="option" id="mainmenu-score">
+                        <div class="icon scoreboard"></div><br>
+                        Scoreboard<span class="keybind" id=
+                        "keybind-showscore">(TAB)</span>
+                    </div>
+                    <div class="option" id="mainmenu-game">
+                        <div class="icon game"></div><br>
+                        Switch Game<span class="keybind" id=
+                        "keybind-showgames">(F2)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="settings">
+                <div class="item" id="mainmenu-hidpi">
+                    <div class="tick">
+                        <div class="arrow" id="mainmenu-hidpi-tick"></div>
+                    </div>
+                    <span class="name">HiDPI Graphics</span>
+                    <span class="desc">
+                        Enable if you are playing on a HiDPI monitor
+                        <span class="greyed">(requires game restart)</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="debug"></div>
+        <div id="contextmenu"></div>
+    </body>
+</html>

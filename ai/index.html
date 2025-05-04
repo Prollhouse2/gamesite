@@ -560,17 +560,13 @@ pre code {
       <h1>Prolls Ai Chat</h1>
       <div class="dropdown" id="ai-model">
         <button class="dropdown-button">
-          <span class="dropdown-selected">Mixtral-8x7b</span>
+          <span class="dropdown-selected">Llama3-70b</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="m6 9 6 6 6-6" />
           </svg>
         </button>
         <ul class="dropdown-menu">
-          <li value="mixtral-8x7b-32768">
-            <p>Mixtral-8x7b</p>
-            <span>A powerful mixture-of-experts model</span>
-          </li>
           <li value="llama3-70b-8192">
             <p>Llama3-70b</p>
             <span>Meta's latest large language model</span>
@@ -613,7 +609,7 @@ pre code {
 
       const token = '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'; // Replace this with your Groq API Key
 
-      let currentModel = 'mixtral-8x7b-32768';
+      let currentModel = 'llama3-70b-8192';
 
       // Focus/blur effects for input
       textInput.addEventListener('focus', () => {

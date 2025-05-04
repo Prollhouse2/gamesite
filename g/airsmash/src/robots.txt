@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /game
+Disallow: /enter
+Disallow: /auth

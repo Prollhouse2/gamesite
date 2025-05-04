@@ -1,0 +1,10 @@
+spatiebot
+
+node_modules
+dist
+
+.vscode
+
+# these are generated in the build
+src/js/GamesData.js
+src/js/Version.js

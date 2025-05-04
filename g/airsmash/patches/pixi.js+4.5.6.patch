@@ -1,0 +1,13 @@
+diff --git a/node_modules/pixi.js/lib/core/renderers/webgl/utils/mapWebGLBlendModesToPixi.js b/node_modules/pixi.js/lib/core/renderers/webgl/utils/mapWebGLBlendModesToPixi.js
+index 12f2d6d..e9d8a42 100644
+--- a/node_modules/pixi.js/lib/core/renderers/webgl/utils/mapWebGLBlendModesToPixi.js
++++ b/node_modules/pixi.js/lib/core/renderers/webgl/utils/mapWebGLBlendModesToPixi.js
+@@ -36,7 +36,7 @@ function mapWebGLBlendModesToPixi(gl) {
+     array[_const.BLEND_MODES.HUE] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
+     array[_const.BLEND_MODES.SATURATION] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
+     array[_const.BLEND_MODES.COLOR] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
+-    array[_const.BLEND_MODES.LUMINOSITY] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
++    array[_const.BLEND_MODES.LUMINOSITY] = [gl.ZERO, gl.SRC_ALPHA];
+ 
+     // not-premultiplied blend modes
+     array[_const.BLEND_MODES.NORMAL_NPM] = [gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
