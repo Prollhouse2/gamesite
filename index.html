@@ -999,13 +999,17 @@
             height: 90vh;
             z-index: 1500;
             background-color: var(--bg-primary);
-            display: flex;
+            display: none;
             flex-direction: column;
             margin: 5vh 5%;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 107, 157, 0.3);
+        }
+
+        #game-content.active {
+            display: flex;
         }
 
         .game-frame-container {
@@ -1748,8 +1752,6 @@
                 
                 const closeButton = tabElement.querySelector('.tab-close');
                 if (closeButton) {
-                    closeButton.addEventListener('click', function(e) {
-                          {
                     closeButton.addEventListener('click', function(e) {
                         e.stopPropagation();
                         closeTab(tabElement);
