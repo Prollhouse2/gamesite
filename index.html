@@ -980,10 +980,8 @@
     </style>
 </head>
 <body>
-    <!-- Snow Effect -->
     <div id="snow"></div>
 
-    <!-- Sidebar Navigation -->
     <nav class="sidebar">
         <div class="sidebar-logo">
             <i class="fas fa-gamepad"></i>
@@ -1033,17 +1031,13 @@
         </div>
     </nav>
 
-    <!-- Mobile Sidebar Toggle -->
     <div class="sidebar-mobile-toggle">
         <i class="fas fa-bars"></i>
     </div>
 
-    <!-- Sidebar Overlay (for mobile) -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Main Content -->
     <div class="main-container">
-        <!-- Header -->
         <header class="app-header">
             <div class="header-content">
                 <div class="logo-container">
@@ -1060,10 +1054,8 @@
             </div>
         </header>
 
-        <!-- Content Areas -->
         <div id="home-content" class="content-area active">
             <div class="container">
-                <!-- Featured Game Banner -->
                 <div class="featured-game">
                     <div class="featured-game-info">
                         <h2 class="featured-game-title">RETRO BOWL</h2>
@@ -1075,25 +1067,20 @@
                     <div class="featured-game-image" style="background-image: url('images/rblarge.png')"></div>
                 </div>
 
-                <!-- Favorites Section -->
                 <h2 id="favorites-heading">FAVORITE GAMES</h2>
                 <div id="favorites-section">
                     <div id="favorites-container">
-                        <!-- Favorite games will be dynamically added here -->
                         <div class="no-favorites-message">Star your favorite games to see them here!</div>
                     </div>
                 </div>
 
-                <!-- All Games Section -->
                 <h2 class="section-title">ALL TITLES</h2>
                 
                 <div class="games-grid" id="all-games-grid">
-                    <!-- All games will be dynamically loaded here -->
                 </div>
             </div>
         </div>
 
-        <!-- Web Browser Content -->
         <div id="browser-content" class="content-area">
             <div class="browser-container">
                 <div class="browser-tabs">
@@ -1135,28 +1122,24 @@
             </div>
         </div>
 
-        <!-- Settings Content -->
         <div id="settings-content" class="content-area">
             <div class="container">
                 <iframe src="/settings" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
             </div>
         </div>
 
-        <!-- Leaderboard Content -->
         <div id="leaderboard-content" class="content-area">
             <div class="container">
                 <iframe src="/leaderboard" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
             </div>
         </div>
 
-        <!-- Chat Content -->
         <div id="chat-content" class="content-area">
             <div class="container">
                 <iframe src="/chat" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
             </div>
         </div>
 
-        <!-- Footer -->
         <footer>
             <div class="footer-content">
                 <div class="social-icons">
@@ -1510,7 +1493,7 @@
                     createNewTab();
                 }
             }
-            
+
             function navigateToUrl(url) {
                 const activeTab = document.querySelector('.browser-tab.active');
                 if (!activeTab) return;
@@ -1530,8 +1513,15 @@
                     return;
                 }
                 
+                // Check if the input is a URL or a search query
                 if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                    url = 'https://' + url;
+                    // If it contains a dot and no spaces, treat as URL
+                    if (url.includes('.') && !url.includes(' ')) {
+                        url = 'https://' + url;
+                    } else {
+                        // Otherwise, treat as a search query
+                        url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
+                    }
                 }
                 
                 iframe.src = `/static/embed.html#${url}`;
