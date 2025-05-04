@@ -47,6 +47,7 @@
             min-height: 100vh;
             font-size: 0.9rem;
             display: flex;
+            overflow: hidden;
         }
 
         #snow {
@@ -68,7 +69,6 @@
             top: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
             padding: 20px 0;
             transition: width var(--transition-normal);
             overflow-y: auto;
@@ -94,6 +94,14 @@
 
         .sidebar.expanded {
             width: var(--sidebar-expanded-width);
+        }
+
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            min-height: 100%;
         }
 
         .sidebar-logo {
@@ -153,8 +161,8 @@
             flex-direction: column;
             width: 100%;
             align-items: center;
-            overflow-y: auto;
             max-height: 200px;
+            overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: var(--accent-pink) var(--bg-tertiary);
         }
@@ -233,6 +241,8 @@
             width: calc(100% - var(--sidebar-width));
             transition: margin-left var(--transition-normal), width var(--transition-normal);
             overflow-x: hidden;
+            overflow-y: auto;
+            height: 100vh;
         }
 
         .sidebar.expanded ~ .main-container {
@@ -1003,14 +1013,17 @@
 
         #game-content {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
             z-index: 1500;
-            background-color: var(--bg-primary);
             display: none;
             flex-direction: column;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         #game-content.active {
@@ -1021,6 +1034,8 @@
             flex: 1;
             position: relative;
             overflow: hidden;
+            background-color: var(--bg-primary);
+            border-radius: 10px;
         }
 
         .game-frame {
@@ -1115,10 +1130,10 @@
 
         .game-close-button {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background-color: var(--bg-tertiary);
             display: flex;
@@ -1185,54 +1200,56 @@
     <div id="snow"></div>
 
     <nav class="sidebar">
-        <div class="sidebar-logo">
-            <i class="fas fa-gamepad"></i>
+        <div class="sidebar-content">
+            <div class="sidebar-logo">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="sidebar-toggle">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="sidebar-nav" id="game-nav">
+                <a href="#home" class="nav-item active" data-page="home">
+                    <div class="nav-icon"><i class="fas fa-home"></i></div>
+                    <div class="nav-text">Home</div>
+                </a>
+                <a href="#browser" class="nav-item" data-page="browser">
+                    <div class="nav-icon"><i class="fas fa-globe"></i></div>
+                    <div class="nav-text">Web Browser</div>
+                </a>
+            </div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-nav">
+                <a href="#settings" class="nav-item" data-page="settings">
+                    <div class="nav-icon"><i class="fas fa-cog"></i></div>
+                    <div class="nav-text">Settings</div>
+                </a>
+                <a href="#leaderboard" class="nav-item" data-page="leaderboard">
+                    <div class="nav-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="nav-text">Leaderboard</div>
+                </a>
+                <a href="#chat" class="nav-item" data-page="chat">
+                    <div class="nav-icon"><i class="fas fa-comments"></i></div>
+                    <div class="nav-text">Chatroom</div>
+                </a>
+                <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
+                    <div class="nav-icon"><i class="fab fa-discord"></i></div>
+                    <div class="nav-text">Discord</div>
+                </a>
+            </div>
+            <a href="https://tinyurl.com/45j4r62u" class="nav-item" data-page="request" target="_blank">
+                <div class="nav-icon"><i class="fas fa-plus"></i></div>
+                <div class="nav-text">Request Games</div>
+            </a>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-nav">
+                <a href="https://github.com/Prollhouse2/gamesite" class="nav-item" data-page="github" target="_blank">
+                    <div class="nav-icon"><i class="fab fa-github"></i></div>
+                    <div class="nav-text">Source Code</div>
+                </a>
+            </div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-games" id="sidebar-games"></div>
         </div>
-        <div class="sidebar-toggle">
-            <i class="fas fa-chevron-right"></i>
-        </div>
-        <div class="sidebar-nav" id="game-nav">
-            <a href="#home" class="nav-item active" data-page="home">
-                <div class="nav-icon"><i class="fas fa-home"></i></div>
-                <div class="nav-text">Home</div>
-            </a>
-            <a href="#browser" class="nav-item" data-page="browser">
-                <div class="nav-icon"><i class="fas fa-globe"></i></div>
-                <div class="nav-text">Web Browser</div>
-            </a>
-        </div>
-        <div class="sidebar-divider"></div>
-        <div class="sidebar-nav">
-            <a href="#settings" class="nav-item" data-page="settings">
-                <div class="nav-icon"><i class="fas fa-cog"></i></div>
-                <div class="nav-text">Settings</div>
-            </a>
-            <a href="#leaderboard" class="nav-item" data-page="leaderboard">
-                <div class="nav-icon"><i class="fas fa-trophy"></i></div>
-                <div class="nav-text">Leaderboard</div>
-            </a>
-            <a href="#chat" class="nav-item" data-page="chat">
-                <div class="nav-icon"><i class="fas fa-comments"></i></div>
-                <div class="nav-text">Chatroom</div>
-            </a>
-            <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
-                <div class="nav-icon"><i class="fab fa-discord"></i></div>
-                <div class="nav-text">Discord</div>
-            </a>
-        </div>
-        <a href="https://tinyurl.com/45j4r62u" class="nav-item" data-page="request" target="_blank">
-            <div class="nav-icon"><i class="fas fa-plus"></i></div>
-            <div class="nav-text">Request Games</div>
-        </a>
-        <div class="sidebar-divider"></div>
-        <div class="sidebar-nav">
-            <a href="https://github.com/Prollhouse2/gamesite" class="nav-item" data-page="github" target="_blank">
-                <div class="nav-icon"><i class="fab fa-github"></i></div>
-                <div class="nav-text">Source Code</div>
-            </a>
-        </div>
-        <div class="sidebar-divider"></div>
-        <div class="sidebar-games" id="sidebar-games"></div>
     </nav>
 
     <div class="sidebar-mobile-toggle">
@@ -1505,6 +1522,7 @@
             document.getElementById('game-content').classList.add('active');
             
             document.getElementById('fullscreen-button').addEventListener('click', () => {
+                const gameFrame = document.getElementById('game-frame');
                 if (gameFrame.requestFullscreen) {
                     gameFrame.requestFullscreen();
                 } else if (gameFrame.webkitRequestFullscreen) {
