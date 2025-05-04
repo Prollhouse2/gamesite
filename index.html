@@ -47,7 +47,6 @@
             min-height: 100vh;
             font-size: 0.9rem;
             display: flex;
-            overflow: hidden;
         }
 
         #snow {
@@ -69,39 +68,17 @@
             top: 0;
             display: flex;
             flex-direction: column;
+            align-items: center;
             padding: 20px 0;
             transition: width var(--transition-normal);
-            overflow-y: auto;
+            overflow: hidden;
             z-index: 1000;
             border-right: 1px solid rgba(255, 107, 157, 0.2);
             box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-pink) var(--bg-tertiary);
-        }
-
-        .sidebar::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .sidebar::-webkit-scrollbar-track {
-            background: var(--bg-tertiary);
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background-color: var(--accent-pink);
-            border-radius: 10px;
         }
 
         .sidebar.expanded {
             width: var(--sidebar-expanded-width);
-        }
-
-        .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            min-height: 100%;
         }
 
         .sidebar-logo {
@@ -161,23 +138,8 @@
             flex-direction: column;
             width: 100%;
             align-items: center;
-            max-height: 200px;
             overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-pink) var(--bg-tertiary);
-        }
-
-        .sidebar-games::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .sidebar-games::-webkit-scrollbar-track {
-            background: var(--bg-tertiary);
-        }
-
-        .sidebar-games::-webkit-scrollbar-thumb {
-            background-color: var(--accent-pink);
-            border-radius: 10px;
+            max-height: 200px;
         }
 
         .nav-item {
@@ -241,8 +203,6 @@
             width: calc(100% - var(--sidebar-width));
             transition: margin-left var(--transition-normal), width var(--transition-normal);
             overflow-x: hidden;
-            overflow-y: auto;
-            height: 100vh;
         }
 
         .sidebar.expanded ~ .main-container {
@@ -1013,29 +973,20 @@
 
         #game-content {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
             z-index: 1500;
-            display: none;
-            flex-direction: column;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        #game-content.active {
+            background-color: var(--bg-primary);
             display: flex;
+            flex-direction: column;
         }
 
         .game-frame-container {
             flex: 1;
             position: relative;
             overflow: hidden;
-            background-color: var(--bg-primary);
-            border-radius: 10px;
         }
 
         .game-frame {
@@ -1098,42 +1049,12 @@
             transition: all var(--transition-normal);
         }
 
-        .sidebar-game-item {
-            position: relative;
-        }
-
-        .sidebar-game-close {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: rgba(255, 107, 157, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: all var(--transition-normal);
-            z-index: 5;
-        }
-
-        .sidebar.expanded .sidebar-game-item:hover .sidebar-game-close {
-            opacity: 1;
-        }
-
-        .sidebar-game-close:hover {
-            background-color: rgba(255, 107, 157, 0.5);
-        }
-
-        .game-close-button {
+        .sidebar-close {
             position: absolute;
             top: 10px;
             right: 10px;
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background-color: var(--bg-tertiary);
             display: flex;
@@ -1143,10 +1064,10 @@
             border: 1px solid rgba(255, 107, 157, 0.3);
             transition: all var(--transition-normal);
             color: var(--text-primary);
-            z-index: 1600;
+            z-index: 1010;
         }
 
-        .game-close-button:hover {
+        .sidebar-close:hover {
             background-color: rgba(255, 107, 157, 0.2);
             transform: scale(1.05);
         }
@@ -1200,56 +1121,57 @@
     <div id="snow"></div>
 
     <nav class="sidebar">
-        <div class="sidebar-content">
-            <div class="sidebar-logo">
-                <i class="fas fa-gamepad"></i>
-            </div>
-            <div class="sidebar-toggle">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="sidebar-nav" id="game-nav">
-                <a href="#home" class="nav-item active" data-page="home">
-                    <div class="nav-icon"><i class="fas fa-home"></i></div>
-                    <div class="nav-text">Home</div>
-                </a>
-                <a href="#browser" class="nav-item" data-page="browser">
-                    <div class="nav-icon"><i class="fas fa-globe"></i></div>
-                    <div class="nav-text">Web Browser</div>
-                </a>
-            </div>
-            <div class="sidebar-divider"></div>
-            <div class="sidebar-nav">
-                <a href="#settings" class="nav-item" data-page="settings">
-                    <div class="nav-icon"><i class="fas fa-cog"></i></div>
-                    <div class="nav-text">Settings</div>
-                </a>
-                <a href="#leaderboard" class="nav-item" data-page="leaderboard">
-                    <div class="nav-icon"><i class="fas fa-trophy"></i></div>
-                    <div class="nav-text">Leaderboard</div>
-                </a>
-                <a href="#chat" class="nav-item" data-page="chat">
-                    <div class="nav-icon"><i class="fas fa-comments"></i></div>
-                    <div class="nav-text">Chatroom</div>
-                </a>
-                <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
-                    <div class="nav-icon"><i class="fab fa-discord"></i></div>
-                    <div class="nav-text">Discord</div>
-                </a>
-            </div>
-            <a href="https://tinyurl.com/45j4r62u" class="nav-item" data-page="request" target="_blank">
-                <div class="nav-icon"><i class="fas fa-plus"></i></div>
-                <div class="nav-text">Request Games</div>
-            </a>
-            <div class="sidebar-divider"></div>
-            <div class="sidebar-nav">
-                <a href="https://github.com/Prollhouse2/gamesite" class="nav-item" data-page="github" target="_blank">
-                    <div class="nav-icon"><i class="fab fa-github"></i></div>
-                    <div class="nav-text">Source Code</div>
-                </a>
-            </div>
-            <div class="sidebar-divider"></div>
-            <div class="sidebar-games" id="sidebar-games"></div>
+        <div class="sidebar-logo">
+            <i class="fas fa-gamepad"></i>
         </div>
+        <div class="sidebar-toggle">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="sidebar-close">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="sidebar-nav" id="game-nav">
+            <a href="#home" class="nav-item active" data-page="home">
+                <div class="nav-icon"><i class="fas fa-home"></i></div>
+                <div class="nav-text">Home</div>
+            </a>
+            <a href="#browser" class="nav-item" data-page="browser">
+                <div class="nav-icon"><i class="fas fa-globe"></i></div>
+                <div class="nav-text">Web Browser</div>
+            </a>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-nav">
+            <a href="#settings" class="nav-item" data-page="settings">
+                <div class="nav-icon"><i class="fas fa-cog"></i></div>
+                <div class="nav-text">Settings</div>
+            </a>
+            <a href="#leaderboard" class="nav-item" data-page="leaderboard">
+                <div class="nav-icon"><i class="fas fa-trophy"></i></div>
+                <div class="nav-text">Leaderboard</div>
+            </a>
+            <a href="#chat" class="nav-item" data-page="chat">
+                <div class="nav-icon"><i class="fas fa-comments"></i></div>
+                <div class="nav-text">Chatroom</div>
+            </a>
+            <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
+                <div class="nav-icon"><i class="fab fa-discord"></i></div>
+                <div class="nav-text">Discord</div>
+            </a>
+        </div>
+        <a href="https://tinyurl.com/45j4r62u" class="nav-item" data-page="request" target="_blank">
+            <div class="nav-icon"><i class="fas fa-plus"></i></div>
+            <div class="nav-text">Request Games</div>
+        </a>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-nav">
+            <a href="https://github.com/Prollhouse2/gamesite" class="nav-item" data-page="github" target="_blank">
+                <div class="nav-icon"><i class="fab fa-github"></i></div>
+                <div class="nav-text">Source Code</div>
+            </a>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-games" id="sidebar-games"></div>
     </nav>
 
     <div class="sidebar-mobile-toggle">
@@ -1304,9 +1226,6 @@
         </div>
 
         <div id="game-content" class="content-area">
-            <div class="game-close-button" id="game-close-button">
-                <i class="fas fa-times"></i>
-            </div>
             <div class="game-frame-container">
                 <iframe id="game-frame" class="game-frame" allowfullscreen></iframe>
             </div>
@@ -1446,12 +1365,19 @@
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.querySelector('.sidebar');
             const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebarClose = document.querySelector('.sidebar-close');
             const sidebarMobileToggle = document.querySelector('.sidebar-mobile-toggle');
             const sidebarOverlay = document.querySelector('.sidebar-overlay');
             
             if (sidebarToggle) {
                 sidebarToggle.addEventListener('click', function() {
                     sidebar.classList.toggle('expanded');
+                });
+            }
+            
+            if (sidebarClose) {
+                sidebarClose.addEventListener('click', function() {
+                    sidebar.classList.remove('expanded');
                 });
             }
             
@@ -1487,23 +1413,11 @@
                         <img src="${gameImage}" alt="${gameTitle}" class="game-logo">
                     </div>
                     <div class="nav-text">${gameTitle}</div>
-                    <div class="sidebar-game-close">
-                        <i class="fas fa-times"></i>
-                    </div>
                 `;
                 
                 gameNavItem.addEventListener('click', (e) => {
-                    if (e.target.closest('.sidebar-game-close')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        gameNavItem.remove();
-                        if (document.querySelector('.nav-item.active[data-game-id="' + gameId + '"]')) {
-                            navigateToPage('home');
-                        }
-                    } else {
-                        e.preventDefault();
-                        loadGame(gameId, gameTitle, gameImage, gameUrl);
-                    }
+                    e.preventDefault();
+                    loadGame(gameId, gameTitle, gameImage, gameUrl);
                 });
                 
                 sidebarGames.appendChild(gameNavItem);
@@ -1522,7 +1436,6 @@
             document.getElementById('game-content').classList.add('active');
             
             document.getElementById('fullscreen-button').addEventListener('click', () => {
-                const gameFrame = document.getElementById('game-frame');
                 if (gameFrame.requestFullscreen) {
                     gameFrame.requestFullscreen();
                 } else if (gameFrame.webkitRequestFullscreen) {
@@ -1533,10 +1446,6 @@
             });
             
             document.getElementById('close-button').addEventListener('click', () => {
-                navigateToPage('home');
-            });
-            
-            document.getElementById('game-close-button').addEventListener('click', () => {
                 navigateToPage('home');
             });
         }
