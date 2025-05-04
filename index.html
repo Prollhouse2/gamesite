@@ -71,10 +71,25 @@
             align-items: center;
             padding: 20px 0;
             transition: width var(--transition-normal);
-            overflow: hidden;
+            overflow-y: auto;
             z-index: 1000;
             border-right: 1px solid rgba(255, 107, 157, 0.2);
             box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-pink) var(--bg-tertiary);
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: var(--accent-pink);
+            border-radius: 10px;
         }
 
         .sidebar.expanded {
@@ -140,11 +155,6 @@
             align-items: center;
             overflow-y: auto;
             max-height: 200px;
-        }
-
-        /* Enable mouse wheel scrolling on sidebar-games */
-        .sidebar-games {
-            overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: var(--accent-pink) var(--bg-tertiary);
         }
@@ -995,17 +1005,12 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 90%;
-            height: 90vh;
+            width: 100%;
+            height: 100vh;
             z-index: 1500;
             background-color: var(--bg-primary);
             display: none;
             flex-direction: column;
-            margin: 5vh 5%;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 107, 157, 0.3);
         }
 
         #game-content.active {
@@ -1106,6 +1111,29 @@
 
         .sidebar-game-close:hover {
             background-color: rgba(255, 107, 157, 0.5);
+        }
+
+        .game-close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            transition: all var(--transition-normal);
+            color: var(--text-primary);
+            z-index: 1600;
+        }
+
+        .game-close-button:hover {
+            background-color: rgba(255, 107, 157, 0.2);
+            transform: scale(1.05);
         }
 
         .search-results {
@@ -1259,6 +1287,9 @@
         </div>
 
         <div id="game-content" class="content-area">
+            <div class="game-close-button" id="game-close-button">
+                <i class="fas fa-times"></i>
+            </div>
             <div class="game-frame-container">
                 <iframe id="game-frame" class="game-frame" allowfullscreen></iframe>
             </div>
@@ -1484,6 +1515,10 @@
             });
             
             document.getElementById('close-button').addEventListener('click', () => {
+                navigateToPage('home');
+            });
+            
+            document.getElementById('game-close-button').addEventListener('click', () => {
                 navigateToPage('home');
             });
         }
