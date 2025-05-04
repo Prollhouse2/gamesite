@@ -1005,6 +1005,16 @@
                 <div class="nav-icon"><i class="fas fa-cog"></i></div>
                 <div class="nav-text">Settings</div>
             </a>
+      <div class="sidebar-nav">
+    <a href="#profile" class="nav-item" data-page="profile" id="profileLink">
+        <div class="nav-icon" id="sidebarPfp"><i class="fas fa-user"></i></div>
+        <div class="nav-text" id="sidebarUsername">Profile</div>
+    </a>
+    <a href="#users" class="nav-item" data-page="users">
+        <div class="nav-icon"><i class="fas fa-users"></i></div>
+        <div class="nav-text">Users</div>
+    </a>
+</div>
             <a href="#leaderboard" class="nav-item" data-page="leaderboard">
                 <div class="nav-icon"><i class="fas fa-trophy"></i></div>
                 <div class="nav-text">Leaderboard</div>
@@ -1139,6 +1149,18 @@
                 <iframe src="/chat" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
             </div>
         </div>
+
+<div id="profile-content" class="content-area">
+    <div class="container">
+        <iframe src="/profile" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    </div>
+</div>
+
+<div id="users-content" class="content-area">
+    <div class="container">
+        <iframe src="/users" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    </div>
+</div>
 
         <footer>
             <div class="footer-content">
