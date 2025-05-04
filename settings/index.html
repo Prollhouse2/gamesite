@@ -39,9 +39,8 @@
             line-height: 1.6;
             min-height: 100vh;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(157, 107, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 107, 157, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 50% 50%, rgba(107, 157, 255, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 10% 20%, rgba(157, 107, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 157, 0.05) 0%, transparent 20%);
         }
 
         .page {
@@ -75,19 +74,6 @@
             height: 4px;
             background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
             border-radius: 2px;
-        }
-
-        h1 a {
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            display: inline-block;
-            transition: all var(--transition-bounce);
-        }
-
-        h1 a:hover {
-            transform: scale(1.2) rotate(-5deg);
-            text-shadow: 0 5px 15px rgba(255, 107, 157, 0.6);
         }
 
         h2 {
@@ -131,18 +117,6 @@
                         inset 0 1px 1px rgba(255, 255, 255, 0.1);
             overflow: hidden;
             border: 1px solid rgba(107, 157, 255, 0.2);
-            animation: container-glow 5s infinite alternate;
-        }
-
-        @keyframes container-glow {
-            0% {
-                box-shadow: var(--shadow-lg), 
-                            0 0 20px rgba(107, 157, 255, 0.2);
-            }
-            100% {
-                box-shadow: var(--shadow-lg), 
-                            0 0 30px rgba(255, 107, 157, 0.3);
-            }
         }
 
         .settings-tabs {
@@ -246,28 +220,10 @@
             overflow: hidden;
         }
 
-        .setting-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 0%, 
-                rgba(107, 157, 255, 0.1), 
-                transparent 70%);
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-        }
-
         .setting-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
-            border-color: rgba(107, 157, 255, 0.3);
-        }
-
-        .setting-card:hover::before {
-            opacity: 1;
+            border-color: rgba(107, 157, 255, 0.2);
         }
 
         .setting-card p {
@@ -304,32 +260,15 @@
             font-family: "Chakra Petch", sans-serif;
             font-weight: 700;
             letter-spacing: 1px;
-            z-index: 1;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, 
-                rgba(255, 107, 157, 0.2), 
-                rgba(107, 157, 255, 0.2));
-            z-index: -1;
-            opacity: 0;
-            transition: opacity var(--transition-normal);
         }
 
         button:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
             border-color: rgba(255, 107, 157, 0.3);
-        }
-
-        button:hover::before {
-            opacity: 1;
+            background: linear-gradient(135deg, 
+                rgba(37, 37, 58, 0.9), 
+                rgba(37, 37, 58, 0.7));
         }
 
         button:active {
@@ -533,29 +472,10 @@
             overflow: hidden;
         }
 
-        .credit-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, 
-                rgba(255, 255, 255, 0.1) 0%, 
-                transparent 70%);
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-            pointer-events: none;
-        }
-
         .credit-card:hover {
             transform: translateY(-10px) rotate(2deg);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             border-color: rgba(255, 107, 157, 0.3);
-        }
-
-        .credit-card:hover::before {
-            opacity: 1;
         }
 
         .credit-img {
@@ -806,44 +726,11 @@
                 height: 80px;
             }
         }
-
-        /* Glowing effect for active elements */
-        .glow-effect {
-            position: relative;
-        }
-
-        .glow-effect::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                var(--accent-pink), 
-                var(--accent-blue), 
-                var(--accent-purple), 
-                var(--accent-cyan));
-            border-radius: 18px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-        }
-
-        .glow-effect:hover::after {
-            opacity: 0.7;
-            animation: glow-rotate 3s linear infinite;
-        }
-
-        @keyframes glow-rotate {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
     </style>
 </head>
 <body>
     <div class="page" id="settings-page">
-        <h1><a href="javascript:alert('Little easter egg hidden by Taz 🥚')">S</a>ettings</h1>
+        <h1>Settings</h1>
         <div class="settings-container">
             <div class="settings-tabs">
                 <button class="tab-link active" onclick="openTab(event, 'appearance')">
@@ -861,7 +748,7 @@
             </div>
 
             <div id="appearance" class="tab-content active">
-                <div class="setting-card glow-effect">
+                <div class="setting-card">
                     <h2>Particles</h2>
                     <p>Disabling particles will improve performance for low-end devices. The snow effect will be turned off.</p>
                     <label class="switch">
@@ -869,23 +756,23 @@
                         <span class="slider round"></span>
                     </label>
                 </div>
-                <div class="setting-card glow-effect">
+                <div class="setting-card">
                     <h2>Change Favicon</h2>
                     <p>Change the icon that appears in your browser tab. Choose from various options to disguise your browsing.</p>
-                    <button id="openFaviconUI" class="glow-effect">Change Favicon</button>
+                    <button id="openFaviconUI">Change Favicon</button>
                 </div>
             </div>
 
             <div id="cloaking" class="tab-content">
-                <div class="setting-card glow-effect">
+                <div class="setting-card">
                     <h2>about:blank Cloaking</h2>
                     <p>about:blank cloaking allows you to hide this site from your tab history. Please enable popups for this to work.</p>
                     <div class="buttons">
-                        <button id="enableAboutBlank" class="glow-effect">Enable</button>
-                        <button id="disableAboutBlank" class="glow-effect">Disable</button>
+                        <button id="enableAboutBlank">Enable</button>
+                        <button id="disableAboutBlank">Disable</button>
                     </div>
                 </div>
-                <div class="setting-card glow-effect">
+                <div class="setting-card">
                     <h2>Tab Cloaking</h2>
                     <p>Disguise your tabs as something educational! Change both the title and favicon to avoid detection.</p>
                     <div class="dropdown" id="tab-cloak">
@@ -904,7 +791,7 @@
             </div>
 
             <div id="misc" class="tab-content">
-                <div class="setting-card glow-effect">
+                <div class="setting-card">
                     <h2>Credits</h2>
                     <div class="cards-container" id="credits-container">
                         <div class="credit-card">
@@ -919,15 +806,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="setting-card glow-effect">
+                <div class="setting-card">
                     <h2>Panic Keybind</h2>
                     <p>Set a key to quickly hide this page. Press this key to instantly redirect to Google Classroom.</p>
-                    <button id="setKeybindButton" class="glow-effect">Set Panic Keybind</button>
+                    <button id="setKeybindButton">Set Panic Keybind</button>
                 </div>
-                <div class="setting-card glow-effect">
+                <div class="setting-card">
                     <h2>Auto Clicker</h2>
                     <p>Configure the auto clicker settings. Useful for idle games or repetitive tasks.</p>
-                    <button id="openAutoClickerModalButton" class="glow-effect">Auto Clicker Settings</button>
+                    <button id="openAutoClickerModalButton">Auto Clicker Settings</button>
                 </div>
             </div>
         </div>
@@ -1056,8 +943,20 @@
                 if (event.target === autoClickerModal) {
                     autoClickerModal.style.display = 'none';
                 }
+            });
+
+            // Fix for dropdown visibility
+            dropdownButton.addEventListener('click', function(event) {
+                event.stopPropagation();
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+                dropdown.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
                 if (!dropdown.contains(event.target)) {
                     dropdownMenu.style.display = 'none';
+                    dropdown.classList.remove('active');
                 }
             });
 
@@ -1138,19 +1037,12 @@
                 disableAboutBlank();
             });
 
-            dropdownButton.addEventListener('click', function() {
-                if (dropdownMenu.style.display === 'block') {
-                    dropdownMenu.style.display = 'none';
-                } else {
-                    dropdownMenu.style.display = 'block';
-                }
-            });
-
             dropdownItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const value = this.getAttribute('data-value');
                     dropdownSelected.textContent = this.textContent;
                     dropdownMenu.style.display = 'none';
+                    dropdown.classList.remove('active');
                     setTabCloak(value);
                 });
             });
@@ -1215,6 +1107,9 @@
         }
 
         function enableAboutBlank() {
+            // Get the root URL of the site (not just the settings page)
+            const rootUrl = window.location.href.split('/').slice(0, 3).join('/');
+            
             const newWindow = window.open('about:blank', '_blank');
             if (newWindow) {
                 newWindow.document.write(`
@@ -1225,7 +1120,7 @@
                         <link rel="icon" href="${document.querySelector('link[rel="icon"]')?.getAttribute("href") || "/favicon.ico"}">
                     </head>
                     <body>
-                        <iframe src="${window.location.href}" frameborder="0" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
+                        <iframe src="${rootUrl}" frameborder="0" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
                     </body>
                     </html>
                 `);
@@ -1237,7 +1132,7 @@
 
         function disableAboutBlank() {
             if (window !== window.top) {
-                window.top.location.href = window.location.href;
+                window.top.location.href = window.location.href.split('/').slice(0, 3).join('/');
             } else {
                 alert("Not currently in about:blank mode.");
             }
@@ -1262,31 +1157,4 @@
                     break;
                 default:
                     favicon = '/images/favicon.png';
-                    title = 'Grades & Attendance';
-            }
-
-            localStorage.setItem('tabCloak', type);
-            
-            const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-            link.rel = 'icon';
-            link.href = favicon;
-            document.head.appendChild(link);
-            
-            document.title = title;
-            
-            if (window.parent) {
-                try {
-                    window.parent.document.title = title;
-                    
-                    const parentFavicon = window.parent.document.querySelector("link[rel*='icon']") || window.parent.document.createElement('link');
-                    parentFavicon.rel = 'icon';
-                    parentFavicon.href = favicon;
-                    window.parent.document.head.appendChild(parentFavicon);
-                } catch (e) {
-                    console.log("Cannot access parent frame");
-                }
-            }
-        }
-    </script>
-</body>
-</html>
+                    title = 
