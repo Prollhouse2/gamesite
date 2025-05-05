@@ -5,12 +5,47 @@
   <title>Vortex</title>
   <script src="/static/uv/uv.bundle.js" defer></script>
   <script src="/static/uv/uv.config.js" defer></script>
+  <style>
+    #fullscreen-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+    }
+    #fullscreen-btn:hover {
+      background: #444;
+    }
+  </style>
 </head>
 <body>
+
+<button id="fullscreen-btn">Fullscreen</button>
+
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     window.location.href = "/static/embed.html#https://vortexos.net/";
   });
+
+  document.getElementById('fullscreen-btn').addEventListener('click', () => {
+    const docEl = document.documentElement;
+    if (docEl.requestFullscreen) {
+      docEl.requestFullscreen();
+    } else if (docEl.webkitRequestFullscreen) { // Safari
+      docEl.webkitRequestFullscreen();
+    } else if (docEl.msRequestFullscreen) { // IE11
+      docEl.msRequestFullscreen();
+    }
+  });
 </script>
+
 </body>
 </html>
