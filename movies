@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit TV</title>
+    <link rel="icon" href="pfp2.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0b16;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        header {
+            position: relative;
+            height: 400px;
+            background: url('https://broadway.thecosmiccircus.com/wp-content/uploads/2024/12/Mufasa-The-Lion-King-Banner.jpg') center/cover no-repeat;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        .search-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+        }
+        .search-bar input {
+            border: none;
+            background: transparent;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+        header .badge {
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+        }
+        .section {
+            margin-top: 40px;
+            padding: 20px;
+        }
+        .section h2 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .row {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px 20px;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+        .row::-webkit-scrollbar {
+            display: none;
+        }
+        .movie {
+            flex: 0 0 200px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .movie img {
+            width: 100%;
+            border-radius: 10px;
+            transition: filter 0.3s ease;
+        }
+        .movie:hover img {
+            filter: blur(3px);
+        }
+        .movie:hover {
+            transform: scale(1.1);
+        }
+        .movie::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            pointer-events: none;
+            background: url('/mnt/data/image.png') center/cover no-repeat;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .movie:hover::after {
+            opacity: 1;
+        }
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .scroll-btn:hover {
+            background-color: rgba(255, 111, 97, 0.8);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1c1c2e;
+            color: #fff;
+        }
+        .movie-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0b0b16;
+            z-index: 1000;
+            padding: 40px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .movie-page img {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+        }
+        .movie-page .title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .movie-page .play-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .movie-page .play-btn button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 111, 97, 0.8);
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .movie-page .play-btn button:hover {
+            background: rgba(255, 111, 97, 1);
+            transform: scale(1.05);
+        }
+        .movie-page .close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            background: rgba(128, 0, 128, 0.8);
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(128, 0, 128, 0.5);
+            transition: background 0.3s, transform 0.3s;
+            z-index: 2000;
+        }
+        .movie-page .close-btn:hover {
+            background: rgba(128, 0, 128, 1);
+            transform: scale(1.1);
+        }
+        .movie-page.full-screen {
+            display: block;
+            padding: 0;
+        }
+        .movie-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 500;
+        }
+        .movie-player audio {
+            display: none;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgAudio" src="meteor.wav" autoplay loop></audio>
+    <header>
+        <div class="badge">Server 17  on new movie releases will run movies in 4k</div>
+    </header>
+    <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="fas fa-search"></i>
+    </div>
+
+    <div class="section">
+        <h2>Top 10 Today</h2>
+        <div class="row" id="top10Row">
+            <button class="scroll-btn" id="scrollRightTop"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>All</h2>
+        <div class="row" id="movieGrid"></div>
+    </div>
+
+    <div class="movie-page" id="moviePage">
+        <button class="close-btn" id="closeMoviePage"><i class="fas fa-arrow-left"></i></button>
+        <img id="movieImage" src="" alt="Movie">
+        <div class="title" id="movieTitle"></div>
+        <div class="play-btn">
+            <button id="playMovieButton"><i class="fas fa-play"></i> Play</button>
+        </div>
+        <div class="movie-player" id="moviePlayer" style="display: none;">
+            <audio id="movieAudio" src="https://www.example.com/movie-audio.mp3"></audio>
+            <iframe id="movieIframe" src=""></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Orbit TV and RHW</p>
+    </footer>
+
+    <script>
+        const apiKey = "2713804610e1e236b1cf44bfac3a7776";
+        const top10Row = document.getElementById("top10Row");
+        const movieGrid = document.getElementById("movieGrid");
+        const searchBar = document.getElementById("searchBar");
+        const moviePage = document.getElementById("moviePage");
+        const movieImage = document.getElementById("movieImage");
+        const movieTitle = document.getElementById("movieTitle");
+        const closeMoviePage = document.getElementById("closeMoviePage");
+        const playMovieButton = document.getElementById("playMovieButton");
+        const moviePlayer = document.getElementById("moviePlayer");
+        const movieIframe = document.getElementById("movieIframe");
+        const bgAudio = document.getElementById("bgAudio");
+        const movieAudio = document.getElementById("movieAudio");
+
+        let currentMovieId = null;
+
+        async function fetchMovies(page = 1, searchQuery = "") {
+            const url = searchQuery
+                ? `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(searchQuery)}&page=${page}`
+                : `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.results;
+        }
+
+        async function displayTop10() {
+            const movies = await fetchMovies(1);
+            const randomMovies = movies.sort(() => 0.5 - Math.random()).slice(0, 10);
+            top10Row.innerHTML = randomMovies
+                .map(movie => `
+                    <div class="movie" onclick="openMoviePage(${movie.id}, '${movie.title}', '${movie.poster_path}')">
+                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="Movie">
+                    </div>
+                `)
+                .join("");
+        }
+
+        async function displayAllMovies() {
+            const movies = await fetchMovies(1);
+            movieGrid.innerHTML = movies
+                .map(movie => `
+                    <div class="movie" onclick="openMoviePage(${movie.id}, '${movie.title}', '${movie.poster_path}')">
+                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="Movie">
+                    </div>
+                `)
+                .join("");
+        }
+
+        function openMoviePage(movieId, title, posterPath) {
+            bgAudio.pause();
+            currentMovieId = movieId;
+            movieImage.src = `https://image.tmdb.org/t/p/w500${posterPath}`;
+            movieTitle.textContent = title;
+            moviePage.classList.add("full-screen");
+            moviePlayer.style.display = "none";
+        }
+
+        closeMoviePage.addEventListener("click", () => {
+            bgAudio.play();
+            moviePage.classList.remove("full-screen");
+            moviePlayer.style.display = "none";
+            movieIframe.src = "";
+            currentMovieId = null;
+        });
+
+        playMovieButton.addEventListener("click", () => {
+            if (currentMovieId) {
+                movieAudio.removeAttribute("controls");
+                movieAudio.play();
+                moviePlayer.style.display = "block";
+                movieIframe.src = `https://vidsrc.su/embed/movie/${currentMovieId}`;
+            }
+        });
+
+        searchBar.addEventListener("input", async (e) => {
+            const searchQuery = e.target.value;
+            if (searchQuery.trim()) {
+                const movies = await fetchMovies(1, searchQuery);
+                movieGrid.innerHTML = movies
+                    .map(movie => `
+                        <div class="movie" onclick="openMoviePage(${movie.id}, '${movie.title}', '${movie.poster_path}')">
+                            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="Movie">
+                        </div>
+                    `)
+                    .join("");
+            } else {
+                displayAllMovies();
+            }
+        });
+
+        displayTop10();
+        displayAllMovies();
+    </script>
+</body>
+</html>
