@@ -38,7 +38,7 @@
         }
 
         body {
-            font-family: "Press Start 2P", cursive;
+            font-family: "VT323", monospace;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             margin: 0;
@@ -49,7 +49,6 @@
             display: flex;
         }
 
-        /* Snow Effect */
         #snow {
             position: fixed;
             width: 100%;
@@ -60,7 +59,6 @@
             pointer-events: none;
         }
 
-        /* Sidebar Navigation */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -83,8 +81,16 @@
             width: var(--sidebar-expanded-width);
         }
 
-        .sidebar-logo {
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 15px;
             margin-bottom: 30px;
+        }
+
+        .sidebar-logo {
             font-size: 1.8rem;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
@@ -94,17 +100,24 @@
         }
 
         .sidebar-toggle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             background-color: var(--bg-tertiary);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            margin-bottom: 20px;
             border: 1px solid rgba(255, 107, 157, 0.3);
             transition: all var(--transition-normal);
+            margin-left: auto;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .sidebar.expanded .sidebar-toggle {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .sidebar-toggle:hover {
@@ -139,11 +152,13 @@
             display: flex;
             align-items: center;
             width: 100%;
-            padding: 12px 0;
+            padding: 12px 15px;
             cursor: pointer;
             transition: all var(--transition-normal);
             position: relative;
             text-decoration: none;
+            border-radius: 0 20px 20px 0;
+            margin: 2px 0;
         }
 
         .nav-item:hover {
@@ -165,7 +180,7 @@
         }
 
         .nav-icon {
-            min-width: var(--sidebar-width);
+            min-width: 40px;
             display: flex;
             justify-content: center;
             font-size: 1.2rem;
@@ -185,13 +200,13 @@
             font-size: 1.2rem;
             opacity: 0;
             transition: opacity var(--transition-normal);
+            margin-left: 10px;
         }
 
         .sidebar.expanded .nav-text {
             opacity: 1;
         }
 
-        /* Main Container */
         .main-container {
             margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
@@ -210,7 +225,6 @@
             padding: 0 20px;
         }
 
-        /* Header Styling */
         .app-header {
             background-color: var(--bg-secondary);
             padding: 15px 0;
@@ -238,6 +252,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
+            font-family: "Press Start 2P", cursive;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             background-clip: text;
@@ -252,7 +267,6 @@
             font-size: 1.1rem;
         }
         
-        /* Search Bar Styling */
         .search-container {
             flex: 1;
             max-width: 600px;
@@ -295,7 +309,6 @@
             pointer-events: none;
         }
 
-        /* Category Filters */
         .category-filters {
             display: none;
             gap: 10px;
@@ -327,7 +340,6 @@
             box-shadow: 0 0 10px rgba(255, 107, 157, 0.2);
         }
 
-        /* Featured Game Banner */
         .featured-game {
             display: flex;
             background-color: var(--bg-secondary);
@@ -359,6 +371,7 @@
             font-weight: 700;
             margin-bottom: 15px;
             letter-spacing: 1px;
+            font-family: "Press Start 2P", cursive;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
             -webkit-background-clip: text;
             background-clip: text;
@@ -407,7 +420,6 @@
             background-position: center;
         }
 
-        /* Section Headers */
         .section-title {
             font-size: 1.2rem;
             font-weight: 700;
@@ -416,6 +428,7 @@
             letter-spacing: 1px;
             position: relative;
             padding-bottom: 10px;
+            font-family: "Press Start 2P", cursive;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             background-clip: text;
@@ -424,7 +437,6 @@
             text-align: center;
         }
 
-        /* Favorites Section */
         #favorites-heading {
             position: relative;
             padding: 0.5rem 0;
@@ -460,7 +472,6 @@
             font-style: italic;
         }
 
-        /* Game Cards Grid */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -540,7 +551,6 @@
             color: #FFD700;
         }
 
-        /* Animation for adding to favorites */
         @keyframes star-pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.5); }
@@ -551,7 +561,6 @@
             animation: star-pulse 0.5s ease;
         }
 
-        /* Quick Links */
         .quick-links {
             display: none;
             flex-wrap: wrap;
@@ -625,7 +634,6 @@
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         }
 
-        /* Content Areas */
         .content-area {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -640,7 +648,6 @@
             to { opacity: 1; }
         }
 
-        /* Footer */
         footer {
             padding: 30px 0;
             margin-top: 50px;
@@ -672,7 +679,6 @@
             color: var(--accent-pink);
         }
 
-        /* Responsive Adjustments */
         @media (max-width: 1024px) {
             .featured-game {
                 height: auto;
@@ -801,7 +807,6 @@
             }
         }
 
-        /* Browser Tab System Styles */
         .browser-container {
             display: flex;
             flex-direction: column;
@@ -983,25 +988,27 @@
     <div id="snow"></div>
 
     <nav class="sidebar">
-        <div class="sidebar-logo">
-            <i class="fas fa-gamepad"></i>
-        </div>
-        <div class="sidebar-toggle">
-            <i class="fas fa-chevron-right"></i>
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="sidebar-toggle">
+                <i class="fas fa-chevron-right"></i>
+            </div>
         </div>
         <div class="sidebar-nav">
             <a href="#home" class="nav-item active" data-page="home">
                 <div class="nav-icon"><i class="fas fa-home"></i></div>
                 <div class="nav-text">Home</div>
             </a>
-      <a href="#browser" class="nav-item" data-page="browser">
+            <a href="#browser" class="nav-item" data-page="browser">
                 <div class="nav-icon"><i class="fas fa-globe"></i></div>
                 <div class="nav-text">Web Browser</div>
             </a>
-         <a href="#partners" class="nav-item" data-page="partners">
-    <div class="nav-icon"><i class="fas fa-handshake"></i></div>
-    <div class="nav-text">Partners</div>
-</a>
+            <a href="#partners" class="nav-item" data-page="partners">
+                <div class="nav-icon"><i class="fas fa-handshake"></i></div>
+                <div class="nav-text">Partners</div>
+            </a>
         </div>
         <div class="sidebar-divider"></div>
         <div class="sidebar-nav">
@@ -1144,11 +1151,11 @@
             </div>
         </div>
    
- <div id="partners-content" class="content-area">
-    <div class="container">
-        <iframe src="/partners" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-    </div>
-</div>
+        <div id="partners-content" class="content-area">
+            <div class="container">
+                <iframe src="/partners" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+            </div>
+        </div>
 
         <footer>
             <div class="footer-content">
@@ -1523,13 +1530,10 @@
                     return;
                 }
                 
-                // Check if the input is a URL or a search query
                 if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                    // If it contains a dot and no spaces, treat as URL
                     if (url.includes('.') && !url.includes(' ')) {
                         url = 'https://' + url;
                     } else {
-                        // Otherwise, treat as a search query
                         url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
                     }
                 }
