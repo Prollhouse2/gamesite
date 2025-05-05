@@ -75,6 +75,7 @@
             z-index: 1000;
             border-right: 1px solid rgba(255, 107, 157, 0.2);
             box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 0 15px 15px 0;
         }
 
         .sidebar.expanded {
@@ -82,14 +83,12 @@
         }
 
         .sidebar-header {
-            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
             padding: 0 15px;
             margin-bottom: 30px;
-            transition: all var(--transition-normal);
         }
 
         .sidebar.expanded .sidebar-header {
@@ -104,8 +103,8 @@
             background-clip: text;
             color: transparent;
             text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
-            margin-bottom: 10px;
-            transition: margin var(--transition-normal);
+            margin-bottom: 15px;
+            transition: all var(--transition-normal);
         }
 
         .sidebar.expanded .sidebar-logo {
@@ -113,33 +112,40 @@
         }
 
         .sidebar-toggle {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background-color: var(--bg-tertiary);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background-color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            border: 1px solid rgba(255, 107, 157, 0.3);
+            border: none;
             transition: all var(--transition-normal);
-            position: relative;
-            left: 0;
-            top: 0;
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .sidebar.expanded .sidebar-toggle {
-            position: relative;
+            position: static;
+            transform: none;
             margin-left: auto;
         }
 
         .sidebar-toggle:hover {
-            background-color: rgba(255, 107, 157, 0.2);
+            background-color: #f0f0f0;
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .sidebar.expanded .sidebar-toggle:hover {
             transform: scale(1.05);
         }
 
         .sidebar-toggle i {
-            color: var(--text-primary);
+            color: var(--bg-secondary);
+            font-size: 1rem;
             transition: transform var(--transition-normal);
         }
 
