@@ -6,6 +6,7 @@
     <title>Grades & Attendance</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/global-loader.js"></script>
@@ -38,7 +39,7 @@
         }
 
         body {
-            font-family: "Press Start 2P", cursive;
+            font-family: "VT323", monospace;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             margin: 0;
@@ -49,7 +50,6 @@
             display: flex;
         }
 
-        /* Snow Effect */
         #snow {
             position: fixed;
             width: 100%;
@@ -60,7 +60,6 @@
             pointer-events: none;
         }
 
-        /* Sidebar Navigation */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -77,43 +76,77 @@
             z-index: 1000;
             border-right: 1px solid rgba(255, 107, 157, 0.2);
             box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 0 15px 15px 0;
         }
 
         .sidebar.expanded {
             width: var(--sidebar-expanded-width);
         }
 
-        .sidebar-logo {
+        .sidebar-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 0 15px;
             margin-bottom: 30px;
+        }
+
+        .sidebar.expanded .sidebar-header {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .sidebar-logo {
             font-size: 1.8rem;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+            margin-bottom: 15px;
+            transition: all var(--transition-normal);
+        }
+
+        .sidebar.expanded .sidebar-logo {
+            margin-bottom: 0;
         }
 
         .sidebar-toggle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
             background-color: var(--bg-tertiary);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            margin-bottom: 20px;
             border: 1px solid rgba(255, 107, 157, 0.3);
             transition: all var(--transition-normal);
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .sidebar.expanded .sidebar-toggle {
+            position: static;
+            transform: none;
+            margin-left: auto;
         }
 
         .sidebar-toggle:hover {
             background-color: rgba(255, 107, 157, 0.2);
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .sidebar.expanded .sidebar-toggle:hover {
             transform: scale(1.05);
         }
 
         .sidebar-toggle i {
             color: var(--text-primary);
+            font-size: 1rem;
             transition: transform var(--transition-normal);
         }
 
@@ -139,11 +172,13 @@
             display: flex;
             align-items: center;
             width: 100%;
-            padding: 12px 0;
+            padding: 12px 15px;
             cursor: pointer;
             transition: all var(--transition-normal);
             position: relative;
             text-decoration: none;
+            border-radius: 0 20px 20px 0;
+            margin: 2px 0;
         }
 
         .nav-item:hover {
@@ -165,7 +200,7 @@
         }
 
         .nav-icon {
-            min-width: var(--sidebar-width);
+            min-width: 40px;
             display: flex;
             justify-content: center;
             font-size: 1.2rem;
@@ -185,13 +220,13 @@
             font-size: 1.2rem;
             opacity: 0;
             transition: opacity var(--transition-normal);
+            margin-left: 10px;
         }
 
         .sidebar.expanded .nav-text {
             opacity: 1;
         }
 
-        /* Main Container */
         .main-container {
             margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
@@ -210,7 +245,6 @@
             padding: 0 20px;
         }
 
-        /* Header Styling */
         .app-header {
             background-color: var(--bg-secondary);
             padding: 15px 0;
@@ -236,14 +270,16 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .time-spent {
@@ -252,7 +288,6 @@
             font-size: 1.1rem;
         }
         
-        /* Search Bar Styling */
         .search-container {
             flex: 1;
             max-width: 600px;
@@ -295,7 +330,6 @@
             pointer-events: none;
         }
 
-        /* Category Filters */
         .category-filters {
             display: none;
             gap: 10px;
@@ -327,7 +361,6 @@
             box-shadow: 0 0 10px rgba(255, 107, 157, 0.2);
         }
 
-        /* Featured Game Banner */
         .featured-game {
             display: flex;
             background-color: var(--bg-secondary);
@@ -359,6 +392,7 @@
             font-weight: 700;
             margin-bottom: 15px;
             letter-spacing: 1px;
+            font-family: "Press Start 2P", cursive;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
             -webkit-background-clip: text;
             background-clip: text;
@@ -407,7 +441,6 @@
             background-position: center;
         }
 
-        /* Section Headers */
         .section-title {
             font-size: 1.2rem;
             font-weight: 700;
@@ -416,6 +449,7 @@
             letter-spacing: 1px;
             position: relative;
             padding-bottom: 10px;
+            font-family: "Press Start 2P", cursive;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             background-clip: text;
@@ -424,7 +458,6 @@
             text-align: center;
         }
 
-        /* Favorites Section */
         #favorites-heading {
             position: relative;
             padding: 0.5rem 0;
@@ -460,7 +493,6 @@
             font-style: italic;
         }
 
-        /* Game Cards Grid */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -540,7 +572,6 @@
             color: #FFD700;
         }
 
-        /* Animation for adding to favorites */
         @keyframes star-pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.5); }
@@ -551,7 +582,6 @@
             animation: star-pulse 0.5s ease;
         }
 
-        /* Quick Links */
         .quick-links {
             display: none;
             flex-wrap: wrap;
@@ -625,7 +655,6 @@
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         }
 
-        /* Content Areas */
         .content-area {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -640,7 +669,6 @@
             to { opacity: 1; }
         }
 
-        /* Footer */
         footer {
             padding: 30px 0;
             margin-top: 50px;
@@ -672,7 +700,6 @@
             color: var(--accent-pink);
         }
 
-        /* Responsive Adjustments */
         @media (max-width: 1024px) {
             .featured-game {
                 height: auto;
@@ -801,7 +828,6 @@
             }
         }
 
-        /* Browser Tab System Styles */
         .browser-container {
             display: flex;
             flex-direction: column;
@@ -982,58 +1008,53 @@
 <body>
     <div id="snow"></div>
 
-    <nav class="sidebar">
+<nav class="sidebar">
+    <div class="sidebar-header">
         <div class="sidebar-logo">
             <i class="fas fa-gamepad"></i>
         </div>
         <div class="sidebar-toggle">
             <i class="fas fa-chevron-right"></i>
         </div>
-        <div class="sidebar-nav">
-            <a href="#home" class="nav-item active" data-page="home">
-                <div class="nav-icon"><i class="fas fa-home"></i></div>
-                <div class="nav-text">Home</div>
-            </a>
-      <a href="#browser" class="nav-item" data-page="browser">
-                <div class="nav-icon"><i class="fas fa-globe"></i></div>
-                <div class="nav-text">Web Browser</div>
-            </a>
-         <a href="#partners" class="nav-item" data-page="partners">
-    <div class="nav-icon"><i class="fas fa-handshake"></i></div>
-    <div class="nav-text">Partners</div>
-</a>
-        </div>
-        <div class="sidebar-divider"></div>
-        <div class="sidebar-nav">
-            <a href="#settings" class="nav-item" data-page="settings">
-                <div class="nav-icon"><i class="fas fa-cog"></i></div>
-                <div class="nav-text">Settings</div>
-            </a>
-            <a href="#leaderboard" class="nav-item" data-page="leaderboard">
-                <div class="nav-icon"><i class="fas fa-trophy"></i></div>
-                <div class="nav-text">Leaderboard</div>
-            </a>
-            <a href="#chat" class="nav-item" data-page="chat">
-                <div class="nav-icon"><i class="fas fa-comments"></i></div>
-                <div class="nav-text">Chatroom</div>
-            </a>
-            <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
-                <div class="nav-icon"><i class="fab fa-discord"></i></div>
-                <div class="nav-text">Discord</div>
-            </a>
-        </div>
-        <a href="https://tinyurl.com/45j4r62u" class="nav-item" data-page="request" target="_blank">
-            <div class="nav-icon"><i class="fas fa-plus"></i></div>
-            <div class="nav-text">Request Games</div>
+    </div>
+    <div class="sidebar-nav">
+        <a href="#home" class="nav-item active" data-page="home">
+            <div class="nav-icon"><i class="fas fa-home"></i></div>
+            <div class="nav-text">Home</div>
+        </a>
+        <a href="#browser" class="nav-item" data-page="browser">
+            <div class="nav-icon"><i class="fas fa-globe"></i></div>
+            <div class="nav-text">Web Browser</div>
+        </a>
+    <a href="#ai" class="nav-item" data-page="ai">
+            <div class="nav-icon"><i class="fas fa-robot"></i></div>
+            <div class="nav-text">AI Assistant</div>
         </a>
         <div class="sidebar-divider"></div>
         <div class="sidebar-nav">
-            <a href="https://github.com/Prollhouse2/gamesite" class="nav-item" data-page="github" target="_blank">
-                <div class="nav-icon"><i class="fab fa-github"></i></div>
-                <div class="nav-text">Source Code</div>
-            </a>
-        </div>
-    </nav>
+        <a href="#partners" class="nav-item" data-page="partners">
+            <div class="nav-icon"><i class="fas fa-handshake"></i></div>
+            <div class="nav-text">Partners</div>
+        </a>
+        <a href="#settings" class="nav-item" data-page="settings">
+            <div class="nav-icon"><i class="fas fa-cog"></i></div>
+            <div class="nav-text">Settings</div>
+        </a>
+        <a href="#leaderboard" class="nav-item" data-page="leaderboard">
+            <div class="nav-icon"><i class="fas fa-trophy"></i></div>
+            <div class="nav-text">Leaderboard</div>
+        </a>
+        <a href="#chat" class="nav-item" data-page="chat">
+            <div class="nav-icon"><i class="fas fa-comments"></i></div>
+            <div class="nav-text">Chatroom</div>
+        </a>
+        <a href="https://discord.gg/proll" class="nav-item" data-page="discord" target="_blank">
+            <div class="nav-icon"><i class="fab fa-discord"></i></div>
+            <div class="nav-text">Discord</div>
+        </a>
+    </div>
+    <div class="sidebar-divider"></div>
+</nav>
 
     <div class="sidebar-mobile-toggle">
         <i class="fas fa-bars"></i>
@@ -1126,25 +1147,31 @@
             </div>
         </div>
 
-        <div id="settings-content" class="content-area">
-            <div class="container">
-                <iframe src="/settings" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-            </div>
-        </div>
+      <div id="settings-content" class="content-area">
+    <div class="container">
+        <iframe src="/settings" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    </div>
+</div>
 
-        <div id="leaderboard-content" class="content-area">
-            <div class="container">
-                <iframe src="/leaderboard" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-            </div>
-        </div>
+<div id="leaderboard-content" class="content-area">
+    <div class="container">
+        <iframe src="/leaderboard" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    </div>
+</div>
 
-        <div id="chat-content" class="content-area">
-            <div class="container">
-                <iframe src="/chat" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-            </div>
-        </div>
-   
- <div id="partners-content" class="content-area">
+<div id="chat-content" class="content-area">
+    <div class="container">
+        <iframe src="/chat" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    </div>
+</div>
+
+<div id="ai-content" class="content-area">
+    <div class="container">
+        <iframe src="/ai" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    </div>
+</div>
+
+<div id="partners-content" class="content-area">
     <div class="container">
         <iframe src="/partners" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
     </div>
@@ -1523,13 +1550,10 @@
                     return;
                 }
                 
-                // Check if the input is a URL or a search query
                 if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                    // If it contains a dot and no spaces, treat as URL
                     if (url.includes('.') && !url.includes(' ')) {
                         url = 'https://' + url;
                     } else {
-                        // Otherwise, treat as a search query
                         url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
                     }
                 }
