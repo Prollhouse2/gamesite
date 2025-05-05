@@ -6,6 +6,7 @@
     <title>Grades & Attendance</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/global-loader.js"></script>
@@ -114,13 +115,13 @@
         .sidebar-toggle {
             width: 36px;
             height: 36px;
-            border-radius: 10px;
-            background-color: white;
+            border-radius: 8px;
+            background-color: var(--bg-tertiary);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            border: none;
+            border: 1px solid rgba(255, 107, 157, 0.3);
             transition: all var(--transition-normal);
             position: absolute;
             top: 70px;
@@ -135,7 +136,7 @@
         }
 
         .sidebar-toggle:hover {
-            background-color: #f0f0f0;
+            background-color: rgba(255, 107, 157, 0.2);
             transform: translateX(-50%) scale(1.05);
         }
 
@@ -144,7 +145,7 @@
         }
 
         .sidebar-toggle i {
-            color: var(--bg-secondary);
+            color: var(--text-primary);
             font-size: 1rem;
             transition: transform var(--transition-normal);
         }
@@ -269,15 +270,16 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            font-family: "Press Start 2P", cursive;
+            font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .time-spent {
