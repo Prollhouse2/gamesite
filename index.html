@@ -252,9 +252,6 @@
     top: 0;
     z-index: 100;
     border-bottom: 1px solid rgba(255, 107, 157, 0.2);
-    border-radius: 0 0 20px 20px;
-    margin: 0 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .header-content {
@@ -263,34 +260,67 @@
     justify-content: space-between;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 15px 25px;
-    background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(107, 157, 255, 0.1), rgba(157, 107, 255, 0.1));
-    border-radius: 15px;
-    border: 1px solid rgba(255, 107, 157, 0.2);
+    padding: 0 20px;
+    border-radius: 999px;
+    background-color: var(--bg-secondary);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .logo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
     background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.search-wrapper {
-    background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(107, 157, 255, 0.1), rgba(157, 107, 255, 0.1));
-    border-radius: 20px;
-    padding: 3px;
-    border: 1px solid rgba(255, 107, 157, 0.3);
+.time-spent {
+    color: var(--text-secondary);
+    font-family: "VT323", monospace;
+    font-size: 1.1rem;
 }
 
-#searchInput {
-    background-color: rgba(0, 0, 0, 0.3) !important;
+.search-container {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 auto;
 }
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+        }
 
-#searchInput:focus {
-    box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
-}
+        #searchInput {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            border-radius: 20px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: "VT323", monospace;
+        }
+
+        #searchInput::placeholder {
+            color: var(--text-secondary);
+        }
+
+        #searchInput:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+        }
 
         .search-icon {
             position: absolute;
