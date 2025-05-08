@@ -1288,27 +1288,26 @@
         const iframes = contentArea.querySelectorAll('iframe');
         const iframeContainers = contentArea.querySelectorAll('.container');
         
-        if (pageId !== 'home' && pageId !== 'browser') {
-            // Make iframes fullscreen when not on home page
-            iframes.forEach(iframe => {
-                iframe.parentElement.classList.add('fullscreen');
-            });
-            
-            // Shift content up when not on home page
-            contentArea.classList.add('shifted-up');
-            
-            // Hide header
-            document.querySelector('.app-header').classList.add('hidden');
-        } else {
-            // Reset iframe size
-            iframes.forEach(iframe => {
-                iframe.parentElement.classList.remove('fullscreen');
-            });
-            
-            // Show header
-            document.querySelector('.app-header').classList.remove('hidden');
-        }
-    }
+        if (pageId === 'home') {
+    // Reset iframe size
+    iframes.forEach(iframe => {
+        iframe.parentElement.classList.remove('fullscreen');
+    });
+    
+    // Show header only on home page
+    document.querySelector('.app-header').classList.remove('hidden');
+} else {
+    // Make iframes fullscreen when not on home page
+    iframes.forEach(iframe => {
+        iframe.parentElement.classList.add('fullscreen');
+    });
+    
+    // Shift content up when not on home page
+    contentArea.classList.add('shifted-up');
+    
+    // Hide header on all other pages
+    document.querySelector('.app-header').classList.add('hidden');
+}
     
     window.location.hash = pageId;
     
