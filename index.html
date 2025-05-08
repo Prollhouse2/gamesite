@@ -252,6 +252,31 @@
     top: 0;
     z-index: 100;
     border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+    transition: transform 0.5s ease-out;
+    transform: translateY(0);
+}
+
+.app-header.hidden {
+    transform: translateY(-100%);
+}
+
+.content-area {
+    transition: transform 0.5s ease-out, height 0.5s ease-out;
+    transform: translateY(0);
+}
+
+.content-area.shifted-up {
+    transform: translateY(-80px); /* Adjust based on your header height */
+    height: calc(100vh - 80px); /* Adjust to make content fill the space */
+}
+
+.iframe-container {
+    transition: height 0.5s ease-out;
+    height: 80vh;
+}
+
+.iframe-container.fullscreen {
+    height: calc(100vh - 80px); /* Adjust to account for footer */
 }
 
 .header-content {
@@ -1120,7 +1145,7 @@
     <div class="sidebar-overlay"></div>
 
     <div class="main-container">
-        <header class="app-header">
+        <header class="app-header" id="app-header">
             <div class="header-content">
                 <div class="logo-container">
                     <h1 class="logo">PROLLS SCHOOL</h1>
@@ -1205,32 +1230,32 @@
         </div>
 
       <div id="settings-content" class="content-area">
-    <div class="container">
-        <iframe src="/settings" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    <div class="container iframe-container">
+        <iframe src="/settings" style="width:100%; height:100%; border:none; border-radius:var(--border-radius);"></iframe>
     </div>
 </div>
 
 <div id="leaderboard-content" class="content-area">
-    <div class="container">
-        <iframe src="/leaderboard" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    <div class="container iframe-container">
+        <iframe src="/leaderboard" style="width:100%; height:100%; border:none; border-radius:var(--border-radius);"></iframe>
     </div>
 </div>
 
 <div id="chat-content" class="content-area">
-    <div class="container">
-        <iframe src="/chat" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    <div class="container iframe-container">
+        <iframe src="/chat" style="width:100%; height:100%; border:none; border-radius:var(--border-radius);"></iframe>
     </div>
 </div>
 
 <div id="ai-content" class="content-area">
-    <div class="container">
-        <iframe src="/ai" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    <div class="container iframe-container">
+        <iframe src="/ai" style="width:100%; height:100%; border:none; border-radius:var(--border-radius);"></iframe>
     </div>
 </div>
 
 <div id="partners-content" class="content-area">
-    <div class="container">
-        <iframe src="/partners" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
+    <div class="container iframe-container">
+        <iframe src="/partners" style="width:100%; height:100%; border:none; border-radius:var(--border-radius);"></iframe>
     </div>
 </div>
 
@@ -1250,48 +1275,52 @@
     </div>
 
    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function navigateToPage(pageId) {
-                document.querySelectorAll('.content-area').forEach(area => {
-                    area.classList.remove('active', 'shifted-up', 'shifted-down');
-                });
-                
-                const contentArea = document.getElementById(pageId + '-content');
-                if (contentArea) {
-                    contentArea.classList.add('active');
-                }
-                
-                window.location.hash = pageId;
-                
-                document.querySelectorAll('.nav-item').forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('data-page') === pageId) {
-                        item.classList.add('active');
-                    }
-                });
-                
-                // Handle header visibility with animation
-                const appHeader = document.getElementById('app-header');
-                
-                if (pageId === 'home') {
-                    // Show header with animation when on home page
-                    appHeader.classList.remove('hidden');
-                    appHeader.classList.add('visible');
-                    
-                    if (contentArea) {
-                        contentArea.classList.add('shifted-down');
-                    }
-                } else {
-                    // Hide header with animation when not on home page
-                    appHeader.classList.remove('visible');
-                    appHeader.classList.add('hidden');
-                    
-                    if (contentArea) {
-                        contentArea.classList.add('shifted-up');
-                    }
-                }
-            }
+        function navigateToPage(pageId) {
+    document.querySelectorAll('.content-area').forEach(area => {
+        area.classList.remove('active', 'shifted-up');
+    });
+    
+    const contentArea = document.getElementById(pageId + '-content');
+    if (contentArea) {
+        contentArea.classList.add('active');
+        
+        // Find any iframes in the content area and adjust them
+        const iframes = contentArea.querySelectorAll('iframe');
+        const iframeContainers = contentArea.querySelectorAll('.container');
+        
+        if (pageId !== 'home' && pageId !== 'browser') {
+            // Make iframes fullscreen when not on home page
+            iframes.forEach(iframe => {
+                iframe.parentElement.classList.add('fullscreen');
+            });
             
+            // Shift content up when not on home page
+            contentArea.classList.add('shifted-up');
+            
+            // Hide header
+            document.querySelector('.app-header').classList.add('hidden');
+        } else {
+            // Reset iframe size
+            iframes.forEach(iframe => {
+                iframe.parentElement.classList.remove('fullscreen');
+            });
+            
+            // Show header
+            document.querySelector('.app-header').classList.remove('hidden');
+        }
+    }
+    
+    window.location.hash = pageId;
+    
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('data-page') === pageId) {
+            item.classList.add('active');
+        }
+    });
+}
+
+        document.addEventListener('DOMContentLoaded', function() {
             function handleInitialLoad() {
                 const hash = window.location.hash.substring(1) || 'home';
                 navigateToPage(hash);
