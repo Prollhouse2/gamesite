@@ -1456,20 +1456,28 @@
     }
 
     async function searchGames() {
-        const query = document.getElementById("searchInput").value.toLowerCase();
-        const allGamesGrid = document.getElementById("all-games-grid");
-        
-        allGamesGrid.innerHTML = "";
-        
-        const allGames = await loadGames();
-        
-        const filteredGames = allGames.filter(game => 
-            game.title.toLowerCase().includes(query) || 
-            game.category.toLowerCase().includes(query)
-        );
-        
-        renderGames(filteredGames, allGamesGrid);
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const allGamesGrid = document.getElementById("all-games-grid");
+    const favoritesSection = document.getElementById("favorites-section");
+    
+    // Toggle favorites section visibility based on search query
+    if (query.trim() === "") {
+        favoritesSection.style.display = "block"; // Show favorites when search is empty
+    } else {
+        favoritesSection.style.display = "none"; // Hide favorites when searching
     }
+    
+    allGamesGrid.innerHTML = "";
+    
+    const allGames = await loadGames();
+    
+    const filteredGames = allGames.filter(game => 
+        game.title.toLowerCase().includes(query) || 
+        game.category.toLowerCase().includes(query)
+    );
+    
+    renderGames(filteredGames, allGamesGrid);
+}
 
     function renderGames(games, container) {
         const favorites = getFavorites();
