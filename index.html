@@ -1459,12 +1459,15 @@
     const query = document.getElementById("searchInput").value.toLowerCase();
     const allGamesGrid = document.getElementById("all-games-grid");
     const favoritesSection = document.getElementById("favorites-section");
+    const favoritesHeading = document.getElementById("favorites-heading");
     
-    // Toggle favorites section visibility based on search query
+    // Toggle favorites section and heading visibility based on search query
     if (query.trim() === "") {
         favoritesSection.style.display = "block"; // Show favorites when search is empty
+        favoritesHeading.style.display = "block"; // Show heading when search is empty
     } else {
         favoritesSection.style.display = "none"; // Hide favorites when searching
+        favoritesHeading.style.display = "none"; // Hide heading when searching
     }
     
     allGamesGrid.innerHTML = "";
