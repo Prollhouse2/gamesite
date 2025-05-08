@@ -89,7 +89,7 @@
             align-items: center;
             width: 100%;
             padding: 0 15px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .sidebar.expanded .sidebar-header {
@@ -158,7 +158,7 @@
             width: 80%;
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--accent-pink), var(--accent-blue), var(--accent-purple), transparent);
-            margin: 15px 0;
+            margin: 10px 0;
         }
 
         .sidebar-nav {
@@ -172,13 +172,13 @@
             display: flex;
             align-items: center;
             width: 100%;
-            padding: 12px 15px;
+            padding: 8px 15px;
             cursor: pointer;
             transition: all var(--transition-normal);
             position: relative;
             text-decoration: none;
             border-radius: 0 20px 20px 0;
-            margin: 2px 0;
+            margin: 1px 0;
         }
 
         .nav-item:hover {
@@ -245,89 +245,56 @@
             padding: 0 20px;
         }
 
-.app-header {
-    background-color: var(--bg-secondary);
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(255, 107, 157, 0.2);
-}
+        .app-header {
+            background-color: var(--bg-secondary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+            transition: all 0.3s ease;
+        }
 
-.header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    border-radius: 20px;
-    background-color: var(--bg-tertiary);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    position: relative;
-}
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-.header-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
-    z-index: 1;
-}
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 10px 15px;
-    border-radius: 15px;
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(37, 37, 58, 0.8));
-    margin: 5px 0;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-.logo {
-    font-size: 2.2rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 10px;
-    padding: 5px 10px;
-    position: relative;
-}
+        .time-spent {
+            color: var(--text-secondary);
+            font-family: "VT323", monospace;
+            font-size: 1.1rem;
+        }
+        
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-.logo::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent-pink), var(--accent-blue), var(--accent-purple));
-    border-radius: 2px;
-}
-
-.time-spent {
-    color: var(--text-secondary);
-    font-family: "VT323", monospace;
-    font-size: 1.1rem;
-}
-
-.search-container {
-    flex: 1;
-    max-width: 600px;
-    margin: 0 auto;
-}
         .search-wrapper {
             position: relative;
             width: 100%;
@@ -431,6 +398,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
         }
 
         .featured-game-description {
@@ -507,40 +475,18 @@
         }
 
         #favorites-container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    gap: 0.8rem;
-    padding: 1rem;
-    background: linear-gradient(to bottom, rgba(26, 26, 46, 0.8), rgba(10, 10, 26, 0.8));
-    border-radius: 15px;
-    margin: 1rem auto;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.1);
-    max-width: 95%;
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-pink) var(--bg-secondary);
-}
-
-#favorites-container::-webkit-scrollbar {
-    height: 8px;
-}
-
-#favorites-container::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-    border-radius: 4px;
-}
-
-#favorites-container::-webkit-scrollbar-thumb {
-    background: var(--accent-pink);
-    border-radius: 4px;
-}
-
-#favorites-container .game-card {
-    min-width: 150px;
-    flex-shrink: 0;
-}
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: linear-gradient(to bottom, rgba(26, 26, 46, 0.8), rgba(10, 10, 26, 0.8));
+            border-radius: 15px;
+            margin: 1rem auto;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.1);
+            max-width: 95%;
+        }
 
         .no-favorites-message {
             padding: 2rem;
@@ -549,64 +495,63 @@
             font-style: italic;
         }
 
-      .games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-    margin-bottom: 40px;
-}
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
 
-.game-card {
-    background-color: var(--bg-tertiary);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    position: relative;
-    border: 1px solid rgba(107, 157, 255, 0.2);
-    box-shadow: var(--shadow-md);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.8rem; 
-    min-height: 140px; 
-    text-align: center;
-}
+        .game-card {
+            background-color: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(107, 157, 255, 0.2);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.6rem;
+            min-height: 120px;
+            text-align: center;
+        }
 
-.game-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-pink);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    background-color: var(--bg-tertiary);
-}
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-pink);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--bg-tertiary);
+        }
 
-.game-card-image {
-    width: 70px; 
-    height: 70px; 
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 0.75rem; 
-    border: 2px solid var(--accent-pink);
-    box-shadow: 0 0 0 2px rgba(107, 157, 255, 0.3);
-    transition: all var(--transition-normal);
-}
+        .game-card-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+            border: 2px solid var(--accent-pink);
+            box-shadow: 0 0 0 2px rgba(107, 157, 255, 0.3);
+            transition: all var(--transition-normal);
+        }
 
-.game-card:hover .game-card-image {
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 2px rgba(255, 107, 157, 0.3);
-    transform: scale(1.1);
-}
+        .game-card:hover .game-card-image {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(255, 107, 157, 0.3);
+            transform: scale(1.1);
+        }
 
-.game-card-title {
-    font-weight: 600;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 1.1rem; 
-    font-family: "VT323", monospace;
-    margin-top: 8px;
-    line-height: 1.3; 
-}
+        .game-card-title {
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 0.75rem;
+            font-family: "VT323", monospace;
+            margin-top: 5px;
+        }
 
         .favorite-star {
             position: absolute;
@@ -726,6 +671,63 @@
             to { opacity: 1; }
         }
 
+        @keyframes slideUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100%); opacity: 0; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes contentSlideUp {
+            from { transform: translateY(0); }
+            to { transform: translateY(-80px); }
+        }
+
+        @keyframes contentSlideDown {
+            from { transform: translateY(-80px); }
+            to { transform: translateY(0); }
+        }
+
+        .app-header {
+            background-color: var(--bg-secondary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+            transition: all 0.3s ease;
+            height: 80px;
+        }
+
+        .app-header.hidden {
+            animation: slideUp 0.3s forwards;
+        }
+
+        .app-header.visible {
+            animation: slideDown 0.3s forwards;
+        }
+
+        .content-area {
+            display: none;
+            transition: transform 0.3s ease;
+        }
+
+        .content-area.active {
+            display: block;
+        }
+
+        .content-area.shifted-up {
+            transform: translateY(-80px);
+            animation: contentSlideUp 0.3s forwards;
+        }
+
+        .content-area.shifted-down {
+            animation: contentSlideDown 0.3s forwards;
+        }
+
         footer {
             padding: 30px 0;
             margin-top: 50px;
@@ -755,6 +757,13 @@
 
         .social-icons a:hover {
             color: var(--accent-pink);
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 90vh;
+            border: none;
+            border-radius: var(--border-radius);
         }
 
         @media (max-width: 1024px) {
@@ -1083,12 +1092,11 @@
             <div class="nav-icon"><i class="fas fa-globe"></i></div>
             <div class="nav-text">Web Browser</div>
         </a>
-    <a href="#ai" class="nav-item" data-page="ai">
+        <a href="#ai" class="nav-item" data-page="ai">
             <div class="nav-icon"><i class="fas fa-robot"></i></div>
             <div class="nav-text">AI Assistant</div>
         </a>
         <div class="sidebar-divider"></div>
-        <div class="sidebar-nav">
         <a href="#partners" class="nav-item" data-page="partners">
             <div class="nav-icon"><i class="fas fa-handshake"></i></div>
             <div class="nav-text">Partners</div>
@@ -1120,7 +1128,7 @@
     <div class="sidebar-overlay"></div>
 
     <div class="main-container">
-        <header class="app-header">
+        <header class="app-header" id="app-header">
             <div class="header-content">
                 <div class="logo-container">
                     <h1 class="logo">PROLLS SCHOOL</h1>
@@ -1205,34 +1213,34 @@
         </div>
 
       <div id="settings-content" class="content-area">
-    <div class="container">
-        <iframe src="/settings" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-    </div>
-</div>
+        <div class="container">
+            <iframe src="/settings" class="iframe-container"></iframe>
+        </div>
+      </div>
 
-<div id="leaderboard-content" class="content-area">
-    <div class="container">
-        <iframe src="/leaderboard" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-    </div>
-</div>
+      <div id="leaderboard-content" class="content-area">
+        <div class="container">
+            <iframe src="/leaderboard" class="iframe-container"></iframe>
+        </div>
+      </div>
 
-<div id="chat-content" class="content-area">
-    <div class="container">
-        <iframe src="/chat" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-    </div>
-</div>
+      <div id="chat-content" class="content-area">
+        <div class="container">
+            <iframe src="/chat" class="iframe-container"></iframe>
+        </div>
+      </div>
 
-<div id="ai-content" class="content-area">
-    <div class="container">
-        <iframe src="/ai" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-    </div>
-</div>
+      <div id="ai-content" class="content-area">
+        <div class="container">
+            <iframe src="/ai" class="iframe-container"></iframe>
+        </div>
+      </div>
 
-<div id="partners-content" class="content-area">
-    <div class="container">
-        <iframe src="/partners" style="width:100%; height:80vh; border:none; border-radius:var(--border-radius);"></iframe>
-    </div>
-</div>
+      <div id="partners-content" class="content-area">
+        <div class="container">
+            <iframe src="/partners" class="iframe-container"></iframe>
+        </div>
+      </div>
 
         <footer>
             <div class="footer-content">
@@ -1253,7 +1261,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             function navigateToPage(pageId) {
                 document.querySelectorAll('.content-area').forEach(area => {
-                    area.classList.remove('active');
+                    area.classList.remove('active', 'shifted-up', 'shifted-down');
                 });
                 
                 const contentArea = document.getElementById(pageId + '-content');
@@ -1269,6 +1277,27 @@
                         item.classList.add('active');
                     }
                 });
+                
+                // Handle header visibility with animation
+                const appHeader = document.getElementById('app-header');
+                
+                if (pageId === 'home') {
+                    // Show header with animation when on home page
+                    appHeader.classList.remove('hidden');
+                    appHeader.classList.add('visible');
+                    
+                    if (contentArea) {
+                        contentArea.classList.add('shifted-down');
+                    }
+                } else {
+                    // Hide header with animation when not on home page
+                    appHeader.classList.remove('visible');
+                    appHeader.classList.add('hidden');
+                    
+                    if (contentArea) {
+                        contentArea.classList.add('shifted-up');
+                    }
+                }
             }
             
             function handleInitialLoad() {
@@ -1412,31 +1441,20 @@
         }
 
         async function searchGames() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-    const allGamesGrid = document.getElementById("all-games-grid");
-    const favoritesSection = document.getElementById("favorites-section");
-    const favoritesHeading = document.getElementById("favorites-heading");
-    
-    allGamesGrid.innerHTML = "";
-    
-    // Show/hide favorites section based on search query
-    if (query.trim() === "") {
-        favoritesSection.style.display = "block";
-        favoritesHeading.style.display = "block";
-    } else {
-        favoritesSection.style.display = "none";
-        favoritesHeading.style.display = "none";
-    }
-    
-    const allGames = await loadGames();
-    
-    const filteredGames = allGames.filter(game => 
-        game.title.toLowerCase().includes(query) || 
-        game.category.toLowerCase().includes(query)
-    );
-    
-    renderGames(filteredGames, allGamesGrid);
-}
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const allGamesGrid = document.getElementById("all-games-grid");
+            
+            allGamesGrid.innerHTML = "";
+            
+            const allGames = await loadGames();
+            
+            const filteredGames = allGames.filter(game => 
+                game.title.toLowerCase().includes(query) || 
+                game.category.toLowerCase().includes(query)
+            );
+            
+            renderGames(filteredGames, allGamesGrid);
+        }
 
         function renderGames(games, container) {
             const favorites = getFavorites();
