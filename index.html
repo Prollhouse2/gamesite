@@ -266,8 +266,8 @@
 }
 
 .content-area.shifted-up {
-    transform: translateY(-80px); /* Adjust based on your header height */
-    height: calc(100vh - 80px); /* Adjust to make content fill the space */
+    transform: translateY(-80px);
+    height: calc(100vh - 80px); 
 }
 
 .iframe-container {
@@ -276,7 +276,7 @@
 }
 
 .iframe-container.fullscreen {
-    height: calc(100vh - 80px); /* Adjust to account for footer */
+    height: calc(100vh - 80px); 
 }
 
 .header-content {
@@ -1274,215 +1274,168 @@
         </footer>
     </div>
 
-   <script>
-        function navigateToPage(pageId) {
-    document.querySelectorAll('.content-area').forEach(area => {
-        area.classList.remove('active', 'shifted-up');
+ <script>
+    function navigateToPage(pageId) {
+        document.querySelectorAll('.content-area').forEach(area => {
+            area.classList.remove('active', 'shifted-up');
+        });
+        
+        const contentArea = document.getElementById(pageId + '-content');
+        if (contentArea) {
+            contentArea.classList.add('active');
+            
+            const iframes = contentArea.querySelectorAll('iframe');
+            const iframeContainers = contentArea.querySelectorAll('.container');
+            
+            if (pageId === 'home') {
+                iframes.forEach(iframe => {
+                    iframe.parentElement.classList.remove('fullscreen');
+                });
+                
+                document.querySelector('.app-header').classList.remove('hidden');
+                contentArea.classList.remove('shifted-up');
+            } else {
+                iframes.forEach(iframe => {
+                    iframe.parentElement.classList.add('fullscreen');
+                });
+                
+                contentArea.classList.add('shifted-up');
+                document.querySelector('.app-header').classList.add('hidden');
+            }
+        }
+        
+        window.location.hash = pageId;
+        
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('data-page') === pageId) {
+                item.classList.add('active');
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        function handleInitialLoad() {
+            const hash = window.location.hash.substring(1) || 'home';
+            navigateToPage(hash);
+        }
+        
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1) || 'home';
+            navigateToPage(hash);
+        });
+        
+        document.querySelectorAll('.nav-item').forEach(item => {
+            const pageId = item.getAttribute('data-page');
+            
+            if (!item.hasAttribute('target')) {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navigateToPage(pageId);
+                });
+            }
+        });
+        
+        handleInitialLoad();
     });
-    
-    const contentArea = document.getElementById(pageId + '-content');
-    if (contentArea) {
-        contentArea.classList.add('active');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebarMobileToggle = document.querySelector('.sidebar-mobile-toggle');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
         
-        // Find any iframes in the content area and adjust them
-        const iframes = contentArea.querySelectorAll('iframe');
-        const iframeContainers = contentArea.querySelectorAll('.container');
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('expanded');
+            });
+        }
         
-        if (pageId !== 'home' && pageId !== 'browser') {
-            // Make iframes fullscreen when not on home page
-            iframes.forEach(iframe => {
-                iframe.parentElement.classList.add('fullscreen');
+        if (sidebarMobileToggle) {
+            sidebarMobileToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('expanded');
             });
-            
-            // Shift content up when not on home page
-            contentArea.classList.add('shifted-up');
-            
-            // Hide header
-            document.querySelector('.app-header').classList.add('hidden');
-        } else {
-            // Reset iframe size
-            iframes.forEach(iframe => {
-                iframe.parentElement.classList.remove('fullscreen');
+        }
+        
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', function() {
+                sidebar.classList.remove('expanded');
             });
-            
-            // Show header
-            document.querySelector('.app-header').classList.remove('hidden');
+        }
+    });
+
+    async function loadGames() {
+        try {
+            const response = await fetch('games.json');
+            const data = await response.json();
+            return data.games;
+        } catch (error) {
+            console.error('Error loading games:', error);
+            return [];
         }
     }
-    
-    window.location.hash = pageId;
-    
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('data-page') === pageId) {
-            item.classList.add('active');
-        }
-    });
-}
 
-        document.addEventListener('DOMContentLoaded', function() {
-            function handleInitialLoad() {
-                const hash = window.location.hash.substring(1) || 'home';
-                navigateToPage(hash);
-            }
-            
-            window.addEventListener('hashchange', function() {
-                const hash = window.location.hash.substring(1) || 'home';
-                navigateToPage(hash);
+    function getFavorites() {
+        const favorites = localStorage.getItem("favoriteGames");
+        return favorites ? JSON.parse(favorites) : [];
+    }
+
+    function saveFavorites(favorites) {
+        localStorage.setItem("favoriteGames", JSON.stringify(favorites));
+    }
+
+    function toggleFavorite(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const gameCard = event.target.closest(".game-card");
+        const gameLink = gameCard.querySelector("a");
+        const gamePath = gameLink.getAttribute("href");
+        const gameTitle = gameLink.querySelector(".game-card-title").textContent;
+        const gameImage = gameLink.querySelector(".game-card-image").getAttribute("src");
+
+        const favorites = getFavorites();
+
+        const index = favorites.findIndex((game) => game.path === gamePath);
+
+        if (index === -1) {
+            favorites.push({
+                path: gamePath,
+                title: gameTitle,
+                image: gameImage
             });
-            
-            document.querySelectorAll('.nav-item').forEach(item => {
-                const pageId = item.getAttribute('data-page');
-                
-                if (!item.hasAttribute('target')) {
-                    item.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        navigateToPage(pageId);
-                    });
-                }
-            });
-            
-            handleInitialLoad();
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.querySelector('.sidebar');
-            const sidebarToggle = document.querySelector('.sidebar-toggle');
-            const sidebarMobileToggle = document.querySelector('.sidebar-mobile-toggle');
-            const sidebarOverlay = document.querySelector('.sidebar-overlay');
-            
-            if (sidebarToggle) {
-                sidebarToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('expanded');
-                });
-            }
-            
-            if (sidebarMobileToggle) {
-                sidebarMobileToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('expanded');
-                });
-            }
-            
-            if (sidebarOverlay) {
-                sidebarOverlay.addEventListener('click', function() {
-                    sidebar.classList.remove('expanded');
-                });
-            }
-        });
-
-        async function loadGames() {
-            try {
-                const response = await fetch('games.json');
-                const data = await response.json();
-                return data.games;
-            } catch (error) {
-                console.error('Error loading games:', error);
-                return [];
-            }
+            event.target.classList.remove("far");
+            event.target.classList.add("fas");
+            event.target.classList.add("active");
+            event.target.classList.add("star-animation");
+            setTimeout(() => {
+                event.target.classList.remove("star-animation");
+            }, 500);
+        } else {
+            favorites.splice(index, 1);
+            event.target.classList.remove("fas", "active");
+            event.target.classList.add("far");
         }
 
-        function getFavorites() {
-            const favorites = localStorage.getItem("favoriteGames");
-            return favorites ? JSON.parse(favorites) : [];
-        }
+        saveFavorites(favorites);
+        updateFavoritesSection();
+    }
 
-        function saveFavorites(favorites) {
-            localStorage.setItem("favoriteGames", JSON.stringify(favorites));
-        }
+    function updateFavoritesSection() {
+        const favorites = getFavorites();
+        const favoritesContainer = document.getElementById("favorites-container");
+        const favoritesSection = document.getElementById("favorites-section");
+        const favoritesHeading = document.getElementById("favorites-heading");
 
-        function toggleFavorite(event) {
-            event.stopPropagation();
-            event.preventDefault();
+        favoritesContainer.innerHTML = "";
 
-            const gameCard = event.target.closest(".game-card");
-            const gameLink = gameCard.querySelector("a");
-            const gamePath = gameLink.getAttribute("href");
-            const gameTitle = gameLink.querySelector(".game-card-title").textContent;
-            const gameImage = gameLink.querySelector(".game-card-image").getAttribute("src");
-
-            const favorites = getFavorites();
-
-            const index = favorites.findIndex((game) => game.path === gamePath);
-
-            if (index === -1) {
-                favorites.push({
-                    path: gamePath,
-                    title: gameTitle,
-                    image: gameImage
-                });
-                event.target.classList.remove("far");
-                event.target.classList.add("fas");
-                event.target.classList.add("active");
-                event.target.classList.add("star-animation");
-                setTimeout(() => {
-                    event.target.classList.remove("star-animation");
-                }, 500);
-            } else {
-                favorites.splice(index, 1);
-                event.target.classList.remove("fas", "active");
-                event.target.classList.add("far");
-            }
-
-            saveFavorites(favorites);
-            updateFavoritesSection();
-        }
-
-        function updateFavoritesSection() {
-            const favorites = getFavorites();
-            const favoritesContainer = document.getElementById("favorites-container");
-            const favoritesSection = document.getElementById("favorites-section");
-            const favoritesHeading = document.getElementById("favorites-heading");
-
-            favoritesContainer.innerHTML = "";
-
-            if (favorites.length === 0) {
-                const message = document.createElement("div");
-                message.className = "no-favorites-message";
-                message.textContent = "Star your favorite games to see them here!";
-                favoritesContainer.appendChild(message);
-            } else {
-                favorites.forEach((game) => {
-                    const gameCard = document.createElement("div");
-                    gameCard.className = "game-card";
-                    
-                    gameCard.innerHTML = `
-                        <a href="${game.path}" target="_blank" style="text-decoration: none; color: inherit;">
-                            <img src="${game.image}" alt="${game.title}" class="game-card-image">
-                            <div class="game-card-title">${game.title}</div>
-                        </a>
-                        <i class="fas fa-star favorite-star active"></i>
-                    `;
-                    
-                    const starIcon = gameCard.querySelector(".favorite-star");
-                    starIcon.addEventListener("click", toggleFavorite);
-                    
-                    favoritesContainer.appendChild(gameCard);
-                });
-            }
-        }
-
-        async function searchGames() {
-            const query = document.getElementById("searchInput").value.toLowerCase();
-            const allGamesGrid = document.getElementById("all-games-grid");
-            
-            allGamesGrid.innerHTML = "";
-            
-            const allGames = await loadGames();
-            
-            const filteredGames = allGames.filter(game => 
-                game.title.toLowerCase().includes(query) || 
-                game.category.toLowerCase().includes(query)
-            );
-            
-            renderGames(filteredGames, allGamesGrid);
-        }
-
-        function renderGames(games, container) {
-            const favorites = getFavorites();
-            
-            games.forEach(game => {
-                const isFavorite = favorites.some(fav => fav.path === game.path);
-                
+        if (favorites.length === 0) {
+            const message = document.createElement("div");
+            message.className = "no-favorites-message";
+            message.textContent = "Star your favorite games to see them here!";
+            favoritesContainer.appendChild(message);
+        } else {
+            favorites.forEach((game) => {
                 const gameCard = document.createElement("div");
                 gameCard.className = "game-card";
                 
@@ -1491,301 +1444,342 @@
                         <img src="${game.image}" alt="${game.title}" class="game-card-image">
                         <div class="game-card-title">${game.title}</div>
                     </a>
-                    <i class="${isFavorite ? 'fas' : 'far'} fa-star favorite-star ${isFavorite ? 'active' : ''}"></i>
+                    <i class="fas fa-star favorite-star active"></i>
                 `;
                 
                 const starIcon = gameCard.querySelector(".favorite-star");
                 starIcon.addEventListener("click", toggleFavorite);
                 
-                container.appendChild(gameCard);
+                favoritesContainer.appendChild(gameCard);
             });
         }
+    }
 
-        function displayTotalTimeSpent() {
-            const totalKey = "totalTimeSpent";
-            let totalTimeSpent = Number.parseInt(localStorage.getItem(totalKey)) || 0;
+    async function searchGames() {
+        const query = document.getElementById("searchInput").value.toLowerCase();
+        const allGamesGrid = document.getElementById("all-games-grid");
+        
+        allGamesGrid.innerHTML = "";
+        
+        const allGames = await loadGames();
+        
+        const filteredGames = allGames.filter(game => 
+            game.title.toLowerCase().includes(query) || 
+            game.category.toLowerCase().includes(query)
+        );
+        
+        renderGames(filteredGames, allGamesGrid);
+    }
 
-            function updateDisplay() {
-                const totalDays = Math.floor(totalTimeSpent / 86400);
-                const totalHours = Math.floor((totalTimeSpent % 86400) / 3600);
-                const totalMinutes = Math.floor((totalTimeSpent % 3600) / 60);
-                const totalSeconds = totalTimeSpent % 60;
+    function renderGames(games, container) {
+        const favorites = getFavorites();
+        
+        games.forEach(game => {
+            const isFavorite = favorites.some(fav => fav.path === game.path);
+            
+            const gameCard = document.createElement("div");
+            gameCard.className = "game-card";
+            
+            gameCard.innerHTML = `
+                <a href="${game.path}" target="_blank" style="text-decoration: none; color: inherit;">
+                    <img src="${game.image}" alt="${game.title}" class="game-card-image">
+                    <div class="game-card-title">${game.title}</div>
+                </a>
+                <i class="${isFavorite ? 'fas' : 'far'} fa-star favorite-star ${isFavorite ? 'active' : ''}"></i>
+            `;
+            
+            const starIcon = gameCard.querySelector(".favorite-star");
+            starIcon.addEventListener("click", toggleFavorite);
+            
+            container.appendChild(gameCard);
+        });
+    }
 
-                const message = `${totalDays} days, ${totalHours} hours, ${totalMinutes} minutes, and ${totalSeconds} seconds.`;
-                document.getElementById("timeSpent").innerHTML = message;
-            }
+    function displayTotalTimeSpent() {
+        const totalKey = "totalTimeSpent";
+        let totalTimeSpent = Number.parseInt(localStorage.getItem(totalKey)) || 0;
 
-            updateDisplay();
+        function updateDisplay() {
+            const totalDays = Math.floor(totalTimeSpent / 86400);
+            const totalHours = Math.floor((totalTimeSpent % 86400) / 3600);
+            const totalMinutes = Math.floor((totalTimeSpent % 3600) / 60);
+            const totalSeconds = totalTimeSpent % 60;
 
-            setInterval(() => {
-                totalTimeSpent++;
-                localStorage.setItem(totalKey, totalTimeSpent);
-                updateDisplay();
-            }, 1000);
+            const message = `${totalDays} days, ${totalHours} hours, ${totalMinutes} minutes, and ${totalSeconds} seconds.`;
+            document.getElementById("timeSpent").innerHTML = message;
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            let tabCounter = 1;
-            const tabs = document.querySelector('.browser-tabs');
-            const newTabButton = document.querySelector('.new-tab-button');
-            const browserContent = document.querySelector('.browser-content');
-            const addressBar = document.getElementById('address-bar');
-            const refreshButton = document.getElementById('refresh-button');
-            const backButton = document.getElementById('back-button');
-            const forwardButton = document.getElementById('forward-button');
-            const homeButton = document.getElementById('home-button');
-            const fullscreenButton = document.getElementById('fullscreen-button');
+        updateDisplay();
+
+        setInterval(() => {
+            totalTimeSpent++;
+            localStorage.setItem(totalKey, totalTimeSpent);
+            updateDisplay();
+        }, 1000);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        let tabCounter = 1;
+        const tabs = document.querySelector('.browser-tabs');
+        const newTabButton = document.querySelector('.new-tab-button');
+        const browserContent = document.querySelector('.browser-content');
+        const addressBar = document.getElementById('address-bar');
+        const refreshButton = document.getElementById('refresh-button');
+        const backButton = document.getElementById('back-button');
+        const forwardButton = document.getElementById('forward-button');
+        const homeButton = document.getElementById('home-button');
+        const fullscreenButton = document.getElementById('fullscreen-button');
+        
+        function createNewTab() {
+            tabCounter++;
             
-            function createNewTab() {
-                tabCounter++;
-                
-                const tabElement = document.createElement('div');
-                tabElement.className = 'browser-tab';
-                tabElement.setAttribute('data-tab', `tab${tabCounter}`);
-                tabElement.innerHTML = `
-                    <span class="tab-title">New Tab</span>
-                    <span class="tab-close"><i class="fas fa-times"></i></span>
-                `;
-                
-                const tabContent = document.createElement('div');
-                tabContent.className = 'tab-content';
-                tabContent.id = `tab${tabCounter}-content`;
-                tabContent.innerHTML = `
-                    <iframe src="/static" class="browser-frame" id="tab${tabCounter}-frame"></iframe>
-                `;
-                
-                tabs.insertBefore(tabElement, newTabButton);
-                
-                browserContent.appendChild(tabContent);
-                
-                activateTab(tabElement);
-                
-                setupTabEventListeners(tabElement);
+            const tabElement = document.createElement('div');
+            tabElement.className = 'browser-tab';
+            tabElement.setAttribute('data-tab', `tab${tabCounter}`);
+            tabElement.innerHTML = `
+                <span class="tab-title">New Tab</span>
+                <span class="tab-close"><i class="fas fa-times"></i></span>
+            `;
+            
+            const tabContent = document.createElement('div');
+            tabContent.className = 'tab-content';
+            tabContent.id = `tab${tabCounter}-content`;
+            tabContent.innerHTML = `
+                <iframe src="/static" class="browser-frame" id="tab${tabCounter}-frame"></iframe>
+            `;
+            
+            tabs.insertBefore(tabElement, newTabButton);
+            
+            browserContent.appendChild(tabContent);
+            
+            activateTab(tabElement);
+            
+            setupTabEventListeners(tabElement);
+        }
+        
+        function activateTab(tabElement) {
+            document.querySelectorAll('.browser-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            tabElement.classList.add('active');
+            
+            const tabId = tabElement.getAttribute('data-tab');
+            
+            const tabContent = document.getElementById(`${tabId}-content`);
+            if (tabContent) {
+                tabContent.classList.add('active');
             }
             
-            function activateTab(tabElement) {
-                document.querySelectorAll('.browser-tab').forEach(tab => {
-                    tab.classList.remove('active');
-                });
-                
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                tabElement.classList.add('active');
-                
-                const tabId = tabElement.getAttribute('data-tab');
-                
-                const tabContent = document.getElementById(`${tabId}-content`);
-                if (tabContent) {
-                    tabContent.classList.add('active');
-                }
-                
-                const iframe = document.getElementById(`${tabId}-frame`);
-                if (iframe) {
-                    try {
-                        const iframeUrl = iframe.contentWindow.location.href;
-                        if (iframeUrl !== 'about:blank') {
-                            addressBar.value = iframeUrl;
-                        } else {
-                            addressBar.value = 'proll://new';
-                        }
-                    } catch (e) {
-                        addressBar.value = iframe.src;
-                    }
-                }
-            }
-            
-            function setupTabEventListeners(tabElement) {
-                tabElement.addEventListener('click', function(e) {
-                    if (!e.target.closest('.tab-close')) {
-                        activateTab(this);
-                    }
-                });
-                
-                const closeButton = tabElement.querySelector('.tab-close');
-                if (closeButton) {
-                    closeButton.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        closeTab(tabElement);
-                    });
-                }
-            }
-            
-            function closeTab(tabElement) {
-                const tabId = tabElement.getAttribute('data-tab');
-                
-                const tabContent = document.getElementById(`${tabId}-content`);
-                
-                const isActive = tabElement.classList.contains('active');
-                
-                tabElement.remove();
-                if (tabContent) {
-                    tabContent.remove();
-                }
-                
-                if (isActive) {
-                    const remainingTabs = document.querySelectorAll('.browser-tab');
-                    if (remainingTabs.length > 0) {
-                        activateTab(remainingTabs[0]);
+            const iframe = document.getElementById(`${tabId}-frame`);
+            if (iframe) {
+                try {
+                    const iframeUrl = iframe.contentWindow.location.href;
+                    if (iframeUrl !== 'about:blank') {
+                        addressBar.value = iframeUrl;
                     } else {
-                        createNewTab();
+                        addressBar.value = 'proll://new';
                     }
+                } catch (e) {
+                    addressBar.value = iframe.src;
                 }
-                
-                if (document.querySelectorAll('.browser-tab').length === 0) {
+            }
+        }
+        
+        function setupTabEventListeners(tabElement) {
+            tabElement.addEventListener('click', function(e) {
+                if (!e.target.closest('.tab-close')) {
+                    activateTab(this);
+                }
+            });
+            
+            const closeButton = tabElement.querySelector('.tab-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeTab(tabElement);
+                });
+            }
+        }
+        
+        function closeTab(tabElement) {
+            const tabId = tabElement.getAttribute('data-tab');
+            
+            const tabContent = document.getElementById(`${tabId}-content`);
+            
+            const isActive = tabElement.classList.contains('active');
+            
+            tabElement.remove();
+            if (tabContent) {
+                tabContent.remove();
+            }
+            
+            if (isActive) {
+                const remainingTabs = document.querySelectorAll('.browser-tab');
+                if (remainingTabs.length > 0) {
+                    activateTab(remainingTabs[0]);
+                } else {
                     createNewTab();
                 }
             }
+            
+            if (document.querySelectorAll('.browser-tab').length === 0) {
+                createNewTab();
+            }
+        }
 
-            function navigateToUrl(url) {
-                const activeTab = document.querySelector('.browser-tab.active');
-                if (!activeTab) return;
-                
-                const tabId = activeTab.getAttribute('data-tab');
-                
-                const iframe = document.getElementById(`${tabId}-frame`);
-                if (!iframe) return;
-                
-                const tabTitle = activeTab.querySelector('.tab-title');
-                if (tabTitle) {
-                    tabTitle.textContent = url;
-                }
-                
-                if (url === 'proll://new') {
-                    iframe.src = '/static';
-                    return;
-                }
-                
-                if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                    if (url.includes('.') && !url.includes(' ')) {
-                        url = 'https://' + url;
-                    } else {
-                        url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
-                    }
-                }
-                
-                iframe.src = `/static/embed.html#${url}`;
+        function navigateToUrl(url) {
+            const activeTab = document.querySelector('.browser-tab.active');
+            if (!activeTab) return;
+            
+            const tabId = activeTab.getAttribute('data-tab');
+            
+            const iframe = document.getElementById(`${tabId}-frame`);
+            if (!iframe) return;
+            
+            const tabTitle = activeTab.querySelector('.tab-title');
+            if (tabTitle) {
+                tabTitle.textContent = url;
             }
             
-            newTabButton.addEventListener('click', createNewTab);
+            if (url === 'proll://new') {
+                iframe.src = '/static';
+                return;
+            }
             
-            addressBar.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    navigateToUrl(this.value);
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                if (url.includes('.') && !url.includes(' ')) {
+                    url = 'https://' + url;
+                } else {
+                    url = 'https://goongle.vercel.app/search?q=' + encodeURIComponent(url);
                 }
-            });
+            }
             
-            refreshButton.addEventListener('click', function() {
-                const activeTab = document.querySelector('.browser-tab.active');
-                if (!activeTab) return;
-                
-                const tabId = activeTab.getAttribute('data-tab');
-                const iframe = document.getElementById(`${tabId}-frame`);
-                
-                if (iframe) {
-                    iframe.src = iframe.src;
-                }
-            });
-            
-            homeButton.addEventListener('click', function() {
-                addressBar.value = '/static';
-                navigateToUrl('/static');
-            });
-            
-            fullscreenButton.addEventListener('click', function() {
-                const activeTab = document.querySelector('.browser-tab.active');
-                if (!activeTab) return;
-                
-                const tabId = activeTab.getAttribute('data-tab');
-                const iframe = document.getElementById(`${tabId}-frame`);
-                
-                if (iframe) {
-                    if (document.fullscreenElement) {
-                        document.exitFullscreen();
-                    } else {
-                        iframe.requestFullscreen();
-                    }
-                }
-            });
-            
-            const initialTab = document.querySelector('.browser-tab');
-            if (initialTab) {
-                setupTabEventListeners(initialTab);
+            iframe.src = `/static/embed.html#${url}`;
+        }
+        
+        newTabButton.addEventListener('click', createNewTab);
+        
+        addressBar.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                navigateToUrl(this.value);
             }
         });
-
-        document.addEventListener("DOMContentLoaded", async () => {
-            displayTotalTimeSpent();
+        
+        refreshButton.addEventListener('click', function() {
+            const activeTab = document.querySelector('.browser-tab.active');
+            if (!activeTab) return;
             
-            document.getElementById("current-year").textContent = new Date().getFullYear();
+            const tabId = activeTab.getAttribute('data-tab');
+            const iframe = document.getElementById(`${tabId}-frame`);
             
-            if (typeof particlesJS !== "undefined") {
-                particlesJS("snow", {
-                    particles: {
-                        number: {
-                            value: 150,
-                            density: { enable: true, value_area: 800 },
-                        },
-                        color: { value: "#ffffff" },
-                        shape: {
-                            type: "circle",
-                            stroke: { width: 0, color: "#000000" },
-                        },
-                        opacity: {
-                            value: 0.5,
-                            random: false,
-                            anim: { enable: false },
-                        },
-                        size: {
-                            value: 3,
-                            random: true,
-                            anim: { enable: false },
-                        },
-                        line_linked: { enable: false },
-                        move: {
-                            enable: true,
-                            speed: 2,
-                            direction: "bottom",
-                            random: false,
-                            straight: false,
-                            out_mode: "out",
-                            bounce: false,
-                        },
-                    },
-                    interactivity: {
-                        detect_on: "canvas",
-                        events: {
-                            onhover: { enable: true },
-                            onclick: { enable: false },
-                            resize: true,
-                        },
-                    },
-                    retina_detect: true,
-                });
+            if (iframe) {
+                iframe.src = iframe.src;
             }
+        });
+        
+        homeButton.addEventListener('click', function() {
+            addressBar.value = '/static';
+            navigateToUrl('/static');
+        });
+        
+        fullscreenButton.addEventListener('click', function() {
+            const activeTab = document.querySelector('.browser-tab.active');
+            if (!activeTab) return;
             
-            const allGames = await loadGames();
+            const tabId = activeTab.getAttribute('data-tab');
+            const iframe = document.getElementById(`${tabId}-frame`);
             
-            const allGamesGrid = document.getElementById("all-games-grid");
-            renderGames(allGames, allGamesGrid);
-            
-            updateFavoritesSection();
-            
-            function updateTime() {
-                const timeElement = document.getElementById("time");
-                if (timeElement) {
-                    const now = new Date();
-                    const hours = now.getHours().toString().padStart(2, '0');
-                    const minutes = now.getMinutes().toString().padStart(2, '0');
-                    const seconds = now.getSeconds().toString().padStart(2, '0');
-                    timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+            if (iframe) {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    iframe.requestFullscreen();
                 }
             }
-            
-            updateTime();
-            setInterval(updateTime, 1000);
         });
-    </script>
+        
+        const initialTab = document.querySelector('.browser-tab');
+        if (initialTab) {
+            setupTabEventListeners(initialTab);
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        displayTotalTimeSpent();
+        
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+        
+        if (typeof particlesJS !== "undefined") {
+            particlesJS("snow", {
+                particles: {
+                    number: {
+                        value: 150,
+                        density: { enable: true, value_area: 800 },
+                    },
+                    color: { value: "#ffffff" },
+                    shape: {
+                        type: "circle",
+                        stroke: { width: 0, color: "#000000" },
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: false,
+                        anim: { enable: false },
+                    },
+                    size: {
+                        value: 3,
+                        random: true,
+                        anim: { enable: false },
+                    },
+                    line_linked: { enable: false },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "bottom",
+                        random: false,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false,
+                    },
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true },
+                        onclick: { enable: false },
+                        resize: true,
+                    },
+                },
+                retina_detect: true,
+            });
+        }
+        
+        const allGames = await loadGames();
+        
+        const allGamesGrid = document.getElementById("all-games-grid");
+        renderGames(allGames, allGamesGrid);
+        
+        updateFavoritesSection();
+        
+        function updateTime() {
+            const timeElement = document.getElementById("time");
+            if (timeElement) {
+                const now = new Date();
+                const hours = now.getHours().toString().padStart(2, '0');
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+                const seconds = now.getSeconds().toString().padStart(2, '0');
+                timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+    });
+</script>
 </body>
 </html>
