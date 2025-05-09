@@ -25,7 +25,6 @@
       position: relative;
     }
 
-    /* Grid background from main site */
     .grid-background {
       position: fixed;
       top: 0;
@@ -50,7 +49,6 @@
       }
     }
 
-    /* Glow effect from main site */
     .glow-container {
       position: fixed;
       top: 0;
@@ -106,63 +104,139 @@
       text-align: center;
     }
 
-    .spinner {
-      width: 140px;
-      height: 140px;
+    .tape-loader {
+      width: 200px;
+      height: 120px;
       position: relative;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 12px rgba(255, 107, 157, 0.8));
+      margin-bottom: 30px;
     }
 
-    .spinner-circle {
-      position: absolute;
-      border: 8px solid transparent;
-      border-radius: 50%;
-      animation: spin 1.8s linear infinite;
-    }
-
-    .spinner-circle:nth-child(1) {
+    .tape-deck {
       width: 100%;
       height: 100%;
-      border-top-color: #ff6b9d; /* Pink */
-      border-left-color: #9d6bff; /* Purple */
+      background: rgba(20, 20, 40, 0.7);
+      border: 4px solid #9d6bff;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(157, 107, 255, 0.5);
     }
 
-    .spinner-circle:nth-child(2) {
-      width: 72%;
-      height: 72%;
-      top: 14%;
-      left: 14%;
-      border-top-color: #6b9dff; /* Blue */
-      border-left-color: #ff6b9d; /* Pink */
-      animation-duration: 2.5s;
-      animation-direction: reverse;
+    .tape-reel {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #0a0a1a;
+      border: 8px solid #ff6b9d;
+      position: absolute;
+      top: 30px;
     }
 
-    @keyframes spin {
+    .tape-reel.left {
+      left: 20px;
+      animation: spin-reel 2s linear infinite;
+    }
+
+    .tape-reel.right {
+      right: 20px;
+      animation: spin-reel 2s linear infinite reverse;
+    }
+
+    .tape-reel:before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #6b9dff;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .tape {
+      position: absolute;
+      width: 60px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 107, 157, 0.5);
+      top: 45px;
+      left: 90px;
+      animation: tape-move 3s linear infinite;
+    }
+
+    .tape:before, .tape:after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 100%;
+      background: rgba(107, 157, 255, 0.3);
+    }
+
+    .tape:before {
+      left: 5px;
+    }
+
+    .tape:after {
+      right: 5px;
+    }
+
+    @keyframes spin-reel {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
 
+    @keyframes tape-move {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(20px); }
+      100% { transform: translateX(0); }
+    }
+
+    .tape-controls {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .tape-button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff6b9d;
+      box-shadow: 0 0 5px rgba(255, 107, 157, 0.8);
+    }
+
+    .tape-button:nth-child(2) {
+      background: #6b9dff;
+      box-shadow: 0 0 5px rgba(107, 157, 255, 0.8);
+    }
+
+    .tape-button:nth-child(3) {
+      background: #9d6bff;
+      box-shadow: 0 0 5px rgba(157, 107, 255, 0.8);
+    }
+
     #glitch-text {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 400;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #ffffff;
-      margin-top: 30px;
+      margin-top: 20px;
       text-shadow:
         0 0 10px rgba(255, 107, 157, 0.8),
         0 0 20px rgba(157, 107, 255, 0.6),
         0 0 30px rgba(107, 157, 255, 0.4);
       animation: 
         glowPulse 2s ease-in-out infinite, 
-        bounce 3s ease-in-out infinite,
         scanlineFlicker 0.1s linear infinite;
     }
 
     @keyframes glowPulse {
-      0% {
+      0%, 100% {
         text-shadow:
           0 0 6px rgba(255, 107, 157, 0.8),
           0 0 12px rgba(157, 107, 255, 0.6),
@@ -174,24 +248,8 @@
           0 0 30px rgba(157, 107, 255, 0.8),
           0 0 40px rgba(107, 157, 255, 0.6);
       }
-      100% {
-        text-shadow:
-          0 0 6px rgba(255, 107, 157, 0.8),
-          0 0 12px rgba(157, 107, 255, 0.6),
-          0 0 18px rgba(107, 157, 255, 0.4);
-      }
     }
 
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-5px);
-      }
-    }
-
-    /* Scanline effect from main site */
     .scanlines {
       position: fixed;
       top: 0;
@@ -209,13 +267,11 @@
       opacity: 0.3;
     }
 
-    /* CRT flicker effect */
     @keyframes scanlineFlicker {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.95; }
     }
 
-    /* Pixelated dots overlay */
     .pixel-overlay {
       position: absolute;
       top: 0;
@@ -232,7 +288,6 @@
 </head>
 
 <body>
-  <!-- Background elements from main site -->
   <div class="grid-background"></div>
   <div class="glow-container">
     <div class="glow"></div>
@@ -242,37 +297,71 @@
   <div class="pixel-overlay"></div>
 
   <div id="main">
-    <div class="spinner">
-      <div class="spinner-circle"></div>
-      <div class="spinner-circle"></div>
+    <div class="tape-loader">
+      <div class="tape-deck">
+        <div class="tape-reel left"></div>
+        <div class="tape-reel right"></div>
+        <div class="tape"></div>
+        <div class="tape-controls">
+          <div class="tape-button"></div>
+          <div class="tape-button"></div>
+          <div class="tape-button"></div>
+        </div>
+      </div>
     </div>
-    <p id="glitch-text">geeked vs locked in</p>
+    <p id="glitch-text">loading your illegal content</p>
   </div>
 
   <script>
+    const phrases = [
+      "goongle before gta6",
+      "hacking mainframe.exe",
+      "asking jeeves for help",
+      "buffering... buffering...",
+      "stealing wifi from neighbors",
+      "ignoring system32 warnings",
+      "pretending to work",
+      "loading your illegal content",
+      "geeked vs locked in",
+      "ignoring dmca notices",
+      "buffering your future",
+      "convincing captcha im human"
+    ];
+    
     const target = document.getElementById('glitch-text');
-    const original = target.textContent;
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let iterations = 0;
-
-    const glitchInterval = setInterval(() => {
-      let displayed = '';
-      for (let i = 0; i < original.length; i++) {
-        if (i < iterations) {
-          displayed += original[i];
-        } else if (original[i] === ' ') {
-          displayed += ' ';
-        } else {
-          displayed += chars[Math.floor(Math.random() * chars.length)];
+    let currentPhrase = 0;
+    
+    function glitchText() {
+      let iterations = 0;
+      const original = phrases[currentPhrase];
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      
+      const glitchInterval = setInterval(() => {
+        let displayed = '';
+        for (let i = 0; i < original.length; i++) {
+          if (i < iterations) {
+            displayed += original[i];
+          } else if (original[i] === ' ') {
+            displayed += ' ';
+          } else {
+            displayed += chars[Math.floor(Math.random() * chars.length)];
+          }
         }
-      }
-      target.textContent = displayed.toUpperCase();
-      iterations += 0.5;
-      if (iterations >= original.length) {
-        clearInterval(glitchInterval);
-        target.textContent = original.toUpperCase();
-      }
-    }, 50);
+        target.textContent = displayed;
+        iterations += 0.5;
+        
+        if (iterations >= original.length) {
+          clearInterval(glitchInterval);
+          target.textContent = original;
+          setTimeout(() => {
+            currentPhrase = (currentPhrase + 1) % phrases.length;
+            glitchText();
+          }, 2000);
+        }
+      }, 50);
+    }
+    
+    glitchText();
   </script>
   <script src="uv/uv.bundle.js"></script>
   <script src="uv/uv.config.js"></script>
