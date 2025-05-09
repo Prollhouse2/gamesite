@@ -3,9 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loading....</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <title>Loading...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Pixelify+Sans&family=Orbitron&family=Chakra+Petch:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-primary: #0a0a1a;
+      --bg-secondary: #1a1a2e;
+      --bg-tertiary: #25253a;
+      --accent-pink: #ff6b9d;
+      --accent-blue: #6b9dff;
+      --accent-purple: #9d6bff;
+      --accent-cyan: #6bffd9;
+      --text-primary: #ffffff;
+      --text-secondary: #c0c0d0;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,16 +26,19 @@
 
     body {
       overflow: hidden;
-      font-family: 'VT323', monospace;
+      font-family: 'Pixelify Sans', sans-serif;
       height: 100vh;
       width: 100vw;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: #00ff41;
-      background-color: #0a0a0a;
+      color: var(--accent-cyan);
+      background-color: var(--bg-primary);
       position: relative;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(157, 107, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 107, 157, 0.05) 0%, transparent 20%);
     }
 
     .cyber-grid {
@@ -33,8 +48,8 @@
       width: 100%;
       height: 100%;
       background: 
-        linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+        linear-gradient(rgba(107, 157, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(107, 157, 255, 0.03) 1px, transparent 1px);
       background-size: 30px 30px;
       z-index: -1;
       animation: gridScroll 60s linear infinite;
@@ -80,10 +95,10 @@
       width: 100%;
       height: 100%;
       border: 3px solid transparent;
-      border-top-color: #00ff41;
+      border-top-color: var(--accent-purple);
       border-radius: 50%;
       animation: rotate 4s linear infinite;
-      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+      box-shadow: 0 0 20px rgba(157, 107, 255, 0.3);
     }
 
     .loader-ring:nth-child(1) {
@@ -94,12 +109,14 @@
     .loader-ring:nth-child(2) {
       animation-delay: -1s;
       border-width: 3px;
+      border-top-color: var(--accent-pink);
       animation-duration: 6s;
     }
 
     .loader-ring:nth-child(3) {
       animation-delay: -1.5s;
       border-width: 2px;
+      border-top-color: var(--accent-blue);
       animation-duration: 8s;
     }
 
@@ -121,11 +138,11 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      border: 3px solid #00ff41;
+      border: 3px solid var(--accent-cyan);
       border-radius: 50%;
       box-shadow: 
-        0 0 15px rgba(0, 255, 65, 0.7),
-        inset 0 0 20px rgba(0, 255, 65, 0.3);
+        0 0 15px rgba(107, 255, 217, 0.7),
+        inset 0 0 20px rgba(107, 255, 217, 0.3);
       overflow: hidden;
     }
 
@@ -137,11 +154,11 @@
       left: 10%;
       background: radial-gradient(
         circle at center,
-        rgba(0, 255, 65, 0.3) 0%,
+        rgba(107, 255, 217, 0.3) 0%,
         rgba(0, 0, 0, 0) 70%
       );
       border-radius: 50%;
-      border: 2px solid rgba(0, 255, 65, 0.5);
+      border: 2px solid rgba(107, 255, 217, 0.5);
       animation: eyePulse 3s ease-in-out infinite;
     }
 
@@ -151,12 +168,12 @@
       height: 50%;
       top: 25%;
       left: 25%;
-      background: #0a0a0a;
+      background: var(--bg-secondary);
       border-radius: 50%;
-      border: 3px solid #00ff41;
+      border: 3px solid var(--accent-cyan);
       box-shadow: 
-        0 0 15px rgba(0, 255, 65, 0.8),
-        inset 0 0 15px rgba(0, 255, 65, 0.5);
+        0 0 15px rgba(107, 255, 217, 0.8),
+        inset 0 0 15px rgba(107, 255, 217, 0.5);
       animation: irisPulse 4s ease infinite;
     }
 
@@ -167,7 +184,7 @@
       background: linear-gradient(
         to bottom,
         transparent,
-        rgba(0, 255, 65, 0.5),
+        rgba(107, 255, 217, 0.5),
         transparent
       );
       top: 0;
@@ -195,20 +212,20 @@
     .progress-container {
       width: 300px;
       height: 8px;
-      background: rgba(0, 255, 65, 0.1);
+      background: rgba(107, 157, 255, 0.1);
       border-radius: 4px;
       overflow: hidden;
       margin-top: 30px;
-      box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+      box-shadow: 0 0 10px rgba(107, 157, 255, 0.3);
     }
 
     .progress-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #00ff41, #00ff88);
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
       border-radius: 4px;
       animation: progressLoad 8s ease-in-out infinite;
-      box-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
+      box-shadow: 0 0 10px rgba(157, 107, 255, 0.7);
     }
 
     @keyframes progressLoad {
@@ -224,10 +241,11 @@
       font-size: 24px;
       letter-spacing: 3px;
       margin-top: 20px;
-      text-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
+      text-shadow: 0 0 10px rgba(107, 255, 217, 0.7);
       position: relative;
       text-align: center;
       height: 30px;
+      font-family: 'Orbitron', sans-serif;
     }
 
     .status-text span {
@@ -240,7 +258,7 @@
       display: inline-block;
       width: 10px;
       height: 24px;
-      background: #00ff41;
+      background: var(--accent-cyan);
       margin-left: 5px;
       animation: cursorBlink 1s step-end infinite;
       vertical-align: middle;
@@ -264,7 +282,7 @@
     .binary-column {
       position: absolute;
       top: -100%;
-      color: rgba(0, 255, 65, 0.2);
+      color: rgba(107, 255, 217, 0.2);
       font-size: 18px;
       writing-mode: vertical-rl;
       text-orientation: upright;
@@ -283,11 +301,11 @@
       width: 100%;
       height: 100%;
       background: 
-        radial-gradient(circle at center, transparent 60%, #0a0a0a 100%),
+        radial-gradient(circle at center, transparent 60%, var(--bg-primary) 100%),
         repeating-linear-gradient(
           0deg,
-          rgba(0, 255, 65, 0.05),
-          rgba(0, 255, 65, 0.05) 1px,
+          rgba(107, 255, 217, 0.05),
+          rgba(107, 255, 217, 0.05) 1px,
           transparent 1px,
           transparent 5px
         );
@@ -331,7 +349,7 @@
   </div>
   
   <div class="status-text">
-    <span>Loading...</span>
+    <span>loading...</span>
     <div class="status-cursor"></div>
   </div>
 
@@ -378,8 +396,21 @@
       
       setTimeout(updateStatus, 2000 + Math.random() * 2000);
     }
-  
+    
     setTimeout(updateStatus, 1500);
+
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.querySelector('.progress-bar').style.animation = 'none';
+        document.querySelector('.progress-bar').style.width = '100%';
+        statusText.textContent = "READY";
+      }, 1000);
+    });
   </script>
+  
+  <script src="uv/uv.bundle.js"></script>
+  <script src="uv/uv.config.js"></script>
+  <script src="register-sw.js"></script>
+  <script src="embed.js"></script>
 </body>
 </html>
