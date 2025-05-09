@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loading</title>
+  <title>Loading....</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <style>
-     * {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -18,6 +18,7 @@
       height: 100vh;
       width: 100vw;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       color: #00ff41;
@@ -32,16 +33,16 @@
       width: 100%;
       height: 100%;
       background: 
-        linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
-      background-size: 20px 20px;
+        linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+      background-size: 30px 30px;
       z-index: -1;
-      animation: gridScroll 40s linear infinite;
+      animation: gridScroll 60s linear infinite;
     }
 
     @keyframes gridScroll {
       0% { background-position: 0 0; }
-      100% { background-position: 100px 100px; }
+      100% { background-position: 300px 300px; }
     }
 
     .scanline-overlay {
@@ -55,17 +56,65 @@
         rgba(0, 0, 0, 0.15),
         rgba(0, 0, 0, 0.15) 1px,
         transparent 1px,
-        transparent 2px
+        transparent 3px
       );
       pointer-events: none;
       z-index: 10;
+      animation: scanlineMove 8s linear infinite;
+    }
+
+    @keyframes scanlineMove {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    .cyber-loader {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin-bottom: 40px;
+    }
+
+    .loader-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid transparent;
+      border-top-color: #00ff41;
+      border-radius: 50%;
+      animation: rotate 4s linear infinite;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    }
+
+    .loader-ring:nth-child(1) {
+      animation-delay: -0.5s;
+      border-width: 4px;
+    }
+
+    .loader-ring:nth-child(2) {
+      animation-delay: -1s;
+      border-width: 3px;
+      animation-duration: 6s;
+    }
+
+    .loader-ring:nth-child(3) {
+      animation-delay: -1.5s;
+      border-width: 2px;
+      animation-duration: 8s;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .cyber-eye {
+      position: absolute;
       width: 180px;
       height: 180px;
-      position: relative;
-      margin-bottom: 40px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .eye-outer {
@@ -74,50 +123,56 @@
       height: 100%;
       border: 3px solid #00ff41;
       border-radius: 50%;
-      box-shadow: 0 0 15px rgba(0, 255, 65, 0.7);
-      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      box-shadow: 
+        0 0 15px rgba(0, 255, 65, 0.7),
+        inset 0 0 20px rgba(0, 255, 65, 0.3);
       overflow: hidden;
     }
 
     .eye-inner {
       position: absolute;
-      width: 70%;
-      height: 70%;
-      top: 15%;
-      left: 15%;
+      width: 80%;
+      height: 80%;
+      top: 10%;
+      left: 10%;
       background: radial-gradient(
         circle at center,
-        rgba(0, 255, 65, 0.2) 0%,
-        rgba(0, 0, 0, 0) 60%
+        rgba(0, 255, 65, 0.3) 0%,
+        rgba(0, 0, 0, 0) 70%
       );
       border-radius: 50%;
-      border: 2px dashed #00ff41;
+      border: 2px solid rgba(0, 255, 65, 0.5);
       animation: eyePulse 3s ease-in-out infinite;
     }
 
     .eye-iris {
       position: absolute;
-      width: 40%;
-      height: 40%;
-      top: 30%;
-      left: 30%;
+      width: 50%;
+      height: 50%;
+      top: 25%;
+      left: 25%;
       background: #0a0a0a;
       border-radius: 50%;
       border: 3px solid #00ff41;
       box-shadow: 
-        0 0 10px rgba(0, 255, 65, 0.8),
-        inset 0 0 10px rgba(0, 255, 65, 0.8);
+        0 0 15px rgba(0, 255, 65, 0.8),
+        inset 0 0 15px rgba(0, 255, 65, 0.5);
+      animation: irisPulse 4s ease infinite;
     }
 
     .eye-scanline {
       position: absolute;
       width: 100%;
       height: 10px;
-      background: rgba(0, 255, 65, 0.3);
-      top: 50%;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 255, 65, 0.5),
+        transparent
+      );
+      top: 0;
       left: 0;
-      transform: translateY(-50%);
-      animation: eyeScan 2.5s linear infinite;
+      animation: eyeScan 3s linear infinite;
     }
 
     @keyframes eyePulse {
@@ -125,11 +180,75 @@
       50% { transform: scale(1.05); opacity: 1; }
     }
 
+    @keyframes irisPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
     @keyframes eyeScan {
       0% { top: 0%; opacity: 0; }
       10% { opacity: 1; }
       90% { opacity: 1; }
       100% { top: 100%; opacity: 0; }
+    }
+
+    .progress-container {
+      width: 300px;
+      height: 8px;
+      background: rgba(0, 255, 65, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 30px;
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00ff41, #00ff88);
+      border-radius: 4px;
+      animation: progressLoad 8s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
+    }
+
+    @keyframes progressLoad {
+      0% { width: 0%; }
+      20% { width: 25%; }
+      40% { width: 50%; }
+      60% { width: 75%; }
+      80% { width: 90%; }
+      100% { width: 100%; }
+    }
+
+    .status-text {
+      font-size: 24px;
+      letter-spacing: 3px;
+      margin-top: 20px;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
+      position: relative;
+      text-align: center;
+      height: 30px;
+    }
+
+    .status-text span {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+
+    .status-cursor {
+      display: inline-block;
+      width: 10px;
+      height: 24px;
+      background: #00ff41;
+      margin-left: 5px;
+      animation: cursorBlink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .binary-rain {
@@ -145,40 +264,16 @@
     .binary-column {
       position: absolute;
       top: -100%;
-      color: rgba(0, 255, 65, 0.3);
+      color: rgba(0, 255, 65, 0.2);
       font-size: 18px;
       writing-mode: vertical-rl;
       text-orientation: upright;
       animation: binaryFall linear infinite;
+      user-select: none;
     }
 
     @keyframes binaryFall {
       to { top: 100%; }
-    }
-
-    #status-text {
-      font-size: 24px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #00ff41;
-      margin-top: 30px;
-      text-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
-      position: relative;
-    }
-
-    .status-cursor {
-      display: inline-block;
-      width: 10px;
-      height: 20px;
-      background: #00ff41;
-      margin-left: 5px;
-      animation: cursorBlink 1s step-end infinite;
-      vertical-align: middle;
-    }
-
-    @keyframes cursorBlink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
     }
 
     .distortion-overlay {
@@ -213,84 +308,78 @@
 </head>
 
 <body>
-  <div class="grid-background"></div>
-  <div class="glow-container">
-    <div class="glow"></div>
-    <div class="glow"></div>
-  </div>
-  <div class="scanlines"></div>
-  <div class="pixel-overlay"></div>
-
-  <div id="main">
-    <div class="tape-loader">
-      <div class="tape-deck">
-        <div class="tape-reel left"></div>
-        <div class="tape-reel right"></div>
-        <div class="tape"></div>
-        <div class="tape-controls">
-          <div class="tape-button"></div>
-          <div class="tape-button"></div>
-          <div class="tape-button"></div>
-        </div>
+  <div class="cyber-grid"></div>
+  <div class="scanline-overlay"></div>
+  <div class="distortion-overlay"></div>
+  
+  <div class="cyber-loader">
+    <div class="loader-ring"></div>
+    <div class="loader-ring"></div>
+    <div class="loader-ring"></div>
+    
+    <div class="cyber-eye">
+      <div class="eye-outer">
+        <div class="eye-inner"></div>
+        <div class="eye-iris"></div>
+        <div class="eye-scanline"></div>
       </div>
     </div>
-    <p id="glitch-text">loading your illegal content</p>
+  </div>
+  
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+  
+  <div class="status-text">
+    <span>Loading...</span>
+    <div class="status-cursor"></div>
   </div>
 
   <script>
-    const phrases = [
+    const binaryChars = "0101010101";
+    const container = document.body;
+    
+    for (let i = 0; i < 20; i++) {
+      const column = document.createElement("div");
+      column.className = "binary-column";
+      
+      let content = "";
+      const rows = 30 + Math.floor(Math.random() * 20);
+      for (let j = 0; j < rows; j++) {
+        content += binaryChars.charAt(Math.floor(Math.random() * binaryChars.length));
+      }
+      
+      column.textContent = content;
+      column.style.left = `${Math.random() * 100}%`;
+      column.style.animationDuration = `${10 + Math.random() * 20}s`;
+      column.style.animationDelay = `${Math.random() * 5}s`;
+      
+      container.appendChild(column);
+    }
+    
+    const statusText = document.querySelector('.status-text span');
+    const statusMessages = [
       "goongle before gta6",
-      "hacking mainframe.exe",
       "asking jeeves for help",
-      "buffering... buffering...",
       "stealing wifi from neighbors",
       "ignoring system32 warnings",
       "pretending to work",
       "loading your illegal content",
       "geeked vs locked in",
       "ignoring dmca notices",
-      "buffering your future",
       "convincing captcha im human"
     ];
     
-    const target = document.getElementById('glitch-text');
-    let currentPhrase = 0;
+    let currentStatus = 0;
     
-    function glitchText() {
-      let iterations = 0;
-      const original = phrases[currentPhrase];
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    function updateStatus() {
+      statusText.textContent = statusMessages[currentStatus];
+      currentStatus = (currentStatus + 1) % statusMessages.length;
       
-      const glitchInterval = setInterval(() => {
-        let displayed = '';
-        for (let i = 0; i < original.length; i++) {
-          if (i < iterations) {
-            displayed += original[i];
-          } else if (original[i] === ' ') {
-            displayed += ' ';
-          } else {
-            displayed += chars[Math.floor(Math.random() * chars.length)];
-          }
-        }
-        target.textContent = displayed;
-        iterations += 0.5;
-        
-        if (iterations >= original.length) {
-          clearInterval(glitchInterval);
-          target.textContent = original;
-          setTimeout(() => {
-            currentPhrase = (currentPhrase + 1) % phrases.length;
-            glitchText();
-          }, 2000);
-        }
-      }, 50);
+      setTimeout(updateStatus, 2000 + Math.random() * 2000);
     }
-    
-    glitchText();
+  
+    setTimeout(updateStatus, 1500);
   </script>
-  <script src="uv/uv.bundle.js"></script>
-  <script src="uv/uv.config.js"></script>
-  <script src="register-sw.js"></script>
-  <script src="embed.js"></script>
 </body>
 </html>
