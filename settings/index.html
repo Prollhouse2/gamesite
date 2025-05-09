@@ -290,7 +290,6 @@
             border-color: rgba(255, 107, 157, 0.3);
         }
 
-        /* Switch styling */
         .switch {
             position: relative;
             display: inline-block;
@@ -349,7 +348,6 @@
             border-radius: 50%;
         }
 
-        /* Dropdown styling */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -583,7 +581,6 @@
         font-size: 1rem;
     }
 }
-        /* Modal styling */
         .modal {
             display: none;
             position: fixed;
@@ -752,7 +749,6 @@
             100% { opacity: 0.7; }
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .page {
                 padding: 1.5rem;
@@ -847,34 +843,33 @@
                 </div>
             </div>
 
-         <div id="misc" class="tab-content">
-    <div class="setting-card">
-        <h2>Credits</h2>
-        <div class="cards-container" id="credits-container">
-            <div class="credit-card">
-                <a href="https://github.com/tazz-devv" target="_blank" rel="noopener noreferrer">
-                    <img src="/assets/taz.png" alt="Taz" class="credit-img">
-                    <div class="credit-name">Taz</div>
-                    <div class="credit-role">Drastically improved UI, and added some features.</div>
-                </a>
-            </div>
-            <div class="credit-card">
-                <a href="https://github.com/prollhouse2" target="_blank" rel="noopener noreferrer">
-                    <img src="/assets/proll.png" alt="Proll" class="credit-img">
-                    <div class="credit-name">Proll</div>
-                    <div class="credit-role">Owner, added the games, and most of the features.</div>
-                </a>
-            </div>
-            <div class="credit-card">
-                <a href="https://github.com/nasrrrrrr" target="_blank" rel="noopener noreferrer">
-                    <img src="/assets/nasr.png" alt="Nasr" class="credit-img">
-                    <div class="credit-name">Nasr</div>
-                    <div class="credit-role">Developed the search engine for the proxy (Goongle).</div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+            <div id="misc" class="tab-content">
+                <div class="setting-card">
+                    <h2>Credits</h2>
+                    <div class="cards-container" id="credits-container">
+                        <div class="credit-card">
+                            <a href="https://github.com/tazz-devv" target="_blank" rel="noopener noreferrer">
+                                <img src="/assets/taz.png" alt="Taz" class="credit-img">
+                                <div class="credit-name">Taz</div>
+                                <div class="credit-role">Drastically improved UI, and added some features.</div>
+                            </a>
+                        </div>
+                        <div class="credit-card">
+                            <a href="https://github.com/prollhouse2" target="_blank" rel="noopener noreferrer">
+                                <img src="/assets/proll.png" alt="Proll" class="credit-img">
+                                <div class="credit-name">Proll</div>
+                                <div class="credit-role">Owner, added the games, and most of the features.</div>
+                            </a>
+                        </div>
+                        <div class="credit-card">
+                            <a href="https://github.com/nasrrrrrr" target="_blank" rel="noopener noreferrer">
+                                <img src="/assets/nasr.png" alt="Nasr" class="credit-img">
+                                <div class="credit-name">Nasr</div>
+                                <div class="credit-role">Developed the search engine for the proxy (Goongle).</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="setting-card">
                     <h2>Panic Keybind</h2>
                     <p>Set a key to quickly hide this page. Press this key to instantly redirect to Google Classroom.</p>
@@ -889,7 +884,6 @@
         </div>
     </div>
 
-    <!-- Modals -->
     <div id="faviconModal" class="modal">
         <div class="modal-content">
             <span id="closeFaviconModal" class="close">&times;</span>
@@ -1014,14 +1008,12 @@
                 }
             });
 
-            // Fix for dropdown visibility
             dropdownButton.addEventListener('click', function(event) {
                 event.stopPropagation();
                 dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
                 dropdown.classList.toggle('active');
             });
 
-            // Close dropdown when clicking outside
             document.addEventListener('click', function(event) {
                 if (!dropdown.contains(event.target)) {
                     dropdownMenu.style.display = 'none';
@@ -1176,7 +1168,6 @@
         }
 
         function enableAboutBlank() {
-            // Get the root URL of the site (not just the settings page)
             const rootUrl = window.location.href.split('/').slice(0, 3).join('/');
             
             const newWindow = window.open('about:blank', '_blank');
