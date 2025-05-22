@@ -2,6 +2,7 @@
   "games": [
     { "title": "Slope", "path": "g/slope", "image": "images/slope.png", "category": "RACING" },
     { "title": "Retro Bowl", "path": "g/retro-bowl", "image": "images/retrobowl.jpg", "category": "SPORTS" },
+    { "title": "DeadShot.io", "path": "g/deadshotio", "image": "images/deadshotio.png", "category": "ACTION" },
     { "title": "Gunspin", "path": "g/gunspin", "image": "/images/gunspin.png", "category": "ACTION" },
     { "title": "1v1.lol", "path": "g/1v1lol", "image": "https://play-lh.googleusercontent.com/QYGRIDJbyVO7L7jH8CwiKJ4NumTGgcTVqU3ITooLWxro-eeNns1RZ0uwGGFe-r8M4co", "category": "ACTION" },
     { "title": "Block Blast", "path": "g/blockblast", "image": "images/blockblast.png", "category": "PUZZLE" },
