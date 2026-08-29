@@ -1,0 +1,45 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - monkius04-deploy-site
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Prepare publish directory
+        run: |
+          set -e
+          rm -rf public
+          mkdir -p public/g
+
+          for d in g/*; do
+            if [ -d "$d" ]; then
+              if [ -f "$d/index.html" ] || [ -f "$d/frame.html" ] || [ -f "$d/main.html" ] || [ -f "$d/main2.html" ]; then
+                mkdir -p "public/$d"
+                rsync -a "$d"/ "public/$d"/
+              fi
+            fi
+          done
+
+          # copy top-level static files if present
+          cp -a login.html public/ 2>/dev/null || true
+          if [ -d static ]; then
+            mkdir -p public/static
+            rsync -a static/ public/static/
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public
+          keep_files: true
